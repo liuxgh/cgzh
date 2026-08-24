@@ -1,0 +1,155 @@
+import React from 'react';
+import { TabType, UserRole } from '../types';
+import { 
+  Building2, 
+  Search, 
+  Sparkles, 
+  Database, 
+  Compass, 
+  ShieldCheck, 
+  Layers, 
+  Package, 
+  FileText, 
+  TrendingUp, 
+  BrainCircuit, 
+  Cpu, 
+  UserCheck,
+  CheckCircle2,
+  ChevronDown,
+  ExternalLink,
+  PhoneCall,
+  Flame,
+  Globe,
+  Award
+} from 'lucide-react';
+import { useAppTheme } from '../context/ThemeContext';
+
+interface HeaderProps {
+  activeTab: TabType;
+  setActiveTab: (tab: TabType) => void;
+  userRole: UserRole;
+  setUserRole: (role: UserRole) => void;
+  onSearchSubmit: (text: string) => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({
+  activeTab,
+  setActiveTab,
+  userRole,
+  setUserRole,
+  onSearchSubmit
+}) => {
+  const [searchInput, setSearchInput] = React.useState('');
+  const [searchCategory, setSearchCategory] = React.useState<'patent' | 'enterprise' | 'industry' | 'product'>('patent');
+  const { themeConfig } = useAppTheme();
+
+  const navItems: { key: TabType; label: string; icon: any; tag?: string; highlight?: boolean }[] = [
+    { key: 'overview', label: '全景驾驶舱', icon: TrendingUp },
+    { key: 'patent-similar', label: '相似专利找企业', icon: ShieldCheck, tag: '语义大模型' },
+    { key: 'industry-chain', label: '产业链找企业', icon: Layers, tag: '图谱穿透' },
+    { key: 'patent-product', label: '专利产品找企业', icon: Package, tag: '密集型备案' },
+    { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit, tag: 'Agent', highlight: true },
+    { key: 'all-patents', label: '吉大专利全量库', icon: FileText, tag: '8,826项' },
+    { key: 'valuation-tool', label: '佰腾价值评估', icon: Sparkles }
+  ];
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchInput.trim()) {
+      onSearchSubmit(searchInput.trim());
+    }
+  };
+
+  return (
+    <header className="sticky top-0 z-40 text-slate-800 bg-white shadow-md border-b border-slate-200">
+      {/* 1. 主品牌栏与统一检索 (Main Header Bar) */}
+      <div className={`px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors`}>
+        {/* Brand & Title */}
+        <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => setActiveTab('overview')}>
+          {/* Authentic JLU & Baiten Integrated Brand Icon */}
+          <div className="relative w-12 h-12 shrink-0 overflow-hidden rounded-full border border-slate-200 shadow-sm bg-white">
+            <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="吉林大学 Logo" className="w-full h-full object-cover scale-110" />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-sans">
+                吉林大学
+              </span>
+              <div className="h-4 w-px bg-slate-300 rounded-full mx-1" />
+              <span className="text-sm sm:text-base font-semibold text-slate-700">
+                科技成果转化平台
+              </span>
+              {/* Tag for Powered by Baiten */}
+              <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100 ml-2">
+                佰腾大数据驱动
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Global Fast Search matching Baiten.cn search format */}
+        <div className="flex items-center gap-4">
+          <form onSubmit={handleSearch} className="relative w-full md:w-80 lg:w-[400px] flex shadow-xs">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="输入吉大专利号、技术词、靶向企业或产业链节点..."
+                className="w-full bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-3.5 py-2 pl-9 text-xs text-slate-800 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-blue-300 transition-all"
+              />
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
+            </div>
+            <button
+              type="submit"
+              className="px-5 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-lg text-xs transition-all shrink-0 flex items-center cursor-pointer border border-blue-600"
+            >
+              <span>精准寻客</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* 3. 佰腾网功能导航标签栏 (Primary Navigation Tabs) */}
+      <nav className={`px-4 sm:px-8 border-t border-slate-200 bg-white flex overflow-x-auto no-scrollbar transition-colors`}>
+        <div className="flex space-x-4 py-0">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.key;
+            return (
+              <button
+                key={item.key}
+                onClick={() => setActiveTab(item.key)}
+                className={`relative py-3.5 text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
+                  isActive
+                    ? 'border-blue-600 text-blue-700 font-bold'
+                    : item.highlight
+                    ? 'border-transparent text-amber-600 hover:text-amber-700 hover:border-amber-300'
+                    : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
+                }`}
+              >
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : item.highlight ? 'text-amber-500' : 'text-slate-400'}`} />
+                <span>{item.label}</span>
+                {item.tag && (
+                  <span
+                    className={`text-[9px] font-bold px-1.5 py-0.5 rounded-sm ml-0.5 ${
+                      isActive
+                        ? 'bg-blue-50 text-blue-700'
+                        : item.highlight
+                        ? 'bg-amber-100 text-amber-800'
+                        : 'bg-slate-100 text-slate-600'
+                    }`}
+                  >
+                    {item.tag}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </header>
+  );
+};
+
