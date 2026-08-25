@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { PatentItem, TargetEnterprise } from '../types';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { 
@@ -14,7 +14,8 @@ import {
   Layers, 
   CheckCircle2, 
   SlidersHorizontal,
-  RefreshCw
+  RefreshCw,
+  ChevronDown
 } from 'lucide-react';
 
 interface PatentSimilarSearchHubProps {
@@ -33,6 +34,28 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
   onOpenAiAgentWithEnterprise
 }) => {
   const [currentPatentId, setCurrentPatentId] = useState<string>(selectedPatent?.id || patents[0]?.id || 'pat-001');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [patentSearchQuery, setPatentSearchQuery] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const filteredPatents = patents.filter(p => 
+    p.title.toLowerCase().includes(patentSearchQuery.toLowerCase()) || 
+    p.patentNo.toLowerCase().includes(patentSearchQuery.toLowerCase()) ||
+    p.inventor.toLowerCase().includes(patentSearchQuery.toLowerCase())
+  );
+
   const [similarityThreshold, setSimilarityThreshold] = useState<number>(85);
   const [enterpriseTypeFilter, setEnterpriseTypeFilter] = useState<string>('all');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
@@ -87,23 +110,67 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
       <div className="bg-white rounded-2xl p-5 border border-[#D8E2F0] shadow-xs space-y-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
           
-          {/* Patent Dropdown */}
-          <div className="lg:col-span-6 space-y-1.5">
+          {/* Patent Search & Select */}
+          <div className="lg:col-span-6 space-y-1.5 relative" ref={dropdownRef}>
             <label className="text-sm font-bold text-slate-700 flex items-center gap-1.5">
-              <FileText className="w-3.5 h-3.5 text-[#0F52BA]" />
-              <span>选择待转化的吉林大学专利（或从专利库挑选）：</span>
+              <FileText className="w-3.5 h-3.5 text-blue-700" />
+              <span>检索并选择待转化的吉林大学专利：</span>
             </label>
-            <select
-              value={currentPatentId}
-              onChange={(e) => handlePatentChange(e.target.value)}
-              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] focus:bg-white transition-all cursor-pointer"
+            <div 
+              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus-within:ring-2 focus-within:ring-blue-500 focus-within:bg-white transition-all cursor-pointer flex items-center justify-between gap-2"
+              onClick={() => setIsDropdownOpen(true)}
             >
-              {patents.map(p => (
-                <option key={p.id} value={p.id}>
-                  [{p.patentNo}] {p.title} ({p.college} - {p.inventor})
-                </option>
-              ))}
-            </select>
+              <div className="truncate flex-1">
+                {activePatent ? `[${activePatent.patentNo}] ${activePatent.title}` : '请选择或搜索专利...'}
+              </div>
+              <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            </div>
+
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col max-h-[350px]">
+                <div className="p-2 border-b border-slate-100 bg-slate-50 sticky top-0 z-10">
+                   <div className="relative">
+                     <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                     <input 
+                       type="text"
+                       autoFocus
+                       placeholder="输入专利名称、专利号或发明人进行模糊检索..."
+                       value={patentSearchQuery}
+                       onChange={e => setPatentSearchQuery(e.target.value)}
+                       className="w-full bg-white border border-slate-200 rounded-lg py-2 pl-9 pr-3 text-sm focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                     />
+                   </div>
+                </div>
+                <div className="overflow-y-auto p-1.5">
+                  {filteredPatents.length > 0 ? (
+                    filteredPatents.map(p => (
+                      <div 
+                        key={p.id}
+                        onClick={() => {
+                          handlePatentChange(p.id);
+                          setIsDropdownOpen(false);
+                          setPatentSearchQuery('');
+                        }}
+                        className={`p-3 rounded-lg cursor-pointer transition-colors ${currentPatentId === p.id ? 'bg-blue-50 border border-blue-100' : 'hover:bg-slate-50 border border-transparent'}`}
+                      >
+                        <div className="font-bold text-slate-900 text-sm line-clamp-1">{p.title}</div>
+                        <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-slate-500">
+                           <span className="font-mono text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">{p.patentNo}</span>
+                           <span>•</span>
+                           <span className="font-medium text-slate-700">{p.inventor}</span>
+                           <span>•</span>
+                           <span>{p.college}</span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-8 text-center text-sm text-slate-500">
+                      没有找到匹配的专利记录
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Similarity Threshold Slider */}

@@ -70,14 +70,14 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-            吉林大学科技成果 <br className="hidden sm:inline" />
+            不盲目寻客，让吉大每一项科技成果 <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-300 via-blue-200 to-white">
-              智能靶向转化引擎
+              精准直达靶向企业、产业链
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-2xl mt-4">
-            依托佰腾全球专利大数据与 57 条产业链知识图谱，通过相似专利、产业链节点与密集型产品三大路径，结合大模型 AI 智能体，为您精准锁定具有真实受让意愿的靶向企业。
+          <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-3xl mt-4">
+            告别传统被动等待与盲目走访。系统依托佰腾网全球专利库、全国专利密集型产品备案库、165万+有专利企业工商画像与57条产业链全景数据，通过「相似专利找企业」、「产业链找企业」、「专利密集型产品找企业」三大路径与AI智能体，为吉大老师自动化挖掘最契合的受让与合作企业。
           </p>
 
           {/* Quick AI Agent Trigger Bar */}
