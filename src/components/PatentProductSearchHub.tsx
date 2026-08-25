@@ -137,12 +137,7 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
                   </h4>
                 </div>
 
-                <div className="text-right shrink-0">
-                  <span className="text-[11px] text-slate-400 block">单品年产值</span>
-                  <span className="text-xl font-black text-emerald-600 font-mono">
-                    {prod.annualOutputValue}
-                  </span>
-                </div>
+                
               </div>
 
               {/* Enterprise Info Strip */}

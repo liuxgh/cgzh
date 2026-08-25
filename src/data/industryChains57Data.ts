@@ -254,7 +254,7 @@ export const INDUSTRY_CHAINS_57_DATA: IndustryChain57Item[] = [
 ];
 
 export const INDUSTRY_CATEGORIES = [
-  '全部57条产业链',
+  '全部产业链',
   '新能源与智能网联汽车',
   '集成电路与新一代信息技术',
   '高端装备与工业母机',

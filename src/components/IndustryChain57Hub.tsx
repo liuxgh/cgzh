@@ -29,7 +29,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   onSelectEnterprise,
   onOpenAiAgentWithEnterprise
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('全部57条产业链');
+  const [selectedCategory, setSelectedCategory] = useState<string>('全部产业链');
   const [selectedChainId, setSelectedChainId] = useState<string>('chain-01');
   const [selectedNode, setSelectedNode] = useState<'all' | 'upstream' | 'midstream' | 'downstream'>('all');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
@@ -37,7 +37,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   const activeChain = INDUSTRY_CHAINS_57_DATA.find(c => c.id === selectedChainId) || INDUSTRY_CHAINS_57_DATA[0];
 
   const filteredChains = INDUSTRY_CHAINS_57_DATA.filter(chain => {
-    if (selectedCategory !== '全部57条产业链' && chain.category !== selectedCategory) return false;
+    if (selectedCategory !== '全部产业链' && chain.category !== selectedCategory) return false;
     if (searchKeyword.trim()) {
       const q = searchKeyword.toLowerCase();
       const matchName = chain.name.toLowerCase().includes(q) || chain.summary.toLowerCase().includes(q);
@@ -71,7 +71,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-          通过57条产业链 ➔ 全链条图谱穿透找买家企业
+          通过产业链 ➔ 全链条图谱穿透找买家企业
         </h2>
         <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
           深入拆解57条战略新兴产业链的<strong>上游关键原材料、中游精密制造与下游整机终端</strong>。吉大老师可按所属产业链技术节点，直接定位该环节全国龙头企业与专精特新企业的急迫攻关痛点，开展成果推介与产学研合作。

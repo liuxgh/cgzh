@@ -100,7 +100,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
           AI 自动化专利找买家：从成果特征到精准靶向企业报告
         </h2>
         <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
-          输入吉大专利或技术交底书，AI 智能体将自主调用<strong>佰腾全国专利库、57条产业链全景与国家专利密集型产品备案库</strong>进行多跳交叉推理，自动输出靶向买家企业画像清单、痛点契合点及一对一合作对接公文。
+          输入吉大专利或技术交底书，AI 智能体将自主调用<strong>佰腾全国专利库、产业链全景与国家专利密集型产品备案库</strong>进行多跳交叉推理，自动输出靶向买家企业画像清单、痛点契合点及一对一合作对接公文。
         </p>
       </div>
 
@@ -271,7 +271,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                       AI 多跳穿透匹配出的高意向靶向企业清单
                     </h4>
                     <p className="text-sm text-slate-500">
-                      已综合考量相近专利布局、57条产业链供需节点、专利密集型产品备案与企业研发资金实力
+                      已综合考量相近专利布局、产业链供需节点、专利密集型产品备案与企业研发资金实力
                     </p>
                   </div>
                   <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-sm font-bold">

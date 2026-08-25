@@ -152,7 +152,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               <span className="text-sm font-normal text-slate-500">（点击直接进入专属工具模块）</span>
             </h3>
             <p className="text-sm text-slate-500 mt-0.5">
-              从专利技术特征、产业上下游图谱、量产产品备案三个维度，全方位锁定具有受让与合作意愿的目标企业
+              从专利技术特征、产业上下游图谱、专利产品备案三个维度，全方位锁定具有受让与合作意愿的目标企业
             </p>
           </div>
         </div>
@@ -197,7 +197,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             </div>
 
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-[#0F52BA] group-hover:translate-x-1 transition-transform">
-              <span>立即进入相似专利寻客</span>
+              <span>立即查询相似专利找企业</span>
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>
@@ -215,12 +215,12 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                   <Layers className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-black px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-800 border border-indigo-200">
-                  路径二 • 57条产业链
+                  路径二 • 产业链
                 </span>
               </div>
 
               <h4 className="text-lg font-black text-slate-900 group-hover:text-indigo-600 transition-colors">
-                通过57条产业链 ➔ 全链条图谱找企业
+                通过产业链 ➔ 全链条图谱找企业
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
@@ -240,7 +240,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             </div>
 
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
-              <span>立即浏览57条产业链找买家</span>
+              <span>立即浏览产业链找企业</span>
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>
@@ -267,13 +267,13 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                穿透国家专利密集型产品备案数据库，锁定已有高产值量产产品的规上制造企业，其拥有最迫切的技术升级诉求与真实采购承接实力。
+                通过国家专利密集型产品备案数据，锁定已有高产值量产产品的规上制造企业，其拥有最迫切的技术升级诉求与真实采购承接实力。
               </p>
 
               <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                  <span>200,000+ 款经国家认定的专利密集型产品</span>
+                  <span>200,000+ 款经国家平台备案的专利密集型产品</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
@@ -283,7 +283,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             </div>
 
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
-              <span>立即进入产品备案库找企业</span>
+              <span>立即查询专利产品找企业</span>
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>

@@ -146,7 +146,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             }`}
           >
             <Layers className="w-4 h-4 text-indigo-600" />
-            <span>【路径二】57条产业链定位与环节</span>
+            <span>【路径二】产业链定位与环节</span>
           </button>
 
           <button
@@ -313,10 +313,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                           </div>
                           <h5 className="text-lg font-bold text-slate-900">{prod.productName}</h5>
                         </div>
-                        <div className="text-right shrink-0">
-                          <span className="text-sm text-slate-500 block">单品年产值</span>
-                          <span className="text-xl font-black text-emerald-600 font-mono">{prod.annualOutputValue}</span>
-                        </div>
+                        
                       </div>
 
                       <div className="bg-emerald-50/60 border border-emerald-100 rounded-xl p-3 text-sm text-emerald-950">

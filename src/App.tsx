@@ -242,7 +242,7 @@ function AppContent() {
               <span>·</span>
               <span className="hover:text-white cursor-pointer transition-colors">专利检索系统</span>
               <span>·</span>
-              <span className="hover:text-white cursor-pointer transition-colors">57条产业链图谱</span>
+              <span className="hover:text-white cursor-pointer transition-colors">产业链图谱</span>
               <span>·</span>
               <span className="hover:text-white cursor-pointer transition-colors">国家专利密集型产品库</span>
             </div>
