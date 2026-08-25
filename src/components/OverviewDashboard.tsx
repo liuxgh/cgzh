@@ -64,19 +64,19 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
         </div>
 
         <div className="relative z-10 max-w-4xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-blue-100">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold text-blue-100">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
             <span>高校名称：吉林大学 • 佰腾网-科技成果转化应用</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
             吉林大学科技成果 <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-300 via-amber-200 to-yellow-100">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-300 via-blue-200 to-white">
               智能靶向转化引擎
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base text-blue-100 leading-relaxed max-w-2xl mt-4">
+          <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-2xl mt-4">
             依托佰腾全球专利大数据与 57 条产业链知识图谱，通过相似专利、产业链节点与密集型产品三大路径，结合大模型 AI 智能体，为您精准锁定具有真实受让意愿的靶向企业。
           </p>
 
@@ -88,15 +88,15 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                 value={quickQuery}
                 onChange={(e) => setQuickQuery(e.target.value)}
                 placeholder="输入吉大专利号（如 CN202310892341.2）、研究关键词或成果名称..."
-                className="w-full bg-white text-slate-900 placeholder-slate-400 px-4 py-3 pl-10 rounded-2xl text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-[#FF7A00] shadow-md border border-slate-200"
+                className="w-full bg-white text-slate-900 placeholder-slate-400 px-4 py-3 pl-10 rounded-2xl text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500 shadow-md border border-slate-200"
               />
               <BrainCircuit className="w-4 h-4 text-[#0F52BA] absolute left-3.5 top-3.5" />
             </div>
             <button
               type="submit"
-              className="px-5 py-3 bg-linear-to-r from-[#FF9500] to-[#FF7A00] hover:from-[#FFA726] hover:to-[#FF8A00] text-slate-950 rounded-2xl font-black text-xs shadow-lg flex items-center justify-center gap-1.5 transition-all shrink-0 cursor-pointer"
+              className="px-5 py-3 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-2xl font-black text-sm shadow-lg flex items-center justify-center gap-1.5 transition-all shrink-0 cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 text-slate-950" />
+              <Sparkles className="w-4 h-4 text-white" />
               <span>AI智能体一键寻客</span>
             </button>
           </form>
@@ -110,7 +110,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <FileText className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-xs text-slate-500 font-semibold block mb-1">全球专利数据底座</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">全球专利数据底座</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">2 亿+</div>
           </div>
         </div>
@@ -120,7 +120,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <Package className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-xs text-slate-500 font-semibold block mb-1">密集型产品备案库</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">密集型产品备案库</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">20 万+</div>
           </div>
         </div>
@@ -130,7 +130,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <Building2 className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-xs text-slate-500 font-semibold block mb-1">专利企业工商画像</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">专利企业工商画像</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">165 万+</div>
           </div>
         </div>
@@ -140,7 +140,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <Layers className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-xs text-slate-500 font-semibold block mb-1">战略重点产业链</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">战略重点产业链</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">57 条</div>
           </div>
         </div>
@@ -150,12 +150,12 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
+            <h3 className="text-xl font-black text-slate-900 flex items-center gap-2">
               <span className="w-1.5 h-4 bg-[#0F52BA] rounded-full"></span>
               <span>三大核心靶向寻客路径</span>
-              <span className="text-xs font-normal text-slate-500">（点击直接进入专属工具模块）</span>
+              <span className="text-sm font-normal text-slate-500">（点击直接进入专属工具模块）</span>
             </h3>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-sm text-slate-500 mt-0.5">
               从专利技术特征、产业上下游图谱、量产产品备案三个维度，全方位锁定具有受让与合作意愿的目标企业
             </p>
           </div>
@@ -180,15 +180,15 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                 </span>
               </div>
 
-              <h4 className="text-base font-black text-slate-900 group-hover:text-[#0F52BA] transition-colors">
+              <h4 className="text-lg font-black text-slate-900 group-hover:text-[#0F52BA] transition-colors">
                 通过吉大专利 ➔ 相似专利找企业
               </h4>
 
-              <p className="text-xs text-slate-600 leading-relaxed mt-2">
+              <p className="text-sm text-slate-600 leading-relaxed mt-2">
                 选择吉大专利或输入权利要求，通过佰腾全国专利语义向量相似度模型，穿透检索布局了相似/同族技术、处于相同路线的全国企业。
               </p>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#0F52BA]" />
                   <span>精准比对企业相近公开专利与权利要求</span>
@@ -200,7 +200,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between text-xs font-bold text-[#0F52BA] group-hover:translate-x-1 transition-transform">
+            <div className="mt-6 flex items-center justify-between text-sm font-bold text-[#0F52BA] group-hover:translate-x-1 transition-transform">
               <span>立即进入相似专利寻客</span>
               <ArrowRight className="w-4 h-4" />
             </div>
@@ -223,15 +223,15 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                 </span>
               </div>
 
-              <h4 className="text-base font-black text-slate-900 group-hover:text-indigo-600 transition-colors">
+              <h4 className="text-lg font-black text-slate-900 group-hover:text-indigo-600 transition-colors">
                 通过57条产业链 ➔ 全链条图谱找企业
               </h4>
 
-              <p className="text-xs text-slate-600 leading-relaxed mt-2">
+              <p className="text-sm text-slate-600 leading-relaxed mt-2">
                 进入佰腾57条战略性产业链全景图谱，上游关键材料、中游精密制造、下游整机终端分级穿透，精准匹配企业攻关痛点与吉大优势学科。
               </p>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
                   <span>57条细分产业链上中下游节点全景分解</span>
@@ -243,7 +243,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between text-xs font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
+            <div className="mt-6 flex items-center justify-between text-sm font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
               <span>立即浏览57条产业链找买家</span>
               <ArrowRight className="w-4 h-4" />
             </div>
@@ -266,15 +266,15 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                 </span>
               </div>
 
-              <h4 className="text-base font-black text-slate-900 group-hover:text-emerald-600 transition-colors">
+              <h4 className="text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors">
                 通过专利密集型产品 ➔ 产业化企业库
               </h4>
 
-              <p className="text-xs text-slate-600 leading-relaxed mt-2">
+              <p className="text-sm text-slate-600 leading-relaxed mt-2">
                 穿透国家专利密集型产品备案数据库，锁定已有高产值量产产品的规上制造企业，其拥有最迫切的技术升级诉求与真实采购承接实力。
               </p>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                   <span>200,000+ 款经国家认定的专利密集型产品</span>
@@ -286,7 +286,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between text-xs font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
+            <div className="mt-6 flex items-center justify-between text-sm font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
               <span>立即进入产品备案库找企业</span>
               <ArrowRight className="w-4 h-4" />
             </div>
@@ -298,23 +298,23 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
       {/* 4. Interactive AI Agent Showcase Card */}
       <div className="bg-linear-to-r from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-blue-400/30 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF7A00]/20 text-[#FFB800] border border-[#FF7A00]/40 text-xs font-bold">
-            <BrainCircuit className="w-4 h-4 text-[#FFB800]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-sm font-bold">
+            <BrainCircuit className="w-4 h-4 text-blue-700" />
             <span>佰腾吉大 • AI 专利找买家智能体 (Patent-to-Enterprise Agent)</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-black">
             AI 智能体一键寻客，自动推演企业画像与转化策略
           </h3>
-          <p className="text-sm text-slate-200 leading-relaxed">
+          <p className="text-base text-slate-200 leading-relaxed">
             AI Agent 深度解析专利技术特征，自主在佰腾全球专利库、产业链节点及密集型产品库中多维交叉推理，一键生成包含痛点匹配、联络策略的《靶向企业转化对接方案》。
           </p>
         </div>
 
         <button
           onClick={() => setActiveTab('ai-agent')}
-          className="px-6 py-4 bg-linear-to-r from-[#FF9500] to-[#FF7A00] hover:from-[#FFA726] hover:to-[#FF8A00] text-slate-950 rounded-2xl font-black text-sm shadow-xl flex items-center gap-2 shrink-0 transition-all cursor-pointer"
+          className="px-6 py-4 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-2xl font-black text-base shadow-xl flex items-center gap-2 shrink-0 transition-all cursor-pointer"
         >
-          <Sparkles className="w-5 h-5 text-slate-950" />
+          <Sparkles className="w-5 h-5 text-white" />
           <span>进入 AI 智能体工作台</span>
           <ChevronRight className="w-4 h-4" />
         </button>
@@ -324,19 +324,19 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 bg-[#FF7A00] rounded-full"></span>
+            <h3 className="text-xl font-black text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4 bg-blue-600 rounded-full"></span>
               <span>当前重点推荐靶向企业画像库</span>
-              <span className="text-xs font-normal text-slate-500">（已通过三大路径与吉大优势成果深度标定）</span>
+              <span className="text-sm font-normal text-slate-500">（已通过三大路径与吉大优势成果深度标定）</span>
             </h3>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-sm text-slate-500 mt-0.5">
               点击任意企业可查看其工商信用、相近专利比对、产业链环节、密集型备案产品及大学联络人
             </p>
           </div>
 
           <button
             onClick={() => setActiveTab('patent-similar')}
-            className="text-xs font-bold text-[#0F52BA] hover:underline flex items-center gap-1 shrink-0 cursor-pointer"
+            className="text-sm font-bold text-[#0F52BA] hover:underline flex items-center gap-1 shrink-0 cursor-pointer"
           >
             <span>查看全部匹配企业</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -361,20 +361,20 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                         {ent.location}
                       </span>
                     </div>
-                    <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0F52BA]">
+                    <h4 className="text-lg font-bold text-slate-900 group-hover:text-[#0F52BA]">
                       {ent.name}
                     </h4>
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="text-xs text-slate-500 block">协同匹配得分</span>
+                    <span className="text-sm text-slate-500 block">协同匹配得分</span>
                     <span className="text-xl font-black text-emerald-600 font-mono">
-                      {ent.matchScore} <span className="text-xs font-normal text-slate-400">分</span>
+                      {ent.matchScore} <span className="text-sm font-normal text-slate-400">分</span>
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-3 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-1.5">
+                <div className="mt-3 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-sm text-slate-700 space-y-1.5">
                   <div className="font-semibold text-[#0F52BA] line-clamp-1">
                     🎯 撮合逻辑：{ent.synergyReason}
                   </div>
@@ -386,7 +386,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-sm">
                 <div className="text-slate-500 text-[11px]">
                   对接人：<span className="font-semibold text-slate-800">{ent.contact.contactPerson} ({ent.contact.title})</span>
                 </div>

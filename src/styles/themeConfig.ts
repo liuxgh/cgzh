@@ -46,8 +46,8 @@ export const THEME_CONFIGS: Record<ThemeStyle, ThemeConfig> = {
       cardBorder: 'border-[#D8E2F0]',
       pageBg: 'bg-[#F4F7FB]',
       footerBg: 'bg-[#082C6C]',
-      tagBg: 'bg-[#FF7A00]/20',
-      tagText: 'text-[#FFB800]',
+      tagBg: 'bg-blue-50',
+      tagText: 'text-blue-700',
     },
     previewColors: ['#0F52BA', '#FF7A00', '#082C6C', '#F4F7FB']
   },
@@ -134,8 +134,8 @@ export const THEME_CONFIGS: Record<ThemeStyle, ThemeConfig> = {
       cardBorder: 'border-amber-100',
       pageBg: 'bg-[#FDFBF7]',
       footerBg: 'bg-[#1C1917]',
-      tagBg: 'bg-amber-500/20',
-      tagText: 'text-amber-300',
+      tagBg: 'bg-blue-500/20',
+      tagText: 'text-cyan-300',
     },
     previewColors: ['#D97706', '#3B82F6', '#1C1917', '#FDFBF7']
   }

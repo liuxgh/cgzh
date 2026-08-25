@@ -87,11 +87,11 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
       {/* Agent Banner */}
       <div className="bg-linear-to-r from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-400/30">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="px-3 py-1 rounded-full bg-[#FF7A00]/20 text-[#FFB800] text-xs font-bold border border-[#FF7A00]/40 flex items-center gap-1.5 backdrop-blur-xs">
-            <BrainCircuit className="w-4 h-4 text-[#FFB800]" />
+          <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-bold border border-blue-200 flex items-center gap-1.5 backdrop-blur-xs">
+            <BrainCircuit className="w-4 h-4 text-blue-700" />
             <span>佰腾吉大 • AI 专利找买家智能体 (Baiteng Patent-to-Buyer Agent)</span>
           </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-blue-100 text-xs border border-white/20">
+          <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-blue-100 text-sm border border-white/20">
             自主执行三维穿透检索与决策推演
           </span>
         </div>
@@ -99,7 +99,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
           AI 自动化专利找买家：从成果特征到精准靶向企业报告
         </h2>
-        <p className="text-xs sm:text-sm text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
           输入吉大专利或技术交底书，AI 智能体将自主调用<strong>佰腾全国专利库、57条产业链全景与国家专利密集型产品备案库</strong>进行多跳交叉推理，自动输出靶向买家企业画像清单、痛点契合点及一对一合作对接公文。
         </p>
       </div>
@@ -109,14 +109,14 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           
           <div className="lg:col-span-6 space-y-1.5">
-            <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+            <label className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
               <FileText className="w-3.5 h-3.5 text-[#0F52BA]" />
               <span>快速选择吉林大学在库专利：</span>
             </label>
             <select
               value={selectedPatentId}
               onChange={(e) => setSelectedPatentId(e.target.value)}
-              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA]"
+              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA]"
             >
               {patents.map(p => (
                 <option key={p.id} value={p.id}>
@@ -127,8 +127,8 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
           </div>
 
           <div className="lg:col-span-6 space-y-1.5">
-            <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#FF7A00]" />
+            <label className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
               <span>或输入未入库技术描述/研究关键词/交底书摘要：</span>
             </label>
             <div className="flex gap-2">
@@ -137,14 +137,14 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                 value={customInputText}
                 onChange={(e) => setCustomInputText(e.target.value)}
                 placeholder="例如：高倍率快充单晶硅碳负极纳米自组装包覆..."
-                className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA]"
+                className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2 text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA]"
               />
               <button
                 onClick={handleRunAgent}
                 disabled={isProcessing}
-                className="px-5 py-2 bg-linear-to-r from-[#FF9500] to-[#FF7A00] hover:from-[#FFA726] hover:to-[#FF8A00] text-slate-950 rounded-xl font-bold text-xs shadow-md flex items-center gap-1.5 shrink-0 disabled:opacity-50 cursor-pointer"
+                className="px-5 py-2 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm shadow-md flex items-center gap-1.5 shrink-0 disabled:opacity-50 cursor-pointer"
               >
-                {isProcessing ? <RefreshCw className="w-4 h-4 animate-spin text-slate-950" /> : <Sparkles className="w-4 h-4 text-slate-950" />}
+                {isProcessing ? <RefreshCw className="w-4 h-4 animate-spin text-white" /> : <Sparkles className="w-4 h-4 text-white" />}
                 <span>{isProcessing ? 'AI 推理检索中...' : '启动智能体寻客'}</span>
               </button>
             </div>
@@ -154,7 +154,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
 
         {/* Selected Patent Quick Abstract */}
         {activePatent && (
-          <div className="bg-[#F8FAFC] p-3 rounded-xl border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+          <div className="bg-[#F8FAFC] p-3 rounded-xl border border-slate-200 text-sm text-slate-600 flex items-center justify-between">
             <span className="line-clamp-1">
               <strong>当前分析标的：</strong>[{activePatent.patentNo}] {activePatent.title}
             </span>
@@ -169,11 +169,11 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
       {isProcessing && (
         <div className="bg-slate-900 text-white rounded-3xl p-6 border border-blue-500/30 shadow-xl space-y-4 animate-in fade-in">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm font-bold text-amber-300">
+            <div className="flex items-center gap-2 text-base font-bold text-cyan-300">
               <BrainCircuit className="w-5 h-5 animate-pulse" />
               <span>佰腾 AI 智能体正在进行多维跨数据库穿透检索与关联推理...</span>
             </div>
-            <span className="text-xs font-mono text-blue-300">
+            <span className="text-sm font-mono text-blue-300">
               步骤 {Math.min(currentStep + 1, agentSteps.length)} / {agentSteps.length}
             </span>
           </div>
@@ -205,7 +205,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                     )}
                   </div>
                   <div className="space-y-0.5">
-                    <h5 className={`text-xs font-bold ${isCurrent ? 'text-blue-300' : isDone ? 'text-emerald-300' : 'text-slate-400'}`}>
+                    <h5 className={`text-sm font-bold ${isCurrent ? 'text-blue-300' : isDone ? 'text-emerald-300' : 'text-slate-400'}`}>
                       {step.title}
                     </h5>
                     <p className="text-[11px] text-slate-400">{step.desc}</p>
@@ -225,7 +225,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
           <div className="flex border-b border-slate-200 bg-slate-50/80 px-6 overflow-x-auto gap-2">
             <button
               onClick={() => setActiveTab('report')}
-              className={`py-4 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+              className={`py-4 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
                 activeTab === 'report'
                   ? 'border-[#003d80] text-[#003d80] bg-white'
                   : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -237,7 +237,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
 
             <button
               onClick={() => setActiveTab('official_letter')}
-              className={`py-4 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+              className={`py-4 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
                 activeTab === 'official_letter'
                   ? 'border-[#003d80] text-[#003d80] bg-white'
                   : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -249,7 +249,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
 
             <button
               onClick={() => setActiveTab('call_script')}
-              className={`py-4 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+              className={`py-4 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
                 activeTab === 'call_script'
                   ? 'border-[#003d80] text-[#003d80] bg-white'
                   : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -267,14 +267,14 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <h4 className="text-base font-black text-slate-900">
+                    <h4 className="text-lg font-black text-slate-900">
                       AI 多跳穿透匹配出的高意向靶向企业清单
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-sm text-slate-500">
                       已综合考量相近专利布局、57条产业链供需节点、专利密集型产品备案与企业研发资金实力
                     </p>
                   </div>
-                  <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-xs font-bold">
+                  <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-sm font-bold">
                     匹配精准度 94%+
                   </span>
                 </div>
@@ -292,22 +292,22 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                             <span className="px-2 py-0.5 bg-blue-100 text-[#003d80] rounded text-[10px] font-bold">
                               {ent.enterpriseType}
                             </span>
-                            <span className="text-xs text-slate-500">{ent.location.split('省')[0]}</span>
+                            <span className="text-sm text-slate-500">{ent.location.split('省')[0]}</span>
                           </div>
-                          <h5 className="text-base font-bold text-slate-900">{ent.name}</h5>
+                          <h5 className="text-lg font-bold text-slate-900">{ent.name}</h5>
                         </div>
                         <div className="text-right shrink-0">
                           <span className="text-[10px] text-slate-400 block">AI 协同得分</span>
-                          <span className="text-lg font-black text-emerald-600 font-mono">{ent.matchScore}分</span>
+                          <span className="text-xl font-black text-emerald-600 font-mono">{ent.matchScore}分</span>
                         </div>
                       </div>
 
-                      <div className="bg-white p-3 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-1">
+                      <div className="bg-white p-3 rounded-xl border border-slate-100 text-sm text-slate-700 space-y-1">
                         <strong className="text-[#003d80] block text-[11px]">💡 AI 撮合突破点：</strong>
                         <p className="line-clamp-2 leading-relaxed text-slate-600">{ent.synergyReason}</p>
                       </div>
 
-                      <div className="flex items-center justify-between text-xs pt-1">
+                      <div className="flex items-center justify-between text-sm pt-1">
                         <span className="text-slate-500 text-[11px]">
                           对接人：<strong className="text-slate-800">{ent.contact.contactPerson}</strong> ({ent.contact.title})
                         </span>
@@ -326,22 +326,22 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
             {activeTab === 'official_letter' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-base font-black text-slate-900">
+                  <h4 className="text-lg font-black text-slate-900">
                     AI 自动生成的定制化《吉林大学科技成果转化推介公函》
                   </h4>
                   <button
                     onClick={() => handleCopyText(`【吉林大学科技开发中心 - 科技成果精准转化推介函】\n\n致：各战略合作企业技术研发中心及决策管理团队\n\n关于推介吉林大学重大科技成果《${activePatent.title}》（专利号：${activePatent.patentNo}）的函\n\n一、成果背景与核心发明点：\n${activePatent.abstract}\n\n二、企业痛点与协同价值：\n经佰腾专利大数据与产业链全景分析，贵单位在相关产业链具备领先的产业化与量产实力，本技术成果可有效突破当前技术瓶颈，降低生产成本并显著提升产品竞争力。\n\n三、拟合作模式：\n支持技术转让、专利排他/独占实施许可、专利开放许可及共建联合实验室等多维度合作。\n\n联系部门：吉林大学科技开发中心 (技术转移中心)\n联系电话：0431-85168888\n电子邮箱：ttc@jlu.edu.cn`)}
-                    className="px-3.5 py-1.5 bg-[#003d80] hover:bg-blue-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs"
+                    className="px-3.5 py-1.5 bg-[#003d80] hover:bg-blue-900 text-white rounded-xl text-sm font-bold flex items-center gap-1.5 transition-all shadow-xs"
                   >
                     {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copied ? '已复制公函全文' : '一键复制公函文本'}</span>
                   </button>
                 </div>
 
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 font-sans text-xs text-slate-800 space-y-4 leading-relaxed max-w-4xl shadow-inner">
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 font-sans text-sm text-slate-800 space-y-4 leading-relaxed max-w-4xl shadow-inner">
                   <div className="text-center pb-4 border-b border-slate-200 space-y-1">
-                    <h3 className="text-base font-bold text-slate-900 tracking-wider">吉林大学科技开发中心 (技术转移中心)</h3>
-                    <p className="text-xs text-slate-500">重大科技成果产业化定向推荐公文 (专送目标企业技术管理部)</p>
+                    <h3 className="text-lg font-bold text-slate-900 tracking-wider">吉林大学科技开发中心 (技术转移中心)</h3>
+                    <p className="text-sm text-slate-500">重大科技成果产业化定向推荐公文 (专送目标企业技术管理部)</p>
                   </div>
 
                   <div className="space-y-2">
@@ -379,12 +379,12 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
             {activeTab === 'call_script' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-base font-black text-slate-900">
+                  <h4 className="text-lg font-black text-slate-900">
                     吉大成果转化老师上门走访与电话沟通切入指南 (Talking Points)
                   </h4>
                   <button
                     onClick={() => handleCopyText(`【吉大成果转化沟通切入建议】\n1. 开门见山：表明吉林大学科技成果直推背景，提及佰腾大数据精准匹配贵司现有专利与备案产品。\n2. 抛出痛点数据：直接展示吉大专利测试样件在极端工况下的提升数据。\n3. 降低决策门槛：提出先签排他小批量中试或先试后买/开放许可。\n4. 约定下步动作：提供完整专利授权证书与第三方测试报告，邀约下周视频会议。`)}
-                    className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors"
+                    className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors"
                   >
                     {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copied ? '已复制话术' : '复制沟通要点'}</span>
@@ -392,7 +392,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                 </div>
 
                 <div className="space-y-3">
-                  <div className="bg-blue-50/70 p-4 rounded-2xl border border-blue-200 space-y-1.5 text-xs text-slate-800">
+                  <div className="bg-blue-50/70 p-4 rounded-2xl border border-blue-200 space-y-1.5 text-sm text-slate-800">
                     <span className="font-bold text-[#003d80] flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-blue-600"></span>
                       1. 开场白与背景介绍（消除戒备心理）
@@ -402,7 +402,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                     </p>
                   </div>
 
-                  <div className="bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200 space-y-1.5 text-xs text-slate-800">
+                  <div className="bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200 space-y-1.5 text-sm text-slate-800">
                     <span className="font-bold text-emerald-900 flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
                       2. 直击痛点与实测数据展示（建立技术信任）
@@ -412,7 +412,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                     </p>
                   </div>
 
-                  <div className="bg-purple-50/70 p-4 rounded-2xl border border-purple-200 space-y-1.5 text-xs text-slate-800">
+                  <div className="bg-purple-50/70 p-4 rounded-2xl border border-purple-200 space-y-1.5 text-sm text-slate-800">
                     <span className="font-bold text-purple-900 flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-purple-600"></span>
                       3. 灵活合作模式与打消顾虑（先试后买 / 开放许可）

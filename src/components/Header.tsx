@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({
                 吉林大学
               </span>
               <div className="h-4 w-px bg-slate-300 rounded-full mx-1" />
-              <span className="text-sm sm:text-base font-semibold text-slate-700">
+              <span className="text-base sm:text-lg font-semibold text-slate-700">
                 科技成果转化平台
               </span>
               {/* Tag for Powered by Baiten */}
@@ -97,13 +97,13 @@ export const Header: React.FC<HeaderProps> = ({
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="输入吉大专利号、技术词、靶向企业或产业链节点..."
-                className="w-full bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-3.5 py-2 pl-9 text-xs text-slate-800 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-blue-300 transition-all"
+                className="w-full bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-3.5 py-2 pl-9 text-sm text-slate-800 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-blue-300 transition-all"
               />
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
             </div>
             <button
               type="submit"
-              className="px-5 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-lg text-xs transition-all shrink-0 flex items-center cursor-pointer border border-blue-600"
+              className="px-5 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-lg text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-600"
             >
               <span>精准寻客</span>
             </button>
@@ -121,15 +121,15 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.key}
                 onClick={() => setActiveTab(item.key)}
-                className={`relative py-3.5 text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
+                className={`relative py-3.5 text-sm font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
                   isActive
                     ? 'border-blue-600 text-blue-700 font-bold'
                     : item.highlight
-                    ? 'border-transparent text-amber-600 hover:text-amber-700 hover:border-amber-300'
+                    ? 'border-transparent text-blue-700 hover:text-blue-700 hover:border-blue-300'
                     : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : item.highlight ? 'text-amber-500' : 'text-slate-400'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : item.highlight ? 'text-blue-600' : 'text-slate-400'}`} />
                 <span>{item.label}</span>
                 {item.tag && (
                   <span
@@ -137,7 +137,7 @@ export const Header: React.FC<HeaderProps> = ({
                       isActive
                         ? 'bg-blue-50 text-blue-700'
                         : item.highlight
-                        ? 'bg-amber-100 text-amber-800'
+                        ? 'bg-blue-100 text-blue-800'
                         : 'bg-slate-100 text-slate-600'
                     }`}
                   >

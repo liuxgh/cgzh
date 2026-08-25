@@ -83,16 +83,16 @@ export const NewPatentModal: React.FC<NewPatentModalProps> = ({ isOpen, onClose,
               <FileText className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-900">吉林大学科技成果披露与专利入库申报</h3>
+              <h3 className="text-base font-bold text-slate-900">吉林大学科技成果披露与专利入库申报</h3>
               <p className="text-[11px] text-slate-500">录入后将自动接入佰腾价值评估雷达并参与企业需求智能匹配</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 font-bold text-sm">
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 font-bold text-base">
             ✕
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3 text-xs">
+        <form onSubmit={handleSubmit} className="space-y-3 text-sm">
           <div>
             <label className="text-slate-700 font-bold block mb-1">专利/成果名称 *</label>
             <input
@@ -216,13 +216,13 @@ export const NewPatentModal: React.FC<NewPatentModalProps> = ({ isOpen, onClose,
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg"
+              className="px-4 py-2 text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg"
             >
               取消
             </button>
             <button
               type="submit"
-              className="px-5 py-2 text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center gap-1.5 shadow-xs"
+              className="px-5 py-2 text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center gap-1.5 shadow-xs"
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>提交入库与披露备案</span>

@@ -66,16 +66,16 @@ export const NewDemandModal: React.FC<NewDemandModalProps> = ({ isOpen, onClose,
               <Building2 className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-900">发布企业技术攻关与专利采购需求</h3>
+              <h3 className="text-base font-bold text-slate-900">发布企业技术攻关与专利采购需求</h3>
               <p className="text-[11px] text-slate-500">发布后将自动启动吉林大学8800余项专利成果库AI深度检索与匹配</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 font-bold text-sm">
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 font-bold text-base">
             ✕
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3 text-xs">
+        <form onSubmit={handleSubmit} className="space-y-3 text-sm">
           <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="text-slate-700 font-bold block mb-1">企业全称 *</label>
@@ -192,13 +192,13 @@ export const NewDemandModal: React.FC<NewDemandModalProps> = ({ isOpen, onClose,
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg"
+              className="px-4 py-2 text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg"
             >
               取消
             </button>
             <button
               type="submit"
-              className="px-5 py-2 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg flex items-center gap-1.5 shadow-xs"
+              className="px-5 py-2 text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg flex items-center gap-1.5 shadow-xs"
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>确认发布并启动AI匹配</span>

@@ -160,8 +160,8 @@ export function JluAllPatentsSummary({
         );
       case 'in_negotiation':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
-            <Clock className="w-3 h-3 text-[#FF7A00]" />
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
+            <Clock className="w-3 h-3 text-blue-600" />
             重点推进洽谈中
           </span>
         );
@@ -183,11 +183,11 @@ export function JluAllPatentsSummary({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-2 max-w-4xl">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-xs font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
+              <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
                 <Building2 className="w-3.5 h-3.5 text-blue-200" />
                 <span>吉林大学专利全量资产库</span>
               </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#FF7A00]/20 text-[#FFB800] border border-[#FF7A00]/40 text-xs font-semibold">
+              <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-sm font-semibold">
                 佰腾网大数据联合赋能 • 全量四维价值与TRL定级
               </span>
             </div>
@@ -197,7 +197,7 @@ export function JluAllPatentsSummary({
             </h2>
 
             {/* 核心汇总文字 */}
-            <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed pt-1">
+            <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed pt-1">
               截至目前，吉林大学共建档存量有效专利 <strong>8,826</strong> 件（有效发明占比 <strong>88.4%</strong>），重点覆盖汽车工程与智能网联（2,160件）、化学与超分子新材料（2,012件）、光电子与精密仪器（1,456件）、生物医药与大健康（1,341件）及高端装备制造等优势学科。全量成果已 <strong>100%</strong> 完成佰腾知识产权大数据四维价值度（技术、法律、市场、竞争）评估与 TRL 成熟度分级，其中高价值转化专利（≥85分）达 2,140 件，产业就绪级（TRL≥6）达 1,680 件，开放许可挂牌 530 件，累计促成产学研转化金额逾 18.6 亿元。支持全校科研人员及意向企业直接按关键词、学院、领域及成熟度开展高精度列表查询与撮合对接。
             </p>
           </div>
@@ -205,7 +205,7 @@ export function JluAllPatentsSummary({
           <div className="flex md:flex-col items-center justify-end gap-2.5 shrink-0">
             <button
               onClick={handleExportData}
-              className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-semibold rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all shadow-xs cursor-pointer"
+              className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all shadow-xs cursor-pointer"
             >
               <Download className="w-3.5 h-3.5 text-blue-200" />
               <span>导出专利清单 (Excel)</span>
@@ -213,9 +213,9 @@ export function JluAllPatentsSummary({
             {onOpenNewPatent && (
               <button
                 onClick={onOpenNewPatent}
-                className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-xl bg-linear-to-r from-[#FF9500] to-[#FF7A00] hover:from-[#FFA726] hover:to-[#FF8A00] text-slate-950 transition-all shadow-md cursor-pointer"
+                className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-bold rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white transition-all shadow-md cursor-pointer"
               >
-                <PlusCircle className="w-3.5 h-3.5 text-slate-950" />
+                <PlusCircle className="w-3.5 h-3.5 text-white" />
                 <span>成果披露与赋权登记</span>
               </button>
             )}
@@ -225,7 +225,7 @@ export function JluAllPatentsSummary({
 
       {/* Export Toast Notification */}
       {showExportToast && (
-        <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-xl flex items-center justify-between text-xs transition-all shadow-sm">
+        <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-xl flex items-center justify-between text-sm transition-all shadow-sm">
           <div className="flex items-center gap-2">
             <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
             <span>
@@ -255,19 +255,19 @@ export function JluAllPatentsSummary({
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full pl-10 pr-4 py-2.5 text-xs bg-white border border-slate-300 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] focus:border-transparent placeholder:text-slate-400 font-medium"
+                className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-slate-300 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] focus:border-transparent placeholder:text-slate-400 font-medium"
               />
             </div>
 
             {/* 排序与视图切换 */}
             <div className="flex items-center gap-3 w-full md:w-auto justify-end">
               {/* 排序下拉 */}
-              <div className="flex items-center gap-1.5 text-xs text-slate-600 shrink-0">
+              <div className="flex items-center gap-1.5 text-sm text-slate-600 shrink-0">
                 <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
-                  className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
+                  className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
                 >
                   <option value="score_desc">按佰腾价值评分 (高到低)</option>
                   <option value="score_asc">按佰腾价值评分 (低到高)</option>
@@ -281,7 +281,7 @@ export function JluAllPatentsSummary({
               <div className="flex items-center bg-slate-200/80 p-1 rounded-xl shrink-0">
                 <button
                   onClick={() => setViewMode('table')}
-                  className={`px-2.5 py-1.5 rounded-lg text-xs flex items-center gap-1 transition-all cursor-pointer ${
+                  className={`px-2.5 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-all cursor-pointer ${
                     viewMode === 'table' ? 'bg-white text-[#0F52BA] shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
                   }`}
                   title="表格视图"
@@ -291,7 +291,7 @@ export function JluAllPatentsSummary({
                 </button>
                 <button
                   onClick={() => setViewMode('cards')}
-                  className={`px-2.5 py-1.5 rounded-lg text-xs flex items-center gap-1 transition-all cursor-pointer ${
+                  className={`px-2.5 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-all cursor-pointer ${
                     viewMode === 'cards' ? 'bg-white text-[#0F52BA] shadow-xs font-bold' : 'text-slate-600 hover:text-slate-900'
                   }`}
                   title="卡片视图"
@@ -304,7 +304,7 @@ export function JluAllPatentsSummary({
           </div>
 
           {/* 二级维度多条件快速筛选 */}
-          <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs">
+          <div className="flex flex-wrap items-center gap-2.5 pt-1 text-sm">
             <span className="text-slate-500 font-bold flex items-center gap-1 shrink-0">
               <Filter className="w-3.5 h-3.5 text-slate-400" />
               条件筛选:
@@ -314,7 +314,7 @@ export function JluAllPatentsSummary({
             <select
               value={selectedCollege}
               onChange={(e) => { setSelectedCollege(e.target.value); setCurrentPage(1); }}
-              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
+              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-sm text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
             >
               <option value="all">全部学院 / 国重室</option>
               <option value="汽车">汽车工程学院 / 国重室</option>
@@ -334,7 +334,7 @@ export function JluAllPatentsSummary({
             <select
               value={selectedField}
               onChange={(e) => { setSelectedField(e.target.value); setCurrentPage(1); }}
-              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
+              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-sm text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
             >
               <option value="all">全部产业技术领域</option>
               <option value="automotive">汽车与智能网联</option>
@@ -351,7 +351,7 @@ export function JluAllPatentsSummary({
             <select
               value={selectedStatus}
               onChange={(e) => { setSelectedStatus(e.target.value); setCurrentPage(1); }}
-              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
+              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-sm text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
             >
               <option value="all">全部专利状态</option>
               <option value="valid">有效维持 (待转化)</option>
@@ -364,7 +364,7 @@ export function JluAllPatentsSummary({
             <select
               value={selectedTrlLevel}
               onChange={(e) => { setSelectedTrlLevel(e.target.value); setCurrentPage(1); }}
-              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
+              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-sm text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
             >
               <option value="all">全部成熟度 (TRL 1~9)</option>
               <option value="7_9">TRL 7~9 (产业级/实线验证)</option>
@@ -376,7 +376,7 @@ export function JluAllPatentsSummary({
             <select
               value={selectedBaitengScoreRange}
               onChange={(e) => { setSelectedBaitengScoreRange(e.target.value); setCurrentPage(1); }}
-              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
+              className="bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-sm text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
             >
               <option value="all">全部佰腾价值分</option>
               <option value="90plus">≥90分 (顶级战略高价值)</option>
@@ -388,7 +388,7 @@ export function JluAllPatentsSummary({
             {/* 重置 */}
             <button
               onClick={handleResetFilters}
-              className="ml-auto text-xs text-slate-500 hover:text-[#0F52BA] font-medium flex items-center gap-1 transition-colors cursor-pointer"
+              className="ml-auto text-sm text-slate-500 hover:text-[#0F52BA] font-medium flex items-center gap-1 transition-colors cursor-pointer"
             >
               <RefreshCw className="w-3 h-3" />
               <span>重置条件</span>
@@ -397,7 +397,7 @@ export function JluAllPatentsSummary({
         </div>
 
         {/* 结果统计指示条 */}
-        <div className="px-5 py-2.5 bg-slate-100/70 border-b border-slate-200 flex items-center justify-between text-xs text-slate-600">
+        <div className="px-5 py-2.5 bg-slate-100/70 border-b border-slate-200 flex items-center justify-between text-sm text-slate-600">
           <div>
             共检索到吉林大学专利成果 <strong className="text-slate-900 font-mono font-bold">{filteredPatents.length}</strong> 项
             {(selectedCollege !== 'all' || selectedField !== 'all' || selectedStatus !== 'all' || selectedBaitengScoreRange !== 'all' || selectedTrlLevel !== 'all' || searchQuery) && (
@@ -412,7 +412,7 @@ export function JluAllPatentsSummary({
         {/* 列表展示 - 表格模式 */}
         {viewMode === 'table' && (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border-collapse">
+            <table className="w-full text-left text-sm border-collapse">
               <thead>
                 <tr className="bg-slate-100/80 text-slate-700 font-bold border-b border-slate-200">
                   <th className="py-3.5 px-4">专利成果名称 / 专利号</th>
@@ -431,10 +431,10 @@ export function JluAllPatentsSummary({
                     <td colSpan={8} className="py-12 text-center text-slate-400">
                       <div className="flex flex-col items-center justify-center gap-2">
                         <FileText className="w-8 h-8 text-slate-300" />
-                        <div className="text-sm font-medium text-slate-600">未找到符合筛选条件的专利成果</div>
+                        <div className="text-base font-medium text-slate-600">未找到符合筛选条件的专利成果</div>
                         <button
                           onClick={handleResetFilters}
-                          className="mt-2 text-xs text-[#0F52BA] underline cursor-pointer"
+                          className="mt-2 text-sm text-[#0F52BA] underline cursor-pointer"
                         >
                           清除所有筛选条件重新检索
                         </button>
@@ -494,7 +494,7 @@ export function JluAllPatentsSummary({
                       {/* Baiteng Score */}
                       <td className="py-3.5 px-3 text-center whitespace-nowrap">
                         <div className="inline-flex items-center gap-1.5">
-                          <div className={`text-sm font-black font-mono ${
+                          <div className={`text-base font-black font-mono ${
                             patent.baitengScore.overall >= 90 ? 'text-[#0F52BA]' :
                             patent.baitengScore.overall >= 80 ? 'text-emerald-600' : 'text-slate-700'
                           }`}>
@@ -529,21 +529,21 @@ export function JluAllPatentsSummary({
                         <div className="flex items-center justify-end gap-1.5">
                           <button
                             onClick={() => onLaunchAiMatch(patent)}
-                            className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#FFF7E6] text-[#D46B08] hover:bg-[#FFE7BA] border border-[#FFD591] transition-colors flex items-center gap-1 cursor-pointer"
+                            className="px-2.5 py-1 rounded-lg text-sm font-bold bg-[#FFF7E6] text-[#D46B08] hover:bg-[#FFE7BA] border border-[#FFD591] transition-colors flex items-center gap-1 cursor-pointer"
                             title="AI精准匹配产业需求"
                           >
-                            <Sparkles className="w-3 h-3 text-[#FF7A00]" />
+                            <Sparkles className="w-3 h-3 text-blue-600" />
                             <span>撮合</span>
                           </button>
                           <button
                             onClick={() => onSelectPatent(patent)}
-                            className="px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+                            className="px-2.5 py-1 rounded-lg text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
                           >
                             详情
                           </button>
                           <button
                             onClick={() => onInitiateTransfer(patent)}
-                            className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#0F52BA] text-white hover:bg-[#082C6C] transition-colors cursor-pointer shadow-xs"
+                            className="px-2.5 py-1 rounded-lg text-sm font-bold bg-[#0F52BA] text-white hover:bg-[#082C6C] transition-colors cursor-pointer shadow-xs"
                             title="立项进入转化推进工作台"
                           >
                             立项
@@ -574,7 +574,7 @@ export function JluAllPatentsSummary({
                       {patent.patentNo}
                     </span>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold font-mono text-[#0F52BA] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                      <span className="text-sm font-bold font-mono text-[#0F52BA] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                         佰腾: {patent.baitengScore.overall}分
                       </span>
                       {getStatusBadge(patent.status)}
@@ -582,19 +582,19 @@ export function JluAllPatentsSummary({
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#0F52BA] transition-colors line-clamp-2 leading-snug">
+                  <h4 className="text-base font-bold text-slate-900 group-hover:text-[#0F52BA] transition-colors line-clamp-2 leading-snug">
                     {patent.title}
                   </h4>
 
                   {/* Faculty & Inventor */}
-                  <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
+                  <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500">
                     <span className="font-medium text-slate-700">{patent.college}</span>
                     <span>•</span>
                     <span>{patent.inventor}</span>
                   </div>
 
                   {/* Abstract */}
-                  <p className="text-xs text-slate-600 mt-2.5 line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-slate-600 mt-2.5 line-clamp-2 leading-relaxed">
                     {patent.abstract}
                   </p>
 
@@ -617,7 +617,7 @@ export function JluAllPatentsSummary({
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
                   <div>
                     <div className="text-[11px] text-slate-400">参考估值 / 转化价格</div>
-                    <div className="text-xs font-bold text-slate-900 font-mono">
+                    <div className="text-sm font-bold text-slate-900 font-mono">
                       {patent.openLicensePrice || patent.valuationRange}
                     </div>
                   </div>
@@ -625,14 +625,14 @@ export function JluAllPatentsSummary({
                   <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={() => onLaunchAiMatch(patent)}
-                      className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-[#FFF7E6] text-[#D46B08] hover:bg-[#FFE7BA] border border-[#FFD591] transition-colors flex items-center gap-1 cursor-pointer"
+                      className="px-2.5 py-1.5 rounded-lg text-sm font-bold bg-[#FFF7E6] text-[#D46B08] hover:bg-[#FFE7BA] border border-[#FFD591] transition-colors flex items-center gap-1 cursor-pointer"
                     >
-                      <Sparkles className="w-3.5 h-3.5 text-[#FF7A00]" />
+                      <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                       <span>AI撮合</span>
                     </button>
                     <button
                       onClick={() => onInitiateTransfer(patent)}
-                      className="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0F52BA] text-white hover:bg-[#082C6C] transition-colors cursor-pointer shadow-xs"
+                      className="px-3 py-1.5 rounded-lg text-sm font-bold bg-[#0F52BA] text-white hover:bg-[#082C6C] transition-colors cursor-pointer shadow-xs"
                     >
                       立即立项
                     </button>
@@ -644,7 +644,7 @@ export function JluAllPatentsSummary({
         )}
 
         {/* 分页控制栏 */}
-        <div className="px-5 py-3.5 bg-[#F8FAFC] border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div className="px-5 py-3.5 bg-[#F8FAFC] border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
           <div className="text-slate-500">
             显示第 <strong className="text-slate-800 font-mono">{(currentPage - 1) * itemsPerPage + 1}</strong> 到 <strong className="text-slate-800 font-mono">{Math.min(currentPage * itemsPerPage, filteredPatents.length)}</strong> 项，共 <strong className="text-slate-800 font-mono">{filteredPatents.length}</strong> 项吉大专利
           </div>
@@ -662,7 +662,7 @@ export function JluAllPatentsSummary({
                 <button
                   key={pageNum}
                   onClick={() => setCurrentPage(pageNum)}
-                  className={`w-7 h-7 rounded-lg text-xs font-mono font-bold transition-colors cursor-pointer ${
+                  className={`w-7 h-7 rounded-lg text-sm font-mono font-bold transition-colors cursor-pointer ${
                     currentPage === pageNum
                       ? 'bg-[#0F52BA] text-white shadow-xs'
                       : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50'

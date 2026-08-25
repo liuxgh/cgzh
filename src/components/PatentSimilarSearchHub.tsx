@@ -66,11 +66,11 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
       {/* Module Header */}
       <div className="bg-linear-to-r from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-400/30">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-xs font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
+          <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>核心寻客路径一：专利语义向量大模型</span>
           </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-[#FF7A00]/20 text-[#FFB800] border border-[#FF7A00]/40 text-xs font-semibold">
+          <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-sm font-semibold">
             佰腾中国专利数据库（2亿+篇）全量比对
           </span>
         </div>
@@ -78,7 +78,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
           通过吉大专利 ➔ 匹配全国相似专利找买家企业
         </h2>
-        <p className="text-xs sm:text-sm text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
           基于吉大专利的<strong>独立权利要求、技术特征词与IPC分类号</strong>，在佰腾全国企业专利池中进行多维向量相似度检索。精准找出已经在该领域申请了相近技术路线专利的全国企业——这些企业具备成熟的研发体系，是技术受让、许可与合作研发的最精准买家。
         </p>
       </div>
@@ -89,14 +89,14 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
           
           {/* Patent Dropdown */}
           <div className="lg:col-span-6 space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+            <label className="text-sm font-bold text-slate-700 flex items-center gap-1.5">
               <FileText className="w-3.5 h-3.5 text-[#0F52BA]" />
               <span>选择待转化的吉林大学专利（或从专利库挑选）：</span>
             </label>
             <select
               value={currentPatentId}
               onChange={(e) => handlePatentChange(e.target.value)}
-              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] focus:bg-white transition-all cursor-pointer"
+              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] focus:bg-white transition-all cursor-pointer"
             >
               {patents.map(p => (
                 <option key={p.id} value={p.id}>
@@ -108,7 +108,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
 
           {/* Similarity Threshold Slider */}
           <div className="lg:col-span-3 space-y-1.5">
-            <div className="flex items-center justify-between text-xs">
+            <div className="flex items-center justify-between text-sm">
               <span className="font-bold text-slate-700">相似度阈值过滤</span>
               <span className="font-mono font-bold text-[#0F52BA]">{similarityThreshold}%+</span>
             </div>
@@ -124,11 +124,11 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
 
           {/* Enterprise Type Filter */}
           <div className="lg:col-span-3 space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 block">企业资质类型筛选</label>
+            <label className="text-sm font-bold text-slate-700 block">企业资质类型筛选</label>
             <select
               value={enterpriseTypeFilter}
               onChange={(e) => setEnterpriseTypeFilter(e.target.value)}
-              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
+              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
             >
               <option value="all">全部企业类型</option>
               <option value="上市企业">上市企业</option>
@@ -142,7 +142,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
 
         {/* Selected Patent Quick Information Strip */}
         {activePatent && (
-          <div className="pt-3 border-t border-slate-100 bg-blue-50/40 -mx-5 -mb-5 p-4 rounded-b-2xl flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+          <div className="pt-3 border-t border-slate-100 bg-blue-50/40 -mx-5 -mb-5 p-4 rounded-b-2xl flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm">
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-mono font-bold text-[#0F52BA] bg-blue-100/80 px-2 py-0.5 rounded text-[11px]">
@@ -157,7 +157,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
               <p className="text-slate-700 line-clamp-1 font-medium">{activePatent.abstract}</p>
             </div>
             <div className="shrink-0 flex items-center gap-2">
-              <span className="text-xs text-slate-500">评估价值：<strong className="text-slate-900">{activePatent.valuationRange}</strong></span>
+              <span className="text-sm text-slate-500">评估价值：<strong className="text-slate-900">{activePatent.valuationRange}</strong></span>
             </div>
           </div>
         )}
@@ -167,7 +167,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <Building2 className="w-5 h-5 text-[#0F52BA]" />
-          <h3 className="text-base font-black text-slate-900">
+          <h3 className="text-lg font-black text-slate-900">
             已成功匹配到 <span className="text-[#0F52BA] font-mono">{matchedEnterprises.length}</span> 家拥有高度相近专利的全国靶向企业
           </h3>
         </div>
@@ -178,7 +178,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             value={searchKeyword}
             onChange={(e) => setSearchKeyword(e.target.value)}
             placeholder="搜索企业名或专利关键词..."
-            className="w-full bg-white border border-[#D8E2F0] rounded-xl px-3 py-1.5 pl-8 text-xs text-slate-900 focus:outline-hidden focus:border-[#0F52BA]"
+            className="w-full bg-white border border-[#D8E2F0] rounded-xl px-3 py-1.5 pl-8 text-sm text-slate-900 focus:outline-hidden focus:border-[#0F52BA]"
           />
           <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
         </div>
@@ -195,20 +195,20 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-100">
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0F52BA] text-xs font-bold border border-blue-200">
+                  <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0F52BA] text-sm font-bold border border-blue-200">
                     {enterprise.enterpriseType}
                   </span>
-                  <span className="text-xs text-slate-500 font-medium">
+                  <span className="text-sm text-slate-500 font-medium">
                     {enterprise.location}
                   </span>
                   <span className="text-slate-300">•</span>
-                  <span className="text-xs text-slate-500">
+                  <span className="text-sm text-slate-500">
                     研发投入：<strong className="text-slate-800 font-mono">{enterprise.rdInvestment}</strong> (占比{enterprise.rdRatio})
                   </span>
                 </div>
                 <h4 
                   onClick={() => onSelectEnterprise(enterprise)}
-                  className="text-lg font-black text-slate-900 hover:text-[#0F52BA] cursor-pointer flex items-center gap-2"
+                  className="text-xl font-black text-slate-900 hover:text-[#0F52BA] cursor-pointer flex items-center gap-2"
                 >
                   {enterprise.name}
                   <ExternalLink className="w-4 h-4 text-slate-400" />
@@ -219,12 +219,12 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                 <div className="text-right">
                   <span className="text-[11px] text-slate-400 block">综合技术协同度</span>
                   <span className="text-2xl font-black text-emerald-600 font-mono">
-                    {enterprise.matchScore} <span className="text-xs font-normal text-slate-400">分</span>
+                    {enterprise.matchScore} <span className="text-sm font-normal text-slate-400">分</span>
                   </span>
                 </div>
                 <button
                   onClick={() => onSelectEnterprise(enterprise)}
-                  className="px-4 py-2.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 shrink-0 cursor-pointer"
+                  className="px-4 py-2.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-xl text-sm font-bold transition-all shadow-xs flex items-center gap-1.5 shrink-0 cursor-pointer"
                 >
                   <span>查看企业完整档案</span>
                   <ChevronRight className="w-4 h-4" />
@@ -233,7 +233,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             </div>
 
             {/* Side-by-side Patent Comparison Box */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-sm">
               
               {/* Left: JLU Patent */}
               <div className="bg-blue-50/40 p-4 rounded-2xl border border-blue-100 space-y-2">
@@ -267,7 +267,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                   </div>
                 </div>
               ) : (
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center justify-center text-slate-400 text-xs">
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center justify-center text-slate-400 text-sm">
                   暂无公开比对专利
                 </div>
               )}
@@ -275,7 +275,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             </div>
 
             {/* Bottom Actions and Contact Snapshot */}
-            <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
               <div className="text-slate-600">
                 <span className="text-slate-400">高校产学研对接人：</span>
                 <strong className="text-slate-800">{enterprise.contact.contactPerson}</strong> ({enterprise.contact.title} - {enterprise.contact.dept})
@@ -286,9 +286,9 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                 {onOpenAiAgentWithEnterprise && (
                   <button
                     onClick={() => onOpenAiAgentWithEnterprise(enterprise)}
-                    className="px-3.5 py-1.5 bg-[#FFF7E6] hover:bg-[#FFE7BA] text-[#D46B08] border border-[#FFD591] rounded-lg font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                    className="px-3.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg font-bold flex items-center gap-1 transition-colors cursor-pointer"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-[#FF7A00]" />
+                    <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                     <span>AI撰写对接方案</span>
                   </button>
                 )}

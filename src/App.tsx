@@ -210,12 +210,12 @@ function AppContent() {
       {globalToastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-blue-500/40 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-5">
           <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-          <span className="text-xs font-semibold">{globalToastMessage}</span>
+          <span className="text-sm font-semibold">{globalToastMessage}</span>
         </div>
       )}
 
       {/* Global 佰腾网官方统一底栏 (Baiten Official SaaS Footer) */}
-      <footer className={`bg-slate-900 text-slate-300 text-xs py-8 border-t border-black/20 mt-12 transition-colors`}>
+      <footer className={`bg-slate-900 text-slate-300 text-sm py-8 border-t border-black/20 mt-12 transition-colors`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6 border-b border-white/10">
             <div className="flex items-center gap-4">
@@ -223,9 +223,9 @@ function AppContent() {
                 <img src="https://www.baiten.cn/images/baiten/logo3.svg" alt="Baiten Logo" className="w-full h-auto brightness-0 invert opacity-90" />
               </div>
               <div>
-                <div className="text-white font-bold text-sm flex items-center gap-2">
+                <div className="text-white font-bold text-base flex items-center gap-2">
                   <span>佰腾网 - 科技成果转化平台</span>
-                  <span className="px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] border border-amber-400/30">
+                  <span className="px-2 py-0.5 rounded-full bg-amber-400/20 text-cyan-300 text-[10px] border border-amber-400/30">
                     吉林大学专区
                   </span>
                 </div>

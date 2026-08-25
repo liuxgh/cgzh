@@ -63,14 +63,14 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
           </button>
 
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-blue-100 text-xs font-semibold border border-white/20 flex items-center gap-1">
+            <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-blue-100 text-sm font-semibold border border-white/20 flex items-center gap-1">
               <Building2 className="w-3.5 h-3.5 text-blue-200" />
               {enterprise.enterpriseType}
             </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-400/30">
+            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-sm font-semibold border border-emerald-400/30">
               综合协同匹配度: {enterprise.matchScore}分
             </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-[#FF7A00]/20 text-[#FFB800] text-xs font-medium border border-[#FF7A00]/40">
+            <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-sm font-medium border border-blue-200">
               统一社会信用代码: {enterprise.creditCode}
             </span>
           </div>
@@ -80,7 +80,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
               <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
                 {enterprise.name}
               </h2>
-              <p className="text-xs text-blue-100/90 mt-1 flex items-center gap-2">
+              <p className="text-sm text-blue-100/90 mt-1 flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-blue-300 shrink-0" />
                 <span>{enterprise.location}</span>
                 <span className="text-blue-300">•</span>
@@ -94,31 +94,31 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                   onClose();
                   onOpenAiAgentWithEnterprise(enterprise);
                 }}
-                className="px-4 py-2.5 bg-linear-to-r from-[#FF9500] to-[#FF7A00] hover:from-[#FFA726] hover:to-[#FF8A00] text-slate-950 font-bold text-xs rounded-xl shadow-lg flex items-center gap-2 transition-all shrink-0 cursor-pointer"
+                className="px-4 py-2.5 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm rounded-xl shadow-lg flex items-center gap-2 transition-all shrink-0 cursor-pointer"
               >
-                <Sparkles className="w-4 h-4 text-slate-950" />
+                <Sparkles className="w-4 h-4 text-white" />
                 <span>AI智能体生成对接公函与策略</span>
               </button>
             )}
           </div>
 
           {/* Quick Stat Badges */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5 pt-4 border-t border-white/10 text-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5 pt-4 border-t border-white/10 text-sm">
             <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
               <span className="text-blue-200 block text-[11px]">年营业收入</span>
-              <span className="font-bold text-white text-sm">{enterprise.revenue}</span>
+              <span className="font-bold text-white text-base">{enterprise.revenue}</span>
             </div>
             <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
               <span className="text-blue-200 block text-[11px]">研发投入 (占比)</span>
-              <span className="font-bold text-white text-sm">{enterprise.rdInvestment} ({enterprise.rdRatio})</span>
+              <span className="font-bold text-white text-base">{enterprise.rdInvestment} ({enterprise.rdRatio})</span>
             </div>
             <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
               <span className="text-blue-200 block text-[11px]">专利总数 (发明专利)</span>
-              <span className="font-bold text-white text-sm">{enterprise.patentTotalCount} 项 ({enterprise.inventionPatentCount} 发明)</span>
+              <span className="font-bold text-white text-base">{enterprise.patentTotalCount} 项 ({enterprise.inventionPatentCount} 发明)</span>
             </div>
             <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
               <span className="text-blue-200 block text-[11px]">注册资本</span>
-              <span className="font-bold text-white text-sm">{enterprise.registeredCapital}</span>
+              <span className="font-bold text-white text-base">{enterprise.registeredCapital}</span>
             </div>
           </div>
         </div>
@@ -127,7 +127,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
         <div className="flex border-b border-slate-200 bg-slate-50/80 px-6 shrink-0 overflow-x-auto gap-2">
           <button
             onClick={() => setActiveSubTab('similar_patents')}
-            className={`py-3.5 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+            className={`py-3.5 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
               activeSubTab === 'similar_patents'
                 ? 'border-[#003d80] text-[#003d80] bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -139,7 +139,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
 
           <button
             onClick={() => setActiveSubTab('chain_position')}
-            className={`py-3.5 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+            className={`py-3.5 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
               activeSubTab === 'chain_position'
                 ? 'border-[#003d80] text-[#003d80] bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -151,7 +151,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
 
           <button
             onClick={() => setActiveSubTab('patent_products')}
-            className={`py-3.5 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+            className={`py-3.5 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
               activeSubTab === 'patent_products'
                 ? 'border-[#003d80] text-[#003d80] bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -163,19 +163,19 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
 
           <button
             onClick={() => setActiveSubTab('pain_points')}
-            className={`py-3.5 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+            className={`py-3.5 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
               activeSubTab === 'pain_points'
                 ? 'border-[#003d80] text-[#003d80] bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <AlertTriangle className="w-4 h-4 text-amber-600" />
+            <AlertTriangle className="w-4 h-4 text-blue-700" />
             <span>企业技术痛点与攻关需求</span>
           </button>
 
           <button
             onClick={() => setActiveSubTab('contact')}
-            className={`py-3.5 px-4 text-xs font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+            className={`py-3.5 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
               activeSubTab === 'contact'
                 ? 'border-[#003d80] text-[#003d80] bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -191,11 +191,11 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
 
           {/* AI Matching Reason Box */}
           <div className="bg-linear-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-4.5">
-            <div className="flex items-center gap-2 text-xs font-bold text-[#003d80] mb-1.5">
+            <div className="flex items-center gap-2 text-sm font-bold text-[#003d80] mb-1.5">
               <Sparkles className="w-4 h-4 text-blue-600" />
               <span>佰腾专利大数据与吉大成果智能撮合协同逻辑：</span>
             </div>
-            <p className="text-xs text-slate-700 leading-relaxed">
+            <p className="text-sm text-slate-700 leading-relaxed">
               {enterprise.synergyReason}
             </p>
           </div>
@@ -205,14 +205,14 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
                     <span>企业现有相近公开专利 (佰腾中国专利库全量比对)</span>
-                    <span className="text-xs font-normal text-slate-500">
+                    <span className="text-sm font-normal text-slate-500">
                       通过专利权利要求语义向量计算，该企业在该技术分支研发活跃度极高
                     </span>
                   </h4>
                 </div>
-                <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">
+                <span className="text-sm font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">
                   共检索到 {enterprise.similarPatents?.length || 0} 项高相关专利
                 </span>
               </div>
@@ -223,16 +223,16 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                          <span className="font-mono text-sm font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                             {pat.patentNo}
                           </span>
-                          <span className="text-xs text-slate-400">IPC: {pat.ipc}</span>
-                          <span className="text-xs text-slate-400">授权/公开日: {pat.grantDate}</span>
+                          <span className="text-sm text-slate-400">IPC: {pat.ipc}</span>
+                          <span className="text-sm text-slate-400">授权/公开日: {pat.grantDate}</span>
                         </div>
-                        <h5 className="text-sm font-bold text-slate-900">{pat.title}</h5>
+                        <h5 className="text-base font-bold text-slate-900">{pat.title}</h5>
                       </div>
                       <div className="text-right shrink-0">
-                        <span className="inline-block px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold font-mono">
+                        <span className="inline-block px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-sm font-bold font-mono">
                           技术重叠度 {pat.similarityScore}%
                         </span>
                       </div>
@@ -242,7 +242,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                       <span className="text-[11px] font-bold text-slate-700 block mb-1">
                         技术互补 / 替代对比分析：
                       </span>
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <p className="text-sm text-slate-600 leading-relaxed">
                         {pat.techOverlapDescription}
                       </p>
                     </div>
@@ -258,17 +258,17 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
               <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <div>
-                    <span className="text-xs text-slate-500">所属战略性产业链</span>
-                    <h4 className="text-base font-bold text-[#003d80] mt-0.5">
+                    <span className="text-sm text-slate-500">所属战略性产业链</span>
+                    <h4 className="text-lg font-bold text-[#003d80] mt-0.5">
                       {enterprise.chainPosition.chainName}
                     </h4>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-bold">
+                  <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 text-sm font-bold">
                     {enterprise.chainPosition.nodeName}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80">
                     <span className="font-bold text-slate-700 block mb-1">细分赛道 / 技术分支：</span>
                     <p className="text-slate-600">{enterprise.chainPosition.subSegment}</p>
@@ -292,10 +292,10 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
           {activeSubTab === 'patent_products' && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-sm font-bold text-slate-900">
+                <h4 className="text-base font-bold text-slate-900">
                   国家专利密集型产品备案清单 (中国专利保护协会运营)
                 </h4>
-                <span className="text-xs text-slate-500">具备规模化量产与产业化承接实力</span>
+                <span className="text-sm text-slate-500">具备规模化量产与产业化承接实力</span>
               </div>
 
               {enterprise.patentProducts && enterprise.patentProducts.length > 0 ? (
@@ -308,18 +308,18 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                             <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded text-[11px] font-bold">
                               {prod.productCategory}
                             </span>
-                            <span className="text-xs font-mono text-slate-500">{prod.productCode}</span>
-                            <span className="text-xs text-slate-400">{prod.filingYear}</span>
+                            <span className="text-sm font-mono text-slate-500">{prod.productCode}</span>
+                            <span className="text-sm text-slate-400">{prod.filingYear}</span>
                           </div>
-                          <h5 className="text-base font-bold text-slate-900">{prod.productName}</h5>
+                          <h5 className="text-lg font-bold text-slate-900">{prod.productName}</h5>
                         </div>
                         <div className="text-right shrink-0">
-                          <span className="text-xs text-slate-500 block">单品年产值</span>
-                          <span className="text-lg font-black text-emerald-600 font-mono">{prod.annualOutputValue}</span>
+                          <span className="text-sm text-slate-500 block">单品年产值</span>
+                          <span className="text-xl font-black text-emerald-600 font-mono">{prod.annualOutputValue}</span>
                         </div>
                       </div>
 
-                      <div className="bg-emerald-50/60 border border-emerald-100 rounded-xl p-3 text-xs text-emerald-950">
+                      <div className="bg-emerald-50/60 border border-emerald-100 rounded-xl p-3 text-sm text-emerald-950">
                         <span className="font-bold block mb-1">与吉大专利的产业化结合点：</span>
                         <p>{prod.patentSynergyPoint}</p>
                       </div>
@@ -327,7 +327,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                   ))}
                 </div>
               ) : (
-                <div className="bg-white rounded-2xl p-8 text-center text-slate-500 border border-slate-200 text-xs">
+                <div className="bg-white rounded-2xl p-8 text-center text-slate-500 border border-slate-200 text-sm">
                   暂无独立备案产品信息，企业主要通过技术转让与委托开发方式推进。
                 </div>
               )}
@@ -338,14 +338,14 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
           {activeSubTab === 'pain_points' && (
             <div className="space-y-4">
               <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-4">
-                <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-amber-500" />
+                <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-blue-600" />
                   <span>企业当前攻关痛点与技术诉求清单 (吉大科技成果切入点)</span>
                 </h4>
                 <div className="space-y-2">
                   {enterprise.techPainPoints.map((pain, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-amber-50/50 border border-amber-200/60 text-xs text-slate-800">
-                      <span className="w-5 h-5 rounded-full bg-amber-200 text-amber-900 font-bold text-[11px] flex items-center justify-center shrink-0">
+                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-blue-50/50 border border-blue-200/60 text-sm text-slate-800">
+                      <span className="w-5 h-5 rounded-full bg-blue-200 text-blue-900 font-bold text-[11px] flex items-center justify-center shrink-0">
                         {idx + 1}
                       </span>
                       <span className="leading-relaxed">{pain}</span>
@@ -354,10 +354,10 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                 </div>
 
                 <div className="pt-3 border-t border-slate-100">
-                  <span className="text-xs font-bold text-slate-800 block mb-2">未来1-3年重点研发方向：</span>
+                  <span className="text-sm font-bold text-slate-800 block mb-2">未来1-3年重点研发方向：</span>
                   <div className="flex flex-wrap gap-2">
                     {enterprise.rdDirections.map((dir, i) => (
-                      <span key={i} className="px-3 py-1 bg-blue-50 border border-blue-200 text-[#003d80] rounded-lg text-xs font-medium">
+                      <span key={i} className="px-3 py-1 bg-blue-50 border border-blue-200 text-[#003d80] rounded-lg text-sm font-medium">
                         {dir}
                       </span>
                     ))}
@@ -365,8 +365,8 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                 </div>
 
                 <div className="pt-2">
-                  <span className="text-xs font-bold text-slate-800">期望产学研合作模式：</span>
-                  <span className="text-xs font-semibold text-emerald-700 ml-2 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  <span className="text-sm font-bold text-slate-800">期望产学研合作模式：</span>
+                  <span className="text-sm font-semibold text-emerald-700 ml-2 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                     {enterprise.preferredCollabMode}
                   </span>
                 </div>
@@ -379,39 +379,39 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             <div className="space-y-4">
               <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
                     <User className="w-4 h-4 text-blue-600" />
                     <span>企业产学研关键决策人联络画像</span>
                   </h4>
                   <button
                     onClick={handleCopyContact}
-                    className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1 transition-colors"
+                    className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-semibold flex items-center gap-1 transition-colors"
                   >
                     {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copied ? '已复制联络卡片' : '复制联络信息'}</span>
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                   <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 block text-[11px]">对接部门</span>
-                    <span className="font-bold text-slate-900 text-sm">{enterprise.contact.dept}</span>
+                    <span className="font-bold text-slate-900 text-base">{enterprise.contact.dept}</span>
                   </div>
                   <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 block text-[11px]">决策人姓名与职务</span>
-                    <span className="font-bold text-slate-900 text-sm">{enterprise.contact.contactPerson} ({enterprise.contact.title})</span>
+                    <span className="font-bold text-slate-900 text-base">{enterprise.contact.contactPerson} ({enterprise.contact.title})</span>
                   </div>
                   <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 block text-[11px]">办公联络电话</span>
-                    <span className="font-bold text-blue-700 text-sm">{enterprise.contact.phone}</span>
+                    <span className="font-bold text-blue-700 text-base">{enterprise.contact.phone}</span>
                   </div>
                   <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 block text-[11px]">电子邮箱</span>
-                    <span className="font-bold text-slate-900 text-sm">{enterprise.contact.email}</span>
+                    <span className="font-bold text-slate-900 text-base">{enterprise.contact.email}</span>
                   </div>
                 </div>
 
-                <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-xs text-indigo-950">
+                <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-sm text-indigo-950">
                   <span className="font-bold flex items-center gap-1.5 mb-1 text-indigo-900">
                     <Sparkles className="w-4 h-4 text-indigo-600" />
                     吉大成果转化老师上门走访与沟通切入建议 (Strategy)：
@@ -425,7 +425,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs shrink-0">
+        <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm shrink-0">
           <span className="text-slate-500">
             数据来源：佰腾中国专利全文库、中国专利保护协会密集型产品备案库、全国科技型企业工商画像
           </span>

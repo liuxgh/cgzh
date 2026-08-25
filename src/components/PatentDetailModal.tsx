@@ -56,13 +56,13 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
           </button>
 
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-white/15 text-blue-100 border border-white/20">
+            <span className="text-sm font-mono px-2 py-0.5 rounded bg-white/15 text-blue-100 border border-white/20">
               {patent.patentNo}
             </span>
-            <span className="text-xs px-2 py-0.5 rounded bg-[#FF7A00]/20 text-[#FFB800] border border-[#FF7A00]/40">
+            <span className="text-sm px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
               {patent.fieldName}
             </span>
-            <span className="text-xs px-2 py-0.5 rounded bg-emerald-500/30 text-emerald-200">
+            <span className="text-sm px-2 py-0.5 rounded bg-emerald-500/30 text-emerald-200">
               TRL {patent.trlLevel} 级成熟度
             </span>
           </div>
@@ -71,7 +71,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
             {patent.title}
           </h2>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs text-blue-100">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-blue-100">
             <div>
               <span className="text-blue-200">发明人团队:</span>{' '}
               <strong className="text-white">{patent.inventor}</strong>
@@ -90,7 +90,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-slate-200 bg-[#F8FAFC] px-6 gap-6 text-xs font-semibold">
+        <div className="flex border-b border-slate-200 bg-[#F8FAFC] px-6 gap-6 text-sm font-semibold">
           <button
             onClick={() => setActiveSubTab('info')}
             className={`py-3 border-b-2 transition-all cursor-pointer ${
@@ -109,7 +109,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            <Award className="w-3.5 h-3.5 text-[#FF7A00]" />
+            <Award className="w-3.5 h-3.5 text-blue-600" />
             佰腾价值度与成熟度(TRL)
           </button>
           <button
@@ -139,23 +139,23 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
           {activeSubTab === 'info' && (
             <div className="space-y-5">
               <div>
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5 text-blue-600" />
                   专利权利要求与技术摘要
                 </h4>
-                <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200">
                   {patent.abstract}
                 </p>
               </div>
 
               <div>
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                   吉林大学重点攻关核心创新点
                 </h4>
                 <div className="space-y-2">
                   {patent.innovations.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                    <div key={idx} className="flex items-start gap-2.5 text-sm text-slate-700 bg-blue-50/50 p-3 rounded-lg border border-blue-100">
                       <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </div>
@@ -163,7 +163,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 text-xs bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+              <div className="grid grid-cols-2 gap-3 text-sm bg-slate-50 p-3.5 rounded-xl border border-slate-200">
                 <div>
                   <span className="text-slate-400">申请日期:</span> <strong className="text-slate-800 font-mono ml-1">{patent.applicationDate}</strong>
                 </div>
@@ -183,27 +183,27 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
           {activeSubTab === 'valuation' && (
             <div className="space-y-5">
               {/* Baiteng Score Overview */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-5 rounded-xl border border-amber-200 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-xl border border-blue-200 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <Award className="w-5 h-5 text-amber-600" />
-                    <h4 className="text-sm font-bold text-amber-950">佰腾网高价值专利综合评估</h4>
+                    <Award className="w-5 h-5 text-blue-700" />
+                    <h4 className="text-base font-bold text-blue-950">佰腾网高价值专利综合评估</h4>
                   </div>
-                  <p className="text-xs text-amber-800 max-w-md">
+                  <p className="text-sm text-blue-800 max-w-md">
                     基于佰腾专利大数据AI多维评价模型认证，技术先进性与市场转化潜力处于同IPC领域前 <strong>5%</strong> 梯队。
                   </p>
                 </div>
-                <div className="text-center px-4 py-2 bg-white rounded-xl shadow-xs border border-amber-200 shrink-0">
+                <div className="text-center px-4 py-2 bg-white rounded-xl shadow-xs border border-blue-200 shrink-0">
                   <span className="text-[10px] text-slate-500 font-medium block">综合价值指数</span>
-                  <span className="text-3xl font-extrabold text-amber-600 font-mono">{patent.baitengScore.overall}</span>
-                  <span className="text-xs text-slate-400"> / 100</span>
+                  <span className="text-3xl font-extrabold text-blue-700 font-mono">{patent.baitengScore.overall}</span>
+                  <span className="text-sm text-slate-400"> / 100</span>
                 </div>
               </div>
 
               {/* Breakdown Bars */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-600 font-medium">技术先进性 (权重35%)</span>
                     <strong className="font-mono text-slate-900">{patent.baitengScore.technical} 分</strong>
                   </div>
@@ -213,7 +213,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                 </div>
 
                 <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-600 font-medium">法律稳定性 (权重25%)</span>
                     <strong className="font-mono text-slate-900">{patent.baitengScore.legal} 分</strong>
                   </div>
@@ -223,7 +223,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                 </div>
 
                 <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-600 font-medium">市场前景度 (权重25%)</span>
                     <strong className="font-mono text-slate-900">{patent.baitengScore.market} 分</strong>
                   </div>
@@ -233,7 +233,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                 </div>
 
                 <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  <div className="flex justify-between text-xs mb-1">
+                  <div className="flex justify-between text-sm mb-1">
                     <span className="text-slate-600 font-medium">竞争壁垒 (权重15%)</span>
                     <strong className="font-mono text-slate-900">{patent.baitengScore.barrier} 分</strong>
                   </div>
@@ -247,9 +247,9 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
               <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100 space-y-2">
                 <div className="flex items-center gap-2">
                   <Cpu className="w-4 h-4 text-blue-700" />
-                  <h5 className="text-xs font-bold text-blue-900">技术就绪度 (TRL) 详细验证阶段</h5>
+                  <h5 className="text-sm font-bold text-blue-900">技术就绪度 (TRL) 详细验证阶段</h5>
                 </div>
-                <p className="text-xs text-blue-800 leading-relaxed font-medium">
+                <p className="text-sm text-blue-800 leading-relaxed font-medium">
                   {patent.trlDescription}
                 </p>
                 <div className="flex items-center gap-1 pt-1">
@@ -275,13 +275,13 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
           {activeSubTab === 'industries' && (
             <div className="space-y-5">
               <div>
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <Building2 className="w-3.5 h-3.5 text-blue-600" />
                   目标应用产业与下游制造环节
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {patent.applicableIndustries.map((ind, i) => (
-                    <span key={i} className="text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 border border-slate-200 flex items-center gap-1">
+                    <span key={i} className="text-sm font-medium px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 border border-slate-200 flex items-center gap-1">
                       <Tag className="w-3 h-3 text-slate-400" />
                       {ind}
                     </span>
@@ -290,14 +290,14 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
               </div>
 
               <div>
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <Layers className="w-3.5 h-3.5 text-blue-600" />
                   支持的成果转化流转模式
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {patent.transferModes.map((mode) => (
                     <div key={mode} className="bg-emerald-50 border border-emerald-200 p-2.5 rounded-lg text-center">
-                      <span className="text-xs font-bold text-emerald-800">{modeLabels[mode] || mode}</span>
+                      <span className="text-sm font-bold text-emerald-800">{modeLabels[mode] || mode}</span>
                     </div>
                   ))}
                 </div>
@@ -306,10 +306,10 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
               {patent.openLicensePrice && (
                 <div className="bg-purple-50 p-4 rounded-xl border border-purple-200 flex items-center justify-between">
                   <div>
-                    <span className="text-xs font-bold text-purple-950 block">开放许可挂牌价格</span>
-                    <span className="text-xs text-purple-700">实行先使用后付费 / 阶梯定额标准合同</span>
+                    <span className="text-sm font-bold text-purple-950 block">开放许可挂牌价格</span>
+                    <span className="text-sm text-purple-700">实行先使用后付费 / 阶梯定额标准合同</span>
                   </div>
-                  <span className="text-sm font-extrabold text-purple-900 font-mono">{patent.openLicensePrice}</span>
+                  <span className="text-base font-extrabold text-purple-900 font-mono">{patent.openLicensePrice}</span>
                 </div>
               )}
             </div>
@@ -317,7 +317,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
 
           {activeSubTab === 'docs' && (
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">
+              <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">
                 授权认证材料与第三方评测报告
               </h4>
               {patent.documents.map((doc, index) => (
@@ -326,17 +326,17 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                   className="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-red-100 text-red-700 flex items-center justify-center font-bold text-xs">
+                    <div className="w-8 h-8 rounded-lg bg-red-100 text-red-700 flex items-center justify-center font-bold text-sm">
                       PDF
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-slate-800">{doc.title}</div>
+                      <div className="text-sm font-bold text-slate-800">{doc.title}</div>
                       <div className="text-[10px] text-slate-400 font-mono">{doc.size} • 官方盖章版</div>
                     </div>
                   </div>
                   <button 
                     onClick={() => alert(`正在下载: ${doc.title}`)}
-                    className="text-xs font-semibold text-blue-600 hover:text-blue-700 px-3 py-1 rounded bg-white border border-blue-200 hover:bg-blue-50 transition-colors flex items-center gap-1"
+                    className="text-sm font-semibold text-blue-600 hover:text-blue-700 px-3 py-1 rounded bg-white border border-blue-200 hover:bg-blue-50 transition-colors flex items-center gap-1"
                   >
                     <Download className="w-3.5 h-3.5" />
                     下载查阅
@@ -349,7 +349,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
 
         {/* Footer Actions */}
         <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
-          <div className="text-xs text-slate-500">
+          <div className="text-sm text-slate-500">
             公允参考估值: <strong className="text-slate-900 font-mono">{patent.valuationRange}</strong>
           </div>
 
@@ -359,7 +359,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                 onClose();
                 onLaunchAiMatch(patent);
               }}
-              className="text-xs font-bold px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl shadow-xs transition-all flex items-center gap-1.5"
+              className="text-sm font-bold px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl shadow-xs transition-all flex items-center gap-1.5"
             >
               <Sparkles className="w-3.5 h-3.5" />
               启动AI企业精准匹配
@@ -370,7 +370,7 @@ export const PatentDetailModal: React.FC<PatentDetailModalProps> = ({
                 onClose();
                 onInitiateTransfer(patent);
               }}
-              className="text-xs font-bold px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl transition-colors flex items-center gap-1.5"
+              className="text-sm font-bold px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl transition-colors flex items-center gap-1.5"
             >
               <span>发起立项转化</span>
               <ArrowRight className="w-3.5 h-3.5" />
