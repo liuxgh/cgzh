@@ -189,21 +189,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             />
           </div>
 
-          {/* Enterprise Type Filter */}
-          <div className="lg:col-span-3 space-y-1.5">
-            <label className="text-sm font-bold text-slate-700 block">企业资质类型筛选</label>
-            <select
-              value={enterpriseTypeFilter}
-              onChange={(e) => setEnterpriseTypeFilter(e.target.value)}
-              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3 py-2 text-sm text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA] cursor-pointer"
-            >
-              <option value="all">全部企业类型</option>
-              <option value="上市企业">上市企业</option>
-              <option value="国家级专精特新“小巨人”">国家级专精特新“小巨人”</option>
-              <option value="制造业单项冠军">制造业单项冠军</option>
-              <option value="行业龙头国企">行业龙头国企</option>
-            </select>
-          </div>
+          
 
         </div>
 
@@ -262,16 +248,11 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-100">
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0F52BA] text-sm font-bold border border-blue-200">
-                    {enterprise.enterpriseType}
-                  </span>
+                  
                   <span className="text-sm text-slate-500 font-medium">
                     {enterprise.location}
                   </span>
-                  <span className="text-slate-300">•</span>
-                  <span className="text-sm text-slate-500">
-                    研发投入：<strong className="text-slate-800 font-mono">{enterprise.rdInvestment}</strong> (占比{enterprise.rdRatio})
-                  </span>
+                  
                 </div>
                 <h4 
                   onClick={() => onSelectEnterprise(enterprise)}
@@ -283,12 +264,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="text-right">
-                  <span className="text-[11px] text-slate-400 block">综合技术协同度</span>
-                  <span className="text-2xl font-black text-emerald-600 font-mono">
-                    {enterprise.matchScore} <span className="text-sm font-normal text-slate-400">分</span>
-                  </span>
-                </div>
+                
                 <button
                   onClick={() => onSelectEnterprise(enterprise)}
                   className="px-4 py-2.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-xl text-sm font-bold transition-all shadow-xs flex items-center gap-1.5 shrink-0 cursor-pointer"
@@ -343,11 +319,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
 
             {/* Bottom Actions and Contact Snapshot */}
             <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
-              <div className="text-slate-600">
-                <span className="text-slate-400">高校产学研对接人：</span>
-                <strong className="text-slate-800">{enterprise.contact.contactPerson}</strong> ({enterprise.contact.title} - {enterprise.contact.dept})
-                <span className="text-slate-400 ml-2 font-mono">{enterprise.contact.phone}</span>
-              </div>
+              <div></div>
 
               <div className="flex items-center gap-2">
                 {onOpenAiAgentWithEnterprise && (

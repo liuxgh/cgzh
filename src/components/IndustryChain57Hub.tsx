@@ -63,7 +63,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
         <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
             <Layers className="w-4 h-4 text-blue-200" />
-            <span>核心寻客路径二：57条细分战略产业链图谱</span>
+            <span>核心寻客路径二：细分战略产业链图谱</span>
           </span>
           <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-sm font-semibold">
             上中下游节点精准穿透 • 吉大优势实验室直连
@@ -74,7 +74,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
           通过产业链 ➔ 全链条图谱穿透找买家企业
         </h2>
         <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
-          深入拆解57条战略新兴产业链的<strong>上游关键原材料、中游精密制造与下游整机终端</strong>。吉大老师可按所属产业链技术节点，直接定位该环节全国龙头企业与专精特新企业的急迫攻关痛点，开展成果推介与产学研合作。
+          深入拆解战略新兴产业链的<strong>上游关键原材料、中游精密制造与下游整机终端</strong>。吉大老师可按所属产业链技术节点，直接定位该环节全国龙头企业与专精特新企业的急迫攻关痛点，开展成果推介与产学研合作。
         </p>
       </div>
 
@@ -306,9 +306,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
                       </div>
                       <h5 className="text-lg font-bold text-slate-900">{ent.name}</h5>
                     </div>
-                    <span className="font-mono text-xl font-black text-emerald-600 shrink-0">
-                      {ent.matchScore}分
-                    </span>
+                    
                   </div>
 
                   <div className="text-sm text-slate-600 bg-white p-3 rounded-xl border border-slate-100 space-y-1">

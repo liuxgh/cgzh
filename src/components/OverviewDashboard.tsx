@@ -66,7 +66,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
         <div className="relative z-10 max-w-4xl space-y-4">
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-            不盲目寻客，让吉大每一项科技成果 <br className="hidden sm:inline" />
+            让吉大每一项科技成果 <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-300 via-blue-200 to-white">
               精准直达靶向企业、产业链
             </span>
@@ -137,7 +137,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
           </div>
           <div>
             <span className="text-sm text-slate-500 font-semibold block mb-1">重点产业链</span>
-            <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">57 条</div>
+            <div className="text-2xl font-black text-slate-900 tracking-tight">全面覆盖</div>
           </div>
         </div>
       </div>
@@ -224,13 +224,13 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                进入佰腾57条战略性产业链全景图谱，上游关键材料、中游精密制造、下游整机终端分级穿透，精准匹配企业攻关痛点与吉大优势学科。
+                进入佰腾战略性产业链全景图谱，上游关键材料、中游精密制造、下游整机终端分级穿透，精准匹配企业攻关痛点与吉大优势学科。
               </p>
 
               <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
-                  <span>57条细分产业链上中下游节点全景分解</span>
+                  <span>细分产业链上中下游节点全景分解</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
@@ -362,12 +362,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                     </h4>
                   </div>
 
-                  <div className="text-right shrink-0">
-                    <span className="text-sm text-slate-500 block">协同匹配得分</span>
-                    <span className="text-xl font-black text-emerald-600 font-mono">
-                      {ent.matchScore} <span className="text-sm font-normal text-slate-400">分</span>
-                    </span>
-                  </div>
+                  
                 </div>
 
                 <div className="mt-3 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-sm text-slate-700 space-y-1.5">
@@ -377,7 +372,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                   <div className="flex items-center gap-4 text-[11px] text-slate-500 pt-1">
                     <span>相近公开专利：<strong className="text-slate-800 font-mono">{ent.similarPatents?.length || 0}项</strong></span>
                     <span>备案产品：<strong className="text-slate-800 font-mono">{ent.patentProducts?.length || 0}款</strong></span>
-                    <span>研发投入：<strong className="text-slate-800 font-mono">{ent.rdInvestment}</strong></span>
+                    
                   </div>
                 </div>
               </div>

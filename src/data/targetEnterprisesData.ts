@@ -54,7 +54,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: '神行4C超充动力电池模组系统',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '380 亿元',
+        annualOutputValue: '100亿-500亿元',
         corePatentCount: 142,
         patentSynergyPoint: '吉大快速锂离子导电涂层专利可直接应用于神行超充电池极片界面改性。'
       }
@@ -125,7 +125,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: '红旗天工纯电智能底盘平台系统',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '210 亿元',
+        annualOutputValue: '100亿-500亿元',
         corePatentCount: 88,
         patentSynergyPoint: '吉大汽车底盘集成与仿生全国重点实验室的线控多轴分布式驱动协同控制算法已完成台架验证。'
       }
@@ -196,7 +196,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: '800万像素高动态车载智能驾驶镜头模组',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '46 亿元',
+        annualOutputValue: '10亿-50亿元',
         corePatentCount: 64,
         patentSynergyPoint: '吉大抗强光眩光微纳抗反射涂层专利可降低鬼影与杂散光达80%。'
       }
@@ -267,7 +267,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: '全自动高速化学发光免疫分析流水线系统',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '58 亿元',
+        annualOutputValue: '10亿-50亿元',
         corePatentCount: 92,
         patentSynergyPoint: '吉大超分子荧光探针合成专利可大幅提高弱阳性肿瘤标志物检出下限（提升2个数量级）。'
       }
@@ -338,7 +338,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: 'KMC系列大型五轴联动立式加工中心',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '2.8 亿元',
+        annualOutputValue: '1亿-5亿元',
         corePatentCount: 31,
         patentSynergyPoint: '吉大机床主轴动态热平衡自适应控温专利可将机床热平衡时间由2小时缩短至15分钟。'
       }
@@ -409,7 +409,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: '第6代超薄柔性AMOLED折叠显示屏幕',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '280 亿元',
+        annualOutputValue: '100亿-500亿元',
         corePatentCount: 310,
         patentSynergyPoint: '吉大柔性透明电极与耐折叠封装专利可大幅提高折叠屏20万次弯折寿命无折痕。'
       }
@@ -480,7 +480,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: '干喷湿纺高性能PAN基碳纤维(T800级)',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '12 亿元',
+        annualOutputValue: '10亿-50亿元',
         corePatentCount: 28,
         patentSynergyPoint: '吉大耐500℃特种工程塑料浸润剂专利使碳纤维界面剪切强度提升42%。'
       }
@@ -551,7 +551,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         productName: '东方红LW2604重型轮式智能拖拉机系统',
         filingYear: '2023年备案',
         productCategory: '国家专利密集型产品',
-        annualOutputValue: '18.5 亿元',
+        annualOutputValue: '10亿-50亿元',
         corePatentCount: 42,
         patentSynergyPoint: '吉大地面机械仿生重点实验室的仿生耐磨犁铧专利直接延长触土作业寿命2.5倍。'
       }

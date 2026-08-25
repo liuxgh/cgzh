@@ -224,10 +224,9 @@ function AppContent() {
               </div>
               <div>
                 <div className="text-white font-bold text-base flex items-center gap-2">
-                  <span>佰腾网 - 科技成果转化平台</span>
-                  <span className="px-2 py-0.5 rounded-full bg-amber-400/20 text-cyan-300 text-[10px] border border-amber-400/30">
-                    吉林大学专区
-                  </span>
+                  <span className="text-lg tracking-wider">佰腾网</span>
+                  <span className="text-blue-200/50">|</span>
+                  <span className="text-cyan-300 font-black tracking-wide">吉林大学科技成果转化专区</span>
                 </div>
                 <div className="text-[11px] text-slate-400 mt-1">
                   吉林大学科学技术处 / 科技开发中心 (技术转移中心) • 江苏佰腾科技有限公司联合赋能

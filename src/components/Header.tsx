@@ -67,22 +67,17 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Brand & Title */}
         <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => setActiveTab('overview')}>
           {/* Authentic JLU & Baiten Integrated Brand Icon */}
-          <div className="relative w-12 h-12 shrink-0 overflow-hidden rounded-full border border-slate-200 shadow-sm bg-white">
-            <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="吉林大学 Logo" className="w-full h-full object-cover scale-110" />
+          <div className="w-28 shrink-0 flex items-center">
+            <img src="https://www.baiten.cn/images/baiten/logo3.svg" alt="Baiten Logo" className="w-full h-auto" />
           </div>
-
           <div>
             <div className="flex items-center gap-3">
               <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-sans">
-                吉林大学
+                佰腾网
               </span>
               <div className="h-4 w-px bg-slate-300 rounded-full mx-1" />
               <span className="text-base sm:text-lg font-semibold text-slate-700">
-                科技成果转化平台
-              </span>
-              {/* Tag for Powered by Baiten */}
-              <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100 ml-2">
-                佰腾大数据驱动
+                吉林大学科技成果转化专区
               </span>
             </div>
           </div>

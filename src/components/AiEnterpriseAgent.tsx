@@ -48,7 +48,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
   const agentSteps = [
     { title: '专利权利要求与技术特征语义解析', desc: '提取核心发明点、微观机理、适用工业场景及潜在替代/互补特征' },
     { title: '佰腾中国专利大模型向量语义比对', desc: '穿透2亿+专利数据库，匹配全国企业同族/相似技术公开专利' },
-    { title: '57条战略产业链上下游供需图谱穿透', desc: '定位上游关键原材料、中游制造模块与下游整机集成商技术痛点' },
+    { title: '战略产业链上下游供需图谱穿透', desc: '定位上游关键原材料、中游制造模块与下游整机集成商技术痛点' },
     { title: '国家专利密集型产品备案库产业化能力校验', desc: '比对200,000+款已备案量产产品，筛选具备规模化采购实力的规上企业' },
     { title: '企业工商信用画像与产学研决策人匹配', desc: '生成企业研发预算、技术高管联系方式与定制化上门走访沟通策略' }
   ];
@@ -296,10 +296,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                           </div>
                           <h5 className="text-lg font-bold text-slate-900">{ent.name}</h5>
                         </div>
-                        <div className="text-right shrink-0">
-                          <span className="text-[10px] text-slate-400 block">AI 协同得分</span>
-                          <span className="text-xl font-black text-emerald-600 font-mono">{ent.matchScore}分</span>
-                        </div>
+                        
                       </div>
 
                       <div className="bg-white p-3 rounded-xl border border-slate-100 text-sm text-slate-700 space-y-1">
@@ -308,9 +305,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                       </div>
 
                       <div className="flex items-center justify-between text-sm pt-1">
-                        <span className="text-slate-500 text-[11px]">
-                          对接人：<strong className="text-slate-800">{ent.contact.contactPerson}</strong> ({ent.contact.title})
-                        </span>
+                        <span></span>
                         <span className="text-[#003d80] font-bold flex items-center gap-0.5">
                           <span>查看完整画像</span>
                           <ChevronRight className="w-3.5 h-3.5" />

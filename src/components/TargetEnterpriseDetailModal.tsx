@@ -38,7 +38,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
   onOpenAiAgentWithEnterprise
 }) => {
   const [copied, setCopied] = useState(false);
-  const [activeSubTab, setActiveSubTab] = useState<'similar_patents' | 'chain_position' | 'patent_products' | 'pain_points' | 'contact'>('similar_patents');
+  const [activeSubTab, setActiveSubTab] = useState<'similar_patents' | 'chain_position' | 'patent_products'>('similar_patents');
 
   if (!isOpen || !enterprise) return null;
 
@@ -62,67 +62,50 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             <X className="w-5 h-5" />
           </button>
 
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-blue-100 text-sm font-semibold border border-white/20 flex items-center gap-1">
-              <Building2 className="w-3.5 h-3.5 text-blue-200" />
-              {enterprise.enterpriseType}
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-sm font-semibold border border-emerald-400/30">
-              综合协同匹配度: {enterprise.matchScore}分
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-sm font-medium border border-blue-200">
-              统一社会信用代码: {enterprise.creditCode}
-            </span>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-                {enterprise.name}
-              </h2>
-              <p className="text-sm text-blue-100/90 mt-1 flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-blue-300 shrink-0" />
-                <span>{enterprise.location}</span>
-                <span className="text-blue-300">•</span>
-                <span>所属行业：{enterprise.industry}</span>
-              </p>
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+              <div>
+                <h2 className="text-3xl font-black tracking-tight text-white mb-2">
+                  {enterprise.name}
+                </h2>
+                <div className="flex flex-wrap items-center gap-3 text-sm text-blue-100/90 font-medium">
+                  <span className="flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-blue-300 shrink-0" />
+                    {enterprise.location}
+                  </span>
+                  <span className="w-1 h-1 rounded-full bg-blue-300/50" />
+                  <span className="font-mono">信用代码: {enterprise.creditCode}</span>
+                </div>
+              </div>
+              
+              {onOpenAiAgentWithEnterprise && (
+                <button
+                  onClick={() => {
+                    onClose();
+                    onOpenAiAgentWithEnterprise(enterprise);
+                  }}
+                  className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl flex items-center gap-2 transition-all shadow-[0_4px_12px_rgba(16,185,129,0.3)] hover:shadow-[0_6px_16px_rgba(16,185,129,0.4)] shrink-0"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>AI智能体转化分析</span>
+                </button>
+              )}
             </div>
 
-            {onOpenAiAgentWithEnterprise && (
-              <button
-                onClick={() => {
-                  onClose();
-                  onOpenAiAgentWithEnterprise(enterprise);
-                }}
-                className="px-4 py-2.5 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm rounded-xl shadow-lg flex items-center gap-2 transition-all shrink-0 cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4 text-white" />
-                <span>AI智能体生成对接公函与策略</span>
-              </button>
-            )}
-          </div>
-
-          {/* Quick Stat Badges */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5 pt-4 border-t border-white/10 text-sm">
-            <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
-              <span className="text-blue-200 block text-[11px]">年营业收入</span>
-              <span className="font-bold text-white text-base">{enterprise.revenue}</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
-              <span className="text-blue-200 block text-[11px]">研发投入 (占比)</span>
-              <span className="font-bold text-white text-base">{enterprise.rdInvestment} ({enterprise.rdRatio})</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
-              <span className="text-blue-200 block text-[11px]">专利总数 (发明专利)</span>
-              <span className="font-bold text-white text-base">{enterprise.patentTotalCount} 项 ({enterprise.inventionPatentCount} 发明)</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-xs rounded-xl p-2.5 border border-white/10">
-              <span className="text-blue-200 block text-[11px]">注册资本</span>
-              <span className="font-bold text-white text-base">{enterprise.registeredCapital}</span>
+            <div className="flex flex-wrap items-center gap-6 pt-5 border-t border-white/10">
+              <div>
+                <span className="text-blue-200 block text-[11px] mb-0.5">专利总数 (发明专利)</span>
+                <span className="font-bold text-white text-lg font-mono tracking-tight">{enterprise.patentTotalCount} <span className="text-sm font-medium text-blue-100/70">项</span> ({enterprise.inventionPatentCount} <span className="text-sm font-medium text-blue-100/70">发明</span>)</span>
+              </div>
+              <div className="w-px h-8 bg-white/10" />
+              <div>
+                <span className="text-blue-200 block text-[11px] mb-0.5">注册资本</span>
+                <span className="font-bold text-white text-lg font-mono tracking-tight">{enterprise.registeredCapital}</span>
+              </div>
             </div>
           </div>
         </div>
-
+        
         {/* Tab Navigation */}
         <div className="flex border-b border-slate-200 bg-slate-50/80 px-6 shrink-0 overflow-x-auto gap-2">
           <button
@@ -161,29 +144,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             <span>【路径三】专利密集型产品备案 ({enterprise.patentProducts?.length || 0})</span>
           </button>
 
-          <button
-            onClick={() => setActiveSubTab('pain_points')}
-            className={`py-3.5 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
-              activeSubTab === 'pain_points'
-                ? 'border-[#003d80] text-[#003d80] bg-white'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <AlertTriangle className="w-4 h-4 text-blue-700" />
-            <span>企业技术痛点与攻关需求</span>
-          </button>
-
-          <button
-            onClick={() => setActiveSubTab('contact')}
-            className={`py-3.5 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors ${
-              activeSubTab === 'contact'
-                ? 'border-[#003d80] text-[#003d80] bg-white'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <User className="w-4 h-4 text-rose-600" />
-            <span>对接决策人与拜访公关建议</span>
-          </button>
+          
         </div>
 
         {/* Modal Body */}
@@ -230,11 +191,6 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                           <span className="text-sm text-slate-400">授权/公开日: {pat.grantDate}</span>
                         </div>
                         <h5 className="text-base font-bold text-slate-900">{pat.title}</h5>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <span className="inline-block px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-sm font-bold font-mono">
-                          技术重叠度 {pat.similarityScore}%
-                        </span>
                       </div>
                     </div>
 
@@ -331,96 +287,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             </div>
           )}
 
-          {/* Tab 4: Pain Points */}
-          {activeSubTab === 'pain_points' && (
-            <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-4">
-                <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-blue-600" />
-                  <span>企业当前攻关痛点与技术诉求清单 (吉大科技成果切入点)</span>
-                </h4>
-                <div className="space-y-2">
-                  {enterprise.techPainPoints.map((pain, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-blue-50/50 border border-blue-200/60 text-sm text-slate-800">
-                      <span className="w-5 h-5 rounded-full bg-blue-200 text-blue-900 font-bold text-[11px] flex items-center justify-center shrink-0">
-                        {idx + 1}
-                      </span>
-                      <span className="leading-relaxed">{pain}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-3 border-t border-slate-100">
-                  <span className="text-sm font-bold text-slate-800 block mb-2">未来1-3年重点研发方向：</span>
-                  <div className="flex flex-wrap gap-2">
-                    {enterprise.rdDirections.map((dir, i) => (
-                      <span key={i} className="px-3 py-1 bg-blue-50 border border-blue-200 text-[#003d80] rounded-lg text-sm font-medium">
-                        {dir}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <span className="text-sm font-bold text-slate-800">期望产学研合作模式：</span>
-                  <span className="text-sm font-semibold text-emerald-700 ml-2 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                    {enterprise.preferredCollabMode}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Tab 5: Contact & Pitch */}
-          {activeSubTab === 'contact' && (
-            <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-4">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                    <User className="w-4 h-4 text-blue-600" />
-                    <span>企业产学研关键决策人联络画像</span>
-                  </h4>
-                  <button
-                    onClick={handleCopyContact}
-                    className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-semibold flex items-center gap-1 transition-colors"
-                  >
-                    {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>{copied ? '已复制联络卡片' : '复制联络信息'}</span>
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                    <span className="text-slate-500 block text-[11px]">对接部门</span>
-                    <span className="font-bold text-slate-900 text-base">{enterprise.contact.dept}</span>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                    <span className="text-slate-500 block text-[11px]">决策人姓名与职务</span>
-                    <span className="font-bold text-slate-900 text-base">{enterprise.contact.contactPerson} ({enterprise.contact.title})</span>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                    <span className="text-slate-500 block text-[11px]">办公联络电话</span>
-                    <span className="font-bold text-blue-700 text-base">{enterprise.contact.phone}</span>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                    <span className="text-slate-500 block text-[11px]">电子邮箱</span>
-                    <span className="font-bold text-slate-900 text-base">{enterprise.contact.email}</span>
-                  </div>
-                </div>
-
-                <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-sm text-indigo-950">
-                  <span className="font-bold flex items-center gap-1.5 mb-1 text-indigo-900">
-                    <Sparkles className="w-4 h-4 text-indigo-600" />
-                    吉大成果转化老师上门走访与沟通切入建议 (Strategy)：
-                  </span>
-                  <p className="leading-relaxed text-indigo-900/90">{enterprise.contact.suggestedApproach}</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-        </div>
-
+          </div>
         {/* Modal Footer */}
         <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm shrink-0">
           <span className="text-slate-500">
