@@ -64,18 +64,23 @@ export const Header: React.FC<HeaderProps> = ({
       {/* 1. 主品牌栏与统一检索 (Main Header Bar) */}
       <div className={`px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors`}>
         {/* Brand & Title */}
-        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setActiveTab('overview')}>
-          <div className="h-10 sm:h-12 shrink-0 flex items-center overflow-hidden mix-blend-multiply">
-            <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="Jilin University Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
+        <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setActiveTab('overview')}>
+          <div className="h-11 sm:h-14 shrink-0 flex items-center overflow-hidden mix-blend-multiply relative">
+            <div className="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors z-10" />
+            <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="Jilin University Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500 ease-out" />
           </div>
-          <div className="flex flex-col justify-center">
-            <div className="flex items-end gap-2 mb-1">
-              <span className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-none">吉林大学</span>
-              <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 text-[10px] font-bold whitespace-nowrap tracking-wide leading-none">
+          <div className="flex flex-col justify-center border-l-2 border-slate-200/80 pl-3.5 sm:pl-4 py-0.5 ml-0.5">
+            <div className="flex items-end gap-2.5 mb-2">
+              <span className="text-[22px] sm:text-[26px] font-black text-slate-900 tracking-tight leading-none" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                吉林大学
+              </span>
+              <span className="hidden sm:inline-flex items-center px-2 py-[3px] rounded-md bg-gradient-to-br from-blue-50 to-indigo-50/50 border border-blue-100/80 text-blue-700 text-[10px] font-bold tracking-widest leading-none shadow-[0_1px_2px_rgba(0,0,0,0.02)] translate-y-[-2px]">
                 佰腾大数据驱动
               </span>
             </div>
-            <span className="text-[13px] sm:text-sm font-bold text-slate-500 tracking-widest leading-none">科技成果转化专区</span>
+            <span className="text-[12px] sm:text-[13px] font-semibold text-slate-500 tracking-[0.25em] leading-none pl-0.5">
+              科技成果转化专区
+            </span>
           </div>
         </div>
 
