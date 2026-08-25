@@ -68,7 +68,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     transferModes: ['exclusive_license', 'general_license', 'open_license', 'equity'],
     abstract: '本发明提供了一种兼具窄光谱半峰宽（<28nm）与高外量子效率（EQE>32%）的新型硼氮稠环TADF深蓝光材料，显著抑制高亮度下的效率滚降，器件寿命相比传统商用蓝光材料提升3倍，为国产高端OLED显示屏提供核心发光材料自主可控解决方案。',
     innovations: [
-      '自主原创空间共轭受体设计，打破欧美日核心专利专利池封锁',
+      '自主原创空间共轭受体设计，打破欧美日核心专利池封锁',
       '升华产率大于92%，满足高世代线产线蒸镀纯度要求',
       '色坐标达到CIE y < 0.12的超高清REC.2020蓝光标准'
     ],

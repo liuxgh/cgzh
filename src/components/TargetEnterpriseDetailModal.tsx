@@ -427,7 +427,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
         {/* Modal Footer */}
         <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm shrink-0">
           <span className="text-slate-500">
-            数据来源：佰腾中国专利全文库、中国专利保护协会密集型产品备案库、全国科技型企业工商画像
+            数据来源：佰腾中国专利全文库、中国专利保护协会专利密集型产品备案库、全国科技型企业工商画像
           </span>
           <div className="flex items-center gap-2">
             <button

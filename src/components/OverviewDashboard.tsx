@@ -64,10 +64,6 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
         </div>
 
         <div className="relative z-10 max-w-4xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold text-blue-100">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-            <span>高校名称：吉林大学 • 佰腾网-科技成果转化应用</span>
-          </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
             不盲目寻客，让吉大每一项科技成果 <br className="hidden sm:inline" />
@@ -77,7 +73,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
           </h2>
 
           <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-3xl mt-4">
-            告别传统被动等待与盲目走访。系统依托佰腾网全球专利库、全国专利密集型产品备案库、165万+有专利企业工商画像与57条产业链全景数据，通过「相似专利找企业」、「产业链找企业」、「专利密集型产品找企业」三大路径与AI智能体，为吉大老师自动化挖掘最契合的受让与合作企业。
+            告别传统被动等待与盲目走访。系统依托佰腾网全球专利库、全国专利密集型产品备案库、165万+企业工商数据与产业链全景数据，通过「相似专利找企业」、「产业链找企业」、「专利密集型产品找企业」三大路径与AI智能体，为吉大老师自动化挖掘最契合的受让与合作企业。
           </p>
 
           {/* Quick AI Agent Trigger Bar */}
@@ -120,7 +116,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <Package className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">密集型产品备案库</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">专利密集型产品备案库</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">20 万+</div>
           </div>
         </div>
@@ -130,7 +126,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <Building2 className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">专利企业工商画像</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">企业工商数据</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">165 万+</div>
           </div>
         </div>
@@ -140,7 +136,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <Layers className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">战略重点产业链</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">重点产业链</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">57 条</div>
           </div>
         </div>
