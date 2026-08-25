@@ -42,7 +42,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-ev-auto',
-      chainName: '新能源与智能网联汽车产业链',
+      chainName: '新能源汽车',
       node: 'upstream',
       nodeName: '上游：动力电池关键材料与电芯制造',
       subSegment: '高镍正极材料 / 固态电解质包覆 / 隔膜涂层',
@@ -113,7 +113,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-ev-auto',
-      chainName: '新能源与智能网联汽车产业链',
+      chainName: '新能源汽车',
       node: 'downstream',
       nodeName: '下游：整车集成与整机高端制造',
       subSegment: '豪华乘用车整车 / 智能网联商用车 / 线控底盘平台',
@@ -184,7 +184,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-opto-semi',
-      chainName: '光电子信息与精密仪器产业链',
+      chainName: '集成电路',
       node: 'midstream',
       nodeName: '中游：光学精密元器件与传感器模组制造',
       subSegment: '车载激光雷达发射光学模组 / 机器视觉镜头 / 晶圆级光学器件',
@@ -255,7 +255,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-bio-med',
-      chainName: '生物医药与高端医疗器械产业链',
+      chainName: '高端医疗器械',
       node: 'midstream',
       nodeName: '中游：高端医疗装备与核心诊断元部件制造',
       subSegment: '全自动化学发光分析仪 / 医用超声影像 / 体外生命支持ECMO',
@@ -326,7 +326,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-machinery',
-      chainName: '智能工业母机与高端数控产业链',
+      chainName: '数控机床',
       node: 'midstream',
       nodeName: '中游：高档五轴数控机床整机制造与总装',
       subSegment: '五轴卧式铣车复合加工中心 / 航天复杂结构件加工机床',
@@ -397,7 +397,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-opto-semi',
-      chainName: '光电子信息与精密仪器产业链',
+      chainName: '集成电路',
       node: 'downstream',
       nodeName: '下游：高端半导体显示面板与终端模组制造',
       subSegment: '柔性OLED显示面板 / 车载贯穿式双联屏 / Micro-LED微显示芯片',
@@ -468,7 +468,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-materials',
-      chainName: '先进高分子与高性能复合材料产业链',
+      chainName: '纳米新材料',
       node: 'midstream',
       nodeName: '中游：高性能纤维编织与特种预浸料制造',
       subSegment: '高强高模型碳纤维布 / 热塑性树脂基预浸料 / 航空构件预成型体',
@@ -526,7 +526,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     inventionPatentCount: 1100,
     matchSource: 'patent_product',
     matchScore: 97,
-    synergyReason: '一拖东方红重型智能拖拉机已进入国家专利密集型产品备案库，亟需吉林大学生物与农业工程学院任露泉院士团队的仿生脱土减阻犁体、仿生耐磨触土刀片与北斗自主导航作业算法。',
+    synergyReason: '一拖东方红重型智能拖拉机已进入国家专利密集型产品备案公开数据，亟需吉林大学生物与农业工程学院任露泉院士团队的仿生脱土减阻犁体、仿生耐磨触土刀片与北斗自主导航作业算法。',
     similarPatents: [
       {
         patentNo: 'CN114342502B',
@@ -539,7 +539,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     chainPosition: {
       chainId: 'chain-agriculture',
-      chainName: '现代农业装备与智能仿生农机产业链',
+      chainName: '农业机械设备',
       node: 'downstream',
       nodeName: '下游：大马力高端智能农机整机制造',
       subSegment: '200马力以上动力换挡拖拉机 / 智能联合收割机 / 仿生免耕播种机',

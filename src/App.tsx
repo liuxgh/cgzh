@@ -10,9 +10,8 @@ import { PatentSimilarSearchHub } from './components/PatentSimilarSearchHub';
 import { IndustryChain57Hub } from './components/IndustryChain57Hub';
 import { PatentProductSearchHub } from './components/PatentProductSearchHub';
 import { AiEnterpriseAgent } from './components/AiEnterpriseAgent';
-import { JluAllPatentsSummary } from './components/JluAllPatentsSummary';
-import { BaitengValuationTool } from './components/BaitengValuationTool';
 import { TargetEnterpriseDetailModal } from './components/TargetEnterpriseDetailModal';
+import { EnterprisePortal } from './components/EnterprisePortal';
 import { PatentDetailModal } from './components/PatentDetailModal';
 import { NewPatentModal } from './components/NewPatentModal';
 import { ThemeProvider, useAppTheme } from './context/ThemeContext';
@@ -148,31 +147,13 @@ function AppContent() {
           />
         )}
 
-        {/* TAB 6: JLU ALL PATENTS ASSET REPOSITORY */}
-        {activeTab === 'all-patents' && (
-          <JluAllPatentsSummary
-            patents={patents}
-            onSelectPatent={(p) => {
-              setSelectedPatent(p);
-              setSelectedPatentForDetailModal(p);
-            }}
-            onLaunchAiMatch={(p) => {
-              setSelectedPatent(p);
-              setActiveTab('patent-similar');
-            }}
-            onInitiateTransfer={(p) => {
-              setSelectedPatent(p);
-              handleLaunchAiAgentWithQuery(p.patentNo);
-            }}
-            onOpenNewPatent={() => setIsNewPatentModalOpen(true)}
-          />
-        )}
+        
 
-        {/* TAB 7: BAITENG VALUATION TOOL */}
-        {activeTab === 'valuation-tool' && (
-          <BaitengValuationTool
-            patents={patents}
-          />
+        
+
+        {/* TAB 8: ENTERPRISE PORTAL */}
+        {activeTab === 'enterprise-portal' && (
+          <EnterprisePortal onViewPatent={(p) => setSelectedPatentForDetailModal(p)} />
         )}
 
       </main>

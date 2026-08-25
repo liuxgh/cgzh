@@ -59,18 +59,16 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
         <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
             <Package className="w-4 h-4 text-emerald-300" />
-            <span>核心寻客路径三：国家专利密集型产品备案库</span>
+            <span>核心寻客路径三：国家专利密集型产品备案公开数据</span>
           </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-sm font-semibold">
-            中国专利保护协会运营 • 20万+量产高产值产品
-          </span>
+          
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-          通过专利密集型产品 ➔ 锁定真实量产与采购实力企业
+          通过专利密集型产品 ➔ 产品技术找企业
         </h2>
         <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
-          专利密集型产品是指以高质量发明专利为核心支撑、具备显著市场规模与工业量产能力的标志性高技术产品。通过穿透备案产品与其关键零部件供应链，吉大老师可以直接找到<strong>正在大规模量产、对技术升级有真实采购与承接能力</strong>的实力规上企业。
+          通过国家专利密集型产品备案公开数据，筛选已有高产值专利产品的制造企业，对接其技术升级需求与产学研意愿。
         </p>
       </div>
 
@@ -125,13 +123,7 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
               {/* Top Filing Badges */}
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-2.5 py-0.5 bg-emerald-50 text-emerald-800 text-[11px] font-bold rounded-md border border-emerald-200">
-                      {prod.status}
-                    </span>
-                    <span className="font-mono text-sm text-slate-400">{prod.productCode}</span>
-                    <span className="text-sm text-slate-400">{prod.location}</span>
-                  </div>
+                  
                   <h4 className="text-xl font-black text-slate-900 group-hover:text-emerald-700">
                     {prod.productName}
                   </h4>
@@ -141,7 +133,7 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
               </div>
 
               {/* Enterprise Info Strip */}
-              <div className="flex items-center justify-between bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-sm">
+              <div className="flex items-center justify-start gap-2 bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-sm">
                 <span className="text-slate-500">备案生产企业：</span>
                 <span 
                   onClick={(e) => {
@@ -157,16 +149,7 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
               </div>
 
               {/* Key Components */}
-              <div className="space-y-1.5 text-sm">
-                <span className="text-slate-500 font-semibold block text-[11px]">关键技术零部件 / 核心模块：</span>
-                <div className="flex flex-wrap gap-1.5">
-                  {prod.keyComponents.map((comp, idx) => (
-                    <span key={idx} className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg text-[11px] font-medium">
-                      {comp}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              
 
               {/* Matched JLU Technology Synergy Box */}
               <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-4 text-sm space-y-2">
@@ -175,13 +158,10 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
                     <Sparkles className="w-4 h-4 text-emerald-600" />
                     吉林大学对口匹配专利成果：
                   </span>
-                  <span className="text-[11px] text-emerald-700">{prod.matchedJluInventor} ({prod.matchedJluCollege.split('(')[0]})</span>
+                  <span></span>
                 </div>
                 <h5 className="font-bold text-slate-900">{prod.matchedJluPatentTitle}</h5>
-                <p className="text-emerald-900 text-[11px] leading-relaxed bg-white/70 p-2.5 rounded-xl border border-emerald-100">
-                  <strong>🎯 采购与产业化切入点：</strong>
-                  {prod.techSynergyDetail}
-                </p>
+                
               </div>
 
               {/* Card Footer Actions */}
@@ -193,7 +173,7 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
                   onClick={() => handleOpenEnterpriseByProduct(prod.targetEnterpriseId)}
                   className="px-3.5 py-1.5 bg-[#003d80] hover:bg-blue-900 text-white font-bold rounded-xl flex items-center gap-1 transition-all shadow-xs"
                 >
-                  <span>查看企业与联络人</span>
+                  <span>查看企业详情</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>

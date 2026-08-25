@@ -65,16 +65,13 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
             <Layers className="w-4 h-4 text-blue-200" />
             <span>核心寻客路径二：细分战略产业链图谱</span>
           </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-sm font-semibold">
-            上中下游节点精准穿透 • 吉大优势实验室直连
-          </span>
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-          通过产业链 ➔ 全链条图谱穿透找买家企业
+          通过产业链 ➔ 全链条图谱找企业
         </h2>
         <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
-          深入拆解战略新兴产业链的<strong>上游关键原材料、中游精密制造与下游整机终端</strong>。吉大老师可按所属产业链技术节点，直接定位该环节全国龙头企业与专精特新企业的急迫攻关痛点，开展成果推介与产学研合作。
+          通过佰腾自研产业链全景图谱，分级穿透上游关键材料、中游精密制造、下游整机终端，定位与吉大科技成果对应企业
         </p>
       </div>
 
@@ -309,19 +306,10 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
                     
                   </div>
 
-                  <div className="text-sm text-slate-600 bg-white p-3 rounded-xl border border-slate-100 space-y-1">
-                    <div className="text-[#003d80] font-semibold line-clamp-1">
-                      技术痛点：{ent.techPainPoints[0]}
-                    </div>
-                    <div className="text-slate-500 text-[11px]">
-                      对口合作模式：<strong className="text-slate-800">{ent.preferredCollabMode}</strong>
-                    </div>
-                  </div>
+                  
 
                   <div className="flex items-center justify-between text-sm pt-1">
-                    <span className="text-slate-500">
-                      联络人：{ent.contact.contactPerson} ({ent.contact.title})
-                    </span>
+                    <span></span>
                     <span className="text-indigo-600 font-bold flex items-center gap-0.5">
                       <span>查看详情</span>
                       <ChevronRight className="w-3.5 h-3.5" />

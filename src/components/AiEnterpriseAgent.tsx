@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PatentItem, TargetEnterprise } from '../types';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { 
@@ -20,7 +20,8 @@ import {
   Phone, 
   Mail, 
   User, 
-  AlertCircle
+  AlertCircle,
+  ChevronDown
 } from 'lucide-react';
 
 interface AiEnterpriseAgentProps {
@@ -43,13 +44,35 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
   const [activeTab, setActiveTab] = useState<'report' | 'official_letter' | 'call_script'>('report');
   const [copied, setCopied] = useState<boolean>(false);
 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [patentSearchQuery, setPatentSearchQuery] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const filteredPatents = patents.filter(p => {
+    if (!patentSearchQuery.trim()) return true;
+    const q = patentSearchQuery.toLowerCase();
+    return p.title.toLowerCase().includes(q) || 
+           p.patentNo.toLowerCase().includes(q) || 
+           p.inventor.toLowerCase().includes(q);
+  });
+
   const activePatent = patents.find(p => p.id === selectedPatentId) || patents[0];
 
   const agentSteps = [
     { title: '专利权利要求与技术特征语义解析', desc: '提取核心发明点、微观机理、适用工业场景及潜在替代/互补特征' },
     { title: '佰腾中国专利大模型向量语义比对', desc: '穿透2亿+专利数据库，匹配全国企业同族/相似技术公开专利' },
     { title: '战略产业链上下游供需图谱穿透', desc: '定位上游关键原材料、中游制造模块与下游整机集成商技术痛点' },
-    { title: '国家专利密集型产品备案库产业化能力校验', desc: '比对200,000+款已备案量产产品，筛选具备规模化采购实力的规上企业' },
+    { title: '国家专利密集型产品备案公开数据产业化能力校验', desc: '比对200,000+款已备案量产产品，筛选具备规模化采购实力的规上企业' },
     { title: '企业工商信用画像与产学研决策人匹配', desc: '生成企业研发预算、技术高管联系方式与定制化上门走访沟通策略' }
   ];
 
@@ -86,21 +109,13 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
       
       {/* Agent Banner */}
       <div className="bg-linear-to-r from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-400/30">
-        <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-bold border border-blue-200 flex items-center gap-1.5 backdrop-blur-xs">
-            <BrainCircuit className="w-4 h-4 text-blue-700" />
-            <span>佰腾吉大 • AI 专利找买家智能体 (Baiteng Patent-to-Buyer Agent)</span>
-          </span>
-          <span className="px-2.5 py-0.5 rounded-full bg-white/15 text-blue-100 text-sm border border-white/20">
-            自主执行三维穿透检索与决策推演
-          </span>
-        </div>
+        <div className="flex flex-wrap items-center gap-2 mb-2"></div>
 
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
           AI 自动化专利找买家：从成果特征到精准靶向企业报告
         </h2>
         <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
-          输入吉大专利或技术交底书，AI 智能体将自主调用<strong>佰腾全国专利库、产业链全景与国家专利密集型产品备案库</strong>进行多跳交叉推理，自动输出靶向买家企业画像清单、痛点契合点及一对一合作对接公文。
+          输入吉大专利或技术交底书，AI 智能体将自主调用<strong>佰腾全国专利库、产业链全景与国家专利密集型产品备案公开数据</strong>进行多跳交叉推理，自动输出靶向买家企业画像清单、痛点契合点及一对一合作对接公文。
         </p>
       </div>
 
@@ -108,22 +123,64 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
       <div className="bg-white rounded-3xl p-6 border border-[#D8E2F0] shadow-md space-y-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           
-          <div className="lg:col-span-6 space-y-1.5">
+          <div className="lg:col-span-6 space-y-1.5 relative" ref={dropdownRef}>
             <label className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
               <FileText className="w-3.5 h-3.5 text-[#0F52BA]" />
               <span>快速选择吉林大学在库专利：</span>
             </label>
-            <select
-              value={selectedPatentId}
-              onChange={(e) => setSelectedPatentId(e.target.value)}
-              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus:outline-hidden focus:ring-2 focus:ring-[#0F52BA]"
+            <div 
+              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus-within:ring-2 focus-within:ring-[#0F52BA] focus-within:bg-white transition-all cursor-pointer flex items-center justify-between gap-2"
+              onClick={() => setIsDropdownOpen(true)}
             >
-              {patents.map(p => (
-                <option key={p.id} value={p.id}>
-                  [{p.patentNo}] {p.title} - {p.inventor} ({p.college.split('/')[0]})
-                </option>
-              ))}
-            </select>
+              <div className="truncate flex-1">
+                {activePatent ? `[${activePatent.patentNo}] ${activePatent.title}` : '请选择或搜索专利...'}
+              </div>
+              <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            </div>
+
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col max-h-[350px]">
+                <div className="p-2 border-b border-slate-100 bg-slate-50 sticky top-0 z-10">
+                   <div className="relative">
+                     <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                     <input 
+                       type="text"
+                       autoFocus
+                       placeholder="输入专利名称、专利号或发明人进行模糊检索..."
+                       value={patentSearchQuery}
+                       onChange={e => setPatentSearchQuery(e.target.value)}
+                       className="w-full bg-white border border-slate-200 rounded-lg py-2 pl-9 pr-3 text-sm focus:outline-hidden focus:border-[#0F52BA] focus:ring-1 focus:ring-[#0F52BA]"
+                     />
+                   </div>
+                </div>
+                <div className="overflow-y-auto p-1.5">
+                  {filteredPatents.length > 0 ? (
+                    filteredPatents.map(p => (
+                      <div 
+                        key={p.id}
+                        onClick={() => {
+                          setSelectedPatentId(p.id);
+                          setIsDropdownOpen(false);
+                          setPatentSearchQuery('');
+                        }}
+                        className={`p-3 rounded-lg cursor-pointer transition-colors ${selectedPatentId === p.id ? 'bg-blue-50 border border-blue-100' : 'hover:bg-slate-50 border border-transparent'}`}
+                      >
+                        <div className="font-bold text-slate-900 text-sm line-clamp-1">{p.title}</div>
+                        <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-slate-500">
+                           <span className="font-mono text-[#0F52BA] bg-blue-50 px-1.5 py-0.5 rounded">{p.patentNo}</span>
+                           <span>•</span>
+                           <span className="font-medium text-slate-700">{p.inventor}</span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-8 text-center text-sm text-slate-500">
+                      未找到匹配的专利，请换个关键词试试
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="lg:col-span-6 space-y-1.5">
@@ -153,16 +210,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
         </div>
 
         {/* Selected Patent Quick Abstract */}
-        {activePatent && (
-          <div className="bg-[#F8FAFC] p-3 rounded-xl border border-slate-200 text-sm text-slate-600 flex items-center justify-between">
-            <span className="line-clamp-1">
-              <strong>当前分析标的：</strong>[{activePatent.patentNo}] {activePatent.title}
-            </span>
-            <span className="text-[#0F52BA] font-bold shrink-0 ml-2 font-mono">
-              评估价值: {activePatent.valuationRange}
-            </span>
-          </div>
-        )}
+        
       </div>
 
       {/* Reasoning Process Flow */}
@@ -232,7 +280,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
               }`}
             >
               <Building2 className="w-4 h-4 text-blue-600" />
-              <span>AI 推荐靶向买家企业全景画像 (Top 8)</span>
+              <span>AI 推荐靶向企业全景画像 (Top 8)</span>
             </button>
 
             <button
@@ -265,48 +313,43 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
             {/* TAB 1: Target Enterprises Full Cards */}
             {activeTab === 'report' && (
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <h4 className="text-lg font-black text-slate-900">
-                      AI 多跳穿透匹配出的高意向靶向企业清单
-                    </h4>
-                    <p className="text-sm text-slate-500">
-                      已综合考量相近专利布局、产业链供需节点、专利密集型产品备案与企业研发资金实力
-                    </p>
-                  </div>
-                  <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-sm font-bold">
-                    匹配精准度 94%+
-                  </span>
-                </div>
+                
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {TARGET_ENTERPRISES_DATA.map((ent) => (
                     <div
                       key={ent.id}
                       onClick={() => onSelectEnterprise(ent)}
-                      className="bg-slate-50/70 hover:bg-white p-5 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer space-y-3"
+                      className="bg-white rounded-2xl p-5 border border-[#D8E2F0] shadow-xs hover:shadow-lg hover:border-[#0F52BA] transition-all cursor-pointer flex flex-col justify-between space-y-4 group"
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="px-2 py-0.5 bg-blue-100 text-[#003d80] rounded text-[10px] font-bold">
-                              {ent.enterpriseType}
-                            </span>
-                            <span className="text-sm text-slate-500">{ent.location.split('省')[0]}</span>
+                      <div>
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <h4 className="text-lg font-bold text-slate-900 group-hover:text-[#0F52BA]">
+                              {ent.name}
+                            </h4>
                           </div>
-                          <h5 className="text-lg font-bold text-slate-900">{ent.name}</h5>
                         </div>
-                        
+
+                        <div className="mt-3 grid grid-cols-2 gap-y-2 gap-x-4 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-[12px] text-slate-600">
+                          <div>
+                            企业地址：<span className="font-semibold text-slate-800">{ent.location || '-'}</span>
+                          </div>
+                          <div>
+                            注册资本：<span className="font-semibold text-slate-800">{ent.registeredCapital || '-'}</span>
+                          </div>
+                          <div>
+                            专利总数：<span className="font-semibold text-slate-800">{ent.patentTotalCount || 0}项</span>
+                          </div>
+                          <div>
+                            备案产品：<span className="font-semibold text-slate-800">{ent.patentProducts?.length || 0}款</span>
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="bg-white p-3 rounded-xl border border-slate-100 text-sm text-slate-700 space-y-1">
-                        <strong className="text-[#003d80] block text-[11px]">💡 AI 撮合突破点：</strong>
-                        <p className="line-clamp-2 leading-relaxed text-slate-600">{ent.synergyReason}</p>
-                      </div>
-
-                      <div className="flex items-center justify-between text-sm pt-1">
-                        <span></span>
-                        <span className="text-[#003d80] font-bold flex items-center gap-0.5">
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-sm">
+                        <div></div>
+                        <span className="text-[#0F52BA] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                           <span>查看完整画像</span>
                           <ChevronRight className="w-3.5 h-3.5" />
                         </span>
@@ -342,7 +385,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                   <div className="space-y-2">
                     <p className="font-bold text-slate-900">尊敬的战略合作企业技术研发管理部门：</p>
                     <p className="indent-6">
-                      您好！依托<strong>佰腾网专利大数据智能评价与产业链精准匹配系统</strong>，吉林大学科研团队近期完成了一项具有重大产业化价值的技术攻关——<strong>《{activePatent.title}》</strong>（专利号：<span className="font-mono font-bold text-blue-700">{activePatent.patentNo}</span>，所属单位：{activePatent.college}，发明人：{activePatent.inventor}）。
+                      您好！依托<strong>佰腾网专利大数据智能评价与产业链精准匹配系统</strong>，吉林大学科研团队近期完成了一项具有重大产业化价值的技术攻关——<strong>《{activePatent.title}》</strong>（专利号：<span className="font-mono font-bold text-blue-700">{activePatent.patentNo}</span>，发明人：{activePatent.inventor}）。
                     </p>
                     <p className="indent-6">
                       <strong>核心创新与性能优势：</strong>{activePatent.abstract}

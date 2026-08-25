@@ -49,8 +49,7 @@ export const Header: React.FC<HeaderProps> = ({
     { key: 'industry-chain', label: '产业链找企业', icon: Layers, tag: '图谱穿透' },
     { key: 'patent-product', label: '专利产品找企业', icon: Package, tag: '密集型备案' },
     { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit, tag: 'Agent', highlight: true },
-    { key: 'all-patents', label: '吉大专利全量库', icon: FileText, tag: '8,826项' },
-    { key: 'valuation-tool', label: '佰腾价值评估', icon: Sparkles }
+    { key: 'enterprise-portal', label: '我是企业（找技术）', icon: Building2, tag: '企业入口', highlight: true }
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -72,10 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-3">
-              <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-sans">
-                佰腾网
-              </span>
-              <div className="h-4 w-px bg-slate-300 rounded-full mx-1" />
+              <div className="h-6 w-px bg-slate-300 rounded-full mx-1" />
               <span className="text-base sm:text-lg font-semibold text-slate-700">
                 吉林大学科技成果转化专区
               </span>

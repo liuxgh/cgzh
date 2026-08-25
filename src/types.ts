@@ -4,8 +4,7 @@ export type TabType =
   | 'industry-chain'
   | 'patent-product'
   | 'ai-agent'
-  | 'all-patents' 
-  | 'valuation-tool';
+  | 'enterprise-portal';
 
 export type UserRole = 'researcher' | 'tech_transfer_officer' | 'broker' | 'admin';
 

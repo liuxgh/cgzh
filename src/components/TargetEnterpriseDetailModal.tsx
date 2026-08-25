@@ -150,16 +150,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-6 flex-1 bg-slate-50/40">
 
-          {/* AI Matching Reason Box */}
-          <div className="bg-linear-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-4.5">
-            <div className="flex items-center gap-2 text-sm font-bold text-[#003d80] mb-1.5">
-              <Sparkles className="w-4 h-4 text-blue-600" />
-              <span>佰腾专利大数据与吉大成果智能撮合协同逻辑：</span>
-            </div>
-            <p className="text-sm text-slate-700 leading-relaxed">
-              {enterprise.synergyReason}
-            </p>
-          </div>
+          
 
           {/* Tab 1: Similar Patents */}
           {activeSubTab === 'similar_patents' && (
@@ -167,10 +158,8 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
               <div className="flex items-center justify-between">
                 <div>
                   <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                    <span>企业现有相近公开专利 (佰腾中国专利库全量比对)</span>
-                    <span className="text-sm font-normal text-slate-500">
-                      通过专利权利要求语义向量计算，该企业在该技术分支研发活跃度极高
-                    </span>
+                    <span>企业现有相近公开专利</span>
+                    
                   </h4>
                 </div>
                 <span className="text-sm font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">
@@ -290,9 +279,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
           </div>
         {/* Modal Footer */}
         <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm shrink-0">
-          <span className="text-slate-500">
-            数据来源：佰腾中国专利全文库、中国专利保护协会专利密集型产品备案库、全国科技型企业工商画像
-          </span>
+          <span></span>
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}

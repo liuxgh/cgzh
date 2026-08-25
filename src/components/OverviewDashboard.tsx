@@ -73,7 +73,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
           </h2>
 
           <p className="text-base sm:text-lg text-blue-100 leading-relaxed max-w-3xl mt-4">
-            告别传统被动等待与盲目走访。系统依托佰腾网全球专利库、全国专利密集型产品备案库、165万+企业工商数据与产业链全景数据，通过「相似专利找企业」、「产业链找企业」、「专利密集型产品找企业」三大路径与AI智能体，为吉大老师自动化挖掘最契合的受让与合作企业。
+            告别传统被动等待与盲目走访。系统依托佰腾网全球专利库、全国专利密集型产品备案公开数据、165万+企业工商数据与产业链全景数据，通过「相似专利找企业」、「产业链找企业」、「专利密集型产品找企业」三大路径与AI智能体，为吉大老师自动化挖掘最契合的受让与合作企业。
           </p>
 
           {/* Quick AI Agent Trigger Bar */}
@@ -116,7 +116,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             <Package className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">专利密集型产品备案库</span>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">专利密集型产品备案公开数据</span>
             <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">20 万+</div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
           </div>
           <div>
             <span className="text-sm text-slate-500 font-semibold block mb-1">重点产业链</span>
-            <div className="text-2xl font-black text-slate-900 tracking-tight">全面覆盖</div>
+            <div className="text-2xl font-black text-slate-900 tracking-tight">57+</div>
           </div>
         </div>
       </div>
@@ -181,21 +181,10 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                选择吉大专利或输入权利要求，通过佰腾全国专利语义向量相似度模型，穿透检索布局了相似/同族技术、处于相同路线的全国企业。
+                通过吉大专利匹配拥有相似专利技术或同类技术路线的企业
               </p>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#0F52BA]" />
-                  <span>精准比对企业相近公开专利与权利要求</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#0F52BA]" />
-                  <span>定位技术替代、互补与专利补全买家</span>
-                </div>
               </div>
-            </div>
-
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-[#0F52BA] group-hover:translate-x-1 transition-transform">
               <span>立即查询相似专利找企业</span>
               <ArrowRight className="w-4 h-4" />
@@ -224,21 +213,10 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                进入佰腾战略性产业链全景图谱，上游关键材料、中游精密制造、下游整机终端分级穿透，精准匹配企业攻关痛点与吉大优势学科。
+                通过佰腾自研产业链全景图谱，分级穿透上游关键材料、中游精密制造、下游整机终端，定位与吉大科技成果对应企业
               </p>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
-                  <span>细分产业链上中下游节点全景分解</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
-                  <span>直连吉大汽车、化学、电子、机械等优势实验室</span>
-                </div>
               </div>
-            </div>
-
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
               <span>立即浏览产业链找企业</span>
               <ArrowRight className="w-4 h-4" />
@@ -263,25 +241,14 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </div>
 
               <h4 className="text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors">
-                通过专利密集型产品 ➔ 产业化企业库
+                通过专利密集型产品 ➔ 产品技术找企业
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                通过国家专利密集型产品备案数据，锁定已有高产值量产产品的规上制造企业，其拥有最迫切的技术升级诉求与真实采购承接实力。
+                通过国家专利密集型产品备案公开数据，筛选已有高产值专利产品的制造企业，对接其技术升级需求与产学研意愿。
               </p>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-sm text-slate-500">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                  <span>200,000+ 款经国家平台备案的专利密集型产品</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                  <span>掌握单品产值、关键核心组件与采购需求</span>
-                </div>
               </div>
-            </div>
-
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
               <span>立即查询专利产品找企业</span>
               <ArrowRight className="w-4 h-4" />
@@ -302,7 +269,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
             AI 智能体一键寻客，自动推演企业画像与转化策略
           </h3>
           <p className="text-base text-slate-200 leading-relaxed">
-            AI Agent 深度解析专利技术特征，自主在佰腾全球专利库、产业链节点及密集型产品库中多维交叉推理，一键生成包含痛点匹配、联络策略的《靶向企业转化对接方案》。
+            AI Agent 深度解析专利技术特征，自主在佰腾全球专利库、产业链节点及专利密集型产品公开数据中多维交叉推理，一键生成包含成果匹配、联络策略的《靶向企业转化对接方案》。
           </p>
         </div>
 
@@ -325,9 +292,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               <span>当前重点推荐靶向企业画像库</span>
               <span className="text-sm font-normal text-slate-500">（已通过三大路径与吉大优势成果深度标定）</span>
             </h3>
-            <p className="text-sm text-slate-500 mt-0.5">
-              点击任意企业可查看其工商信用、相近专利比对、产业链环节、密集型备案产品及大学联络人
-            </p>
+            
           </div>
 
           <button
@@ -349,14 +314,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               <div>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                      <span className="px-2 py-0.5 bg-blue-50 text-[#0F52BA] rounded font-bold text-[10px] border border-blue-200">
-                        {ent.enterpriseType}
-                      </span>
-                      <span className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded text-[10px]">
-                        {ent.location}
-                      </span>
-                    </div>
+                    
                     <h4 className="text-lg font-bold text-slate-900 group-hover:text-[#0F52BA]">
                       {ent.name}
                     </h4>
@@ -365,22 +323,24 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                   
                 </div>
 
-                <div className="mt-3 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-sm text-slate-700 space-y-1.5">
-                  <div className="font-semibold text-[#0F52BA] line-clamp-1">
-                    🎯 撮合逻辑：{ent.synergyReason}
+                <div className="mt-3 grid grid-cols-2 gap-y-2 gap-x-4 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-[12px] text-slate-600">
+                  <div>
+                    企业地址：<span className="font-semibold text-slate-800">{ent.location || '-'}</span>
                   </div>
-                  <div className="flex items-center gap-4 text-[11px] text-slate-500 pt-1">
-                    <span>相近公开专利：<strong className="text-slate-800 font-mono">{ent.similarPatents?.length || 0}项</strong></span>
-                    <span>备案产品：<strong className="text-slate-800 font-mono">{ent.patentProducts?.length || 0}款</strong></span>
-                    
+                  <div>
+                    注册资本：<span className="font-semibold text-slate-800">{ent.registeredCapital || '-'}</span>
+                  </div>
+                  <div>
+                    专利总数：<span className="font-semibold text-slate-800">{ent.patentTotalCount || 0}项</span>
+                  </div>
+                  <div>
+                    备案产品：<span className="font-semibold text-slate-800">{ent.patentProducts?.length || 0}款</span>
                   </div>
                 </div>
               </div>
 
               <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-sm">
-                <div className="text-slate-500 text-[11px]">
-                  对接人：<span className="font-semibold text-slate-800">{ent.contact.contactPerson} ({ent.contact.title})</span>
-                </div>
+                <div></div>
                 <span className="text-[#0F52BA] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                   <span>查看企业画像全景</span>
                   <ChevronRight className="w-3.5 h-3.5" />

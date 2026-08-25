@@ -12,7 +12,7 @@ export const NewPatentModal: React.FC<NewPatentModalProps> = ({ isOpen, onClose,
   const [title, setTitle] = useState('');
   const [patentNo, setPatentNo] = useState('');
   const [inventor, setInventor] = useState('');
-  const [college, setCollege] = useState('汽车工程学院');
+  const [college, setCollege] = useState('');
   const [field, setField] = useState<'automotive' | 'materials' | 'optoelectronics' | 'biomedicine' | 'agriculture' | 'geology'>('automotive');
   const [ipc, setIpc] = useState('B60T 13/74');
   const [trlLevel, setTrlLevel] = useState<number>(7);
@@ -39,8 +39,8 @@ export const NewPatentModal: React.FC<NewPatentModalProps> = ({ isOpen, onClose,
       id: `pat-${Date.now()}`,
       patentNo: patentNo.trim() || `CN202610${Math.floor(100000 + Math.random() * 900000)}.X`,
       title: title.trim(),
-      college: `${college} / 重点实验室`,
-      inventor: inventor.trim() || '吉大发明人团队',
+      college: '',
+      inventor: inventor.trim() || '吉大发明人',
       team: '前沿创新团队',
       field,
       fieldName: fieldNames[field] || '综合工科',
