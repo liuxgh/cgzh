@@ -60,41 +60,38 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 text-slate-800 bg-white shadow-md border-b border-slate-200">
+    <header className="sticky top-0 z-40 text-slate-800 bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200/50">
       {/* 1. 主品牌栏与统一检索 (Main Header Bar) */}
       <div className={`px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors`}>
         {/* Brand & Title */}
-        <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => setActiveTab('overview')}>
-          {/* Authentic JLU & Baiten Integrated Brand Icon */}
-          <div className="w-28 shrink-0 flex items-center">
-            <img src="https://www.baiten.cn/images/baiten/logo3.svg" alt="Baiten Logo" className="w-full h-auto" />
+        <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setActiveTab('overview')}>
+          <div className="h-10 sm:h-12 shrink-0 flex items-center overflow-hidden mix-blend-multiply">
+            <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="Jilin University Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
           </div>
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="h-6 w-px bg-slate-300 rounded-full mx-1" />
-              <span className="text-base sm:text-lg font-semibold text-slate-700">
-                吉林大学科技成果转化专区
-              </span>
-            </div>
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-px bg-slate-300 rounded-full mx-1 hidden sm:block" />
+            <span className="text-lg sm:text-xl font-black bg-gradient-to-r from-blue-700 to-indigo-800 bg-clip-text text-transparent tracking-tight">
+              吉林大学科技成果转化专区
+            </span>
           </div>
         </div>
 
         {/* Global Fast Search matching Baiten.cn search format */}
         <div className="flex items-center gap-4">
-          <form onSubmit={handleSearch} className="relative w-full md:w-80 lg:w-[400px] flex shadow-xs">
+          <form onSubmit={handleSearch} className="relative w-full md:w-80 lg:w-[450px] flex shadow-xs group">
             <div className="relative flex-1">
               <input
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="输入吉大专利号、技术词、靶向企业或产业链节点..."
-                className="w-full bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-3.5 py-2 pl-9 text-sm text-slate-800 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-blue-300 transition-all"
+                placeholder="输入吉大专利号、技术词、靶向企业..."
+                className="w-full bg-slate-100/50 border border-slate-200 border-r-0 rounded-l-xl px-4 py-2 pl-10 text-sm text-slate-800 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-400/10 transition-all"
               />
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5 group-focus-within:text-blue-500 transition-colors" />
             </div>
             <button
               type="submit"
-              className="px-5 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-lg text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-600"
+              className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-xl text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-600 shadow-sm"
             >
               <span>精准寻客</span>
             </button>

@@ -200,8 +200,8 @@ function AppContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6 border-b border-white/10">
             <div className="flex items-center gap-4">
-              <div className="w-24 shrink-0">
-                <img src="https://www.baiten.cn/images/baiten/logo3.svg" alt="Baiten Logo" className="w-full h-auto brightness-0 invert opacity-90" />
+              <div className="w-32 shrink-0 bg-white/95 rounded-lg px-2 py-1.5 flex items-center justify-center">
+                <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="Jilin University Logo" className="w-full h-auto object-contain mix-blend-multiply" />
               </div>
               <div>
                 <div className="text-white font-bold text-base flex items-center gap-2">
