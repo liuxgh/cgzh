@@ -64,15 +64,18 @@ export const Header: React.FC<HeaderProps> = ({
       {/* 1. 主品牌栏与统一检索 (Main Header Bar) */}
       <div className={`px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors`}>
         {/* Brand & Title */}
-        <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setActiveTab('overview')}>
+        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setActiveTab('overview')}>
           <div className="h-10 sm:h-12 shrink-0 flex items-center overflow-hidden mix-blend-multiply">
             <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="Jilin University Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
           </div>
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-px bg-slate-300 rounded-full mx-1 hidden sm:block" />
-            <span className="text-lg sm:text-xl font-black bg-gradient-to-r from-blue-700 to-indigo-800 bg-clip-text text-transparent tracking-tight">
-              吉林大学科技成果转化专区
-            </span>
+          <div className="flex flex-col justify-center">
+            <div className="flex items-end gap-2 mb-1">
+              <span className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-none">吉林大学</span>
+              <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 text-[10px] font-bold whitespace-nowrap tracking-wide leading-none">
+                佰腾大数据驱动
+              </span>
+            </div>
+            <span className="text-[13px] sm:text-sm font-bold text-slate-500 tracking-widest leading-none">科技成果转化专区</span>
           </div>
         </div>
 
