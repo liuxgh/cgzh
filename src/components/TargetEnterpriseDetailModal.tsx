@@ -102,6 +102,20 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                 <span className="text-blue-200 block text-[11px] mb-0.5">注册资本</span>
                 <span className="font-bold text-white text-lg font-mono tracking-tight">{enterprise.registeredCapital}</span>
               </div>
+              
+              {enterprise.keyInventors && enterprise.keyInventors.length > 0 && (
+                <>
+                  <div className="w-px h-8 bg-white/10 hidden md:block" />
+                  <div className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
+                    <span className="text-blue-100 block text-[11px] mb-0.5">联系人</span>
+                    <div className="flex gap-3">
+                      {enterprise.keyInventors.slice(0, 2).map((inv, idx) => (
+                        <span key={idx} className="font-bold text-white text-sm">{inv.name}</span>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

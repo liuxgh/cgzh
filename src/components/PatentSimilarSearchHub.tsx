@@ -252,6 +252,22 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             {/* Side-by-side Patent Comparison Box */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-sm">
               
+              {/* Full Width Key Inventors */ }
+              {enterprise.keyInventors && enterprise.keyInventors.length > 0 && (
+                <div className="lg:col-span-2 bg-blue-50/50 p-3 rounded-xl border border-blue-100 flex items-center gap-3 text-sm">
+                   <div className="text-blue-700 font-bold whitespace-nowrap shrink-0">联系人:</div>
+                   <div className="text-slate-600 flex flex-wrap gap-x-4 gap-y-2">
+                      {enterprise.keyInventors.slice(0, 2).map((inv, idx) => (
+                         <span key={idx} className="flex items-center gap-1.5">
+                           <span className="text-slate-900 font-semibold">{inv.name}</span>
+                           
+                         </span>
+                      ))}
+                      
+                   </div>
+                </div>
+              )}
+              
               {/* Left: JLU Patent */}
               <div className="bg-blue-50/40 p-4 rounded-2xl border border-blue-100 space-y-2">
                 <div className="flex items-center justify-between text-[#082C6C] font-bold">

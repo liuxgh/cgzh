@@ -70,6 +70,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       '钠离子动力电池低温衰减控制与低成本产业化'
     ],
     preferredCollabMode: '共建联合创新中心 / 核心专利排他许可 / 委托定制攻关',
+    keyInventors: [
+      { name: '王伟', patentCount: 120, title: '核心发明人/技术总监' },
+      { name: '李强', patentCount: 80, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '21C创新实验室 / 前沿技术预研部',
       contactPerson: '欧阳晨',
@@ -141,6 +145,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       '仿生微纳减阻复合车身覆盖件工程化应用'
     ],
     preferredCollabMode: '共建国家重点实验室联合分室 / 重大横向专项 / 专利开放许可打包',
+    keyInventors: [
+      { name: '李磊', patentCount: 127, title: '核心发明人/技术总监' },
+      { name: '张洋', patentCount: 93, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '一汽研发总院创新技术研究院 / 科技创新管理部',
       contactPerson: '李海峰',
@@ -212,6 +220,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       '医疗内窥镜超微型4K超广角光学系统'
     ],
     preferredCollabMode: '专利技术独占许可 / 委托中试开发 / 产学研联合攻关',
+    keyInventors: [
+      { name: '张勇', patentCount: 134, title: '核心发明人/技术总监' },
+      { name: '刘军', patentCount: 106, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '集团中央研究院 / 车载光学研发中心',
       contactPerson: '郑建安',
@@ -283,6 +295,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       'AI赋能的ICU重症多器官状态早期预警智能决策系统'
     ],
     preferredCollabMode: '建立校企联合研发中心 / 专利买断转让 / 临床中试验证转化',
+    keyInventors: [
+      { name: '刘杰', patentCount: 141, title: '核心发明人/技术总监' },
+      { name: '陈涛', patentCount: 119, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '迈瑞集团研发技术合作部 / 试剂研发部',
       contactPerson: '陈默',
@@ -354,6 +370,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       '碳纤维复合材料构件超声辅助高精切削装备'
     ],
     preferredCollabMode: '专利开放许可 / 共同申报国家重大科技专项 / 联合人才培养',
+    keyInventors: [
+      { name: '陈超', patentCount: 148, title: '核心发明人/技术总监' },
+      { name: '杨明', patentCount: 92, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '技术中心 / 数控算法研究所',
       contactPerson: '张树生',
@@ -425,6 +445,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       '柔性传感与显示集成（Sensor-on-Panel）智能触控技术'
     ],
     preferredCollabMode: '联合申报国家重点研发计划 / 核心材料先导中试研发 / 独家专利授权许可',
+    keyInventors: [
+      { name: '杨刚', patentCount: 155, title: '核心发明人/技术总监' },
+      { name: '黄平', patentCount: 105, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '集团技术研发中心 (Central Research Institute) / 先进材料研究所',
       contactPerson: '邵喜斌',
@@ -496,6 +520,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       '低成本高阻燃大丝束风电叶片用碳纤维复材开发'
     ],
     preferredCollabMode: '联合共建热塑性复材工程技术中心 / 专利授权与工艺包转让',
+    keyInventors: [
+      { name: '黄辉', patentCount: 162, title: '核心发明人/技术总监' },
+      { name: '赵峰', patentCount: 118, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '技术中心 / 复合材料应用研究所',
       contactPerson: '金亮',
@@ -567,6 +595,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
       '仿生深松减阻整地与土壤墒情在线监测一体化机具'
     ],
     preferredCollabMode: '重大横向攻关 / 核心专利技术转让 / 国家级农机创新平台共建',
+    keyInventors: [
+      { name: '赵健', patentCount: 169, title: '核心发明人/技术总监' },
+      { name: '吴斌', patentCount: 91, title: '核心发明人/研发骨干' }
+    ],
     contact: {
       dept: '大拖研究所 / 农机智能装备重点实验室',
       contactPerson: '郭志强',

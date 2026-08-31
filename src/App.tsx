@@ -11,7 +11,11 @@ import { IndustryChain57Hub } from './components/IndustryChain57Hub';
 import { PatentProductSearchHub } from './components/PatentProductSearchHub';
 import { AiEnterpriseAgent } from './components/AiEnterpriseAgent';
 import { TargetEnterpriseDetailModal } from './components/TargetEnterpriseDetailModal';
-import { EnterprisePortal } from './components/EnterprisePortal';
+
+import { UnpatentedTechHub } from './components/UnpatentedTechHub';
+import { EnterpriseLandingPage } from './components/EnterpriseLandingPage';
+import { TechSearchHub } from './components/TechSearchHub';
+import { JluTechMapPage } from './components/JluTechMapPage';
 import { PatentDetailModal } from './components/PatentDetailModal';
 import { NewPatentModal } from './components/NewPatentModal';
 import { ThemeProvider, useAppTheme } from './context/ThemeContext';
@@ -23,7 +27,21 @@ import { CheckCircle2, Palette } from 'lucide-react';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
-  const [userRole, setUserRole] = useState<UserRole>('researcher');
+  const [userRole, setUserRole] = useState<UserRole>('university');
+  const [enterpriseSearchQuery, setEnterpriseSearchQuery] = useState('');
+  const [selectedUniversity, setSelectedUniversity] = useState<string | null>('jlu');
+
+  const handleRoleChange = (role: UserRole) => {
+    setUserRole(role);
+    if (role === 'university') {
+      setSelectedUniversity('jlu');
+      setActiveTab('overview');
+    } else {
+      setSelectedUniversity(null);
+      setActiveTab('enterprise-landing');
+    }
+  };
+
   const { themeConfig } = useAppTheme();
 
   const [patents, setPatents] = useState<PatentItem[]>(INITIAL_PATENTS);
@@ -41,10 +59,17 @@ function AppContent() {
 
   // Global search submit
   const handleSearchSubmit = (text: string) => {
-    setAgentInitialQuery(text);
-    setActiveTab('ai-agent');
-    setGlobalToastMessage(`已将搜索词「${text}」载入 AI 靶向寻客智能体`);
-    setTimeout(() => setGlobalToastMessage(null), 3500);
+    if (userRole === 'university') {
+      setAgentInitialQuery(text);
+      setActiveTab('ai-agent');
+      setGlobalToastMessage(`已将搜索词「${text}」载入 AI 靶向寻客智能体`);
+      setTimeout(() => setGlobalToastMessage(null), 3500);
+    } else {
+      setEnterpriseSearchQuery(text);
+      setActiveTab('tech-search');
+      setGlobalToastMessage(`已为您开始全网技术方案匹配：「${text}」`);
+      setTimeout(() => setGlobalToastMessage(null), 3500);
+    }
   };
 
   // Launch AI Agent with custom query from Overview
@@ -74,19 +99,24 @@ function AppContent() {
   };
 
   return (
-    <div className={`min-h-screen ${themeConfig.colors.pageBg} text-slate-900 flex flex-col font-sans antialiased transition-colors`}>
+    <div className={`min-h-screen ${activeTab === 'tech-map' ? 'bg-[#050A15]' : themeConfig.colors.pageBg} ${activeTab === 'tech-map' ? 'text-slate-300' : 'text-slate-900'} flex flex-col font-sans antialiased transition-colors`}>
       
       {/* Global SaaS Header */}
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         userRole={userRole}
-        setUserRole={setUserRole}
+        onRoleChange={handleRoleChange}
         onSearchSubmit={handleSearchSubmit}
+        selectedUniversity={selectedUniversity}
+        onSelectUniversity={(uni) => {
+          setSelectedUniversity(uni);
+          setActiveTab(uni ? 'tech-map' : 'enterprise-landing');
+        }}
       />
 
       {/* Main SaaS Workspace Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className={`flex-1 w-full ${activeTab === 'tech-map' ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6'}`}>
         
         {/* TAB 1: OVERVIEW DASHBOARD */}
         {activeTab === 'overview' && (
@@ -151,10 +181,30 @@ function AppContent() {
 
         
 
-        {/* TAB 8: ENTERPRISE PORTAL */}
-        {activeTab === 'enterprise-portal' && (
-          <EnterprisePortal onViewPatent={(p) => setSelectedPatentForDetailModal(p)} />
+        {/* NEW TAB: TECH MAP */}
+        {activeTab === 'tech-map' && (
+          <JluTechMapPage userRole={userRole} onNavigateToSearch={() => { setEnterpriseSearchQuery(''); setActiveTab('tech-search'); }} onSelectPatent={(p) => setSelectedPatentForDetailModal(p)} />
         )}
+        
+        {/* NEW TAB: UNPATENTED TECH */}
+        {activeTab === 'unpatented-tech' && (
+          <UnpatentedTechHub userRole={userRole} />
+        )}
+        
+        {/* ENTERPRISE TAB: LANDING */}
+        {activeTab === 'enterprise-landing' && (
+          <EnterpriseLandingPage onSelectUniversity={(uni) => {
+             setSelectedUniversity(uni);
+             setActiveTab('tech-map');
+          }} />
+        )}
+        
+        {/* ENTERPRISE TAB: SEARCH RESULTS */}
+        {activeTab === 'tech-search' && (
+          <TechSearchHub query={enterpriseSearchQuery} onBack={() => setActiveTab(selectedUniversity ? 'tech-map' : 'enterprise-landing')} universityScope={selectedUniversity} />
+        )}
+        
+        
 
       </main>
 

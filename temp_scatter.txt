@@ -1,0 +1,53 @@
+    92	];
+    93	
+    94	const scatterData = [
+    95	  // G01N
+    96	  { year: '2017', domain: 'G01N', value: 238 }, { year: '2018', domain: 'G01N', value: 314 }, { year: '2019', domain: 'G01N', value: 303 }, { year: '2020', domain: 'G01N', value: 194 }, { year: '2021', domain: 'G01N', value: 231 }, { year: '2022', domain: 'G01N', value: 221 }, { year: '2023', domain: 'G01N', value: 204 }, { year: '2024', domain: 'G01N', value: 223 }, { year: '2025', domain: 'G01N', value: 165 }, { year: '2026', domain: 'G01N', value: 80 },
+    97	  // G06F
+    98	  { year: '2017', domain: 'G06F', value: 79 }, { year: '2018', domain: 'G06F', value: 79 }, { year: '2019', domain: 'G06F', value: 106 }, { year: '2020', domain: 'G06F', value: 99 }, { year: '2021', domain: 'G06F', value: 133 }, { year: '2022', domain: 'G06F', value: 171 }, { year: '2023', domain: 'G06F', value: 250 }, { year: '2024', domain: 'G06F', value: 318 }, { year: '2025', domain: 'G06F', value: 374 }, { year: '2026', domain: 'G06F', value: 226 },
+    99	  // A61B
+   100	  { year: '2017', domain: 'A61B', value: 105 }, { year: '2018', domain: 'A61B', value: 132 }, { year: '2019', domain: 'A61B', value: 254 }, { year: '2020', domain: 'A61B', value: 228 }, { year: '2021', domain: 'A61B', value: 208 }, { year: '2022', domain: 'A61B', value: 168 }, { year: '2023', domain: 'A61B', value: 231 }, { year: '2024', domain: 'A61B', value: 180 }, { year: '2025', domain: 'A61B', value: 96 }, { year: '2026', domain: 'A61B', value: 40 },
+   101	  // A61M
+   102	  { year: '2017', domain: 'A61M', value: 62 }, { year: '2018', domain: 'A61M', value: 107 }, { year: '2019', domain: 'A61M', value: 301 }, { year: '2020', domain: 'A61M', value: 265 }, { year: '2021', domain: 'A61M', value: 248 }, { year: '2022', domain: 'A61M', value: 144 }, { year: '2023', domain: 'A61M', value: 244 }, { year: '2024', domain: 'A61M', value: 147 },
+   103	  // A61G
+   104	  { year: '2017', domain: 'A61G', value: 44 }, { year: '2018', domain: 'A61G', value: 90 }, { year: '2019', domain: 'A61G', value: 198 }, { year: '2020', domain: 'A61G', value: 254 }, { year: '2021', domain: 'A61G', value: 203 }, { year: '2022', domain: 'A61G', value: 118 }, { year: '2023', domain: 'A61G', value: 183 }, { year: '2024', domain: 'A61G', value: 73 },
+   105	  // A61K
+   106	  { year: '2017', domain: 'A61K', value: 72 }, { year: '2018', domain: 'A61K', value: 62 }, { year: '2019', domain: 'A61K', value: 65 }, { year: '2020', domain: 'A61K', value: 52 }, { year: '2021', domain: 'A61K', value: 99 }, { year: '2022', domain: 'A61K', value: 65 }, { year: '2023', domain: 'A61K', value: 109 }, { year: '2024', domain: 'A61K', value: 145 }, { year: '2025', domain: 'A61K', value: 186 }, { year: '2026', domain: 'A61K', value: 116 },
+   107	  // G01V
+   108	  { year: '2017', domain: 'G01V', value: 80 }, { year: '2018', domain: 'G01V', value: 86 }, { year: '2019', domain: 'G01V', value: 112 }, { year: '2020', domain: 'G01V', value: 82 }, { year: '2021', domain: 'G01V', value: 53 }, { year: '2022', domain: 'G01V', value: 83 }, { year: '2023', domain: 'G01V', value: 81 }, { year: '2024', domain: 'G01V', value: 77 }, { year: '2025', domain: 'G01V', value: 142 }, { year: '2026', domain: 'G01V', value: 88 },
+   109	  // A61F
+   110	  { year: '2017', domain: 'A61F', value: 36 }, { year: '2018', domain: 'A61F', value: 53 }, { year: '2019', domain: 'A61F', value: 149 }, { year: '2020', domain: 'A61F', value: 149 }, { year: '2021', domain: 'A61F', value: 108 }, { year: '2022', domain: 'A61F', value: 113 }, { year: '2023', domain: 'A61F', value: 102 }, { year: '2024', domain: 'A61F', value: 85 },
+   111	  // B60W
+   112	  { year: '2018', domain: 'B60W', value: 47 }, { year: '2019', domain: 'B60W', value: 66 }, { year: '2020', domain: 'B60W', value: 62 }, { year: '2021', domain: 'B60W', value: 76 }, { year: '2022', domain: 'B60W', value: 60 }, { year: '2023', domain: 'B60W', value: 87 }, { year: '2024', domain: 'B60W', value: 87 }, { year: '2025', domain: 'B60W', value: 122 }, { year: '2026', domain: 'B60W', value: 76 },
+   113	  // G01M
+   114	  { year: '2017', domain: 'G01M', value: 151 }, { year: '2018', domain: 'G01M', value: 114 }, { year: '2019', domain: 'G01M', value: 131 }, { year: '2020', domain: 'G01M', value: 114 }, { year: '2021', domain: 'G01M', value: 71 }, { year: '2022', domain: 'G01M', value: 38 }
+   115	];
+   116	
+   117	const Y_DOMAINS = ['G01N', 'G06F', 'A61B', 'A61M', 'A61G', 'A61K', 'G01V', 'A61F', 'B60W', 'G01M'];
+   118	const X_YEARS = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'];
+   119	const IPC_DESCRIPTIONS: Record<string, string> = {
+   120	  'G01N': '借助于测定材料的化学或物理...',
+   121	  'G06F': '电数字数据处理（基于特定计...',
+   122	  'A61B': '诊断；外科；鉴定（分析生物...',
+   123	  'A61M': '将介质输入体内或输到人体...',
+   124	  'A61G': '专门适用于病人或残疾人的运...',
+   125	  'A61K': '医用、牙科用或化妆用的配制...',
+   126	  'G01V': '地球物理；重力测量；物质或...',
+   127	  'A61F': '可植入血管内的滤器；假体；为...',
+   128	  'B60W': '车辆控制系统...',
+   129	  'G01M': '机器或结构部件的静或动平衡...'
+   130	};
+   131	
+   132	
+   133	const getDomainStyles = (domain) => {
+   134	  switch(domain) {
+   135	    case 'G01N': return { bg: 'rgba(99, 102, 241, 0.45)', border: 'rgba(99, 102, 241, 0.9)', text: '#ffffff', shadow: 'rgba(99, 102, 241, 0.6)' };
+   136	    case 'G06F': return { bg: 'rgba(217, 70, 239, 0.45)', border: 'rgba(217, 70, 239, 0.9)', text: '#ffffff', shadow: 'rgba(217, 70, 239, 0.6)' };
+   137	    case 'A61B': return { bg: 'rgba(34, 197, 94, 0.45)', border: 'rgba(34, 197, 94, 0.9)', text: '#ffffff', shadow: 'rgba(34, 197, 94, 0.6)' };
+   138	    case 'A61M': return { bg: 'rgba(74, 222, 128, 0.45)', border: 'rgba(74, 222, 128, 0.9)', text: '#ffffff', shadow: 'rgba(74, 222, 128, 0.6)' };
+   139	    case 'A61G': return { bg: 'rgba(234, 179, 8, 0.45)', border: 'rgba(234, 179, 8, 0.9)', text: '#ffffff', shadow: 'rgba(234, 179, 8, 0.6)' };
+   140	    case 'A61K': return { bg: 'rgba(59, 130, 246, 0.45)', border: 'rgba(59, 130, 246, 0.9)', text: '#ffffff', shadow: 'rgba(59, 130, 246, 0.6)' };
+   141	    case 'G01V': return { bg: 'rgba(20, 184, 166, 0.45)', border: 'rgba(20, 184, 166, 0.9)', text: '#ffffff', shadow: 'rgba(20, 184, 166, 0.6)' };
+   142	    case 'A61F': return { bg: 'rgba(16, 185, 129, 0.45)', border: 'rgba(16, 185, 129, 0.9)', text: '#ffffff', shadow: 'rgba(16, 185, 129, 0.6)' };
+   143	    case 'B60W': return { bg: 'rgba(249, 115, 22, 0.45)', border: 'rgba(249, 115, 22, 0.9)', text: '#ffffff', shadow: 'rgba(249, 115, 22, 0.6)' };
+   144	    case 'G01M': return { bg: 'rgba(239, 68, 68, 0.45)', border: 'rgba(239, 68, 68, 0.9)', text: '#ffffff', shadow: 'rgba(239, 68, 68, 0.6)' };

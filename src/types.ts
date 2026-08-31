@@ -4,9 +4,14 @@ export type TabType =
   | 'industry-chain'
   | 'patent-product'
   | 'ai-agent'
-  | 'enterprise-portal';
+  | 'tech-map'
+  | 'unpatented-tech'
+  | 'enterprise-dashboard'
+  | 'tech-search'
+  | 'enterprise-landing'
+  | 'enterprise-demands';
 
-export type UserRole = 'researcher' | 'tech_transfer_officer' | 'broker' | 'admin';
+export type UserRole = 'university' | 'enterprise';
 
 export interface PatentItem {
   id: string;
@@ -137,6 +142,12 @@ export interface TargetEnterprise {
     email: string;
     suggestedApproach: string;
   };
+  // 核心发明人（通过专利量统计算法提取的该企业技术核心人员）
+  keyInventors?: {
+    name: string;
+    patentCount: number;
+    title?: string;
+  }[];
 }
 
 export interface MatchAnalysisReport {

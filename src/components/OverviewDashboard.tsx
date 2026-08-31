@@ -23,6 +23,7 @@ import {
   Cpu
 } from 'lucide-react';
 
+
 interface OverviewDashboardProps {
   patents: PatentItem[];
   setActiveTab: (tab: TabType) => void;
@@ -337,6 +338,19 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                     备案产品：<span className="font-semibold text-slate-800">{ent.patentProducts?.length || 0}款</span>
                   </div>
                 </div>
+
+                {ent.keyInventors && ent.keyInventors.length > 0 && (
+                  <div className="mt-3 bg-blue-50/50 p-2.5 rounded-lg border border-blue-100 flex items-start gap-2 text-[12px]">
+                     <div className="text-blue-600 font-bold whitespace-nowrap shrink-0">联系人:</div>
+                     <div className="text-slate-600 flex flex-wrap gap-x-3 gap-y-1">
+                        {ent.keyInventors.slice(0, 2).map((inv, idx) => (
+                           <span key={idx} className="flex items-center gap-1">
+                             <span className="text-slate-800 font-semibold">{inv.name}</span>
+                           </span>
+                        ))}
+                     </div>
+                  </div>
+                )}
               </div>
 
               <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-sm">
