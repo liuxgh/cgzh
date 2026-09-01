@@ -1,0 +1,5 @@
+print("https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Hohai_University_logo.svg/300px-Hohai_University_logo.svg.png")
+print("https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Southeast_University_logo.svg/300px-Southeast_University_logo.svg.png")
+print("https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Jiangnan_University_logo.png/300px-Jiangnan_University_logo.png")
+print("https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Soochow_University_%28Suzhou%29_logo.svg/300px-Soochow_University_%28Suzhou%29_logo.svg.png")
+print("https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Nanjing_University_of_Science_and_Technology_logo.png/300px-Nanjing_University_of_Science_and_Technology_logo.png")

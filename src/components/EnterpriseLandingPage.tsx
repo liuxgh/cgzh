@@ -18,7 +18,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
     {
       id: 'hhu',
       name: '河海大学',
-      logo: 'hhu_mock',
+      logo: '/hehai.png',
       tags: ['211工程', '双一流'],
       stats: { patents: '3.2万+', tech: '水利工程、环境、土木等' },
       status: 'coming_soon'
@@ -26,7 +26,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
     {
       id: 'seu',
       name: '东南大学',
-      logo: 'seu_mock',
+      logo: '/dongnan.png',
       tags: ['985工程', '211工程', '双一流A类'],
       stats: { patents: '8.5万+', tech: '建筑、电子、通信等' },
       status: 'coming_soon'
@@ -34,7 +34,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
     {
       id: 'jiangnan',
       name: '江南大学',
-      logo: 'jiangnan_mock',
+      logo: '/jiangnan.png',
       tags: ['211工程', '双一流'],
       stats: { patents: '4.1万+', tech: '食品科学、轻工技术等' },
       status: 'coming_soon'
@@ -42,7 +42,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
     {
       id: 'suda',
       name: '苏州大学',
-      logo: 'suda_mock',
+      logo: '/suzhou.png',
       tags: ['211工程', '双一流'],
       stats: { patents: '6.8万+', tech: '材料科学、医学、纺织等' },
       status: 'coming_soon'
@@ -50,7 +50,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
     {
       id: 'njust',
       name: '南京理工大学',
-      logo: 'njust_mock',
+      logo: '/nanjingligong.png',
       tags: ['211工程', '双一流'],
       stats: { patents: '5.4万+', tech: '兵器科学、化工、光学等' },
       status: 'coming_soon'
@@ -60,9 +60,9 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
   return (
     <div className="space-y-8 animate-in fade-in duration-500 pb-12">
       {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-3xl bg-slate-900 text-white p-8 sm:p-14 shadow-xl border border-slate-800">
-        <div className="absolute right-0 top-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute left-0 bottom-0 w-[300px] h-[300px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="relative overflow-hidden rounded-3xl bg-slate-900 text-white p-10 sm:p-16 shadow-2xl border border-slate-800 overflow-hidden group">
+        <div className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-blue-600/20 group-hover:bg-blue-600/30 transition-colors duration-700 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute -left-20 -bottom-20 w-[400px] h-[400px] bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors duration-700 rounded-full blur-[100px] pointer-events-none"></div>
         
         <div className="relative z-10 max-w-4xl space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-blue-200 text-sm font-bold shadow-sm">
@@ -114,11 +114,11 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
               className={`relative rounded-3xl p-6 border transition-all ${
                 uni.status === 'active' 
                   ? 'bg-white border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-400 cursor-pointer group' 
-                  : 'bg-slate-50 border-slate-200 opacity-75 grayscale'
+                  : 'bg-slate-50 border-slate-200 opacity-80 hover:opacity-100 grayscale-[40%] hover:grayscale-0 transition-all duration-300'
               }`}
             >
               {uni.status !== 'active' && (
-                <div className="absolute top-6 right-6 px-2.5 py-1 bg-slate-200 text-slate-600 text-xs font-bold rounded-lg shadow-inner">
+                <div className="absolute top-6 right-6 px-3 py-1.5 bg-slate-100 text-slate-500 border border-slate-200 text-xs font-bold rounded-lg shadow-sm">
                   即将接入
                 </div>
               )}
@@ -129,13 +129,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
               )}
 
               <div className="h-16 flex items-center justify-start mb-6 mix-blend-multiply">
-                 {uni.id === 'jlu' ? (
-                    <img src={uni.logo} alt={uni.name} className="h-full object-contain" />
-                 ) : (
-                    <div className="h-12 px-5 bg-gradient-to-r from-slate-700 to-slate-800 text-white font-black text-xl rounded-xl flex items-center justify-center tracking-widest shadow-inner">
-                      {uni.name}
-                    </div>
-                 )}
+                 <img src={uni.logo} alt={uni.name} className="h-full w-auto object-contain max-w-[200px]" />
               </div>
               
               <h3 className="text-xl font-black text-slate-900 mb-3">{uni.name}</h3>

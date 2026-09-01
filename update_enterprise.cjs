@@ -1,62 +1,55 @@
 const fs = require('fs');
-let code = fs.readFileSync('src/components/EnterprisePortal.tsx', 'utf-8');
+let code = fs.readFileSync('src/components/EnterpriseLandingPage.tsx', 'utf8');
 
-// 1. Add imports
-code = code.replace(/import { (.*?) } from 'lucide-react';/, "import { $1, Paperclip, ImagePlus } from 'lucide-react';");
+// Update logos
+code = code.replace("logo: 'hhu_mock'", "logo: '/hhu.svg'");
+code = code.replace("logo: 'seu_mock'", "logo: '/seu.png'");
+code = code.replace("logo: 'jiangnan_mock'", "logo: '/jiangnan.png'");
+code = code.replace("logo: 'suda_mock'", "logo: '/suda.png'");
+code = code.replace("logo: 'njust_mock'", "logo: '/njust.svg'");
 
-// 2. Replace the form
-const formRegex = /<form onSubmit=\{handleSearch\} className="relative max-w-2xl mx-auto mt-8">[\s\S]*?<\/form>/;
-const newForm = `<form onSubmit={handleSearch} className="relative max-w-3xl mx-auto mt-8">
-              <div className="shadow-lg rounded-2xl bg-white border-2 border-blue-100 focus-within:border-blue-500 transition-colors overflow-hidden">
-                <textarea
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="请输入企业技术需求（例如：寻找一种提高电池能量密度的固态电解质技术...），支持多段落输入"
-                  className="w-full bg-transparent border-none focus:ring-0 text-base sm:text-lg text-slate-900 px-4 py-4 placeholder:text-slate-400 resize-none h-32 outline-none"
-                />
-                
-                <div className="flex items-center justify-between px-4 py-3 bg-slate-50 border-t border-blue-50">
-                  <div className="flex items-center gap-2">
-                    <label className="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center gap-1.5 text-sm font-medium cursor-pointer">
-                      <Paperclip className="w-4 h-4" />
-                      <span>导入文档</span>
-                      <input type="file" multiple className="hidden" />
-                    </label>
-                    <label className="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors flex items-center gap-1.5 text-sm font-medium cursor-pointer">
-                      <ImagePlus className="w-4 h-4" />
-                      <span>导入产品图</span>
-                      <input type="file" multiple accept="image/*" className="hidden" />
-                    </label>
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSearching || !searchQuery.trim()}
-                    className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-bold rounded-xl transition-colors flex items-center gap-2 shadow-sm"
-                  >
-                    {isSearching ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        <span>匹配中...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>智能匹配</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-            </form>`;
+// Remove the jlu specific rendering
+const old_render = `{uni.id === 'jlu' ? (
+                    <img src={uni.logo} alt={uni.name} className="h-full object-contain" />
+                 ) : (
+                    <div className="h-12 px-5 bg-gradient-to-r from-slate-700 to-slate-800 text-white font-black text-xl rounded-xl flex items-center justify-center tracking-widest shadow-inner">
+                      {uni.name}
+                    </div>
+                 )}`;
 
-code = code.replace(formRegex, newForm);
+const new_render = `<img src={uni.logo} alt={uni.name} className="h-full w-auto object-contain max-w-[200px]" />`;
+code = code.replace(old_render, new_render);
 
-// 3. Remove "AI 合作建议与对接通道" Right panel
-const rightPanelRegex = /\{\/\* Right: Recommendation & CTA \*\/\}\s*<div className="space-y-4">\s*<h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">\s*<Bot className="w-5 h-5 text-indigo-600" \/>\s*<span>AI 合作建议与对接通道<\/span>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/;
-code = code.replace(rightPanelRegex, '');
+// Optimize the grid UI
+// Change grayscale to something less aggressive
+code = code.replace("'bg-slate-50 border-slate-200 opacity-75 grayscale'", "'bg-slate-50 border-slate-200 opacity-80 grayscale-[30%]'");
+code = code.replace("'bg-slate-50 border-slate-200 opacity-75 grayscale'", "'bg-slate-50 border-slate-200 opacity-80 grayscale-[30%]'");
 
-// 4. Change grid layout and remove lg:col-span-2
-code = code.replace(/<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">/, '<div className="grid grid-cols-1 gap-6">');
-code = code.replace(/<div className="lg:col-span-2 space-y-4">/, '<div className="space-y-4">');
+// Add Hover effect for coming_soon
+code = code.replace("'bg-slate-50 border-slate-200 opacity-80 grayscale-[30%]'", "'bg-slate-50 border-slate-200 opacity-80 hover:opacity-100 grayscale-[40%] hover:grayscale-0 transition-all duration-300'");
 
-fs.writeFileSync('src/components/EnterprisePortal.tsx', code, 'utf-8');
+// Update "即将接入" label to look nicer
+code = code.replace(
+    'className="absolute top-6 right-6 px-2.5 py-1 bg-slate-200 text-slate-600 text-xs font-bold rounded-lg shadow-inner"',
+    'className="absolute top-6 right-6 px-3 py-1.5 bg-slate-100 text-slate-500 border border-slate-200 text-xs font-bold rounded-lg shadow-sm"'
+);
+
+// Optimize Hero Section
+// Make it look a bit more modern
+code = code.replace(
+    'bg-slate-900 text-white p-8 sm:p-14 shadow-xl border border-slate-800',
+    'bg-slate-900 text-white p-10 sm:p-16 shadow-2xl border border-slate-800 overflow-hidden group'
+);
+
+code = code.replace(
+    'className="absolute right-0 top-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"',
+    'className="absolute -right-20 -top-20 w-[600px] h-[600px] bg-blue-600/20 group-hover:bg-blue-600/30 transition-colors duration-700 rounded-full blur-[120px] pointer-events-none"'
+);
+
+code = code.replace(
+    'className="absolute left-0 bottom-0 w-[300px] h-[300px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"',
+    'className="absolute -left-20 -bottom-20 w-[400px] h-[400px] bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors duration-700 rounded-full blur-[100px] pointer-events-none"'
+);
+
+fs.writeFileSync('src/components/EnterpriseLandingPage.tsx', code);
+console.log('Updated EnterpriseLandingPage.tsx');
