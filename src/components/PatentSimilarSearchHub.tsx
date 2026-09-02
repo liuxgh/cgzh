@@ -1,3 +1,4 @@
+import { CopyableText } from './CopyableText';
 import React, { useState, useRef, useEffect } from 'react';
 import { PatentItem, TargetEnterprise } from '../types';
 import { RegionFilter } from './RegionFilter';
@@ -19,7 +20,7 @@ import {
   SlidersHorizontal,
   RefreshCw,
   ChevronDown
-} from 'lucide-react';
+, Download } from 'lucide-react';
 
 interface PatentSimilarSearchHubProps {
   patents: PatentItem[];
@@ -281,6 +282,10 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             <option value="5000-10000">5000万-1亿元</option>
             <option value="1000-5000">1000万-5000万元</option>
           </select>
+          <div className="flex-1 min-w-[20px]"></div>
+          <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm ml-auto">
+            <Download className="w-4 h-4" /> 导出列表
+          </button>
         </div>
       </div>
 
@@ -322,7 +327,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                   onClick={() => onSelectEnterprise(enterprise)}
                   className="text-xl font-black text-slate-900 hover:text-[#0F52BA] cursor-pointer flex items-center gap-2"
                 >
-                  {enterprise.name}
+                  <CopyableText text={enterprise.name}>{enterprise.name}</CopyableText>
                 </h4>
               </div>
 

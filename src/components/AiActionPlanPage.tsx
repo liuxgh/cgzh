@@ -1,3 +1,4 @@
+import { CopyableText } from './CopyableText';
 import React, { useState, useEffect } from 'react';
 import { TargetEnterprise, PatentItem } from '../types';
 import { 
@@ -118,7 +119,7 @@ ${activePatent.abstract}
             AI 成果转化对接方案 <Sparkles className="w-5 h-5 text-blue-600" />
           </h2>
           <p className="text-slate-500 text-sm mt-1 flex items-center gap-2">
-            <span>当前对接企业：<strong className="text-slate-800">{enterprise.name}</strong></span>
+            <span>当前对接企业：<strong className="text-slate-800"><CopyableText text={enterprise.name}>{enterprise.name}</CopyableText></strong></span>
             <span className="w-1 h-1 rounded-full bg-slate-300"></span>
             <span>企业所属行业：{enterprise.industry}</span>
           </p>
@@ -162,7 +163,7 @@ ${activePatent.abstract}
                 靶向匹配信息
               </div>
               <p className="text-[11px] text-blue-600/80 leading-relaxed">
-                本对接方案由 AI 智能体根据 <strong>{enterprise.name}</strong> 的工商信息、专利图谱与产品备案数据生成，建议核对后再发送。
+                本对接方案由 AI 智能体根据 <strong><CopyableText text={enterprise.name}>{enterprise.name}</CopyableText></strong> 的工商信息、相似专利数据生成，建议核对后再发送。
               </p>
             </div>
           </div>

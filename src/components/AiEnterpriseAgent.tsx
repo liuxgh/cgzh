@@ -1,3 +1,4 @@
+import { CopyableText } from './CopyableText';
 import React, { useState, useEffect, useRef } from 'react';
 import { PatentItem, TargetEnterprise } from '../types';
 import { RegionFilter } from './RegionFilter';
@@ -13,7 +14,7 @@ import {
   RefreshCw, 
   ChevronRight, 
   ChevronDown
-} from 'lucide-react';
+, Download } from 'lucide-react';
 
 interface AiEnterpriseAgentProps {
   patents: PatentItem[];
@@ -287,6 +288,10 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
               <Building2 className="w-4 h-4 text-blue-600" />
               <span>AI 推荐靶向企业列表</span>
             </button>
+            <div className="flex-1 min-w-[20px]"></div>
+            <button className="self-center flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm whitespace-nowrap">
+              <Download className="w-4 h-4" /> 导出列表
+            </button>
           </div>
 
           <div className="p-6 sm:p-8 space-y-6">
@@ -348,7 +353,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <h4 className="text-lg font-bold text-slate-900 group-hover:text-[#0F52BA]">
-                            {ent.name}
+                            <CopyableText text={ent.name}>{ent.name}</CopyableText>
                           </h4>
                         </div>
                       </div>

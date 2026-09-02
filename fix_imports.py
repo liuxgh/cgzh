@@ -1,15 +1,21 @@
-with open('src/components/PatentSimilarSearchHub.tsx', 'r') as f:
-    content = f.read()
-if "import { RegionFilter }" not in content:
-    content = content.replace("import { TargetEnterprise, PatentItem } from '../types';", "import { TargetEnterprise, PatentItem } from '../types';\nimport { RegionFilter } from './RegionFilter';")
-content = content.replace("const [regionFilter, setRegionFilter] = useState<string>('all');", "const [regionFilter, setRegionFilter] = useState<{p: string, c: string, d: string}>({p: 'all', c: 'all', d: 'all'});")
-with open('src/components/PatentSimilarSearchHub.tsx', 'w') as f:
-    f.write(content)
+import re
 
-with open('src/components/IndustryChain57Hub.tsx', 'r') as f:
-    content = f.read()
-if "import { RegionFilter }" not in content:
-    content = content.replace("import { TargetEnterprise, PatentItem } from '../types';", "import { TargetEnterprise, PatentItem } from '../types';\nimport { RegionFilter } from './RegionFilter';")
-content = content.replace("const [regionFilter, setRegionFilter] = useState<string>('all');", "const [regionFilter, setRegionFilter] = useState<{p: string, c: string, d: string}>({p: 'all', c: 'all', d: 'all'});")
-with open('src/components/IndustryChain57Hub.tsx', 'w') as f:
-    f.write(content)
+files = [
+    'src/components/AiEnterpriseAgent.tsx',
+    'src/components/IndustryChain57Hub.tsx',
+    'src/components/OverviewDashboard.tsx',
+    'src/components/PatentSimilarSearchHub.tsx'
+]
+
+for file in files:
+    with open(file, 'r') as f:
+        content = f.read()
+    
+    if "import { Download" not in content and "Download," not in content:
+        # Just find lucide-react import
+        content = re.sub(r"from 'lucide-react';", ", Download } from 'lucide-react';", content)
+        # That might break if there's no trailing space. Better:
+        content = re.sub(r"\}\s*from\s*'lucide-react';", ", Download } from 'lucide-react';", content)
+    
+    with open(file, 'w') as f:
+        f.write(content)

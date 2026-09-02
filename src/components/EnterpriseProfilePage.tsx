@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CopyableText } from './CopyableText';
 import { TargetEnterprise, PatentItem } from '../types';
 import { 
   Building2, 
@@ -136,7 +137,7 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
 
   return (
     <div className="space-y-6 pb-20 animate-in fade-in duration-300">
-      <div className="flex items-center gap-3 cursor-pointer group" onClick={onBack}>
+      <div className="flex items-center gap-3 cursor-pointer group w-fit" onClick={onBack}>
         <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-slate-200 transition-colors">
           <ArrowLeft className="w-4 h-4 text-slate-600" />
         </div>
@@ -158,7 +159,7 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
             </div>
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-black text-slate-900">{enterprise.name}</h1>
+                <CopyableText text={enterprise.name}><h1 className="text-2xl font-black text-slate-900">{enterprise.name}</h1></CopyableText>
                 <span className="px-2.5 py-0.5 border border-[#89E198] text-[#34A853] text-[13px] bg-[#E8F8EE] rounded-sm font-medium">
                   {status}
                 </span>
@@ -177,6 +178,10 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
                 AI撰写对接方案
               </button>
             )}
+            <button className="flex items-center gap-2 px-5 py-2.5 text-slate-700 bg-white border border-slate-200 rounded-xl font-bold shadow-sm hover:bg-slate-50 transition-all">
+              <Download className="w-5 h-5" />
+              PDF导出
+            </button>
           </div>
 
         </div>
@@ -184,47 +189,51 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
         <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-8 text-sm">
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">成立日期：</span>
-            <span className="text-slate-800">{establishedDate}</span>
+            <CopyableText text={establishedDate}><span className="text-slate-800">{establishedDate}</span></CopyableText>
           </div>
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">注册资本：</span>
-            <span className="text-slate-800">{registeredCapital}</span>
+            <CopyableText text={registeredCapital}><span className="text-slate-800">{registeredCapital}</span></CopyableText>
           </div>
-          <div className="flex gap-4">
-            <span className="text-slate-500 shrink-0 w-24">公司电话：</span>
-            <span className="text-slate-800">{phone}</span>
+          <div className="flex gap-4 items-center">
+            <span className="text-slate-500 shrink-0 w-24 flex items-center gap-1 whitespace-nowrap">
+              <Phone className="w-3.5 h-3.5 text-blue-500" />公司电话：
+            </span>
+            <CopyableText text={phone}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{phone}</span></CopyableText>
           </div>
           
-          <div className="flex gap-4">
-            <span className="text-slate-500 shrink-0 w-24">公司邮箱：</span>
-            <span className="text-slate-800">{email}</span>
+          <div className="flex gap-4 items-center">
+            <span className="text-slate-500 shrink-0 w-24 flex items-center gap-1 whitespace-nowrap">
+              <Mail className="w-3.5 h-3.5 text-blue-500" />公司邮箱：
+            </span>
+            <CopyableText text={email}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{email}</span></CopyableText>
           </div>
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">企业简称：</span>
-            <span className="text-slate-800">{shortName}</span>
+            <CopyableText text={shortName}><span className="text-slate-800">{shortName}</span></CopyableText>
           </div>
           
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">曾用名：</span>
-            <span className="text-slate-800">{oldName}</span>
+            <CopyableText text={oldName}><span className="text-slate-800">{oldName}</span></CopyableText>
           </div>
 
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">法定代表人：</span>
-            <span className="text-slate-800">{legalRep}</span>
+            <CopyableText text={legalRep}><span className="text-slate-800">{legalRep}</span></CopyableText>
           </div>
 
 
           
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">企业网址：</span>
-            <span className="text-blue-600 hover:underline cursor-pointer">{website}</span>
+            <CopyableText text={website}><span className="text-blue-600 hover:underline cursor-pointer">{website}</span></CopyableText>
           </div>
 
           <div className="flex gap-4 md:col-span-2">
             <span className="text-slate-500 shrink-0 w-24">注册地址：</span>
 
-            <span className="text-slate-800">{address}</span>
+            <CopyableText text={address}><span className="text-slate-800">{address}</span></CopyableText>
           </div>
 
           <div className="flex gap-4 md:col-span-3">
@@ -338,12 +347,12 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
           </div>
         </div>
       </div>
-      {/* 成果匹配专利清单与主要发明人 */}
+      {/* 企业相似专利与主要发明人 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden flex flex-col h-full">
           <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-2 shrink-0">
             <Lightbulb className="w-5 h-5 text-amber-500" />
-            <h2 className="text-lg font-black text-slate-900">成果匹配专利清单</h2>
+            <h2 className="text-lg font-black text-slate-900">企业相似专利</h2>
           </div>
           <div className="p-5 flex-1 flex flex-col gap-3 max-h-[400px] overflow-y-auto">
             {enterprise.similarPatents && enterprise.similarPatents.length > 0 ? (
@@ -352,18 +361,16 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="flex items-start justify-between mb-2">
                     <span className="font-mono text-slate-500 text-[11px] bg-white px-2 py-1 rounded shadow-sm border border-slate-100">
-                      {p.patentNo}
+                      <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
                     </span>
-                    <span className="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full">
-                      匹配度: {p.similarityScore || 90}%
-                    </span>
+
                   </div>
                   <div className="text-[14px] text-slate-900 font-bold mb-2 leading-snug">
                     {p.title}
                   </div>
                   {p.techOverlapDescription && (
                     <div className="mt-1 text-[12px] text-slate-600 leading-relaxed bg-white p-2.5 rounded-lg border border-slate-100">
-                      <span className="font-bold text-slate-700 mr-1">技术重合点:</span>
+                      <span className="font-bold text-slate-700 mr-1">摘要:</span>
                       {p.techOverlapDescription}
                     </div>
                   )}
@@ -391,7 +398,7 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
                   </div>
                   <div className="flex flex-col flex-1">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-bold text-slate-900 text-[15px]">{inv.name}</h4>
+                      <h4 className="font-bold text-slate-900 text-[15px]"><CopyableText text={inv.name}>{inv.name}</CopyableText></h4>
                       <span className="px-2 py-0.5 bg-blue-50 text-blue-700 font-bold text-[11px] rounded-md border border-blue-100">
                         Top {idx + 1}
                       </span>

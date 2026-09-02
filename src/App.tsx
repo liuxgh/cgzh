@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { OverviewDashboard } from './components/OverviewDashboard';
 import { PatentSimilarSearchHub } from './components/PatentSimilarSearchHub';
@@ -59,6 +59,11 @@ function AppContent() {
   const [agentInitialQuery, setAgentInitialQuery] = useState<string>('');
   const [agentInitialEnterprise, setAgentInitialEnterprise] = useState<TargetEnterprise | null>(null);
   const [globalToastMessage, setGlobalToastMessage] = useState<string | null>(null);
+
+  // Scroll to top on navigation change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeTab, selectedEnterpriseForDetailModal, selectedEnterpriseForActionPlan]);
 
   // Global search submit
   const handleSearchSubmit = (text: string) => {
@@ -130,6 +135,7 @@ function AppContent() {
           <EnterpriseProfilePage 
             enterprise={selectedEnterpriseForDetailModal}
             onBack={() => setSelectedEnterpriseForDetailModal(null)}
+            onOpenAiActionPlan={(ent) => setSelectedEnterpriseForActionPlan(ent)}
           />
         ) : (
           <>

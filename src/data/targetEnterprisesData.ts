@@ -81,8 +81,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '共建联合创新中心 / 核心专利排他许可 / 委托定制攻关',
     keyInventors: [
-      { name: '王伟', patentCount: 120, title: '核心发明人/技术总监' },
-      { name: '李强', patentCount: 80, title: '核心发明人/研发骨干' }
+      { name: '俞伟', patentCount: 120, title: '核心发明人/技术总监' },
+      { name: '施帅', patentCount: 80, title: '核心发明人/研发骨干' }
+    ,
+      { name: '谢伟', patentCount: 70, title: '核心发明人/高级研究员' }
     ],
     contact: {
       dept: '21C创新实验室 / 前沿技术预研部',
@@ -97,7 +99,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
   // 2. 智能底盘与仿生结构 - 一汽红旗 / 一汽解放
   {
     id: 'ent-faw',
-    name: '中国第一汽车集团有限公司 (一汽研发总院)',
+    name: '中国第一汽车集团有限公司',
     shortName: '中国一汽 (FAW)',
     creditCode: '91220101123999824F',
     registeredCapital: '3,540,000 万元人民币',
@@ -156,8 +158,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '共建国家重点实验室联合分室 / 重大横向专项 / 专利开放许可打包',
     keyInventors: [
-      { name: '李磊', patentCount: 127, title: '核心发明人/技术总监' },
-      { name: '张洋', patentCount: 93, title: '核心发明人/研发骨干' }
+      { name: '苏军', patentCount: 127, title: '核心发明人/技术总监' },
+      { name: '凤刚', patentCount: 93, title: '核心发明人/研发骨干' }
+    ,
+      { name: '魏杰', patentCount: 63, title: '核心发明人/核心成员' }
     ],
     contact: {
       dept: '一汽研发总院创新技术研究院 / 科技创新管理部',
@@ -231,8 +235,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '专利技术独占许可 / 委托中试开发 / 产学研联合攻关',
     keyInventors: [
-      { name: '张勇', patentCount: 134, title: '核心发明人/技术总监' },
-      { name: '刘军', patentCount: 106, title: '核心发明人/研发骨干' }
+      { name: '任杰', patentCount: 134, title: '核心发明人/技术总监' },
+      { name: '张飞', patentCount: 106, title: '核心发明人/研发骨干' }
+    ,
+      { name: '凤伟', patentCount: 61, title: '核心发明人/核心成员' }
     ],
     contact: {
       dept: '集团中央研究院 / 车载光学研发中心',
@@ -306,8 +312,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '建立校企联合研发中心 / 专利买断转让 / 临床中试验证转化',
     keyInventors: [
-      { name: '刘杰', patentCount: 141, title: '核心发明人/技术总监' },
-      { name: '陈涛', patentCount: 119, title: '核心发明人/研发骨干' }
+      { name: '郑建', patentCount: 141, title: '核心发明人/技术总监' },
+      { name: '喻洋', patentCount: 119, title: '核心发明人/研发骨干' }
+    ,
+      { name: '曹宁', patentCount: 52, title: '核心发明人/核心成员' }
     ],
     contact: {
       dept: '迈瑞集团研发技术合作部 / 试剂研发部',
@@ -381,8 +389,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '专利开放许可 / 共同申报国家重大科技专项 / 联合人才培养',
     keyInventors: [
-      { name: '陈超', patentCount: 148, title: '核心发明人/技术总监' },
-      { name: '杨明', patentCount: 92, title: '核心发明人/研发骨干' }
+      { name: '吕涛', patentCount: 148, title: '核心发明人/技术总监' },
+      { name: '邹斌', patentCount: 92, title: '核心发明人/研发骨干' }
+    ,
+      { name: '俞星', patentCount: 75, title: '核心发明人/研发骨干' }
     ],
     contact: {
       dept: '技术中心 / 数控算法研究所',
@@ -456,8 +466,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '联合申报国家重点研发计划 / 核心材料先导中试研发 / 独家专利授权许可',
     keyInventors: [
-      { name: '杨刚', patentCount: 155, title: '核心发明人/技术总监' },
-      { name: '黄平', patentCount: 105, title: '核心发明人/研发骨干' }
+      { name: '奚涛', patentCount: 155, title: '核心发明人/技术总监' },
+      { name: '陈凯', patentCount: 105, title: '核心发明人/研发骨干' }
+    ,
+      { name: '柏伟', patentCount: 46, title: '核心发明人/技术专员' }
     ],
     contact: {
       dept: '集团技术研发中心 (Central Research Institute) / 先进材料研究所',
@@ -531,8 +543,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '联合共建热塑性复材工程技术中心 / 专利授权与工艺包转让',
     keyInventors: [
-      { name: '黄辉', patentCount: 162, title: '核心发明人/技术总监' },
-      { name: '赵峰', patentCount: 118, title: '核心发明人/研发骨干' }
+      { name: '鲁伟', patentCount: 162, title: '核心发明人/技术总监' },
+      { name: '史超', patentCount: 118, title: '核心发明人/研发骨干' }
+    ,
+      { name: '金斌', patentCount: 61, title: '核心发明人/资深工程师' }
     ],
     contact: {
       dept: '技术中心 / 复合材料应用研究所',
@@ -547,7 +561,7 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
   // 8. 现代农业与智能仿生农机 - 一拖股份
   {
     id: 'ent-ytogroup',
-    name: '第一拖拉机股份有限公司 (中国一拖)',
+    name: '中国一拖集团有限公司',
     shortName: '中国一拖 (YTO Group)',
     creditCode: '914103001711201887',
     registeredCapital: '112,364 万元人民币',
@@ -606,8 +620,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     ],
     preferredCollabMode: '重大横向攻关 / 核心专利技术转让 / 国家级农机创新平台共建',
     keyInventors: [
-      { name: '赵健', patentCount: 169, title: '核心发明人/技术总监' },
-      { name: '吴斌', patentCount: 91, title: '核心发明人/研发骨干' }
+      { name: '酆宇', patentCount: 169, title: '核心发明人/技术总监' },
+      { name: '秦斌', patentCount: 91, title: '核心发明人/研发骨干' }
+    ,
+      { name: '吕刚', patentCount: 43, title: '核心发明人/研发骨干' }
     ],
     contact: {
       dept: '大拖研究所 / 农机智能装备重点实验室',
@@ -646,8 +662,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '柳帅', role: '首席科学家', domain: '自动化控制' },
+      { name: '沈强', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '柳浩', patentCount: 64, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11776473A', title: '一种基于机器视觉的自动化校准方法' }
@@ -691,8 +709,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '华磊', role: '首席科学家', domain: '自动化控制' },
+      { name: '戚栋', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '戚峰', patentCount: 67, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11792341A', title: '一种基于机器视觉的自动化校准方法' }
@@ -736,8 +756,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '尤健', role: '首席科学家', domain: '自动化控制' },
+      { name: '王磊', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '酆刚', patentCount: 69, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11268580A', title: '一种基于机器视觉的自动化校准方法' }
@@ -781,8 +803,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '花宇', role: '首席科学家', domain: '自动化控制' },
+      { name: '金峰', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '葛浩', patentCount: 60, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11939198A', title: '一种基于机器视觉的自动化校准方法' }
@@ -826,8 +850,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '施宇', role: '首席科学家', domain: '自动化控制' },
+      { name: '何宇', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '孙辉', patentCount: 55, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11977832A', title: '一种基于机器视觉的自动化校准方法' }
@@ -871,8 +897,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '柳洋', role: '首席科学家', domain: '自动化控制' },
+      { name: '杨辉', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '方宁', patentCount: 74, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11694981A', title: '一种基于机器视觉的自动化校准方法' }
@@ -916,8 +944,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '马军', role: '首席科学家', domain: '自动化控制' },
+      { name: '戚勇', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '韦凯', patentCount: 64, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11415125A', title: '一种基于机器视觉的自动化校准方法' }
@@ -961,8 +991,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '王健', role: '首席科学家', domain: '自动化控制' },
+      { name: '姜强', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '史帅', patentCount: 52, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11497539A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1006,8 +1038,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '云栋', role: '首席科学家', domain: '自动化控制' },
+      { name: '喻鑫', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '俞强', patentCount: 63, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11587665A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1051,8 +1085,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '韩波', role: '首席科学家', domain: '自动化控制' },
+      { name: '王刚', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '吕浩', patentCount: 58, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11354683A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1096,8 +1132,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '方林', role: '首席科学家', domain: '自动化控制' },
+      { name: '喻军', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '沈凯', patentCount: 63, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11751036A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1141,8 +1179,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '潘帅', role: '首席科学家', domain: '自动化控制' },
+      { name: '云勇', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '邹林', patentCount: 72, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11399016A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1186,8 +1226,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '许波', role: '首席科学家', domain: '自动化控制' },
+      { name: '张伟', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '尤凯', patentCount: 70, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11894542A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1231,8 +1273,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '陈涛', role: '首席科学家', domain: '自动化控制' },
+      { name: '彭龙', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '花飞', patentCount: 48, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11843920A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1276,8 +1320,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '鲍洋', role: '首席科学家', domain: '自动化控制' },
+      { name: '戚华', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '任星', patentCount: 64, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11592357A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1321,8 +1367,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '尤波', role: '首席科学家', domain: '自动化控制' },
+      { name: '潘斌', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '郎林', patentCount: 42, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11439064A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1366,8 +1414,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '鲁洋', role: '首席科学家', domain: '自动化控制' },
+      { name: '鲁明', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '章超', patentCount: 45, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11271983A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1411,8 +1461,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '卫建', role: '首席科学家', domain: '自动化控制' },
+      { name: '严磊', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '张勇', patentCount: 65, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11821161A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1456,8 +1508,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '曹鑫', role: '首席科学家', domain: '自动化控制' },
+      { name: '姜辉', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '严林', patentCount: 48, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11977557A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1501,8 +1555,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '尤龙', role: '首席科学家', domain: '自动化控制' },
+      { name: '鲁宁', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '戚飞', patentCount: 43, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11777785A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1546,8 +1602,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '唐宁', role: '首席科学家', domain: '自动化控制' },
+      { name: '云刚', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '鲁帅', patentCount: 56, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11459620A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1591,8 +1649,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '曹宁', role: '首席科学家', domain: '自动化控制' },
+      { name: '秦洋', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '冯涛', patentCount: 41, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11231875A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1636,8 +1696,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '张强', role: '首席科学家', domain: '自动化控制' },
+      { name: '水勇', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '鲁浩', patentCount: 73, title: '核心发明人/高级研究员' }
     ],
     similarPatents: [
       { patentNo: 'CN11399249A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1681,8 +1743,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '卫栋', role: '首席科学家', domain: '自动化控制' },
+      { name: '潘健', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '曹伟', patentCount: 57, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11382955A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1726,8 +1790,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '沈鑫', role: '首席科学家', domain: '自动化控制' },
+      { name: '喻伟', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '鲍平', patentCount: 63, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11801145A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1771,8 +1837,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '吕平', role: '首席科学家', domain: '自动化控制' },
+      { name: '花鑫', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '俞峰', patentCount: 64, title: '核心发明人/技术专员' }
     ],
     similarPatents: [
       { patentNo: 'CN11521829A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1816,8 +1884,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '吕勇', role: '首席科学家', domain: '自动化控制' },
+      { name: '任健', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '章军', patentCount: 40, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11219142A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1861,8 +1931,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '华健', role: '首席科学家', domain: '自动化控制' },
+      { name: '秦栋', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '范鹏', patentCount: 74, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11306279A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1906,8 +1978,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '葛栋', role: '首席科学家', domain: '自动化控制' },
+      { name: '唐建', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '施平', patentCount: 45, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11765970A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1951,8 +2025,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '李峰', role: '首席科学家', domain: '自动化控制' },
+      { name: '郎斌', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '韦波', patentCount: 40, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11595845A', title: '一种基于机器视觉的自动化校准方法' }
@@ -1996,8 +2072,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '何磊', role: '首席科学家', domain: '自动化控制' },
+      { name: '潘浩', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '苏建', patentCount: 40, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11604825A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2041,8 +2119,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '柏林', role: '首席科学家', domain: '自动化控制' },
+      { name: '尤帅', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '范超', patentCount: 47, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11701311A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2086,8 +2166,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '鲁勇', role: '首席科学家', domain: '自动化控制' },
+      { name: '袁刚', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '钱鹏', patentCount: 44, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11476916A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2131,8 +2213,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '孔杰', role: '首席科学家', domain: '自动化控制' },
+      { name: '钱军', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '吕宁', patentCount: 62, title: '核心发明人/资深工程师' }
     ],
     similarPatents: [
       { patentNo: 'CN11959489A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2176,8 +2260,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '柏明', role: '首席科学家', domain: '自动化控制' },
+      { name: '冯林', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '李涛', patentCount: 64, title: '核心发明人/研发骨干' }
     ],
     similarPatents: [
       { patentNo: 'CN11903798A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2221,8 +2307,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '朱华', role: '首席科学家', domain: '自动化控制' },
+      { name: '张波', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '戚军', patentCount: 71, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11970182A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2266,8 +2354,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '柳建', role: '首席科学家', domain: '自动化控制' },
+      { name: '马帅', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '窦洋', patentCount: 42, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11743400A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2311,8 +2401,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '施飞', role: '首席科学家', domain: '自动化控制' },
+      { name: '曹洋', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '酆平', patentCount: 75, title: '核心发明人/高级研究员' }
     ],
     similarPatents: [
       { patentNo: 'CN11668860A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2356,8 +2448,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '方华', role: '首席科学家', domain: '自动化控制' },
+      { name: '俞强', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '许鹏', patentCount: 48, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11417461A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2401,8 +2495,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '喻博', role: '首席科学家', domain: '自动化控制' },
+      { name: '陈明', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '郑鑫', patentCount: 48, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11820254A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2446,8 +2542,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '任华', role: '首席科学家', domain: '自动化控制' },
+      { name: '金军', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '冯波', patentCount: 61, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11475783A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2491,8 +2589,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '华龙', role: '首席科学家', domain: '自动化控制' },
+      { name: '马飞', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '李刚', patentCount: 40, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11827655A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2536,8 +2636,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '奚刚', role: '首席科学家', domain: '自动化控制' },
+      { name: '苗林', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '方帅', patentCount: 49, title: '核心发明人/高级研究员' }
     ],
     similarPatents: [
       { patentNo: 'CN11898915A', title: '一种基于机器视觉的自动化校准方法' }
@@ -2581,8 +2683,10 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
     businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
     registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
     keyInventors: [
-      { name: '李四', role: '首席科学家', domain: '自动化控制' },
-      { name: '王五', role: '研发总监', domain: '电力电子' }
+      { name: '施林', role: '首席科学家', domain: '自动化控制' },
+      { name: '潘涛', role: '研发总监', domain: '电力电子' }
+    ,
+      { name: '姜辉', patentCount: 52, title: '核心发明人/核心成员' }
     ],
     similarPatents: [
       { patentNo: 'CN11130143A', title: '一种基于机器视觉的自动化校准方法' }
