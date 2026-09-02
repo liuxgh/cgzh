@@ -76,7 +76,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
-            打破产学研信息壁垒。在这里，企业可以直接穿透数十所“双一流”高校的底层数据库，通过 AI 智能体精准匹配解决您“卡脖子”痛点的核心专利、未公开技术与专家团队。
+            打破产学研信息壁垒。在这里，企业可以直接穿透数十所“双一流”高校的底层数据库，通过 AI 智能体精准匹配解决您“卡脖子”痛点的核心专利、非专利技术/成果与专家团队。
           </p>
           
           <div className="flex flex-wrap items-center gap-6 mt-8 pt-4">
@@ -86,7 +86,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
             </div>
             <div className="flex items-center gap-2 text-slate-300 font-medium">
               <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-              <span>海量未公开专有技术</span>
+              <span>海量非专利技术/成果</span>
             </div>
             <div className="flex items-center gap-2 text-slate-300 font-medium">
               <CheckCircle2 className="w-5 h-5 text-emerald-400" />
@@ -101,7 +101,7 @@ export const EnterpriseLandingPage: React.FC<Props> = ({ onSelectUniversity }) =
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
             <Network className="w-6 h-6 text-blue-600" />
-            已接入合作高校联盟
+            已接入高校
           </h2>
           <span className="text-sm font-bold text-slate-500">更多双一流高校持续接入中...</span>
         </div>

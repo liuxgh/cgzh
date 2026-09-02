@@ -21,19 +21,29 @@ import {
 interface PatentProductSearchHubProps {
   onSelectEnterprise: (enterprise: TargetEnterprise) => void;
   onSelectPatent?: (patent: PatentItem) => void;
-  onOpenAiAgentWithEnterprise?: (enterprise: TargetEnterprise) => void;
+  onOpenAiActionPlan?: (enterprise: TargetEnterprise) => void;
 }
 
 export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
   onSelectEnterprise,
-  onOpenAiAgentWithEnterprise
+  onOpenAiActionPlan
 }) => {
   const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [regionFilter, setRegionFilter] = useState<string>('all');
   const [industryFilter, setIndustryFilter] = useState<string>('all');
   const [selectedProduct, setSelectedProduct] = useState<PatentIntensiveProduct>(PATENT_INTENSIVE_PRODUCTS_DATA[0]);
 
   const filteredProducts = PATENT_INTENSIVE_PRODUCTS_DATA.filter(prod => {
     if (industryFilter !== 'all' && !prod.industryCategory.includes(industryFilter)) return false;
+    
+    if (regionFilter !== 'all') {
+      const ent = TARGET_ENTERPRISES_DATA.find(e => e.id === prod.targetEnterpriseId);
+      if (ent) {
+        if (regionFilter !== '其他' && !ent.province?.includes(regionFilter) && !ent.city?.includes(regionFilter)) return false;
+        if (regionFilter === '其他' && ['北京', '上海', '广东', '江苏', '浙江', '山东', '福建', '四川', '湖北'].some(r => ent.province?.includes(r) || ent.city?.includes(r))) return false;
+      }
+    }
+
     if (searchKeyword.trim()) {
       const q = searchKeyword.toLowerCase();
       const matchName = prod.productName.toLowerCase().includes(q) || prod.filingEnterprise.toLowerCase().includes(q);
@@ -51,6 +61,14 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
     }
   };
 
+  const handleOpenAiByProduct = (targetEnterpriseId: string) => {
+    if (!onOpenAiActionPlan) return;
+    const ent = TARGET_ENTERPRISES_DATA.find(e => e.id === targetEnterpriseId);
+    if (ent) {
+      onOpenAiActionPlan(ent);
+    }
+  };
+
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
       
@@ -65,7 +83,7 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-          通过专利密集型产品 ➔ 产品技术找企业
+          通过国家专利密集型产品找企业
         </h2>
         <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
           通过国家专利密集型产品备案公开数据，筛选已有高产值专利产品的制造企业，对接其技术升级需求与产学研意愿。
@@ -145,25 +163,9 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
                   >
                     <Building2 className="w-3.5 h-3.5" />
                     {prod.filingEnterprise}
-                    <ExternalLink className="w-3 h-3 text-slate-400" />
                   </span>
                 </div>
-                {(() => {
-                  const ent = TARGET_ENTERPRISES_DATA.find(e => e.id === prod.targetEnterpriseId);
-                  if (ent && ent.keyInventors && ent.keyInventors.length > 0) {
-                    return (
-                      <div className="flex items-center gap-2 pt-2 border-t border-slate-200/60 mt-1">
-                        <span className="text-slate-500">联系人：</span>
-                        <div className="flex gap-2">
-                           {ent.keyInventors.slice(0, 2).map((inv, idx) => (
-                             <span key={idx} className="font-semibold text-slate-800">{inv.name}</span>
-                           ))}
-                        </div>
-                      </div>
-                    );
-                  }
-                  return null;
-                })()}
+                
               </div>
 
               {/* Key Components */}
@@ -183,17 +185,22 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
               </div>
 
               {/* Card Footer Actions */}
-              <div className="pt-2 flex items-center justify-between text-sm">
-                <span className="text-slate-400 text-[11px]">
-                  核心发明专利保护：<strong className="text-slate-700 font-mono">{prod.corePatentsTotal} 项</strong>
-                </span>
+              <div className="pt-2 flex items-center justify-end gap-2 text-sm">
                 <button
                   onClick={() => handleOpenEnterpriseByProduct(prod.targetEnterpriseId)}
                   className="px-3.5 py-1.5 bg-[#003d80] hover:bg-blue-900 text-white font-bold rounded-xl flex items-center gap-1 transition-all shadow-xs"
                 >
-                  <span>查看企业详情</span>
+                  <span>查看企业画像</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
+                {onOpenAiActionPlan && (
+                  <button
+                    onClick={() => handleOpenAiByProduct(prod.targetEnterpriseId)}
+                    className="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl flex items-center gap-1 transition-all shadow-xs"
+                  >
+                    <span>AI撰写对接方案</span>
+                  </button>
+                )}
               </div>
             </div>
           );

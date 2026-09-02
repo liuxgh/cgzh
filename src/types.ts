@@ -1,5 +1,4 @@
-export type TabType = 
-  | 'overview' 
+export type TabType = 'enterprise-profile' | 'overview' 
   | 'patent-similar'
   | 'industry-chain'
   | 'patent-product'
@@ -91,6 +90,17 @@ export interface TargetEnterprise {
   rdRatio: string;
   patentTotalCount: number;
   inventionPatentCount: number;
+  
+  // 工商及联系信息
+  legalRep?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  website?: string;
+  establishedDate?: string;
+  businessScope?: string;
+  status?: string;
+  oldName?: string;
   
   // 匹配路径与匹配度
   matchSource: 'similar_patent' | 'industry_chain' | 'patent_product' | 'multi_dimension';

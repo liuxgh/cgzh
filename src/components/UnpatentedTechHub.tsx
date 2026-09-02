@@ -61,10 +61,10 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole }) => {
         <div>
           <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
             <Briefcase className="w-6 h-6 text-[#0F52BA]" />
-            未入库技术 / 专有技术 平台
+            非专利技术、成果
           </h2>
           <p className="text-sm text-slate-500 mt-1">
-            {isEnterprise ? '浏览吉林大学专家发布的高价值前沿专有技术，获取尚未形成专利的隐形技术资产。' : '供吉林大学教师发布尚未形成专利（或不宜公开申请专利）的核心技术成果，供系统在后台为企业进行加密匹配。'}
+            {isEnterprise ? '浏览吉林大学专家发布的高价值前沿专有技术，获取尚未形成专利的隐形技术资产。' : '供吉林大学教师发布尚未形成专利的核心技术成果。'}
           </p>
         </div>
         {!isEnterprise && (<button 
@@ -72,7 +72,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole }) => {
           className="flex items-center gap-2 px-5 py-2.5 bg-[#0F52BA] text-white rounded-xl font-bold hover:bg-[#082C6C] transition-colors shrink-0"
         >
           <Plus className="w-5 h-5" />
-          发布未入库技术
+          发布非专利技术/成果
         </button>)}
       </div>
 
@@ -86,7 +86,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole }) => {
           </div>
           <input 
             type="text" 
-            placeholder="在海量未公开的隐形专有技术资产池中探索..."
+            placeholder="在海量非专利的隐形专有技术资产池中探索..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full py-4 px-2 text-base bg-transparent border-none focus:outline-hidden text-slate-700 placeholder-slate-400"
@@ -130,7 +130,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole }) => {
               </div>
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-semibold text-slate-700">联系人及院系</label>
+              <label className="text-sm font-semibold text-slate-700">主要发明人及院系</label>
               <input required value={formData.contact} onChange={e => setFormData({...formData, contact: e.target.value})} type="text" className="w-full px-4 py-2 rounded-xl border border-blue-200 bg-white focus:outline-hidden focus:border-blue-400" placeholder="例如：张教授 (化学学院)" />
             </div>
             <div className="space-y-1">

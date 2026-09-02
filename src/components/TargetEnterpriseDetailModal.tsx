@@ -28,14 +28,14 @@ interface TargetEnterpriseDetailModalProps {
   enterprise: TargetEnterprise | null;
   onClose: () => void;
   onSelectJluPatentForMatch?: (patent: PatentItem) => void;
-  onOpenAiAgentWithEnterprise?: (enterprise: TargetEnterprise) => void;
+  onOpenAiActionPlan?: (enterprise: TargetEnterprise) => void;
 }
 
 export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalProps> = ({
   isOpen,
   enterprise,
   onClose,
-  onOpenAiAgentWithEnterprise
+  onOpenAiActionPlan
 }) => {
   const [copied, setCopied] = useState(false);
   const [activeSubTab, setActiveSubTab] = useState<'similar_patents' | 'chain_position' | 'patent_products'>('similar_patents');
@@ -43,7 +43,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
   if (!isOpen || !enterprise) return null;
 
   const handleCopyContact = () => {
-    const text = `【吉大科技成果对接 - 目标企业联络人】\n企业：${enterprise.name}\n部门/职务：${enterprise.contact.dept} / ${enterprise.contact.title}\n联系人：${enterprise.contact.contactPerson}\n电话：${enterprise.contact.phone}\n邮箱：${enterprise.contact.email}\n建议对接策略：${enterprise.contact.suggestedApproach}`;
+    const text = `【吉大科技成果对接 - 目标企业联络人】\n企业：${enterprise.name}\n部门/职务：${enterprise.contact.dept} / ${enterprise.contact.title}\n主要发明人：${enterprise.contact.contactPerson}\n电话：${enterprise.contact.phone}\n邮箱：${enterprise.contact.email}\n建议对接策略：${enterprise.contact.suggestedApproach}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -78,16 +78,16 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                 </div>
               </div>
               
-              {onOpenAiAgentWithEnterprise && (
+              {onOpenAiActionPlan && (
                 <button
                   onClick={() => {
                     onClose();
-                    onOpenAiAgentWithEnterprise(enterprise);
+                    onOpenAiActionPlan(enterprise);
                   }}
                   className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl flex items-center gap-2 transition-all shadow-[0_4px_12px_rgba(16,185,129,0.3)] hover:shadow-[0_6px_16px_rgba(16,185,129,0.4)] shrink-0"
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>AI智能体转化分析</span>
+                  <span>AI撰写对接方案</span>
                 </button>
               )}
             </div>
@@ -107,7 +107,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                 <>
                   <div className="w-px h-8 bg-white/10 hidden md:block" />
                   <div className="bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
-                    <span className="text-blue-100 block text-[11px] mb-0.5">联系人</span>
+                    <span className="text-blue-100 block text-[11px] mb-0.5">主要发明人</span>
                     <div className="flex gap-3">
                       {enterprise.keyInventors.slice(0, 2).map((inv, idx) => (
                         <span key={idx} className="font-bold text-white text-sm">{inv.name}</span>
@@ -301,16 +301,16 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             >
               关闭
             </button>
-            {onOpenAiAgentWithEnterprise && (
+            {onOpenAiActionPlan && (
               <button
                 onClick={() => {
                   onClose();
-                  onOpenAiAgentWithEnterprise(enterprise);
+                  onOpenAiActionPlan(enterprise);
                 }}
                 className="px-4 py-2 bg-[#003d80] hover:bg-blue-900 text-white rounded-xl font-bold flex items-center gap-1.5 transition-all shadow-xs"
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>进入AI智能体自动撰写转化报告</span>
+                <span>AI撰写对接方案</span>
               </button>
             )}
           </div>

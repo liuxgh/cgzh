@@ -3,7 +3,7 @@ import { PatentItem, EnterpriseDemand } from '../types';
 export const INITIAL_PATENTS: PatentItem[] = [
   {
     id: 'pat-001',
-    patentNo: 'CN202310892341.2',
+    patentNo: 'CN116892341B',
     title: '一种面向智能新能源商用车的线控电液复合制动系统与能量回收控制方法',
     college: '',
     inventor: '高镇海',
@@ -43,7 +43,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-002',
-    patentNo: 'CN202210564319.8',
+    patentNo: 'CN116564319B',
     title: '高色纯度热激活延迟荧光(TADF)超分子蓝光发光材料及其OLED器件制备工艺',
     college: '',
     inventor: '马於光',
@@ -82,7 +82,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-003',
-    patentNo: 'CN202311239845.0',
+    patentNo: 'CN116239845B',
     title: '高精度皮秒激光超快加工微纳传感芯片与曲面微结构光栅系统',
     college: '',
     inventor: '孙洪波',
@@ -120,7 +120,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-004',
-    patentNo: 'CN202310129871.4',
+    patentNo: 'CN116129871B',
     title: '靶向抗肿瘤长白山人参稀有皂苷Rg3/Rh2高效酶促转化与纳米脂质体载药制剂',
     college: '',
     inventor: '李研',
@@ -158,7 +158,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-005',
-    patentNo: 'CN202211456209.1',
+    patentNo: 'CN116456209B',
     title: '东北黑土地全秸秆覆盖免耕少耕播种机防堵与智能压实破土装置',
     college: '',
     inventor: '杨印生',
@@ -196,7 +196,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-006',
-    patentNo: 'CN202310654120.6',
+    patentNo: 'CN116654120B',
     title: '复杂地层深部科学钻探智能化自适应钻进参数控制系统及井下感知装置',
     college: '',
     inventor: '孙友宏',
@@ -234,7 +234,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-007',
-    patentNo: 'CN202310782390.5',
+    patentNo: 'CN116782390B',
     title: '高强塑韧耐热稀土镁合金车身大型一体化压铸成形工艺及熔炼保护技术',
     college: '',
     inventor: '张志清',
@@ -272,7 +272,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-008',
-    patentNo: 'CN202311490218.3',
+    patentNo: 'CN116490218B',
     title: '基于多模态大模型协同的小样本工业表面精密微瑕疵视觉智能检测系统',
     college: '',
     inventor: '杨博',
@@ -310,7 +310,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-009',
-    patentNo: 'CN202210884910.7',
+    patentNo: 'CN116884910B',
     title: '空地一体化高精度航空低温超导全张量磁力梯度仪与地下隐伏构造反演系统',
     college: '',
     inventor: '林君',
@@ -348,7 +348,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-010',
-    patentNo: 'CN202310542389.9',
+    patentNo: 'CN116542389B',
     title: '六自由度脊柱与骨科微创手术辅助穿刺机器人末端柔顺力控装置与导航系统',
     college: '',
     inventor: '赵宏伟',
@@ -386,7 +386,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-011',
-    patentNo: 'CN202211320489.1',
+    patentNo: 'CN116320489B',
     title: '基于重组人白蛋白与特异性多肽偶联的靶向纳米递送系统及制备方法',
     college: '',
     inventor: '滕乐生',
@@ -424,7 +424,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
   },
   {
     id: 'pat-012',
-    patentNo: 'CN202310459812.8',
+    patentNo: 'CN116459812B',
     title: '耐500℃高温超强韧聚芳醚酮(PEEK)热塑性复合材料预浸料及其连续拉挤成型技术',
     college: '',
     inventor: '张海博',

@@ -10,7 +10,8 @@ import { PatentSimilarSearchHub } from './components/PatentSimilarSearchHub';
 import { IndustryChain57Hub } from './components/IndustryChain57Hub';
 import { PatentProductSearchHub } from './components/PatentProductSearchHub';
 import { AiEnterpriseAgent } from './components/AiEnterpriseAgent';
-import { TargetEnterpriseDetailModal } from './components/TargetEnterpriseDetailModal';
+import { AiActionPlanPage } from './components/AiActionPlanPage';
+import { EnterpriseProfilePage } from './components/EnterpriseProfilePage';
 
 import { UnpatentedTechHub } from './components/UnpatentedTechHub';
 import { EnterpriseLandingPage } from './components/EnterpriseLandingPage';
@@ -50,6 +51,8 @@ function AppContent() {
   const [selectedPatent, setSelectedPatent] = useState<PatentItem | null>(INITIAL_PATENTS[0]);
   const [selectedPatentForDetailModal, setSelectedPatentForDetailModal] = useState<PatentItem | null>(null);
   const [selectedEnterpriseForDetailModal, setSelectedEnterpriseForDetailModal] = useState<TargetEnterprise | null>(null);
+  const [selectedEnterpriseForActionPlan, setSelectedEnterpriseForActionPlan] = useState<TargetEnterprise | null>(null);
+  const [previousTab, setPreviousTab] = useState<TabType>('overview');
   const [isNewPatentModalOpen, setIsNewPatentModalOpen] = useState(false);
 
   // Quick Agent queries
@@ -80,13 +83,9 @@ function AppContent() {
     setTimeout(() => setGlobalToastMessage(null), 3500);
   };
 
-  // Launch AI Agent with specific enterprise
-  const handleOpenAiAgentWithEnterprise = (enterprise: TargetEnterprise) => {
-    setAgentInitialEnterprise(enterprise);
-    setAgentInitialQuery(enterprise.name);
-    setActiveTab('ai-agent');
-    setGlobalToastMessage(`已锁定目标企业「${enterprise.name}」，AI 智能体正在生成专属对接策略`);
-    setTimeout(() => setGlobalToastMessage(null), 3500);
+  // Launch AI Action Plan for specific enterprise
+  const handleOpenAiActionPlan = (enterprise: TargetEnterprise) => {
+    setSelectedEnterpriseForActionPlan(enterprise);
   };
 
   // Add new patent handler
@@ -104,7 +103,11 @@ function AppContent() {
       {/* Global SaaS Header */}
       <Header
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          setSelectedEnterpriseForDetailModal(null);
+          setSelectedEnterpriseForActionPlan(null);
+        }}
         userRole={userRole}
         onRoleChange={handleRoleChange}
         onSearchSubmit={handleSearchSubmit}
@@ -117,13 +120,32 @@ function AppContent() {
 
       {/* Main SaaS Workspace Container */}
       <main className={`flex-1 w-full ${activeTab === 'tech-map' ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6'}`}>
+        {selectedEnterpriseForActionPlan ? (
+          <AiActionPlanPage
+            enterprise={selectedEnterpriseForActionPlan}
+            activePatent={selectedPatent || patents[0]}
+            onBack={() => setSelectedEnterpriseForActionPlan(null)}
+          />
+        ) : selectedEnterpriseForDetailModal ? (
+          <EnterpriseProfilePage 
+            enterprise={selectedEnterpriseForDetailModal}
+            onBack={() => setSelectedEnterpriseForDetailModal(null)}
+          />
+        ) : (
+          <>
+
         
         {/* TAB 1: OVERVIEW DASHBOARD */}
         {activeTab === 'overview' && (
           <OverviewDashboard
             patents={patents}
-            setActiveTab={setActiveTab}
+            setActiveTab={(tab) => {
+          setActiveTab(tab);
+          setSelectedEnterpriseForDetailModal(null);
+          setSelectedEnterpriseForActionPlan(null);
+        }}
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+            onOpenAiActionPlan={handleOpenAiActionPlan}
             onSelectPatent={(p) => {
               setSelectedPatent(p);
               setSelectedPatentForDetailModal(p);
@@ -139,19 +161,19 @@ function AppContent() {
             selectedPatent={selectedPatent}
             onSelectPatent={(p) => setSelectedPatent(p)}
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
-            onOpenAiAgentWithEnterprise={handleOpenAiAgentWithEnterprise}
-          />
+            onOpenAiActionPlan={handleOpenAiActionPlan}
+/>
         )}
 
         {/* TAB 3: PATH 2 - 57 INDUSTRY CHAINS */}
         {activeTab === 'industry-chain' && (
           <IndustryChain57Hub
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+            onOpenAiActionPlan={handleOpenAiActionPlan}
             onSelectPatent={(p) => {
               setSelectedPatent(p);
               setSelectedPatentForDetailModal(p);
             }}
-            onOpenAiAgentWithEnterprise={handleOpenAiAgentWithEnterprise}
           />
         )}
 
@@ -159,11 +181,11 @@ function AppContent() {
         {activeTab === 'patent-product' && (
           <PatentProductSearchHub
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+            onOpenAiActionPlan={handleOpenAiActionPlan}
             onSelectPatent={(p) => {
               setSelectedPatent(p);
               setSelectedPatentForDetailModal(p);
             }}
-            onOpenAiAgentWithEnterprise={handleOpenAiAgentWithEnterprise}
           />
         )}
 
@@ -174,6 +196,7 @@ function AppContent() {
             initialQuery={agentInitialQuery}
             initialEnterprise={agentInitialEnterprise}
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+            onOpenAiActionPlan={handleOpenAiActionPlan}
           />
         )}
 
@@ -206,15 +229,12 @@ function AppContent() {
         
         
 
+          </>
+        )}
       </main>
 
       {/* Target Enterprise Full Dossier Modal */}
-      <TargetEnterpriseDetailModal
-        isOpen={Boolean(selectedEnterpriseForDetailModal)}
-        enterprise={selectedEnterpriseForDetailModal}
-        onClose={() => setSelectedEnterpriseForDetailModal(null)}
-        onOpenAiAgentWithEnterprise={handleOpenAiAgentWithEnterprise}
-      />
+      
 
       {/* Patent Detail Modal */}
       <PatentDetailModal

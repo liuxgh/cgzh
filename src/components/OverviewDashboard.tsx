@@ -1,4 +1,5 @@
 import React from 'react';
+import { JluTechAdvantageShowcase } from './JluTechAdvantageShowcase';
 import { TabType, PatentItem, TargetEnterprise } from '../types';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { INDUSTRY_CHAINS_57_DATA } from '../data/industryChains57Data';
@@ -19,6 +20,8 @@ import {
   ExternalLink,
   ChevronRight,
   Search,
+  Inbox,
+  ChevronLeft,
   CheckCircle2,
   Cpu
 } from 'lucide-react';
@@ -29,6 +32,7 @@ interface OverviewDashboardProps {
   setActiveTab: (tab: TabType) => void;
   onSelectEnterprise: (enterprise: TargetEnterprise) => void;
   onSelectPatent: (patent: PatentItem) => void;
+  onOpenAiActionPlan?: (enterprise: TargetEnterprise) => void;
   onLaunchAiAgentWithQuery?: (query: string) => void;
 }
 
@@ -37,9 +41,16 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
   setActiveTab,
   onSelectEnterprise,
   onSelectPatent,
+  onOpenAiActionPlan,
   onLaunchAiAgentWithQuery
 }) => {
   const [quickQuery, setQuickQuery] = React.useState('');
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const itemsPerPage = 4;
+  
+  const totalPages = Math.ceil(TARGET_ENTERPRISES_DATA.length / itemsPerPage);
+  const currentEnterprises = TARGET_ENTERPRISES_DATA.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
 
   const handleQuickAgent = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,49 +111,9 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
         </div>
       </div>
 
-      {/* 2. Four Core Data Pillars (佰腾底层数据资产) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-3 hover:border-blue-400/50 transition-colors">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
-            <FileText className="w-5 h-5" />
-          </div>
-          <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">全球专利数据底座</span>
-            <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">2 亿+</div>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-3 hover:border-emerald-400/50 transition-colors">
-          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
-            <Package className="w-5 h-5" />
-          </div>
-          <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">专利密集型产品备案公开数据</span>
-            <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">20 万+</div>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-3 hover:border-purple-400/50 transition-colors">
-          <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100">
-            <Building2 className="w-5 h-5" />
-          </div>
-          <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">企业工商数据</span>
-            <div className="text-2xl font-black text-slate-900 font-mono tracking-tight">165 万+</div>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-3 hover:border-indigo-400/50 transition-colors">
-          <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
-            <Layers className="w-5 h-5" />
-          </div>
-          <div>
-            <span className="text-sm text-slate-500 font-semibold block mb-1">重点产业链</span>
-            <div className="text-2xl font-black text-slate-900 tracking-tight">57+</div>
-          </div>
-        </div>
+      <div className="mt-2">
+        <JluTechAdvantageShowcase onNavigateToFullMap={() => setActiveTab('tech-map')} />
       </div>
-
       {/* 3. Three Core Enterprise Discovery Paths (三大靶向寻客路径直接入口) */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
@@ -242,7 +213,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
               </div>
 
               <h4 className="text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors">
-                通过专利密集型产品 ➔ 产品技术找企业
+                通过国家专利密集型产品找企业
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
@@ -305,8 +276,17 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {TARGET_ENTERPRISES_DATA.map((ent) => (
+        {TARGET_ENTERPRISES_DATA.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-4">
+              <Inbox className="w-8 h-8 text-slate-300" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-800 mb-2">暂无重点推荐企业</h3>
+            <p className="text-sm text-slate-500 max-w-md">靶向企业库正在持续扩充中，敬请期待。</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {currentEnterprises.map((ent) => (
             <div
               key={ent.id}
               onClick={() => onSelectEnterprise(ent)}
@@ -324,47 +304,118 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                   
                 </div>
 
-                <div className="mt-3 grid grid-cols-2 gap-y-2 gap-x-4 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-[12px] text-slate-600">
-                  <div>
-                    企业地址：<span className="font-semibold text-slate-800">{ent.location || '-'}</span>
+                <div className="mt-3 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-[12px] text-slate-600 flex flex-col gap-2">
+                  <div className="grid grid-cols-2 gap-y-2 gap-x-4">
+                    <div>
+                      成立日期：<span className="font-semibold text-slate-800">{ent.establishedDate || '2011-05-18'}</span>
+                    </div>
+                    <div>
+                      注册资本：<span className="font-semibold text-slate-800">{ent.registeredCapital || '-'}</span>
+                    </div>
+                    <div className="truncate" title={ent.email || '暂无'}>
+                      公司邮箱：<span className="font-semibold text-slate-800">{ent.email || 'contact@' + (ent.creditCode?.substring(0,6) || 'qiye') + '.com'}</span>
+                    </div>
+                    <div>
+                      公司电话：<span className="font-semibold text-slate-800">{ent.phone || '暂无'}</span>
+                    </div>
                   </div>
-                  <div>
-                    注册资本：<span className="font-semibold text-slate-800">{ent.registeredCapital || '-'}</span>
-                  </div>
-                  <div>
-                    专利总数：<span className="font-semibold text-slate-800">{ent.patentTotalCount || 0}项</span>
-                  </div>
-                  <div>
-                    备案产品：<span className="font-semibold text-slate-800">{ent.patentProducts?.length || 0}款</span>
+                  <div className="pt-2 border-t border-slate-200 mt-1 truncate" title={(ent.location || '') + (ent.address || '')}>
+                    企业地址：<span className="font-semibold text-slate-800">{ent.location || '-'}{ent.address ? ' ' + ent.address : ''}</span>
                   </div>
                 </div>
 
-                {ent.keyInventors && ent.keyInventors.length > 0 && (
-                  <div className="mt-3 bg-blue-50/50 p-2.5 rounded-lg border border-blue-100 flex items-start gap-2 text-[12px]">
-                     <div className="text-blue-600 font-bold whitespace-nowrap shrink-0">联系人:</div>
-                     <div className="text-slate-600 flex flex-wrap gap-x-3 gap-y-1">
-                        {ent.keyInventors.slice(0, 2).map((inv, idx) => (
-                           <span key={idx} className="flex items-center gap-1">
-                             <span className="text-slate-800 font-semibold">{inv.name}</span>
-                           </span>
-                        ))}
-                     </div>
-                  </div>
-                )}
+                
               </div>
 
               <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-sm">
-                <div></div>
                 <span className="text-[#0F52BA] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  <span>查看企业画像全景</span>
+                  <span>查看企业画像</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </span>
+                {onOpenAiActionPlan && (
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenAiActionPlan(ent);
+                    }}
+                    className="text-white bg-[#0F52BA] px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 shadow-sm hover:bg-[#082C6C] hover:shadow-md transition-all text-xs"
+                  >
+                    AI撰写对接方案
+                  </button>
+                )}
               </div>
             </div>
           ))}
         </div>
+        )}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 pt-6">
+            <button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <div className="text-sm font-medium text-slate-600">
+              第 <span className="text-slate-900 font-bold">{currentPage}</span> 页，共 {totalPages} 页
+            </div>
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
       </div>
 
+      <div className="mt-12 pt-8 border-t border-slate-200">
+        <div className="text-center text-xs font-bold text-slate-400 mb-6 tracking-widest">—— 底层数据资源支持 ——</div>
+      {/* 底层数据资源支持 */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100 flex flex-col gap-2 hover:bg-white hover:shadow-sm transition-all text-slate-500 blue-400/50 transition-colors">
+          <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
+            <FileText className="w-5 h-5" />
+          </div>
+          <div>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">全球专利数据底座</span>
+            <div className="text-xl font-bold text-slate-700 font-mono tracking-tight">2 亿+</div>
+          </div>
+        </div>
+
+        <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100 flex flex-col gap-2 hover:bg-white hover:shadow-sm transition-all text-slate-500 emerald-400/50 transition-colors">
+          <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
+            <Package className="w-5 h-5" />
+          </div>
+          <div>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">专利密集型产品备案公开数据</span>
+            <div className="text-xl font-bold text-slate-700 font-mono tracking-tight">20 万+</div>
+          </div>
+        </div>
+
+        <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100 flex flex-col gap-2 hover:bg-white hover:shadow-sm transition-all text-slate-500 purple-400/50 transition-colors">
+          <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100">
+            <Building2 className="w-5 h-5" />
+          </div>
+          <div>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">企业工商数据</span>
+            <div className="text-xl font-bold text-slate-700 font-mono tracking-tight">165 万+</div>
+          </div>
+        </div>
+
+        <div className="bg-slate-50/60 p-4 rounded-xl border border-slate-100 flex flex-col gap-2 hover:bg-white hover:shadow-sm transition-all text-slate-500 indigo-400/50 transition-colors">
+          <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
+            <Layers className="w-5 h-5" />
+          </div>
+          <div>
+            <span className="text-sm text-slate-500 font-semibold block mb-1">重点产业链</span>
+            <div className="text-xl font-bold text-slate-700 tracking-tight">57+</div>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   );
 };

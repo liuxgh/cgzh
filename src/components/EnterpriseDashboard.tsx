@@ -35,7 +35,7 @@ export const EnterpriseDashboard: React.FC<Props> = ({ onSearch, onNavigate }) =
             </span>
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl">
-            输入您的技术需求或面临的痛点，AI智能体将为您从海量高校成果库及未公开专有技术中，精准匹配解决方案与核心研发团队。
+            输入您的技术需求或面临的痛点，AI智能体将为您从海量高校成果库及非专利技术/成果中，精准匹配解决方案与核心研发团队。
           </p>
           
           <form onSubmit={handleSearch} className="relative max-w-2xl mt-8">
@@ -88,7 +88,7 @@ export const EnterpriseDashboard: React.FC<Props> = ({ onSearch, onNavigate }) =
             <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <BookOpen className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-black text-slate-900 mb-2">未公开成果</h3>
+            <h3 className="text-xl font-black text-slate-900 mb-2">非专利技术/成果</h3>
             <p className="text-sm text-slate-500 leading-relaxed">
               浏览高校教师发布的高价值专有技术成果，获取那些尚未形成专利的“隐形资产”。
             </p>

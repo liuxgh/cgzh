@@ -55,14 +55,14 @@ export const Header: React.FC<HeaderProps> = ({
     { key: 'industry-chain', label: '产业链找企业', icon: Layers },
     { key: 'patent-product', label: '专利产品找企业', icon: Package },
     { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit, highlight: true },
-    { key: 'unpatented-tech', label: '未入库技术', icon: Award }
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
   ] : (selectedUniversity ? [
-    { key: 'tech-map', label: '吉大技术图谱', icon: Compass, highlight: true },
-    { key: 'tech-search', label: '吉大技术寻源 (AI)', icon: Search },
-    { key: 'unpatented-tech', label: '未公开成果池', icon: Award }
+    { key: 'tech-map', label: '成果技术图谱', icon: Compass, highlight: true },
+    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
   ] : [
-    { key: 'enterprise-landing', label: '全国高校联盟大厅', icon: Building2, highlight: true },
-    { key: 'tech-search', label: '全网技术寻源 (AI)', icon: Search }
+    { key: 'enterprise-landing', label: '首页', icon: Building2, highlight: true },
+    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search }
   ]);
 
   const handleSearch = (e: React.FormEvent) => {

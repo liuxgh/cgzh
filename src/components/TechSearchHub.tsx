@@ -54,7 +54,7 @@ export const TechSearchHub: React.FC<Props> = ({ query, onBack, universityScope 
       id: 'res-2',
       type: 'knowhow',
       title: '新型固态电池高离子电导率电解质配方',
-      no: '未公开专有技术',
+      no: '非专利技术/成果',
       universityId: 'seu',
       university: '东南大学',
       description: '经实验室验证室温离子电导率达到10^-3 S/cm量级，尚未申请专利，作为技术秘密寻求电池智造头部企业联合开发。',
@@ -110,7 +110,7 @@ export const TechSearchHub: React.FC<Props> = ({ query, onBack, universityScope 
     : allSearchResults;
 
   const isGlobalSearch = !universityScope;
-  const pageTitle = isGlobalSearch ? '全网技术寻源 (AI)' : '吉大技术寻源 (AI)';
+  const pageTitle = 'AI智能匹配技术';
 
   return (
     <div className="space-y-6 animate-in fade-in pb-12">
@@ -196,7 +196,7 @@ export const TechSearchHub: React.FC<Props> = ({ query, onBack, universityScope 
              <div key={res.id} className={`border ${res.type === 'patent' ? 'border-blue-100 bg-blue-50/20' : 'border-emerald-100 bg-emerald-50/20'} rounded-2xl p-6 relative overflow-hidden transition-all hover:shadow-md`}>
                {res.type === 'knowhow' && (
                  <div className="absolute top-4 right-[-30px] rotate-45 bg-emerald-500 text-white text-[10px] font-bold py-1 w-32 text-center shadow-sm">
-                   未公开专有技术
+                   非专利技术/成果
                  </div>
                )}
                

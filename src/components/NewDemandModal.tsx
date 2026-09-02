@@ -167,7 +167,7 @@ export const NewDemandModal: React.FC<NewDemandModalProps> = ({ isOpen, onClose,
 
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="text-slate-700 font-bold block mb-1">企业对接联系人</label>
+              <label className="text-slate-700 font-bold block mb-1">企业对接主要发明人</label>
               <input
                 type="text"
                 placeholder="例如：李经理"

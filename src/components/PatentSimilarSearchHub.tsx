@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PatentItem, TargetEnterprise } from '../types';
+import { RegionFilter } from './RegionFilter';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { 
   ShieldCheck, 
-  Search, 
+  Search,
+  Inbox,
+  ChevronLeft, 
   Building2, 
   Sparkles, 
   ChevronRight, 
@@ -23,7 +26,7 @@ interface PatentSimilarSearchHubProps {
   selectedPatent: PatentItem | null;
   onSelectPatent: (patent: PatentItem) => void;
   onSelectEnterprise: (enterprise: TargetEnterprise) => void;
-  onOpenAiAgentWithEnterprise?: (enterprise: TargetEnterprise) => void;
+  onOpenAiActionPlan?: (enterprise: TargetEnterprise) => void;
 }
 
 export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
@@ -31,7 +34,7 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
   selectedPatent,
   onSelectPatent,
   onSelectEnterprise,
-  onOpenAiAgentWithEnterprise
+  onOpenAiActionPlan
 }) => {
   const [currentPatentId, setCurrentPatentId] = useState<string>(selectedPatent?.id || patents[0]?.id || 'pat-001');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -57,9 +60,18 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
   );
 
   const [similarityThreshold, setSimilarityThreshold] = useState<number>(85);
-  const [enterpriseTypeFilter, setEnterpriseTypeFilter] = useState<string>('all');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 10;
+  const [regionFilter, setRegionFilter] = useState<{p: string, c: string, d: string}>({p: 'all', c: 'all', d: 'all'});
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
+  const [patentScaleFilter, setPatentScaleFilter] = useState<string>('all');
+  const [capitalFilter, setCapitalFilter] = useState<string>('all');
+
+  
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchKeyword, regionFilter.p, regionFilter.c, regionFilter.d, currentPatentId, patentScaleFilter, capitalFilter]);
 
   const activePatent = patents.find(p => p.id === currentPatentId) || patents[0];
 
@@ -73,15 +85,45 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
 
   // Filter enterprises matched by similar patents
   const matchedEnterprises = TARGET_ENTERPRISES_DATA.filter(ent => {
-    if (enterpriseTypeFilter !== 'all' && ent.enterpriseType !== enterpriseTypeFilter) return false;
+    
+    // Region Logic
+    if (regionFilter.p !== 'all' && !ent.province?.includes(regionFilter.p) && !ent.city?.includes(regionFilter.p)) return false;
+    if (regionFilter.c !== 'all' && !ent.city?.includes(regionFilter.c)) return false;
+    if (regionFilter.d !== 'all' && !ent.address?.includes(regionFilter.d) && !ent.location?.includes(regionFilter.d)) return false;
+
+    
+    if (patentScaleFilter !== 'all') {
+      const count = ent.patentTotalCount || 0;
+      if (patentScaleFilter === '1000+' && count < 1000) return false;
+      if (patentScaleFilter === '100-1000' && (count < 100 || count >= 1000)) return false;
+      if (patentScaleFilter === '0-100' && count >= 100) return false;
+    }
+    
+    if (capitalFilter !== 'all') {
+      // 简单处理包含"万"的字符串，转成数字比较
+      let capitalStr = (ent.registeredCapital || '').replace(/[^0-9.]/g, '');
+      let capital = parseFloat(capitalStr) || 0;
+      if (ent.registeredCapital && ent.registeredCapital.includes('亿')) {
+        capital = capital * 10000; // 亿转万
+      }
+      if (capitalFilter === '10000+' && capital < 10000) return false;
+      if (capitalFilter === '5000-10000' && (capital < 5000 || capital >= 10000)) return false;
+      if (capitalFilter === '1000-5000' && (capital < 1000 || capital >= 5000)) return false;
+    }
+
     if (searchKeyword.trim()) {
       const q = searchKeyword.toLowerCase();
       const matchName = ent.name.toLowerCase().includes(q) || ent.shortName.toLowerCase().includes(q);
-      const matchPatent = ent.similarPatents?.some(p => p.title.toLowerCase().includes(q) || p.patentNo.toLowerCase().includes(q));
-      if (!matchName && !matchPatent) return false;
+      if (!matchName) return false;
     }
     return true;
   });
+
+  const totalPages = Math.ceil(matchedEnterprises.length / itemsPerPage);
+  const paginatedEnterprises = matchedEnterprises.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
@@ -190,30 +232,78 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
         )}
       </div>
 
-      {/* Matching Results Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <Building2 className="w-5 h-5 text-[#0F52BA]" />
-          <h3 className="text-lg font-black text-slate-900">
-            已成功匹配到 <span className="text-[#0F52BA] font-mono">{matchedEnterprises.length}</span> 家拥有高度相近专利的全国靶向企业
-          </h3>
+      {/* Matching Results Header & Advanced Filters */}
+      <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex flex-1 items-center gap-2">
+            <Building2 className="w-5 h-5 shrink-0 text-[#0F52BA]" />
+            <h3 className="text-lg font-black text-slate-900">
+              基于佰腾大数据，精准匹配到 <span className="text-[#0F52BA] font-mono text-2xl">{matchedEnterprises.length}</span> 家靶向企业
+            </h3>
+          </div>
+          <div className="flex w-full sm:w-auto items-center gap-3">
+            <div className="relative flex-1 sm:w-64">
+              <input
+                type="text"
+                value={searchKeyword}
+                onChange={(e) => setSearchKeyword(e.target.value)}
+                placeholder="搜索企业名称..."
+                className="w-full bg-white border border-[#D8E2F0] rounded-xl px-4 py-2 pl-9 text-sm text-slate-900 focus:outline-hidden focus:border-[#0F52BA] shadow-sm"
+              />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+            </div>
+          </div>
         </div>
+        
+        <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-200">
+          <span className="text-sm font-bold text-slate-600 flex items-center gap-1.5 mr-2">
+            <Filter className="w-4 h-4 text-[#0F52BA]" /> 过滤:
+          </span>
+          <RegionFilter onFilterChange={(p, c, d) => setRegionFilter({p, c, d})} />
 
-        <div className="relative w-full sm:w-64">
-          <input
-            type="text"
-            value={searchKeyword}
-            onChange={(e) => setSearchKeyword(e.target.value)}
-            placeholder="搜索企业名或专利关键词..."
-            className="w-full bg-white border border-[#D8E2F0] rounded-xl px-3 py-1.5 pl-8 text-sm text-slate-900 focus:outline-hidden focus:border-[#0F52BA]"
-          />
-          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+          <select
+            value={patentScaleFilter}
+            onChange={(e) => setPatentScaleFilter(e.target.value)}
+            className="bg-white border border-[#D8E2F0] rounded-xl px-3 py-1.5 text-sm text-slate-700 focus:outline-none focus:border-[#0F52BA] shadow-sm font-medium"
+          >
+            <option value="all">专利保有量 (不限)</option>
+            <option value="1000+">1000件以上 (研发巨头)</option>
+            <option value="100-1000">100-1000件 (研发中坚)</option>
+            <option value="0-100">100件以下</option>
+          </select>
+          <select
+            value={capitalFilter}
+            onChange={(e) => setCapitalFilter(e.target.value)}
+            className="bg-white border border-[#D8E2F0] rounded-xl px-3 py-1.5 text-sm text-slate-700 focus:outline-none focus:border-[#0F52BA] shadow-sm font-medium"
+          >
+            <option value="all">注册资本 (不限)</option>
+            <option value="10000+">1亿元以上</option>
+            <option value="5000-10000">5000万-1亿元</option>
+            <option value="1000-5000">1000万-5000万元</option>
+          </select>
         </div>
       </div>
 
       {/* Matched Enterprise Cards List with Side-by-Side Similar Patent Comparison */}
       <div className="space-y-4">
-        {matchedEnterprises.map((enterprise) => (
+        {matchedEnterprises.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-4">
+              <Inbox className="w-8 h-8 text-slate-300" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-800 mb-2">未找到符合条件的企业</h3>
+            <p className="text-sm text-slate-500 max-w-md">当前过滤条件下没有匹配的靶向企业，请尝试放宽筛选条件，或重置区域与规模限制。</p>
+            <button onClick={() => {
+              setRegionFilter({p: 'all', c: 'all', d: 'all'});
+              setPatentScaleFilter('all');
+              setCapitalFilter('all');
+              setSearchKeyword('');
+            }} className="mt-6 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-blue-600 hover:bg-blue-50 transition-colors shadow-sm">
+              重置筛选条件
+            </button>
+          </div>
+        ) : (
+        paginatedEnterprises.map((enterprise) => (
           <div
             key={enterprise.id}
             className="bg-white rounded-3xl p-6 border border-[#D8E2F0] shadow-xs hover:shadow-md hover:border-[#0F52BA] transition-all space-y-4"
@@ -233,7 +323,6 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                   className="text-xl font-black text-slate-900 hover:text-[#0F52BA] cursor-pointer flex items-center gap-2"
                 >
                   {enterprise.name}
-                  <ExternalLink className="w-4 h-4 text-slate-400" />
                 </h4>
               </div>
 
@@ -243,9 +332,17 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                   onClick={() => onSelectEnterprise(enterprise)}
                   className="px-4 py-2.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-xl text-sm font-bold transition-all shadow-xs flex items-center gap-1.5 shrink-0 cursor-pointer"
                 >
-                  <span>查看企业完整档案</span>
+                  <span>查看企业画像</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
+                {onOpenAiActionPlan && (
+                  <button 
+                    onClick={() => onOpenAiActionPlan(enterprise)}
+                    className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-bold transition-all shadow-xs flex items-center gap-1.5 shrink-0 cursor-pointer"
+                  >
+                    <span>AI撰写对接方案</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -253,27 +350,14 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-sm">
               
               {/* Full Width Key Inventors */ }
-              {enterprise.keyInventors && enterprise.keyInventors.length > 0 && (
-                <div className="lg:col-span-2 bg-blue-50/50 p-3 rounded-xl border border-blue-100 flex items-center gap-3 text-sm">
-                   <div className="text-blue-700 font-bold whitespace-nowrap shrink-0">联系人:</div>
-                   <div className="text-slate-600 flex flex-wrap gap-x-4 gap-y-2">
-                      {enterprise.keyInventors.slice(0, 2).map((inv, idx) => (
-                         <span key={idx} className="flex items-center gap-1.5">
-                           <span className="text-slate-900 font-semibold">{inv.name}</span>
-                           
-                         </span>
-                      ))}
-                      
-                   </div>
-                </div>
-              )}
+              
               
               {/* Left: JLU Patent */}
               <div className="bg-blue-50/40 p-4 rounded-2xl border border-blue-100 space-y-2">
                 <div className="flex items-center justify-between text-[#082C6C] font-bold">
                   <span className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-[#0F52BA]"></span>
-                    吉林大学标的专利
+                    吉林大学的专利
                   </span>
                   <span className="font-mono text-[11px]">{activePatent.patentNo}</span>
                 </div>
@@ -281,6 +365,16 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                 <p className="text-slate-600 text-[11px] line-clamp-3 leading-relaxed">
                   {activePatent.abstract}
                 </p>
+                <div className="flex gap-2 mt-3">
+                  <div className="relative group">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=150&q=80" alt="附图1" className="w-16 h-16 object-cover rounded-md border border-blue-200/60 shadow-xs" />
+                    <div className="absolute bottom-0 inset-x-0 bg-black/50 text-[9px] text-center text-white py-0.5 rounded-b-md">附图 1</div>
+                  </div>
+                  <div className="relative group">
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=150&q=80" alt="附图2" className="w-16 h-16 object-cover rounded-md border border-blue-200/60 shadow-xs" />
+                    <div className="absolute bottom-0 inset-x-0 bg-black/50 text-[9px] text-center text-white py-0.5 rounded-b-md">附图 2</div>
+                  </div>
+                </div>
               </div>
 
               {/* Right: Enterprise's Similar Patent */}
@@ -294,9 +388,14 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
                     <span className="font-mono text-[11px]">{enterprise.similarPatents[0].patentNo}</span>
                   </div>
                   <h5 className="font-bold text-slate-900">{enterprise.similarPatents[0].title}</h5>
-                  <div className="bg-white/90 p-2.5 rounded-xl border border-emerald-200/60 text-[11px] text-emerald-950">
-                    <strong className="block mb-0.5">技术重叠与互补点：</strong>
+                  <p className="text-slate-600 text-[11px] line-clamp-3 leading-relaxed">
                     {enterprise.similarPatents[0].techOverlapDescription}
+                  </p>
+                  <div className="flex gap-2 mt-3">
+                    <div className="relative group">
+                      <img src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?auto=format&fit=crop&w=150&q=80" alt="附图1" className="w-16 h-16 object-cover rounded-md border border-emerald-200/60 shadow-xs" />
+                      <div className="absolute bottom-0 inset-x-0 bg-black/50 text-[9px] text-center text-white py-0.5 rounded-b-md">附图 1</div>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -312,23 +411,36 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
               <div></div>
 
               <div className="flex items-center gap-2">
-                {onOpenAiAgentWithEnterprise && (
-                  <button
-                    onClick={() => onOpenAiAgentWithEnterprise(enterprise)}
-                    className="px-3.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg font-bold flex items-center gap-1 transition-colors cursor-pointer"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-                    <span>AI撰写对接方案</span>
-                  </button>
-                )}
+
                 
               </div>
             </div>
 
           </div>
-        ))}
+        ))
+        )}
       </div>
-
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 pt-6 pb-4">
+          <button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            上一页
+          </button>
+          <div className="flex items-center gap-1 px-4 text-sm text-slate-600 font-medium">
+            第 <span className="text-blue-600 font-bold">{currentPage}</span> 页 / 共 {totalPages} 页
+          </div>
+          <button
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            下一页
+          </button>
+        </div>
+      )}
     </div>
   );
 };
