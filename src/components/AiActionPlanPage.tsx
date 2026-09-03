@@ -196,7 +196,7 @@ ${activePatent.abstract}
                   </button>
                   <button className="px-3.5 py-1.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-lg text-sm font-bold flex items-center gap-1.5 transition-colors shadow-sm">
                     <Send className="w-3.5 h-3.5" />
-                    <span>一键发送</span>
+                    <span>一键发送邮件</span>
                   </button>
                 </div>
               </div>

@@ -10,7 +10,7 @@ import {
   HelpCircle,
   BarChart2,
   List
-, BrainCircuit, Lightbulb, Package, Layers, MapPin, User, Mail, Phone, Briefcase } from 'lucide-react';
+, BrainCircuit, Lightbulb, Package, Layers, MapPin, User, Mail, Phone, Briefcase, Globe } from 'lucide-react';
 import { Area, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, ScatterChart, Scatter, ZAxis } from 'recharts';
 
 interface EnterpriseProfilePageProps {
@@ -118,17 +118,17 @@ const getDomainStyles = (domain: string) => {
 export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ enterprise, onBack, onOpenAiActionPlan }) => {
   
   const establishedDate = enterprise.establishedDate || "2017-02-24";
-  const registeredCapital = enterprise.registeredCapital || "8000 万元人民币";
-  const phone = enterprise.phone || "0593-8991832";
-  const email = enterprise.email || "xm@catlmotor.com";
+  const registeredCapital = enterprise.registeredCapital || "9100 万元人民币";
+  const phone = enterprise.phone || "0593-2768080";
+  const email = enterprise.email || "423358641@qq.com";
   
   const shortName = enterprise.shortName || "时代";
   const oldName = enterprise.oldName || "-";
   
   const address = enterprise.address || "福建省宁德市蕉城区疏港路118号";
-  const website = enterprise.website || "www.catl.com";
+  const website = enterprise.website || "www.cetlmotor.com";
 
-  const legalRep = enterprise.legalRep || "曾毓群";
+  const legalRep = enterprise.legalRep || "卢友文";
 
   const businessScope = enterprise.businessScope || "一般项目：技术服务、技术开发、技术咨询、技术交流、技术转让、技术推广；电动机制造；发电机及发电机组制造；发电机及发电机组销售；微特电机及组件制造；微特电机及组件销售；齿轮及齿轮减、变速箱制造；齿轮及齿轮减、变速箱销售；模具销售；输配电及控制设备制造；智能输配电及控制设备销售；机械零件、零部件加工；机械零件、零部件销售；电子元器件与机电组件设备销售；电池制造；电池销售；新能源汽车整车销售；新能源汽车电附件销售；新能源汽车换电设施销售；电动汽车充电基础设施运营；汽车新车销售；集中式快速充电站；分布式交流充电桩销售；二手车经销；船舶销售；建筑工程用机械销售；非居住房地产租赁 ( 除依法须经批准的项目外, 凭营业执照依法自主开展经营活动 ) 许可项目：技术进出口；货物进出口 ( 依法须经批准的项目，经相关部门批准后方可开展经营活动，具体经营项目以相关部门批准文件或许可证件为准 )";
   const status = enterprise.status || "存续";
@@ -195,6 +195,11 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
             <span className="text-slate-500 shrink-0 w-24">注册资本：</span>
             <CopyableText text={registeredCapital}><span className="text-slate-800">{registeredCapital}</span></CopyableText>
           </div>
+          <div className="flex gap-4">
+            <span className="text-slate-500 shrink-0 w-24">法定代表人：</span>
+            <CopyableText text={legalRep}><span className="text-slate-800">{legalRep}</span></CopyableText>
+          </div>
+
           <div className="flex gap-4 items-center">
             <span className="text-slate-500 shrink-0 w-24 flex items-center gap-1 whitespace-nowrap">
               <Phone className="w-3.5 h-3.5 text-blue-500" />公司电话：
@@ -208,6 +213,14 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
             </span>
             <CopyableText text={email}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{email}</span></CopyableText>
           </div>
+
+          <div className="flex gap-4 items-center">
+            <span className="text-slate-500 shrink-0 w-24 flex items-center gap-1 whitespace-nowrap">
+              <Globe className="w-3.5 h-3.5 text-blue-500" />企业网址：
+            </span>
+            <CopyableText text={website}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100 hover:underline cursor-pointer">{website}</span></CopyableText>
+          </div>
+
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">企业简称：</span>
             <CopyableText text={shortName}><span className="text-slate-800">{shortName}</span></CopyableText>
@@ -218,21 +231,8 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
             <CopyableText text={oldName}><span className="text-slate-800">{oldName}</span></CopyableText>
           </div>
 
-          <div className="flex gap-4">
-            <span className="text-slate-500 shrink-0 w-24">法定代表人：</span>
-            <CopyableText text={legalRep}><span className="text-slate-800">{legalRep}</span></CopyableText>
-          </div>
-
-
-          
-          <div className="flex gap-4">
-            <span className="text-slate-500 shrink-0 w-24">企业网址：</span>
-            <CopyableText text={website}><span className="text-blue-600 hover:underline cursor-pointer">{website}</span></CopyableText>
-          </div>
-
-          <div className="flex gap-4 md:col-span-2">
+          <div className="flex gap-4 md:col-span-1">
             <span className="text-slate-500 shrink-0 w-24">注册地址：</span>
-
             <CopyableText text={address}><span className="text-slate-800">{address}</span></CopyableText>
           </div>
 
