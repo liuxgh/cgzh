@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { PatentItem, TargetEnterprise } from '../types';
 import { RegionFilter } from './RegionFilter';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
+import { PatentNationalDistributionCard } from './PatentNationalDistributionCard';
 import { 
   ShieldCheck, 
   Search,
@@ -19,8 +20,9 @@ import {
   CheckCircle2, 
   SlidersHorizontal,
   RefreshCw,
-  ChevronDown
-, Download } from 'lucide-react';
+  ChevronDown,
+  Download
+} from 'lucide-react';
 
 interface PatentSimilarSearchHubProps {
   patents: PatentItem[];
@@ -146,92 +148,91 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
         </p>
       </div>
 
-      {/* Patent Selector & Parameter Filter Bar */}
-      <div className="bg-white rounded-2xl p-5 border border-[#D8E2F0] shadow-xs space-y-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-          
-          {/* Patent Search & Select */}
-          <div className="lg:col-span-6 space-y-1.5 relative" ref={dropdownRef}>
-            <label className="text-sm font-bold text-slate-700 flex items-center gap-1.5">
-              <FileText className="w-3.5 h-3.5 text-blue-700" />
-              <span>检索并选择待转化的吉林大学专利：</span>
-            </label>
-            <div 
-              className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus-within:ring-2 focus-within:ring-blue-500 focus-within:bg-white transition-all cursor-pointer flex items-center justify-between gap-2"
-              onClick={() => setIsDropdownOpen(true)}
-            >
-              <div className="truncate flex-1">
-                {activePatent ? `[${activePatent.patentNo}] ${activePatent.title}` : '请选择或搜索专利...'}
-              </div>
-              <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-            </div>
-
-            {isDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col max-h-[350px]">
-                <div className="p-2 border-b border-slate-100 bg-slate-50 sticky top-0 z-10">
-                   <div className="relative">
-                     <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
-                     <input 
-                       type="text"
-                       autoFocus
-                       placeholder="输入专利名称、专利号或发明人进行模糊检索..."
-                       value={patentSearchQuery}
-                       onChange={e => setPatentSearchQuery(e.target.value)}
-                       className="w-full bg-white border border-slate-200 rounded-lg py-2 pl-9 pr-3 text-sm focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                     />
-                   </div>
-                </div>
-                <div className="overflow-y-auto p-1.5">
-                  {filteredPatents.length > 0 ? (
-                    filteredPatents.map(p => (
-                      <div 
-                        key={p.id}
-                        onClick={() => {
-                          handlePatentChange(p.id);
-                          setIsDropdownOpen(false);
-                          setPatentSearchQuery('');
-                        }}
-                        className={`p-3 rounded-lg cursor-pointer transition-colors ${currentPatentId === p.id ? 'bg-blue-50 border border-blue-100' : 'hover:bg-slate-50 border border-transparent'}`}
-                      >
-                        <div className="font-bold text-slate-900 text-sm line-clamp-1">{p.title}</div>
-                        <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-slate-500">
-                           <span className="font-mono text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">{p.patentNo}</span>
-                           <span>•</span>
-                           <span className="font-medium text-slate-700">{p.inventor}</span>
-                           <span>•</span>
-                           
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="p-8 text-center text-sm text-slate-500">
-                      没有找到匹配的专利记录
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-
-        </div>
-          {/* Selected Patent Quick Information Strip */}
-        {activePatent && (
-          <div className="pt-3 border-t border-slate-100 bg-blue-50/40 -mx-5 -mb-5 p-4 rounded-b-2xl flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm">
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono font-bold text-[#0F52BA] bg-blue-100/80 px-2 py-0.5 rounded text-[11px]">
-                  {activePatent.patentNo}
+      {/* Patent Selector */}
+      <div className="bg-white rounded-2xl p-4 sm:p-5 border border-[#D8E2F0] shadow-xs">
+        {/* Patent Search & Select */}
+        <div className="w-full space-y-1.5 relative" ref={dropdownRef}>
+          <label className="text-sm font-bold text-slate-700 flex items-center gap-1.5">
+            <FileText className="w-4 h-4 text-blue-700" />
+            <span>检索并选择待转化的吉林大学专利：</span>
+          </label>
+          <div 
+            className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus-within:ring-2 focus-within:ring-blue-500 focus-within:bg-white transition-all cursor-pointer flex items-center justify-between gap-2"
+            onClick={() => setIsDropdownOpen(true)}
+          >
+            <div className="truncate flex-1">
+              {activePatent ? (
+                <span className="flex items-center gap-2">
+                  <span className="font-mono text-[#0F52BA] bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200/60 text-xs font-bold shrink-0">
+                    {activePatent.patentNo}
+                  </span>
+                  <span className="font-bold text-slate-800 truncate">{activePatent.title}</span>
                 </span>
-                <span className="text-slate-500">IPC: {activePatent.ipc}</span>
-                
-                
-              </div>
-              <p className="text-slate-700 line-clamp-1 font-medium">{activePatent.abstract}</p>
+              ) : (
+                '请选择或搜索专利...'
+              )}
             </div>
-            
+            <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
           </div>
-        )}
+
+          {isDropdownOpen && (
+            <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col max-h-[350px]">
+              <div className="p-2 border-b border-slate-100 bg-slate-50 sticky top-0 z-10">
+                 <div className="relative">
+                   <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                   <input 
+                     type="text"
+                     autoFocus
+                     placeholder="输入专利名称、专利号或发明人进行模糊检索..."
+                     value={patentSearchQuery}
+                     onChange={e => setPatentSearchQuery(e.target.value)}
+                     className="w-full bg-white border border-slate-200 rounded-lg py-2 pl-9 pr-3 text-sm focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                   />
+                 </div>
+              </div>
+              <div className="overflow-y-auto p-1.5">
+                {filteredPatents.length > 0 ? (
+                  filteredPatents.map(p => (
+                    <div 
+                      key={p.id}
+                      onClick={() => {
+                        handlePatentChange(p.id);
+                        setIsDropdownOpen(false);
+                        setPatentSearchQuery('');
+                      }}
+                      className={`p-3 rounded-lg cursor-pointer transition-colors ${currentPatentId === p.id ? 'bg-blue-50 border border-blue-100' : 'hover:bg-slate-50 border border-transparent'}`}
+                    >
+                      <div className="font-bold text-slate-900 text-sm line-clamp-1">{p.title}</div>
+                      <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-slate-500">
+                         <span className="font-mono text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">{p.patentNo}</span>
+                         <span>•</span>
+                         <span className="font-medium text-slate-700">{p.inventor}</span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="p-8 text-center text-sm text-slate-500">
+                    没有找到匹配的专利记录
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Selected Patent National Matches & Regional Distribution Visualizer */}
+      {activePatent && (
+        <PatentNationalDistributionCard 
+          activePatent={activePatent}
+          enterprises={TARGET_ENTERPRISES_DATA}
+          selectedProvince={regionFilter.p}
+          onSelectProvince={(prov) => {
+            setRegionFilter({ p: prov, c: 'all', d: 'all' });
+          }}
+          filteredCount={matchedEnterprises.length}
+        />
+      )}
 
       {/* Matching Results Header & Advanced Filters */}
       <div className="flex flex-col gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
@@ -260,7 +261,10 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
           <span className="text-sm font-bold text-slate-600 flex items-center gap-1.5 mr-2">
             <Filter className="w-4 h-4 text-[#0F52BA]" /> 过滤:
           </span>
-          <RegionFilter onFilterChange={(p, c, d) => setRegionFilter({p, c, d})} />
+          <RegionFilter 
+            value={regionFilter} 
+            onFilterChange={(p, c, d) => setRegionFilter({p, c, d})} 
+          />
 
           <select
             value={patentScaleFilter}

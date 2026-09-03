@@ -2,6 +2,7 @@ import { CopyableText } from './CopyableText';
 import React, { useState, useEffect, useRef } from 'react';
 import { PatentItem, TargetEnterprise } from '../types';
 import { RegionFilter } from './RegionFilter';
+import { PatentNationalDistributionCard } from './PatentNationalDistributionCard';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { 
   BrainCircuit, 
@@ -39,6 +40,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
   const [regionFilter, setRegionFilter] = useState<{p: string, c: string, d: string}>({p: 'all', c: 'all', d: 'all'});
   const [patentScaleFilter, setPatentScaleFilter] = useState<string>('all');
   const [capitalFilter, setCapitalFilter] = useState<string>('all');
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
@@ -68,6 +70,14 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
   const activePatent = patents.find(p => p.id === selectedPatentId) || patents[0];
 
   const filteredEnterprises = TARGET_ENTERPRISES_DATA.filter(ent => {
+    // Enterprise name / keyword fuzzy search
+    if (searchKeyword.trim()) {
+      const q = searchKeyword.toLowerCase().trim();
+      const matchName = ent.name?.toLowerCase().includes(q);
+      const matchShort = ent.shortName?.toLowerCase().includes(q);
+      const matchIndustry = ent.industry?.toLowerCase().includes(q);
+      if (!matchName && !matchShort && !matchIndustry) return false;
+    }
     
     // Region Logic
     if (regionFilter.p !== 'all' && !ent.province?.includes(regionFilter.p) && !ent.city?.includes(regionFilter.p)) return false;
@@ -100,7 +110,7 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [regionFilter.p, regionFilter.c, regionFilter.d, patentScaleFilter, capitalFilter]);
+  }, [regionFilter.p, regionFilter.c, regionFilter.d, patentScaleFilter, capitalFilter, searchKeyword]);
 
   
   const agentSteps = [
@@ -277,21 +287,54 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
         </div>
       )}
 
+      {/* Selected Patent National Matches & Regional Distribution Visualizer */}
+      {!isProcessing && activePatent && (
+        <PatentNationalDistributionCard 
+          activePatent={activePatent}
+          enterprises={TARGET_ENTERPRISES_DATA}
+          selectedProvince={regionFilter.p}
+          onSelectProvince={(prov) => {
+            setRegionFilter({ p: prov, c: 'all', d: 'all' });
+          }}
+          filteredCount={filteredEnterprises.length}
+        />
+      )}
+
       {/* Generated Intelligence Report Tabs */}
       {!isProcessing && (
         <div className="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden space-y-0">
           
-          <div className="flex border-b border-slate-200 bg-slate-50/80 px-6 overflow-x-auto gap-2">
-            <button
-              className="py-4 px-4 text-sm font-bold border-b-2 flex items-center gap-1.5 whitespace-nowrap transition-colors border-[#003d80] text-[#003d80] bg-white"
-            >
-              <Building2 className="w-4 h-4 text-blue-600" />
-              <span>AI 推荐靶向企业列表</span>
-            </button>
-            <div className="flex-1 min-w-[20px]"></div>
-            <button className="self-center flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm whitespace-nowrap">
-              <Download className="w-4 h-4" /> 导出列表
-            </button>
+          <div className="flex flex-wrap items-center justify-between border-b border-slate-200 bg-slate-50/80 px-6 py-3 gap-3">
+            <div className="flex items-center gap-2">
+              <Building2 className="w-5 h-5 text-[#0F52BA]" />
+              <span className="font-black text-base text-slate-900">AI 推荐靶向企业列表</span>
+              <span className="ml-2 px-2.5 py-0.5 rounded-full bg-blue-100/80 text-[#0F52BA] text-xs font-bold font-mono">
+                共 {filteredEnterprises.length} 家
+              </span>
+            </div>
+            <div className="flex items-center gap-3 w-full sm:w-auto">
+              <div className="relative flex-1 sm:w-64">
+                <input
+                  type="text"
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
+                  placeholder="搜索企业名称 / 简称..."
+                  className="w-full bg-white border border-[#D8E2F0] rounded-xl px-4 py-2 pl-9 text-sm text-slate-900 focus:outline-hidden focus:border-[#0F52BA] shadow-2xs font-medium"
+                />
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                {searchKeyword && (
+                  <button
+                    onClick={() => setSearchKeyword('')}
+                    className="absolute right-2.5 top-2.5 text-slate-400 hover:text-slate-600 text-xs cursor-pointer font-bold px-1"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+              <button className="flex items-center gap-1.5 px-3 py-2 text-sm font-bold text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-2xs whitespace-nowrap cursor-pointer">
+                <Download className="w-4 h-4" /> 导出列表
+              </button>
+            </div>
           </div>
 
           <div className="p-6 sm:p-8 space-y-6">
@@ -302,7 +345,10 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                 <span className="text-sm font-bold text-slate-600 flex items-center gap-1.5 mr-2">
                   <Filter className="w-4 h-4 text-[#0F52BA]" /> 过滤:
                 </span>
-                <RegionFilter onFilterChange={(p, c, d) => setRegionFilter({p, c, d})} />
+                <RegionFilter 
+                  value={regionFilter} 
+                  onFilterChange={(p, c, d) => setRegionFilter({p, c, d})} 
+                />
 
                 <select
                   value={patentScaleFilter}
@@ -337,7 +383,8 @@ export const AiEnterpriseAgent: React.FC<AiEnterpriseAgentProps> = ({
                     setRegionFilter({p: 'all', c: 'all', d: 'all'});
                     setPatentScaleFilter('all');
                     setCapitalFilter('all');
-                  }} className="mt-6 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-blue-600 hover:bg-blue-50 transition-colors shadow-sm">
+                    setSearchKeyword('');
+                  }} className="mt-6 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-blue-600 hover:bg-blue-50 transition-colors shadow-sm cursor-pointer">
                     重置筛选条件
                   </button>
                 </div>
