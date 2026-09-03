@@ -177,21 +177,21 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                   <Layers className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-black px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-800 border border-indigo-200">
-                  路径二 • 产业链
+                  路径二 • 细分战略产业链图谱
                 </span>
               </div>
 
               <h4 className="text-lg font-black text-slate-900 group-hover:text-indigo-600 transition-colors">
-                通过产业链 ➔ 全链条图谱找企业
+                通过吉大专利 ➔ 产业链全链条图谱找企业
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                通过佰腾自研产业链全景图谱，分级穿透上游关键材料、中游精密制造、下游整机终端，定位与吉大科技成果对应企业
+                先检索并选择待转化的吉林大学专利成果，系统将自动穿透关联 57 条战略产业链图谱，智能定位上游关键材料、中游精密制造与下游整机集成节点中的靶向企业。
               </p>
 
               </div>
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
-              <span>立即浏览产业链找企业</span>
+              <span>立即通过产业链图谱找企业</span>
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>
@@ -209,21 +209,21 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                   <Package className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-black px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
-                  路径三 • 产品备案库
+                  路径三 • 国家专利密集型产品备案公开数据
                 </span>
               </div>
 
               <h4 className="text-lg font-black text-slate-900 group-hover:text-emerald-600 transition-colors">
-                通过国家专利密集型产品找企业
+                通过吉大专利 ➔ 国家专利密集型产品找企业
               </h4>
 
               <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                通过国家专利密集型产品备案公开数据，筛选已有高产值专利产品的制造企业，对接其技术升级需求与产学研意愿。
+                先检索并选择待转化的吉林大学专利成果，系统将自动关联国家专利密集型产品备案公开数据，穿透匹配具备技术协同与采购升级需求的目标制造企业。
               </p>
 
               </div>
             <div className="mt-6 flex items-center justify-between text-sm font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
-              <span>立即查询专利产品找企业</span>
+              <span>立即通过专利产品找企业</span>
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>

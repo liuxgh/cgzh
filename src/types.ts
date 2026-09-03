@@ -114,6 +114,7 @@ export interface TargetEnterprise {
     ipc: string;
     grantDate: string;
     similarityScore: number;
+    abstract?: string;
     techOverlapDescription: string;
   }[];
 
@@ -139,12 +140,12 @@ export interface TargetEnterprise {
   }[];
 
   // 技术诉求与攻关痛点画像
-  techPainPoints: string[];
-  rdDirections: string[];
-  preferredCollabMode: string;
+  techPainPoints?: string[];
+  rdDirections?: string[];
+  preferredCollabMode?: string;
 
   // 关键决策人与大学对接联络画像
-  contact: {
+  contact?: {
     dept: string;
     contactPerson: string;
     title: string;

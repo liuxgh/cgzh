@@ -204,6 +204,36 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                       <p className="text-sm text-slate-600 leading-relaxed">
                         {pat.techOverlapDescription}
                       </p>
+
+                      {/* Direct Patent Drawing Thumbnails */}
+                      <div className="mt-3 pt-2 border-t border-slate-200/80">
+                        <span className="text-[11px] font-bold text-slate-700 block mb-1.5 flex items-center gap-1">
+                          <FileText className="w-3.5 h-3.5 text-blue-600" />
+                          说明书附图：
+                        </span>
+                        <div className="flex flex-wrap items-center gap-2">
+                          {[
+                            'https://img.baiten.cn/img/49c35c64b37317e777ff4e72785adcf9/196/0',
+                            'https://img.baiten.cn/img/6767433c59b4f076aade6acc60002725/196/0',
+                            'https://img.baiten.cn/img/91a46e14da4eee8b87105d8c7fafdce9/196/0'
+                          ].map((imgUrl, fIdx) => (
+                            <div key={fIdx} className="relative group bg-white p-1 rounded-lg border border-slate-200 shadow-2xs hover:border-blue-400 transition-all">
+                              <div className="w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center bg-slate-50 rounded overflow-hidden">
+                                <img
+                                  src={imgUrl}
+                                  alt={`说明书附图 ${fIdx + 1}`}
+                                  referrerPolicy="no-referrer"
+                                  className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                                  loading="lazy"
+                                />
+                              </div>
+                              <div className="absolute bottom-0 inset-x-0 bg-slate-900/70 text-[9px] text-center text-white py-0.5 rounded-b font-medium">
+                                附图 {fIdx + 1}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

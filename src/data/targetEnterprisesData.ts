@@ -1,2705 +1,4603 @@
-// @ts-nocheck
 import { TargetEnterprise } from '../types';
 
 export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
-  // 1. 汽车及新能源汽车产业链 - 动力电池与复合材料
   {
-    id: 'ent-catl',
-    name: '宁德时代电机科技有限公司',
-    shortName: '时代',
-    creditCode: '91350900587526883U',
-    registeredCapital: '9100 万元人民币',
-    location: '福建省宁德市',
-    province: '福建省',
-    city: '宁德市',
-    industry: '新能源汽车 / 动力电池与储能系统',
-    scale: '全球动力电池市占率第一 / 创业板千亿市值龙头',
-    enterpriseType: '上市企业',
-    revenue: '4,009 亿元 (2024)',
-    rdInvestment: '183.6 亿元 (研发比 4.58%)',
-    rdRatio: '4.58%',
-    patentTotalCount: 152,
-    inventionPatentCount: 34,
-    matchSource: 'similar_patent',
-    matchScore: 97,
-    legalRep: '卢友文',
-    address: '福建省宁德市蕉城区疏港路118号',
-    phone: '0593-2768080',
-    email: '423358641@qq.com',
-    website: 'www.cetlmotor.com',
-    establishedDate: '2017-02-24',
-    businessScope: '一般项目：技术服务、技术开发、技术咨询、技术交流、技术转让、技术推广；电动机制造；发电机及发电机组制造；发电机及发电机组销售；微特电机及组件制造；微特电机及组件销售；齿轮及齿轮减、变速箱制造；齿轮及齿轮减、变速箱销售；模具销售；输配电及控制设备制造；智能输配电及控制设备销售；机械零件、零部件加工；机械零件、零部件销售；电子元器件与机电组件设备销售；电池制造；电池销售；新能源汽车整车销售；新能源汽车电附件销售；新能源汽车换电设施销售；电动汽车充电基础设施运营；汽车新车销售；集中式快速充电站；分布式交流充电桩销售；二手车经销；船舶销售；建筑工程用机械销售；非居住房地产租赁 ( 除依法须经批准的项目外, 凭营业执照依法自主开展经营活动 ) 许可项目：技术进出口；货物进出口 ( 依法须经批准的项目，经相关部门批准后方可开展经营活动，具体经营项目以相关部门批准文件或许可证件为准 )',
-    status: '存续',
-    oldName: '-',
-    synergyReason: '企业在固态电解质与高镍三元材料包覆技术路线上布局了多项申请，与吉林大学化学学院崔教授团队的高镍单晶多维修饰专利存在极高技术互补度，能直接解决高倍率循环微裂纹问题。',
-    similarPatents: [
-      {
-        patentNo: 'CN115832104B',
-        title: '一种高镍正极材料表面异质外延包覆层及其制备方法',
-        ipc: 'H01M4/36, H01M4/525',
-        grantDate: '2023-11-14',
-        similarityScore: 95.8,
-        techOverlapDescription: '宁德时代该专利主要采用干法高压包覆，吉大专利采用液相自组装单分子膜技术，二者在界面阻抗降低与热失控抑制上具备直接技术嫁接价值。'
-      },
-      {
-        patentNo: 'CN116416102A',
-        title: '全固态锂硫电池复合固态电解质膜结构',
-        ipc: 'H01M10/0562',
-        grantDate: '2024-03-02',
-        similarityScore: 92.4,
-        techOverlapDescription: '在硫化物固态电解质空气稳定性改性方案上，与吉大无机合成国家重点实验室的掺杂钝化方案属于平行互补路线。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-ev-auto',
-      chainName: '新能源汽车',
-      node: 'upstream',
-      nodeName: '上游：动力电池关键材料与电芯制造',
-      subSegment: '高镍正极材料 / 固态电解质包覆 / 隔膜涂层',
-      mainProducts: ['麒麟电池', '神行超充电池', '凝聚态电池', '钠离子电芯']
+    "id": "ent-catl",
+    "name": "宁德时代电机科技有限公司",
+    "shortName": "宁德电机",
+    "creditCode": "91350900MA348U3G8P",
+    "registeredCapital": "150,000 万元人民币",
+    "location": "福建省宁德市",
+    "province": "福建省",
+    "city": "宁德市",
+    "industry": "新能源汽车 / 核心零部件与电驱系统",
+    "scale": "上市企业控股",
+    "enterpriseType": "上市企业",
+    "revenue": "389.2 亿元 (2024)",
+    "rdInvestment": "38.5 百万元",
+    "rdRatio": "9.89%",
+    "patentTotalCount": 3820,
+    "inventionPatentCount": 2190,
+    "legalRep": "曾毓群",
+    "address": "福建省宁德市蕉城区漳湾镇新港路2号",
+    "phone": "0593-8901234",
+    "email": "tech-coop@catl.com",
+    "website": "https://www.catl.com",
+    "establishedDate": "2017-03-15",
+    "businessScope": "新能源汽车电驱动系统、高效永磁同步电机、电机控制器、储能系统集成研发、制造与销售。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "宁德电机在高功率密度电机与能量回收电控处于行业前列，急需吉大线控电液复合制动在极端工况下的协同制动控制算法。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "upstream",
+      "nodeName": "上游 • 核心材料与关键部件",
+      "subSegment": "高功率电驱动电机与核心电控系统",
+      "mainProducts": [
+        "高压碳化硅电驱动总成",
+        "高功率永磁电机",
+        "电驱控制器"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-EV-001',
-        productName: '神行4C超充动力电池模组系统',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '100亿-500亿元',
-        corePatentCount: 142,
-        patentSynergyPoint: '吉大快速锂离子导电涂层专利可直接应用于神行超充电池极片界面改性。'
+        "patentNo": "CN115829103B",
+        "title": "一种电动车辆电液复合制动能量回收自适应控制方法及系统",
+        "ipc": "B60T 8/17, B60L 15/20",
+        "grantDate": "2024-03-12",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种电动车辆电液复合制动能量回收自适应控制方法及系统，涉及新能源车辆制动控制技术领域。该方法通过实时采集车速、轮速、制动踏板行程及电池SOC状态，利用自适应模糊控制算法动态分配电机再生制动力矩与机械液压制动力矩，在保障车辆制动平顺性与行车安全性的前提下，最大化制动动能回馈效率，使综合能量回收率提升15%以上。",
+        "techOverlapDescription": "均涉及电液复合制动力矩精确解耦与高回收率能量管理控制算法，技术路线重合度达96%。"
       }
     ],
-    techPainPoints: [
-      '超高镍（Ni92+）单晶材料在长循环过程中内部微裂纹导致的气胀与容量快速衰减',
-      '全固态硫化物电解质易吸水产生硫化氢气体的耐湿性改性难题',
-      '极端低温（-30℃）下锂离子迁移速率过慢导致的充放电断崖式衰减'
-    ],
-    rdDirections: [
-      '能量密度突破 400Wh/kg 的全固态电池体系',
-      '超快充 6C-8C 级耐高温电极界面化学工程',
-      '钠离子动力电池低温衰减控制与低成本产业化'
-    ],
-    preferredCollabMode: '共建联合创新中心 / 核心专利排他许可 / 委托定制攻关',
-    keyInventors: [
-      { name: '俞伟', patentCount: 120, title: '核心发明人/技术总监' },
-      { name: '施帅', patentCount: 80, title: '核心发明人/研发骨干' }
-    ,
-      { name: '谢伟', patentCount: 70, title: '核心发明人/高级研究员' }
-    ],
-    contact: {
-      dept: '21C创新实验室 / 前沿技术预研部',
-      contactPerson: '欧阳晨',
-      title: '前瞻材料研发总监 / 产学研合作首席专家',
-      phone: '0593-8901888 (转产学研专线)',
-      email: 'ouyangc@catl.com',
-      suggestedApproach: '以吉大化学学院「高镍单晶自组装纳米包覆」测试数据切入，直接约见21C创新实验室前沿材料组，重点展示-30℃循环寿命提升35%的实测图谱。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-CATL-001",
+        "productName": "新能源汽车高集成度电液复合电驱动总成",
+        "filingYear": "2024",
+        "productCategory": "新能源汽车关键零部件",
+        "annualOutputValue": "28.5 亿元",
+        "corePatentCount": 18,
+        "patentSynergyPoint": "可无缝对接吉大线控复合制动控制算法，优化电机回馈与液压协同响应"
+      }
+    ]
   },
-
-  // 2. 智能底盘与仿生结构 - 一汽红旗 / 一汽解放
   {
-    id: 'ent-faw',
-    name: '中国第一汽车集团有限公司',
-    shortName: '中国一汽 (FAW)',
-    creditCode: '91220101123999824F',
-    registeredCapital: '3,540,000 万元人民币',
-    location: '吉林省长春市汽开区新红旗大街1号',
-    province: '吉林省',
-    city: '长春市',
-    industry: '汽车整车制造 / 智能底盘与智能座舱',
-    scale: '中央直管特大型汽车企业集团 / 2024中国企业500强前列',
-    enterpriseType: '行业龙头国企',
-    revenue: '6,380 亿元',
-    rdInvestment: '215 亿元',
-    rdRatio: '3.37%',
-    patentTotalCount: 38200,
-    inventionPatentCount: 22400,
-    matchSource: 'industry_chain',
-    matchScore: 99,
-    synergyReason: '一汽研发总院正全力攻关红旗高端旗舰车型的线控智能底盘与仿生减阻车身，与吉林大学汽车工程学院及仿生教育部重点实验室有多项底座级技术契合。',
-    similarPatents: [
-      {
-        patentNo: 'CN114506283B',
-        title: '一种线控主动悬架自适应阻尼调节系统及其控制策略',
-        ipc: 'B60G17/015',
-        grantDate: '2023-08-19',
-        similarityScore: 94.2,
-        techOverlapDescription: '一汽专利主要基于传统路面预瞄，吉大专利结合了仿生猫爪足垫缓冲力学与AI路况多模态预测，响应时间缩短40%。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-ev-auto',
-      chainName: '新能源汽车',
-      node: 'downstream',
-      nodeName: '下游：整车集成与整机高端制造',
-      subSegment: '豪华乘用车整车 / 智能网联商用车 / 线控底盘平台',
-      mainProducts: ['红旗H9 / E-HS9', '红旗国礼', '解放J7重卡', '红旗FMEs纯电架构']
+    "id": "ent-faw",
+    "name": "中国第一汽车集团有限公司",
+    "shortName": "中国一汽",
+    "creditCode": "91220101123999528G",
+    "registeredCapital": "3,540,000 万元人民币",
+    "location": "吉林省长春市",
+    "province": "吉林省",
+    "city": "长春市",
+    "industry": "新能源汽车 / 整车制造与系统集成",
+    "scale": "央企龙头",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "6,200 亿元 (2024)",
+    "rdInvestment": "185.0 亿元",
+    "rdRatio": "2.98%",
+    "patentTotalCount": 15400,
+    "inventionPatentCount": 8900,
+    "legalRep": "邱现东",
+    "address": "吉林省长春市汽车经济技术开发区东风大街2259号",
+    "phone": "0431-85731114",
+    "email": "rd-cooperation@faw.com.cn",
+    "website": "https://www.faw.com.cn",
+    "establishedDate": "1953-07-15",
+    "businessScope": "汽车、智能网联汽车、新能源汽车、底盘及关键零部件的研发、制造、销售与技术服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "一汽红旗与解放新能源重卡全面推进线控底盘与智能制动技术升级，与吉大同城合作具备极高落地转化优势。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 整车制造与系统集成",
+      "subSegment": "新能源商用车与乘用车整车制造",
+      "mainProducts": [
+        "红旗智能新能源乘用车",
+        "解放智能重卡",
+        "新能源商用车线控底盘"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-FAW-008',
-        productName: '红旗天工纯电智能底盘平台系统',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '100亿-500亿元',
-        corePatentCount: 88,
-        patentSynergyPoint: '吉大汽车底盘集成与仿生全国重点实验室的线控多轴分布式驱动协同控制算法已完成台架验证。'
+        "patentNo": "CN114751892B",
+        "title": "一种商用车线控电液复合制动系统压力协调控制方法",
+        "ipc": "B60T 13/74, B60T 8/32",
+        "grantDate": "2023-11-08",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种商用车线控电液复合制动系统压力协调控制方法，属于智能商用车底盘控制技术领域。通过构建主缸主动增压与轮缸快速建压的双闭环控制模型，有效克服了传统气压/液压制动系统建压响应滞后的缺陷，实现了制动踏板解耦与高精度紧急制动防抱死控制，大幅缩短制动距离并提升行驶稳定性。",
+        "techOverlapDescription": "均聚焦商用车线控电液制动建压控制与主被动安全响应协调，契合度极高。"
       }
     ],
-    techPainPoints: [
-      '极端冰雪路面下线控转向与四轮独立电驱毫秒级防滑失稳控制',
-      '高速工况下车身复杂涡流阻力与风噪控制瓶颈',
-      '重卡商用车智能驾驶域控制器高可靠容错与底盘执行机构冗余'
-    ],
-    rdDirections: [
-      '全线控滑板底盘分布式智能驱动架构',
-      '基于多模态大模型的智能座舱与整车AI中央大脑',
-      '仿生微纳减阻复合车身覆盖件工程化应用'
-    ],
-    preferredCollabMode: '共建国家重点实验室联合分室 / 重大横向专项 / 专利开放许可打包',
-    keyInventors: [
-      { name: '苏军', patentCount: 127, title: '核心发明人/技术总监' },
-      { name: '凤刚', patentCount: 93, title: '核心发明人/研发骨干' }
-    ,
-      { name: '魏杰', patentCount: 63, title: '核心发明人/核心成员' }
-    ],
-    contact: {
-      dept: '一汽研发总院创新技术研究院 / 科技创新管理部',
-      contactPerson: '李海峰',
-      title: '底盘与智能网联领域首席科学家',
-      phone: '0431-85789999',
-      email: 'lihf_rd@faw.com.cn',
-      suggestedApproach: '直接对接一汽科技创新部高校合作办公室，安排吉大汽车学院与仿生学院青年领军教授带成果实地技术答辩。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-FAW-002",
+        "productName": "解放J7高端智能网联新能源重型商用车",
+        "filingYear": "2024",
+        "productCategory": "智能网联新能源汽车整车",
+        "annualOutputValue": "95.0 亿元",
+        "corePatentCount": 42,
+        "patentSynergyPoint": "吉大线控技术可直接导入解放新能源重卡线控底盘研发管线"
+      }
+    ]
   },
-
-  // 3. 光电信息与精密仪器 - 舜宇光学 / 长光卫星
   {
-    id: 'ent-sunny',
-    name: '舜宇光学科技（集团）有限公司',
-    shortName: '舜宇光学 (Sunny Optical)',
-    creditCode: '91330200720448123C',
-    registeredCapital: '109,680 万元人民币',
-    location: '浙江省余姚市舜科路66-68号',
-    province: '浙江省',
-    city: '宁波市',
-    industry: '光电子器件 / 车载光学与精密镜头模组',
-    scale: '全球车载镜头市占率第一 / 全球手机镜头出货量前列',
-    enterpriseType: '上市企业',
-    revenue: '382 亿元',
-    rdInvestment: '32.1 亿元 (研发比 8.4%)',
-    rdRatio: '8.4%',
-    patentTotalCount: 12800,
-    inventionPatentCount: 7600,
-    matchSource: 'patent_product',
-    matchScore: 96,
-    synergyReason: '舜宇光学多款车载ADAS镜头已通过国家专利密集型产品备案，亟需吉林大学集成光电子学国家重点实验室的超表面微纳透镜与抗极端温差色散镀膜技术。',
-    similarPatents: [
-      {
-        patentNo: 'CN115016021B',
-        title: '一种大视场车载广角消色差光学镜头系统',
-        ipc: 'G02B13/06',
-        grantDate: '2023-05-12',
-        similarityScore: 93.6,
-        techOverlapDescription: '舜宇镜头在-40℃至105℃极端温区存在像面漂移，吉大电子学院的动态自补偿非球面复合透镜设计可彻底消除温漂畸变。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-opto-semi',
-      chainName: '集成电路',
-      node: 'midstream',
-      nodeName: '中游：光学精密元器件与传感器模组制造',
-      subSegment: '车载激光雷达发射光学模组 / 机器视觉镜头 / 晶圆级光学器件',
-      mainProducts: ['车载ADAS高清摄像模组', '手机潜望式长焦镜头', 'AR光机波导模组']
+    "id": "ent-bethel",
+    "name": "芜湖伯特利汽车安全系统股份有限公司",
+    "shortName": "伯特利",
+    "creditCode": "913402007627885481",
+    "registeredCapital": "41,200 万元人民币",
+    "location": "安徽省芜湖市",
+    "province": "安徽省",
+    "city": "芜湖市",
+    "industry": "新能源汽车 / 底盘线控与制动系统",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "86.4 亿元 (2024)",
+    "rdInvestment": "6.2 亿元",
+    "rdRatio": "7.18%",
+    "patentTotalCount": 1450,
+    "inventionPatentCount": 680,
+    "legalRep": "袁永彬",
+    "address": "安徽省芜湖市经济技术开发区泰山路19号",
+    "phone": "0553-5681168",
+    "email": "ir@wbwb.cn",
+    "website": "https://www.wbwb.cn",
+    "establishedDate": "2004-06-11",
+    "businessScope": "汽车制动系统、电子机械制动（EMB）、线控制动系统（One-Box/Two-Box）、智能驾驶执行机构的研发、制造与销售。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "similar_patent",
+    "matchScore": 96,
+    "synergyReason": "国内线控制动(WCBS)领军企业，正在突破下一代全电EMB与商用车电液复合制动系统，与吉大专利高度互补。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与模块总成",
+      "subSegment": "线控制动(IBS/WCBS)与线控底盘执行系统",
+      "mainProducts": [
+        "WCBS线控制动系统",
+        "电子驻车制动系统EPB",
+        "智能电液制动总成"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-OPTO-019',
-        productName: '800万像素高动态车载智能驾驶镜头模组',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '10亿-50亿元',
-        corePatentCount: 64,
-        patentSynergyPoint: '吉大抗强光眩光微纳抗反射涂层专利可降低鬼影与杂散光达80%。'
+        "patentNo": "CN116238491B",
+        "title": "一种集成式线控制动系统主缸液压主动调节与故障容错控制方法",
+        "ipc": "B60T 7/04, B60T 17/22",
+        "grantDate": "2024-06-18",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种集成式线控制动系统主缸液压主动调节与故障容错控制方法，属于智能车辆主动安全控制技术领域。该方法在主传感器失效或电机异常状态下，自动切换至多模态备用液压建压回路，保证基础制动力不丢失，并在毫秒级完成踏板感反馈补偿与轮端制动压力精确控制。",
+        "techOverlapDescription": "均涉及线控制动主动建压控制、制动意图解析与电液失效容错控制。"
       }
     ],
-    techPainPoints: [
-      '800万像素车载镜头在极热极寒温度剧变下的热散焦与解析力下降',
-      '车载LiDAR激光雷达多波长滤光片透射率与带外截止度矛盾',
-      '晶圆级玻璃模压非球面微透镜的高良品率量产工艺'
-    ],
-    rdDirections: [
-      '超构表面（Metalens）平面超透镜工程化量产',
-      '车载固态激光雷达发射/接收一体化微光学芯片',
-      '医疗内窥镜超微型4K超广角光学系统'
-    ],
-    preferredCollabMode: '专利技术独占许可 / 委托中试开发 / 产学研联合攻关',
-    keyInventors: [
-      { name: '任杰', patentCount: 134, title: '核心发明人/技术总监' },
-      { name: '张飞', patentCount: 106, title: '核心发明人/研发骨干' }
-    ,
-      { name: '凤伟', patentCount: 61, title: '核心发明人/核心成员' }
-    ],
-    contact: {
-      dept: '集团中央研究院 / 车载光学研发中心',
-      contactPerson: '郑建安',
-      title: '中央研究院副院长兼先进光学所所长',
-      phone: '0574-62538888',
-      email: 'zhengja@sunnyoptical.com',
-      suggestedApproach: '携带吉大电子学院微纳透镜消色差测试实物样品，直奔余姚舜宇中央研究院展示实测MTF曲线对比报告。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-BETHEL-001",
+        "productName": "WCBS集成式线控电子制动系统",
+        "filingYear": "2024",
+        "productCategory": "汽车线控制动系统",
+        "annualOutputValue": "21.3 亿元",
+        "corePatentCount": 26,
+        "patentSynergyPoint": "可将吉大电液复合能量回收算法集成至其第二代WCBS控制器中"
+      }
+    ]
   },
-
-  // 4. 生物医药与高端医疗器械 - 迈瑞医疗
   {
-    id: 'ent-mindray',
-    name: '深圳迈瑞生物医疗电子股份有限公司',
-    shortName: '迈瑞医疗 (Mindray)',
-    creditCode: '914403007152062325',
-    registeredCapital: '121,244 万元人民币',
-    location: '广东省深圳市南山区高新技术产业园区科技南十二路迈瑞大厦',
-    province: '广东省',
-    city: '深圳市',
-    industry: '高端医疗器械 / 生命信息支持与体外诊断(IVD)',
-    scale: '中国最大医疗器械龙头企业 / 全球医疗器械前30强',
-    enterpriseType: '上市企业',
-    revenue: '395 亿元',
-    rdInvestment: '37.8 亿元 (研发比 9.57%)',
-    rdRatio: '9.57%',
-    patentTotalCount: 10450,
-    inventionPatentCount: 7100,
-    matchSource: 'patent_product',
-    matchScore: 98,
-    synergyReason: '迈瑞体外诊断与化学发光免疫分析仪已入选国家专利密集型产品备案，与吉林大学化学学院及白求恩医学院的荧光探针及纳米磁珠分离专利技术高度互补。',
-    similarPatents: [
-      {
-        patentNo: 'CN114878652B',
-        title: '一种全自动化学发光免疫分析反应杯及混匀检测系统',
-        ipc: 'G01N33/543',
-        grantDate: '2023-07-28',
-        similarityScore: 94.8,
-        techOverlapDescription: '迈瑞该设备目前采用机械涡旋混匀，吉大发明采用声表面波（SAW）微流控微滴无接触混匀，避免气泡产生且反应时间缩短60%。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-bio-med',
-      chainName: '高端医疗器械',
-      node: 'midstream',
-      nodeName: '中游：高端医疗装备与核心诊断元部件制造',
-      subSegment: '全自动化学发光分析仪 / 医用超声影像 / 体外生命支持ECMO',
-      mainProducts: ['Resona A20高端超声', 'CL-8000i全自动化学发光系统', 'BeneVision N系列监护仪']
+    "id": "ent-huayu",
+    "name": "华域汽车系统股份有限公司",
+    "shortName": "华域汽车",
+    "creditCode": "913100001322105445",
+    "registeredCapital": "315,272 万元人民币",
+    "location": "上海市浦东新区",
+    "province": "上海市",
+    "city": "上海市",
+    "industry": "新能源汽车 / 智能底盘与传动系统",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "1,680 亿元 (2024)",
+    "rdInvestment": "68.0 亿元",
+    "rdRatio": "4.05%",
+    "patentTotalCount": 6800,
+    "inventionPatentCount": 3400,
+    "legalRep": "王晓秋",
+    "address": "上海市静安区威海路489号",
+    "phone": "021-22011888",
+    "email": "ir@hasco-group.com",
+    "website": "https://www.hasco-group.com",
+    "establishedDate": "1992-10-28",
+    "businessScope": "汽车零部件、底盘电子、线控转向与制动系统、汽车电子电驱动总成的开发与制造。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "上汽集团核心零部件旗舰，正全力布局智能线控底盘X-by-Wire全系产品矩阵，产学研需求强烈。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与模块总成",
+      "subSegment": "智能底盘模块与线控制动总成",
+      "mainProducts": [
+        "电子制动助力系统",
+        "线控底盘域控制器",
+        "电驱动总成"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-MED-033',
-        productName: '全自动高速化学发光免疫分析流水线系统',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '10亿-50亿元',
-        corePatentCount: 92,
-        patentSynergyPoint: '吉大超分子荧光探针合成专利可大幅提高弱阳性肿瘤标志物检出下限（提升2个数量级）。'
+        "patentNo": "CN115285201B",
+        "title": "一种新能源汽车底盘域控制器电液协同制动控制系统及策略",
+        "ipc": "B60W 30/18, B60T 8/1755",
+        "grantDate": "2023-09-15",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种新能源汽车底盘域控制器电液协同制动控制系统及策略，涉及整车动力学协同控制领域。系统通过集成车身姿态传感器与底盘域控器，实时估算路面附着系数并动态调控轮端制动力矩分配，提升极限转向与紧急制动下的侧向稳定性。",
+        "techOverlapDescription": "均涉及底盘域控架构下的电液协同控制与防侧滑自适应算法。"
       }
     ],
-    techPainPoints: [
-      '超高敏化学发光底物非特异性吸附背景荧光噪声压制',
-      '高端医用单晶超声探头压电复合材料关键配方依赖进口',
-      '急危重症监护设备呼吸力学多参数无创连续高精度监测算法'
-    ],
-    rdDirections: [
-      '单分子免疫诊断与超多重数字PCR一体化检测',
-      '4D超高频手术导航医用内窥镜影像系统',
-      'AI赋能的ICU重症多器官状态早期预警智能决策系统'
-    ],
-    preferredCollabMode: '建立校企联合研发中心 / 专利买断转让 / 临床中试验证转化',
-    keyInventors: [
-      { name: '郑建', patentCount: 141, title: '核心发明人/技术总监' },
-      { name: '喻洋', patentCount: 119, title: '核心发明人/研发骨干' }
-    ,
-      { name: '曹宁', patentCount: 52, title: '核心发明人/核心成员' }
-    ],
-    contact: {
-      dept: '迈瑞集团研发技术合作部 / 试剂研发部',
-      contactPerson: '陈默',
-      title: '技术合作部高级总监',
-      phone: '0755-81888998',
-      email: 'chenmo@mindray.com',
-      suggestedApproach: '联合吉大白求恩第一医院临床专家与化学学院科研团队，向迈瑞体外诊断事业部推介微流控芯片与高敏磁珠探针组合技术方案。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-HUAYU-001",
+        "productName": "智能底盘线控电液制动一体化总成",
+        "filingYear": "2024",
+        "productCategory": "汽车底盘执行系统",
+        "annualOutputValue": "34.8 亿元",
+        "corePatentCount": 31,
+        "patentSynergyPoint": "可对接吉大复合制动动力学模型，加速其商用底盘量产进程"
+      }
+    ]
   },
-
-  // 5. 智能工业母机与高端数控 - 科德数控
   {
-    id: 'ent-kede',
-    name: '科德数控股份有限公司',
-    shortName: '科德数控 (Kede CNC)',
-    creditCode: '91210213702157833K',
-    registeredCapital: '10,230 万元人民币',
-    location: '辽宁省大连市经济技术开发区天府街1号',
-    province: '辽宁省',
-    city: '大连市',
-    industry: '高端装备制造 / 五轴联动数控机床与数控系统',
-    scale: '国家级制造业单项冠军 / 国内五轴联动数控机床领头羊',
-    enterpriseType: '国家级专精特新“小巨人”',
-    revenue: '4.5 亿元',
-    rdInvestment: '1.2 亿元 (研发比 26.6%)',
-    rdRatio: '26.6%',
-    patentTotalCount: 380,
-    inventionPatentCount: 220,
-    matchSource: 'similar_patent',
-    matchScore: 95,
-    synergyReason: '科德数控自主研发的高端五轴数控机床在航空叶轮、机匣加工中，亟需吉林大学机械与航空航天工程学院的五轴刀轨自适应抑振与热变形在线补偿专利。',
-    similarPatents: [
-      {
-        patentNo: 'CN114147481B',
-        title: '一种基于动力学特征的五轴数控加工进给速度平滑规划方法',
-        ipc: 'G05B19/4103',
-        grantDate: '2023-04-18',
-        similarityScore: 96.1,
-        techOverlapDescription: '科德该专利针对复杂曲面加工过渡，吉大机械学院专利提出多轴向离心力耦合动态补偿，加工表面光洁度提升1个等级。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-machinery',
-      chainName: '数控机床',
-      node: 'midstream',
-      nodeName: '中游：高档五轴数控机床整机制造与总装',
-      subSegment: '五轴卧式铣车复合加工中心 / 航天复杂结构件加工机床',
-      mainProducts: ['KMC800系列五轴加工中心', 'GMC系列龙门加工中心', 'GNC68高档数控系统']
+    "id": "ent-sunny",
+    "name": "舜宇光学科技（集团）有限公司",
+    "shortName": "舜宇光学",
+    "creditCode": "91330281601002245T",
+    "registeredCapital": "109,680 万元人民币",
+    "location": "浙江省宁波市",
+    "province": "浙江省",
+    "city": "宁波市",
+    "industry": "电子信息与智能算力 / 光电传感与微纳制造",
+    "scale": "上市公司",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "380.0 亿元 (2024)",
+    "rdInvestment": "28.5 亿元",
+    "rdRatio": "7.50%",
+    "patentTotalCount": 5200,
+    "inventionPatentCount": 3100,
+    "legalRep": "叶辽宁",
+    "address": "浙江省余姚市舜宇路66-68号",
+    "phone": "0574-62538080",
+    "email": "rd@sunnyoptical.com",
+    "website": "https://www.sunnyoptical.com",
+    "establishedDate": "1984-10-18",
+    "businessScope": "光学镜头、微纳传感芯片、光电仪器、车载激光雷达光学系统、曲面微结构光栅的研发与制造。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "全球光学与微纳光电子龙头，对吉大皮秒激光超快微纳加工与曲面微结构光栅技术有明确产线引入需求。",
+    "chainPosition": {
+      "chainId": "chain-16",
+      "chainName": "传感器",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与系统集成",
+      "subSegment": "高精度光学传感芯片与微纳光学器件",
+      "mainProducts": [
+        "车载高分辨率光学镜头",
+        "激光雷达发射/接收光学模组",
+        "微纳光栅传感器"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-CNC-004',
-        productName: 'KMC系列大型五轴联动立式加工中心',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '1亿-5亿元',
-        corePatentCount: 31,
-        patentSynergyPoint: '吉大机床主轴动态热平衡自适应控温专利可将机床热平衡时间由2小时缩短至15分钟。'
+        "patentNo": "CN116047582B",
+        "title": "一种超快激光微纳加工高精度曲面光学衍射光栅的方法及装置",
+        "ipc": "G02B 5/18, B23K 26/0622",
+        "grantDate": "2024-01-20",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种超快激光微纳加工高精度曲面光学衍射光栅的方法及装置，属于超快激光精密制造技术领域。通过利用飞秒/皮秒脉冲激光束与空间光调制器协同，在三维曲面光学基底表面快速刻蚀亚微米级周期的微结构光栅，解决了传统光刻在非平面表面聚焦景深不足与边缘失真的难题。",
+        "techOverlapDescription": "均涉及超快脉冲激光束微纳刻蚀曲面微结构光栅工艺，技术方案高度契合。"
       }
     ],
-    techPainPoints: [
-      '航空钛合金薄壁叶盘高速铣削过程中的颤振抑制与刀具磨损在线预警',
-      '大型五轴机床主轴与回转工作台在重载工况下的空间几何误差实时补偿',
-      '国产自主高档数控系统纳米级高精插补核心算子优化'
-    ],
-    rdDirections: [
-      '超精密五轴微细加工机床与激光复合加工中心',
-      '数字孪生驱动的工业母机全生命周期自进化数控系统',
-      '碳纤维复合材料构件超声辅助高精切削装备'
-    ],
-    preferredCollabMode: '专利开放许可 / 共同申报国家重大科技专项 / 联合人才培养',
-    keyInventors: [
-      { name: '吕涛', patentCount: 148, title: '核心发明人/技术总监' },
-      { name: '邹斌', patentCount: 92, title: '核心发明人/研发骨干' }
-    ,
-      { name: '俞星', patentCount: 75, title: '核心发明人/研发骨干' }
-    ],
-    contact: {
-      dept: '技术中心 / 数控算法研究所',
-      contactPerson: '张树生',
-      title: '技术副总经理兼总工程师',
-      phone: '0411-87569999',
-      email: 'zhangss@kede-cnc.com',
-      suggestedApproach: '以东北制造业同根同源为纽带，邀请吉大机械学院数控与振动控制团队赴大连工厂现场观摩加工切削实验，切入产学研技术转让。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-SUNNY-001",
+        "productName": "高精度车载激光雷达多波长曲面微纳光栅光学模组",
+        "filingYear": "2024",
+        "productCategory": "光学元器件及光电仪器",
+        "annualOutputValue": "12.8 亿元",
+        "corePatentCount": 22,
+        "patentSynergyPoint": "可直接应用吉大皮秒超快激光加工方案提高光栅成品率"
+      }
+    ]
   },
-
-  // 6. 新型显示与半导体材料 - 京东方科技集团
   {
-    id: 'ent-boe',
-    name: '京东方科技集团股份有限公司',
-    shortName: '京东方 (BOE)',
-    creditCode: '911100001011014479',
-    registeredCapital: '3,819,636 万元人民币',
-    location: '北京市朝阳区酒仙桥路10号',
-    province: '北京市',
-    city: '北京市',
-    industry: '半导体显示 / OLED与量子点发光材料',
-    scale: '全球半导体显示器件出货量第一 / 科技部国家技术创新中心依托单位',
-    enterpriseType: '上市企业',
-    revenue: '1,745 亿元',
-    rdInvestment: '125.6 亿元 (研发比 7.2%)',
-    rdRatio: '7.2%',
-    patentTotalCount: 89000,
-    inventionPatentCount: 75000,
-    matchSource: 'similar_patent',
-    matchScore: 99,
-    synergyReason: '京东方在柔性OLED发光器件和Micro-LED微显示领域专利布局密集，与吉林大学化学学院马於光院士团队、段羽教授团队的高效率蓝光热活化延迟荧光（TADF）及阻隔水氧封装专利极度契合。',
-    similarPatents: [
-      {
-        patentNo: 'CN114256488B',
-        title: '一种有机发光二极管及其封装结构与显示装置',
-        ipc: 'H01L51/52',
-        grantDate: '2023-09-05',
-        similarityScore: 97.4,
-        techOverlapDescription: '京东方专利重点解决薄膜封装弯折开裂，吉大专利开发了原子层沉积（ALD）无机-有机杂化交替阻隔层，水汽透过率达10^-6 g/m^2/day。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-opto-semi',
-      chainName: '集成电路',
-      node: 'downstream',
-      nodeName: '下游：高端半导体显示面板与终端模组制造',
-      subSegment: '柔性OLED显示面板 / 车载贯穿式双联屏 / Micro-LED微显示芯片',
-      mainProducts: ['第6代柔性AMOLED显示屏', 'Oxide高刷电竞显示模组', '8K超高清Mini-LED背光屏']
+    "id": "ent-mindray",
+    "name": "深圳迈瑞生物医疗电子股份有限公司",
+    "shortName": "迈瑞医疗",
+    "creditCode": "91440300708467365G",
+    "registeredCapital": "121,244 万元人民币",
+    "location": "广东省深圳市",
+    "province": "广东省",
+    "city": "深圳市",
+    "industry": "生物医药与健康 / 高端医疗器械",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "410.5 亿元 (2024)",
+    "rdInvestment": "39.8 亿元",
+    "rdRatio": "9.70%",
+    "patentTotalCount": 9800,
+    "inventionPatentCount": 6500,
+    "legalRep": "李西廷",
+    "address": "广东省深圳市南山区高新技术产业园区科技南十二路迈瑞大厦",
+    "phone": "0755-81888998",
+    "email": "ir@mindray.com",
+    "website": "https://www.mindray.com",
+    "establishedDate": "1999-06-11",
+    "businessScope": "高端医学影像、体外诊断仪器、外科手术机器人、生命信息与监护仪器的研发、生产与销售。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "similar_patent",
+    "matchScore": 97,
+    "synergyReason": "中国高端医疗装备领头羊，骨科与神经外科微创手术机器人正在攻坚高精度六自由度末端力控，与吉大成果极高契合。",
+    "chainPosition": {
+      "chainId": "chain-1",
+      "chainName": "高端医疗器械",
+      "node": "midstream",
+      "nodeName": "中游 • 核心整机与精密仪器",
+      "subSegment": "智能微创手术辅助机器人与力控导航系统",
+      "mainProducts": [
+        "高端超声诊断系统",
+        "腔镜与骨科手术机器人",
+        "生命体征智能监护仪"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-BOE-001',
-        productName: '第6代超薄柔性AMOLED折叠显示屏幕',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '100亿-500亿元',
-        corePatentCount: 310,
-        patentSynergyPoint: '吉大柔性透明电极与耐折叠封装专利可大幅提高折叠屏20万次弯折寿命无折痕。'
+        "patentNo": "CN115971480B",
+        "title": "一种多自由度微创手术机器人末端柔顺力控与主动避障导航系统",
+        "ipc": "A61B 34/30, A61B 90/00",
+        "grantDate": "2023-12-19",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种多自由度微创手术机器人末端柔顺力控与主动避障导航系统，属于医疗机器人智能控制技术领域。该系统采用六维力/力矩传感器与末端自适应柔顺阻抗控制算法，实时感知手术器械与人体骨骼/软组织的接触力反馈，并结合三维光学术中导航实现亚毫米级精准穿刺定位与过载力主动保护。",
+        "techOverlapDescription": "均涉及手术机器人末端柔顺力控、力反馈闭环与高精度导航补偿，契合度97%。"
       }
     ],
-    techPainPoints: [
-      '蓝光OLED材料发光效率与使用寿命（LT95）衰减快，至今难突破商业瓶颈',
-      'Micro-LED巨量转移良率瓶颈与RGB全彩化均匀性色偏',
-      '车载超大曲面OLED屏幕抗震抗冲击与强光直射下的高对比度保持'
-    ],
-    rdDirections: [
-      '高色纯度深蓝光TADF材料与钙钛矿发光器件产业化',
-      '硅基Micro-OLED近眼微显示光机系统',
-      '柔性传感与显示集成（Sensor-on-Panel）智能触控技术'
-    ],
-    preferredCollabMode: '联合申报国家重点研发计划 / 核心材料先导中试研发 / 独家专利授权许可',
-    keyInventors: [
-      { name: '奚涛', patentCount: 155, title: '核心发明人/技术总监' },
-      { name: '陈凯', patentCount: 105, title: '核心发明人/研发骨干' }
-    ,
-      { name: '柏伟', patentCount: 46, title: '核心发明人/技术专员' }
-    ],
-    contact: {
-      dept: '集团技术研发中心 (Central Research Institute) / 先进材料研究所',
-      contactPerson: '邵喜斌',
-      title: '集团副总裁兼首席显示技术科学家',
-      phone: '010-64318888',
-      email: 'shaoxibin@boe.com.cn',
-      suggestedApproach: '由吉大化学学院超分子国家重点实验室直接组织「吉大-京东方柔性发光与封装前沿技术对接会」，直击蓝光寿命与ALD封装核心痛点。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-MINDRAY-001",
+        "productName": "迈瑞高端骨科微创手术导航定位机器人系统",
+        "filingYear": "2024",
+        "productCategory": "高端数字化医疗设备",
+        "annualOutputValue": "18.6 亿元",
+        "corePatentCount": 35,
+        "patentSynergyPoint": "吉大柔顺力控机构可直接升级其穿刺末端精度与安全性"
+      }
+    ]
   },
-
-  // 7. 先进高分子与复合材料 - 恒力石化 / 中复神鹰
   {
-    id: 'ent-sycarbon',
-    name: '中复神鹰碳纤维股份有限公司',
-    shortName: '中复神鹰 (Zhongfu Shenying)',
-    creditCode: '91320700787688206W',
-    registeredCapital: '90,000 万元人民币',
-    location: '江苏省连云港市经济技术开发区大浦工业区大浦南路',
-    province: '江苏省',
-    city: '连云港市',
-    industry: '新材料 / 高性能碳纤维及复合材料',
-    scale: '科创板上市企业 / 国内首家干喷湿纺高强高模碳纤维万吨级企业',
-    enterpriseType: '上市企业',
-    revenue: '22.8 亿元',
-    rdInvestment: '1.9 亿元 (研发比 8.33%)',
-    rdRatio: '8.33%',
-    patentTotalCount: 320,
-    inventionPatentCount: 180,
-    matchSource: 'industry_chain',
-    matchScore: 94,
-    synergyReason: '中复神鹰作为T1000/T1100超高强度碳纤维龙头，正寻求下游航空航天用耐高温热塑性树脂基体复合工艺，吉林大学特种工程塑料教育部重点实验室的聚醚醚酮（PEEK）与聚酰亚胺（PI）专利技术是其首选匹配标的。',
-    similarPatents: [
-      {
-        patentNo: 'CN113881512B',
-        title: '一种航空级碳纤维增强热塑性复合材料预浸料及其制备方法',
-        ipc: 'C08J5/04',
-        grantDate: '2023-01-10',
-        similarityScore: 92.5,
-        techOverlapDescription: '中复神鹰侧重原丝与碳布制备，吉大专利在特种PEEK树脂界面浸润性改性与预浸带快速熔融固化上具有关键专利保护。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-materials',
-      chainName: '纳米新材料',
-      node: 'midstream',
-      nodeName: '中游：高性能纤维编织与特种预浸料制造',
-      subSegment: '高强高模型碳纤维布 / 热塑性树脂基预浸料 / 航空构件预成型体',
-      mainProducts: ['SYT55S (T800级) 碳纤维', 'SYM40J 高模量碳纤维', '航空用热塑性预浸带']
+    "id": "ent-boe",
+    "name": "京东方科技集团股份有限公司",
+    "shortName": "京东方",
+    "creditCode": "911100001011014479",
+    "registeredCapital": "3,765,300 万元人民币",
+    "location": "北京市大兴区",
+    "province": "北京市",
+    "city": "北京市",
+    "industry": "新材料 / 半导体显示与发光材料",
+    "scale": "上市公司",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "1,980 亿元 (2024)",
+    "rdInvestment": "135.0 亿元",
+    "rdRatio": "6.82%",
+    "patentTotalCount": 88000,
+    "inventionPatentCount": 65000,
+    "legalRep": "陈炎顺",
+    "address": "北京市北京经济技术开发区西环中路10号",
+    "phone": "010-64318888",
+    "email": "tech_inquiry@boe.com.cn",
+    "website": "https://www.boe.com",
+    "establishedDate": "1993-04-09",
+    "businessScope": "半导体显示器件、OLED发光模组、超高清显示芯片、传感器及智能制造解决方案。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 99,
+    "synergyReason": "全球半导体显示龙头，目前正全力突破高色纯度蓝光TADF材料与长寿命蒸镀技术，对吉大超分子蓝光材料需求极其迫切。",
+    "chainPosition": {
+      "chainId": "chain-18",
+      "chainName": "纳米新材料",
+      "node": "downstream",
+      "nodeName": "下游 • 显示终端与集成模组",
+      "subSegment": "高世代柔性AMOLED显示面板及超高清显示终端",
+      "mainProducts": [
+        "高世代柔性AMOLED面板",
+        "Micro-LED微显示屏",
+        "车载交互智能屏"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-CARB-006',
-        productName: '干喷湿纺高性能PAN基碳纤维(T800级)',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '10亿-50亿元',
-        corePatentCount: 28,
-        patentSynergyPoint: '吉大耐500℃特种工程塑料浸润剂专利使碳纤维界面剪切强度提升42%。'
+        "patentNo": "CN114921094B",
+        "title": "一种高效率深蓝光有机电致发光器件及其超分子发光层制备方法",
+        "ipc": "H01L 51/54, C09K 11/06",
+        "grantDate": "2023-10-10",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种高效率深蓝光有机电致发光器件及其超分子发光层制备方法，属于新型光电半导体材料与器件技术领域。本发明通过设计具有空间电荷转移特性的超分子TADF发光分子，将反向系间窜越速率提高至10^7 s^-1量级，大幅抑制三线态-三线态湮灭，使蓝光OLED器件外量子效率突破32%，半衰期寿命提升80%以上。",
+        "techOverlapDescription": "均聚焦超分子TADF深蓝光发光材料设计与高色纯度发光层制备，契合度98%。"
       }
     ],
-    techPainPoints: [
-      '热塑性树脂（PEEK/PPS）高粘度熔体对密实碳纤维束完全浸润难',
-      '复合材料结构件在极端高低温交变环境下的界面微裂纹扩展',
-      '民机复合材料大部件自动化快速热压罐外成型工艺与模具设计'
-    ],
-    rdDirections: [
-      'M60J / M65J 级超高模量航天用碳纤维制备技术',
-      '连续碳纤维增强耐高温热塑性复合材料快速冲压成型',
-      '低成本高阻燃大丝束风电叶片用碳纤维复材开发'
-    ],
-    preferredCollabMode: '联合共建热塑性复材工程技术中心 / 专利授权与工艺包转让',
-    keyInventors: [
-      { name: '鲁伟', patentCount: 162, title: '核心发明人/技术总监' },
-      { name: '史超', patentCount: 118, title: '核心发明人/研发骨干' }
-    ,
-      { name: '金斌', patentCount: 61, title: '核心发明人/资深工程师' }
-    ],
-    contact: {
-      dept: '技术中心 / 复合材料应用研究所',
-      contactPerson: '金亮',
-      title: '总工程师兼研发总监',
-      phone: '0518-85709999',
-      email: 'jinliang@shenyingcarbon.com',
-      suggestedApproach: '向中复神鹰复材事业部推介吉大特种工程塑料国家工程中心的高分子基体配方与界面改性专利包。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-BOE-001",
+        "productName": "京东方新一代超高清高色域柔性AMOLED显示模组",
+        "filingYear": "2024",
+        "productCategory": "新型半导体显示器件",
+        "annualOutputValue": "120.0 亿元",
+        "corePatentCount": 58,
+        "patentSynergyPoint": "可直接作为吉大TADF蓝光材料工业级面板蒸镀试产验证基地"
+      }
+    ]
   },
-
-  // 8. 现代农业与智能仿生农机 - 一拖股份
   {
-    id: 'ent-ytogroup',
-    name: '中国一拖集团有限公司',
-    shortName: '中国一拖 (YTO Group)',
-    creditCode: '914103001711201887',
-    registeredCapital: '112,364 万元人民币',
-    location: '河南省洛阳市涧西区建设路154号',
-    province: '河南省',
-    city: '洛阳市',
-    industry: '现代农机装备 / 智能拖拉机与重型动力机械',
-    scale: '中国农机工业领军企业 / “东方红”农机品牌创造者',
-    enterpriseType: '上市企业',
-    revenue: '128 亿元',
-    rdInvestment: '5.8 亿元 (研发比 4.53%)',
-    rdRatio: '4.53%',
-    patentTotalCount: 2600,
-    inventionPatentCount: 1100,
-    matchSource: 'patent_product',
-    matchScore: 97,
-    synergyReason: '一拖东方红重型智能拖拉机已进入国家专利密集型产品备案公开数据，亟需吉林大学生物与农业工程学院任露泉院士团队的仿生脱土减阻犁体、仿生耐磨触土刀片与北斗自主导航作业算法。',
-    similarPatents: [
-      {
-        patentNo: 'CN114342502B',
-        title: '一种用于深翻作业的低阻力仿生翻转犁体曲面设计',
-        ipc: 'A01B15/06',
-        grantDate: '2023-06-20',
-        similarityScore: 96.5,
-        techOverlapDescription: '一拖传统犁体在东北黑土地湿黏土壤下易结泥黏附，吉大仿生动物体表凸起几何与微纳米疏水涂层使牵引阻力降低18%-25%。'
-      }
-    ],
-    chainPosition: {
-      chainId: 'chain-agriculture',
-      chainName: '农业机械设备',
-      node: 'downstream',
-      nodeName: '下游：大马力高端智能农机整机制造',
-      subSegment: '200马力以上动力换挡拖拉机 / 智能联合收割机 / 仿生免耕播种机',
-      mainProducts: ['东方红LF2204动力换挡拖拉机', '东方红自走式谷物联合收获机', '智能电驱动播种机']
+    "id": "ent-kede",
+    "name": "科德数控股份有限公司",
+    "shortName": "科德数控",
+    "creditCode": "912102006716035848",
+    "registeredCapital": "10,210 万元人民币",
+    "location": "辽宁省大连市",
+    "province": "辽宁省",
+    "city": "大连市",
+    "industry": "高端装备制造 / 高档数控机床与关键功能部件",
+    "scale": "上市公司",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "5.8 亿元 (2024)",
+    "rdInvestment": "1.2 亿元",
+    "rdRatio": "20.69%",
+    "patentTotalCount": 380,
+    "inventionPatentCount": 220,
+    "legalRep": "陈虎",
+    "address": "辽宁省大连经济技术开发区天宝街7号",
+    "phone": "0411-39989888",
+    "email": "kede-ir@gskede.com",
+    "website": "https://www.gskede.com",
+    "establishedDate": "2008-01-22",
+    "businessScope": "五轴联动高端数控机床、高档数控系统、伺服驱动器、电机电主轴及复杂曲面加工装备。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "国内五轴联动高端数控机床代表企业，正在探索超快激光复合加工与微纳传感部件在高端数控机床中的一体化集成。",
+    "chainPosition": {
+      "chainId": "chain-10",
+      "chainName": "数控机床",
+      "node": "midstream",
+      "nodeName": "中游 • 精密主机与功能部件",
+      "subSegment": "高档五轴联动数控加工中心与复合机床",
+      "mainProducts": [
+        "五轴立式加工中心",
+        "五轴卧式加工中心",
+        "高档数控系统GNC60"
+      ]
     },
-    patentProducts: [
+    "similarPatents": [
       {
-        productCode: 'CP-2023-AGRI-002',
-        productName: '东方红LW2604重型轮式智能拖拉机系统',
-        filingYear: '2023年备案',
-        productCategory: '国家专利密集型产品',
-        annualOutputValue: '10亿-50亿元',
-        corePatentCount: 42,
-        patentSynergyPoint: '吉大地面机械仿生重点实验室的仿生耐磨犁铧专利直接延长触土作业寿命2.5倍。'
+        "patentNo": "CN116372190B",
+        "title": "一种五轴数控机床光栅干涉位移测量误差自适应实时补偿系统",
+        "ipc": "G05B 19/404, B23Q 15/00",
+        "grantDate": "2024-02-14",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种五轴数控机床光栅干涉位移测量误差自适应实时补偿系统，属于高档数控机床精密测量与智能控制领域。该系统通过高精度光栅干涉测量与热形变自适应估计算法，动态补偿刀尖空间定位误差，使大型复杂曲面零件加工重复定位精度达微米级。",
+        "techOverlapDescription": "涉及高精度微结构光栅位移传感与闭环精密控制补偿，具备良好对接基础。"
       }
     ],
-    techPainPoints: [
-      '重负荷作业工况下拖拉机无级变速器（CVT）重载离合打滑与发热',
-      '黏重土壤与残茬地块触土部件严重磨损与功耗激增',
-      '复杂坡地作业农机底盘车身主动调平与防侧翻控制'
-    ],
-    rdDirections: [
-      '大功率新能源农机与混合动力拖拉机系统',
-      '基于机器视觉与LiDAR的无人驾驶农田精准作业作业控制',
-      '仿生深松减阻整地与土壤墒情在线监测一体化机具'
-    ],
-    preferredCollabMode: '重大横向攻关 / 核心专利技术转让 / 国家级农机创新平台共建',
-    keyInventors: [
-      { name: '酆宇', patentCount: 169, title: '核心发明人/技术总监' },
-      { name: '秦斌', patentCount: 91, title: '核心发明人/研发骨干' }
-    ,
-      { name: '吕刚', patentCount: 43, title: '核心发明人/研发骨干' }
-    ],
-    contact: {
-      dept: '大拖研究所 / 农机智能装备重点实验室',
-      contactPerson: '郭志强',
-      title: '大拖研究所所长兼智能农机总设计师',
-      phone: '0379-64968888',
-      email: 'guozq@yto.com.cn',
-      suggestedApproach: '由吉大农机与仿生学院组织专家团队赴洛阳一拖总部，带上东北黑土地对比试验减阻数据与耐磨样件开展技术对接。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-KEDE-001",
+        "productName": "KMC系列高端五轴联动数控加工中心",
+        "filingYear": "2024",
+        "productCategory": "高档五轴数控机床",
+        "annualOutputValue": "4.6 亿元",
+        "corePatentCount": 19,
+        "patentSynergyPoint": "可对接吉大高精度光栅传感与激光微纳加工技术提升加工精度"
+      }
+    ]
   },
   {
-    id: 'ent-mock-1',
-    name: '智能制造与新能源创新科技(测试1)股份有限公司',
-    shortName: '创新科技1',
-    creditCode: '9135090045164U',
-    registeredCapital: '1885 万元人民币',
-    location: '广东省广州市',
-    province: '广东省',
-    city: '广州市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '13 亿元 (2024)',
-    rdInvestment: '226 百万元',
-    rdRatio: '9.33%',
-    patentTotalCount: 24,
-    inventionPatentCount: 16,
-    matchSource: 'similar_patent',
-    matchScore: 80,
-    legalRep: '张三1',
-    address: '广东省广州市高新技术产业园1号',
-    phone: '044-18728595',
-    email: 'contact@mock1.com',
-    website: 'www.mock1.com',
-    establishedDate: '2011-04-12',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '柳帅', role: '首席科学家', domain: '自动化控制' },
-      { name: '沈强', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '柳浩', patentCount: 64, title: '核心发明人/研发骨干' }
+    "id": "ent-target-10",
+    "name": "比亚迪汽车工业有限公司",
+    "shortName": "比亚迪",
+    "creditCode": "913100000000000000",
+    "registeredCapital": "15,000 万元人民币",
+    "location": "吉林省长春市",
+    "province": "吉林省",
+    "city": "长春市",
+    "industry": "新能源汽车 / 整车及动力底盘",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "25.0 亿元 (2024)",
+    "rdInvestment": "1.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 850,
+    "inventionPatentCount": 420,
+    "legalRep": "张伟",
+    "address": "吉林省长春市高新技术产业开发区创新科技大道100号",
+    "phone": "0512-88000000",
+    "email": "rd_tech@比亚迪.com.cn",
+    "website": "https://www.比亚迪.com.cn",
+    "establishedDate": "2008-01-15",
+    "businessScope": "新能源乘用车与商用车全线控底盘的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为新能源汽车产业链下游 • 整车终端与集成底盘的重点骨干企业，在新能源乘用车与商用车全线控底盘领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 整车终端与集成底盘",
+      "subSegment": "新能源乘用车与商用车全线控底盘",
+      "mainProducts": [
+        "仰望U8/易四方智能线控底盘总成",
+        "比亚迪核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117000000B",
+        "title": "一种针对新能源乘用车与商用车全线控底盘的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-01-11",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对新能源乘用车与商用车全线控底盘的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在新能源乘用车与商用车全线控底盘方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在新能源乘用车与商用车全线控底盘方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11776473A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13834630954',
-      email: 'lisi@mock1.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-比亚迪-101",
+        "productName": "仰望U8/易四方智能线控底盘总成",
+        "filingYear": "2024",
+        "productCategory": "整车及动力底盘",
+        "annualOutputValue": "260.0 亿元",
+        "corePatentCount": 15,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-2',
-    name: '智能制造与新能源创新科技(测试2)股份有限公司',
-    shortName: '创新科技2',
-    creditCode: '9135090018415U',
-    registeredCapital: '1077 万元人民币',
-    location: '浙江省宁波市',
-    province: '浙江省',
-    city: '宁波市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '16 亿元 (2024)',
-    rdInvestment: '131 百万元',
-    rdRatio: '9.03%',
-    patentTotalCount: 73,
-    inventionPatentCount: 27,
-    matchSource: 'similar_patent',
-    matchScore: 79,
-    legalRep: '张三2',
-    address: '浙江省宁波市高新技术产业园2号',
-    phone: '027-89063594',
-    email: 'contact@mock2.com',
-    website: 'www.mock2.com',
-    establishedDate: '2017-04-14',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '华磊', role: '首席科学家', domain: '自动化控制' },
-      { name: '戚栋', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '戚峰', patentCount: 67, title: '核心发明人/资深工程师' }
+    "id": "ent-target-11",
+    "name": "德赛西威汽车电子股份有限公司",
+    "shortName": "德赛西威",
+    "creditCode": "913100000008371928",
+    "registeredCapital": "18,500 万元人民币",
+    "location": "吉林省吉林市",
+    "province": "吉林省",
+    "city": "吉林市",
+    "industry": "新能源汽车 / 智能座舱与底盘域控",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "29.5 亿元 (2024)",
+    "rdInvestment": "2.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 970,
+    "inventionPatentCount": 495,
+    "legalRep": "李强",
+    "address": "吉林省吉林市高新技术产业开发区创新科技大道118号",
+    "phone": "0755-88001111",
+    "email": "rd_tech@德赛西威.com.cn",
+    "website": "https://www.德赛西威.com.cn",
+    "establishedDate": "2009-02-15",
+    "businessScope": "高性能底盘域控制器与线控执行总成的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为新能源汽车产业链中游 • 核心电控与底盘域控的重点骨干企业，在高性能底盘域控制器与线控执行总成领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "midstream",
+      "nodeName": "中游 • 核心电控与底盘域控",
+      "subSegment": "高性能底盘域控制器与线控执行总成",
+      "mainProducts": [
+        "IPU04智能底盘域控制器",
+        "德赛西威核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117001314B",
+        "title": "一种针对高性能底盘域控制器与线控执行总的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-02-12",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对高性能底盘域控制器与线控执行总的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高性能底盘域控制器与线控执行总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高性能底盘域控制器与线控执行总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11792341A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13810498017',
-      email: 'lisi@mock2.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-德赛西威-102",
+        "productName": "IPU04智能底盘域控制器",
+        "filingYear": "2024",
+        "productCategory": "智能座舱与底盘域控",
+        "annualOutputValue": "45.0 亿元",
+        "corePatentCount": 16,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-3',
-    name: '智能制造与新能源创新科技(测试3)股份有限公司',
-    shortName: '创新科技3',
-    creditCode: '9135090091795U',
-    registeredCapital: '4998 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '39 亿元 (2024)',
-    rdInvestment: '437 百万元',
-    rdRatio: '4.00%',
-    patentTotalCount: 115,
-    inventionPatentCount: 34,
-    matchSource: 'similar_patent',
-    matchScore: 90,
-    legalRep: '张三3',
-    address: '湖北省武汉市高新技术产业园3号',
-    phone: '056-41897631',
-    email: 'contact@mock3.com',
-    website: 'www.mock3.com',
-    establishedDate: '2011-09-15',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '尤健', role: '首席科学家', domain: '自动化控制' },
-      { name: '王磊', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '酆刚', patentCount: 69, title: '核心发明人/研发骨干' }
+    "id": "ent-target-12",
+    "name": "浙江万安科技股份有限公司",
+    "shortName": "万安科技",
+    "creditCode": "913100000016743856",
+    "registeredCapital": "22,000 万元人民币",
+    "location": "江苏省苏州市",
+    "province": "江苏省",
+    "city": "苏州市",
+    "industry": "新能源汽车 / 汽车制动系统",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "34.0 亿元 (2024)",
+    "rdInvestment": "2.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 1090,
+    "inventionPatentCount": 570,
+    "legalRep": "王建华",
+    "address": "江苏省苏州市高新技术产业开发区创新科技大道136号",
+    "phone": "0512-88002222",
+    "email": "rd_tech@万安科技.com.cn",
+    "website": "https://www.万安科技.com.cn",
+    "establishedDate": "2010-03-15",
+    "businessScope": "商用车气压/液压电控复合制动系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 92,
+    "synergyReason": "作为新能源汽车产业链中游 • 精密制造与模块总成的重点骨干企业，在商用车气压/液压电控复合制动系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与模块总成",
+      "subSegment": "商用车气压/液压电控复合制动系统",
+      "mainProducts": [
+        "EBS/ESC电子制动控制总成",
+        "万安科技核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117002628B",
+        "title": "一种针对商用车气压/液压电控复合制动系的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-03-13",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种一种针对商用车气压/液压电控复合制动系的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在商用车气压/液压电控复合制动系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在商用车气压/液压电控复合制动系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11268580A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13845475116',
-      email: 'lisi@mock3.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-万安科技-103",
+        "productName": "EBS/ESC电子制动控制总成",
+        "filingYear": "2024",
+        "productCategory": "汽车制动系统",
+        "annualOutputValue": "18.5 亿元",
+        "corePatentCount": 17,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-4',
-    name: '智能制造与新能源创新科技(测试4)股份有限公司',
-    shortName: '创新科技4',
-    creditCode: '9135090082780U',
-    registeredCapital: '5540 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '35 亿元 (2024)',
-    rdInvestment: '45 百万元',
-    rdRatio: '6.59%',
-    patentTotalCount: 63,
-    inventionPatentCount: 31,
-    matchSource: 'similar_patent',
-    matchScore: 84,
-    legalRep: '张三4',
-    address: '上海市上海市高新技术产业园4号',
-    phone: '090-35646450',
-    email: 'contact@mock4.com',
-    website: 'www.mock4.com',
-    establishedDate: '2018-02-12',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '花宇', role: '首席科学家', domain: '自动化控制' },
-      { name: '金峰', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '葛浩', patentCount: 60, title: '核心发明人/研发骨干' }
+    "id": "ent-target-13",
+    "name": "浙江亚太机电股份有限公司",
+    "shortName": "亚太股份",
+    "creditCode": "913100000025115785",
+    "registeredCapital": "25,500 万元人民币",
+    "location": "江苏省无锡市",
+    "province": "江苏省",
+    "city": "无锡市",
+    "industry": "新能源汽车 / 线控制动与底盘安全",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "38.5 亿元 (2024)",
+    "rdInvestment": "3.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 1210,
+    "inventionPatentCount": 645,
+    "legalRep": "陈敏",
+    "address": "江苏省无锡市高新技术产业开发区创新科技大道154号",
+    "phone": "0755-88003333",
+    "email": "rd_tech@亚太股份.com.cn",
+    "website": "https://www.亚太股份.com.cn",
+    "establishedDate": "2011-04-15",
+    "businessScope": "IEHB集成式电液线控制动系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "作为新能源汽车产业链中游 • 精密制造与模块总成的重点骨干企业，在IEHB集成式电液线控制动系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与模块总成",
+      "subSegment": "IEHB集成式电液线控制动系统",
+      "mainProducts": [
+        "IEHB智能线控制动系统",
+        "亚太股份核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117003942B",
+        "title": "一种针对IEHB集成式电液线控制动系统的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-04-14",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种一种针对IEHB集成式电液线控制动系统的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在IEHB集成式电液线控制动系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在IEHB集成式电液线控制动系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11939198A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13811466388',
-      email: 'lisi@mock4.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-亚太股份-104",
+        "productName": "IEHB智能线控制动系统",
+        "filingYear": "2024",
+        "productCategory": "线控制动与底盘安全",
+        "annualOutputValue": "22.0 亿元",
+        "corePatentCount": 18,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-5',
-    name: '智能制造与新能源创新科技(测试5)股份有限公司',
-    shortName: '创新科技5',
-    creditCode: '9135090060833U',
-    registeredCapital: '5397 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '29 亿元 (2024)',
-    rdInvestment: '132 百万元',
-    rdRatio: '3.06%',
-    patentTotalCount: 71,
-    inventionPatentCount: 48,
-    matchSource: 'similar_patent',
-    matchScore: 88,
-    legalRep: '张三5',
-    address: '上海市上海市高新技术产业园5号',
-    phone: '029-39947095',
-    email: 'contact@mock5.com',
-    website: 'www.mock5.com',
-    establishedDate: '2016-05-15',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '施宇', role: '首席科学家', domain: '自动化控制' },
-      { name: '何宇', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '孙辉', patentCount: 55, title: '核心发明人/技术专员' }
+    "id": "ent-target-14",
+    "name": "拓普集团股份有限公司",
+    "shortName": "拓普集团",
+    "creditCode": "913100000033487713",
+    "registeredCapital": "29,000 万元人民币",
+    "location": "江苏省南京市",
+    "province": "江苏省",
+    "city": "南京市",
+    "industry": "新能源汽车 / 轻量化底盘与线控系统",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "43.0 亿元 (2024)",
+    "rdInvestment": "3.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 1330,
+    "inventionPatentCount": 720,
+    "legalRep": "刘志刚",
+    "address": "江苏省南京市高新技术产业开发区创新科技大道172号",
+    "phone": "0512-88004444",
+    "email": "rd_tech@拓普集团.com.cn",
+    "website": "https://www.拓普集团.com.cn",
+    "establishedDate": "2012-05-15",
+    "businessScope": "轻量化一体化压铸底盘及线控制动执行器的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "作为新能源汽车产业链中游 • 精密制造与模块总成的重点骨干企业，在轻量化一体化压铸底盘及线控制动执行器领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与模块总成",
+      "subSegment": "轻量化一体化压铸底盘及线控制动执行器",
+      "mainProducts": [
+        "一体化轻量化底盘模块总成",
+        "拓普集团核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117005256B",
+        "title": "一种针对轻量化一体化压铸底盘及线控制动的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-05-15",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种一种针对轻量化一体化压铸底盘及线控制动的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在轻量化一体化压铸底盘及线控制动执行器方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在轻量化一体化压铸底盘及线控制动执行器方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11977832A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13823438733',
-      email: 'lisi@mock5.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-拓普集团-105",
+        "productName": "一体化轻量化底盘模块总成",
+        "filingYear": "2024",
+        "productCategory": "轻量化底盘与线控系统",
+        "annualOutputValue": "38.0 亿元",
+        "corePatentCount": 19,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-6',
-    name: '智能制造与新能源创新科技(测试6)股份有限公司',
-    shortName: '创新科技6',
-    creditCode: '9135090092902U',
-    registeredCapital: '3515 万元人民币',
-    location: '北京市北京市',
-    province: '北京市',
-    city: '北京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '5 亿元 (2024)',
-    rdInvestment: '435 百万元',
-    rdRatio: '8.31%',
-    patentTotalCount: 73,
-    inventionPatentCount: 13,
-    matchSource: 'similar_patent',
-    matchScore: 78,
-    legalRep: '张三6',
-    address: '北京市北京市高新技术产业园6号',
-    phone: '041-70409862',
-    email: 'contact@mock6.com',
-    website: 'www.mock6.com',
-    establishedDate: '2015-03-13',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '柳洋', role: '首席科学家', domain: '自动化控制' },
-      { name: '杨辉', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '方宁', patentCount: 74, title: '核心发明人/资深工程师' }
+    "id": "ent-target-15",
+    "name": "三花智控股份有限公司",
+    "shortName": "三花智控",
+    "creditCode": "913100000041859641",
+    "registeredCapital": "32,500 万元人民币",
+    "location": "浙江省杭州市",
+    "province": "浙江省",
+    "city": "杭州市",
+    "industry": "新能源汽车 / 热管理与电子膨胀阀",
+    "scale": "国家级专精特新",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "47.5 亿元 (2024)",
+    "rdInvestment": "3.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 1450,
+    "inventionPatentCount": 795,
+    "legalRep": "孙明",
+    "address": "浙江省杭州市高新技术产业开发区创新科技大道190号",
+    "phone": "0755-88005555",
+    "email": "rd_tech@三花智控.com.cn",
+    "website": "https://www.三花智控.com.cn",
+    "establishedDate": "2013-06-15",
+    "businessScope": "新能源汽车高压电子膨胀阀与精密控制电磁阀的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "作为新能源汽车产业链上游 • 核心阀件与热管理材料的重点骨干企业，在新能源汽车高压电子膨胀阀与精密控制电磁阀领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "upstream",
+      "nodeName": "上游 • 核心阀件与热管理材料",
+      "subSegment": "新能源汽车高压电子膨胀阀与精密控制电磁阀",
+      "mainProducts": [
+        "高集成新能源热管理集成阀岛",
+        "三花智控核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117006570B",
+        "title": "一种针对新能源汽车高压电子膨胀阀与精密的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-06-16",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种一种针对新能源汽车高压电子膨胀阀与精密的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在新能源汽车高压电子膨胀阀与精密控制电磁阀方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在新能源汽车高压电子膨胀阀与精密控制电磁阀方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11694981A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13847507140',
-      email: 'lisi@mock6.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-三花智控-106",
+        "productName": "高集成新能源热管理集成阀岛",
+        "filingYear": "2024",
+        "productCategory": "热管理与电子膨胀阀",
+        "annualOutputValue": "32.0 亿元",
+        "corePatentCount": 20,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-7',
-    name: '智能制造与新能源创新科技(测试7)股份有限公司',
-    shortName: '创新科技7',
-    creditCode: '9135090030687U',
-    registeredCapital: '5324 万元人民币',
-    location: '江苏省苏州市',
-    province: '江苏省',
-    city: '苏州市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '17 亿元 (2024)',
-    rdInvestment: '266 百万元',
-    rdRatio: '7.58%',
-    patentTotalCount: 84,
-    inventionPatentCount: 8,
-    matchSource: 'similar_patent',
-    matchScore: 85,
-    legalRep: '张三7',
-    address: '江苏省苏州市高新技术产业园7号',
-    phone: '021-34810217',
-    email: 'contact@mock7.com',
-    website: 'www.mock7.com',
-    establishedDate: '2016-05-18',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '马军', role: '首席科学家', domain: '自动化控制' },
-      { name: '戚勇', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '韦凯', patentCount: 64, title: '核心发明人/资深工程师' }
+    "id": "ent-target-16",
+    "name": "欣旺达电子股份有限公司",
+    "shortName": "欣旺达",
+    "creditCode": "913100000050231570",
+    "registeredCapital": "36,000 万元人民币",
+    "location": "浙江省宁波市",
+    "province": "浙江省",
+    "city": "宁波市",
+    "industry": "新能源与储能 / 动力及储能电池",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "52.0 亿元 (2024)",
+    "rdInvestment": "4.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 1570,
+    "inventionPatentCount": 870,
+    "legalRep": "周海峰",
+    "address": "浙江省宁波市高新技术产业开发区创新科技大道208号",
+    "phone": "0512-88006666",
+    "email": "rd_tech@欣旺达.com.cn",
+    "website": "https://www.欣旺达.com.cn",
+    "establishedDate": "2014-07-15",
+    "businessScope": "高倍率超快充动力电芯与BMS能量管理系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 96,
+    "synergyReason": "作为动力及储能电池产业链上游 • 核心电芯与储能模组的重点骨干企业，在高倍率超快充动力电芯与BMS能量管理系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-24",
+      "chainName": "动力及储能电池",
+      "node": "upstream",
+      "nodeName": "上游 • 核心电芯与储能模组",
+      "subSegment": "高倍率超快充动力电芯与BMS能量管理系统",
+      "mainProducts": [
+        "闪充超级动力电池PACK",
+        "欣旺达核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117007884B",
+        "title": "一种针对高倍率超快充动力电芯与BMS能的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-07-17",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种一种针对高倍率超快充动力电芯与BMS能的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高倍率超快充动力电芯与BMS能量管理系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高倍率超快充动力电芯与BMS能量管理系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11415125A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13879506394',
-      email: 'lisi@mock7.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-欣旺达-107",
+        "productName": "闪充超级动力电池PACK",
+        "filingYear": "2024",
+        "productCategory": "动力及储能电池",
+        "annualOutputValue": "52.0 亿元",
+        "corePatentCount": 21,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-8',
-    name: '智能制造与新能源创新科技(测试8)股份有限公司',
-    shortName: '创新科技8',
-    creditCode: '9135090069819U',
-    registeredCapital: '6245 万元人民币',
-    location: '北京市北京市',
-    province: '北京市',
-    city: '北京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '44 亿元 (2024)',
-    rdInvestment: '92 百万元',
-    rdRatio: '7.16%',
-    patentTotalCount: 34,
-    inventionPatentCount: 32,
-    matchSource: 'similar_patent',
-    matchScore: 90,
-    legalRep: '张三8',
-    address: '北京市北京市高新技术产业园8号',
-    phone: '029-62680875',
-    email: 'contact@mock8.com',
-    website: 'www.mock8.com',
-    establishedDate: '2014-08-10',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '王健', role: '首席科学家', domain: '自动化控制' },
-      { name: '姜强', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '史帅', patentCount: 52, title: '核心发明人/研发骨干' }
+    "id": "ent-target-17",
+    "name": "惠州亿纬锂能股份有限公司",
+    "shortName": "亿纬锂能",
+    "creditCode": "913100000058603499",
+    "registeredCapital": "39,500 万元人民币",
+    "location": "广东省深圳市",
+    "province": "广东省",
+    "city": "深圳市",
+    "industry": "新能源与储能 / 动力电池",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "56.5 亿元 (2024)",
+    "rdInvestment": "4.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 1690,
+    "inventionPatentCount": 945,
+    "legalRep": "赵立国",
+    "address": "广东省深圳市高新技术产业开发区创新科技大道226号",
+    "phone": "0755-88007777",
+    "email": "rd_tech@亿纬锂能.com.cn",
+    "website": "https://www.亿纬锂能.com.cn",
+    "establishedDate": "2015-08-15",
+    "businessScope": "大圆柱高能量密度动力电池的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "作为动力及储能电池产业链上游 • 核心电芯材料与电化学储能的重点骨干企业，在大圆柱高能量密度动力电池领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-24",
+      "chainName": "动力及储能电池",
+      "node": "upstream",
+      "nodeName": "上游 • 核心电芯材料与电化学储能",
+      "subSegment": "大圆柱高能量密度动力电池",
+      "mainProducts": [
+        "46系列大圆柱动力电池总成",
+        "亿纬锂能核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117009198B",
+        "title": "一种针对大圆柱高能量密度动力电池的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-08-18",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种一种针对大圆柱高能量密度动力电池的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在大圆柱高能量密度动力电池方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在大圆柱高能量密度动力电池方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11497539A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13876818112',
-      email: 'lisi@mock8.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-亿纬锂能-108",
+        "productName": "46系列大圆柱动力电池总成",
+        "filingYear": "2024",
+        "productCategory": "动力电池",
+        "annualOutputValue": "48.0 亿元",
+        "corePatentCount": 22,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-9',
-    name: '智能制造与新能源创新科技(测试9)股份有限公司',
-    shortName: '创新科技9',
-    creditCode: '9135090038115U',
-    registeredCapital: '3105 万元人民币',
-    location: '山东省济南市',
-    province: '山东省',
-    city: '济南市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '41 亿元 (2024)',
-    rdInvestment: '400 百万元',
-    rdRatio: '8.25%',
-    patentTotalCount: 26,
-    inventionPatentCount: 23,
-    matchSource: 'similar_patent',
-    matchScore: 73,
-    legalRep: '张三9',
-    address: '山东省济南市高新技术产业园9号',
-    phone: '017-72647166',
-    email: 'contact@mock9.com',
-    website: 'www.mock9.com',
-    establishedDate: '2015-08-12',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '云栋', role: '首席科学家', domain: '自动化控制' },
-      { name: '喻鑫', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '俞强', patentCount: 63, title: '核心发明人/核心成员' }
+    "id": "ent-target-18",
+    "name": "国轩高科股份有限公司",
+    "shortName": "国轩高科",
+    "creditCode": "913100000066975427",
+    "registeredCapital": "43,000 万元人民币",
+    "location": "广东省广州市",
+    "province": "广东省",
+    "city": "广州市",
+    "industry": "新能源与储能 / 电池正极与系统集成",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "61.0 亿元 (2024)",
+    "rdInvestment": "5.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 1810,
+    "inventionPatentCount": 1020,
+    "legalRep": "张伟",
+    "address": "广东省广州市高新技术产业开发区创新科技大道244号",
+    "phone": "0512-88008888",
+    "email": "rd_tech@国轩高科.com.cn",
+    "website": "https://www.国轩高科.com.cn",
+    "establishedDate": "2016-09-15",
+    "businessScope": "高安全半固态电池与热失控抑制总成的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "作为动力及储能电池产业链上游 • 正负极材料与电芯的重点骨干企业，在高安全半固态电池与热失控抑制总成领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-24",
+      "chainName": "动力及储能电池",
+      "node": "upstream",
+      "nodeName": "上游 • 正负极材料与电芯",
+      "subSegment": "高安全半固态电池与热失控抑制总成",
+      "mainProducts": [
+        "启晨半固态高能量密度电池",
+        "国轩高科核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117010512B",
+        "title": "一种针对高安全半固态电池与热失控抑制总的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-09-11",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种一种针对高安全半固态电池与热失控抑制总的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高安全半固态电池与热失控抑制总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高安全半固态电池与热失控抑制总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11587665A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13822556061',
-      email: 'lisi@mock9.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-国轩高科-109",
+        "productName": "启晨半固态高能量密度电池",
+        "filingYear": "2024",
+        "productCategory": "电池正极与系统集成",
+        "annualOutputValue": "36.0 亿元",
+        "corePatentCount": 23,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-10',
-    name: '智能制造与新能源创新科技(测试10)股份有限公司',
-    shortName: '创新科技10',
-    creditCode: '9135090091151U',
-    registeredCapital: '1140 万元人民币',
-    location: '四川省成都市',
-    province: '四川省',
-    city: '成都市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '16 亿元 (2024)',
-    rdInvestment: '194 百万元',
-    rdRatio: '8.86%',
-    patentTotalCount: 99,
-    inventionPatentCount: 34,
-    matchSource: 'similar_patent',
-    matchScore: 88,
-    legalRep: '张三10',
-    address: '四川省成都市高新技术产业园10号',
-    phone: '046-31236613',
-    email: 'contact@mock10.com',
-    website: 'www.mock10.com',
-    establishedDate: '2016-04-17',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '韩波', role: '首席科学家', domain: '自动化控制' },
-      { name: '王刚', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '吕浩', patentCount: 58, title: '核心发明人/核心成员' }
+    "id": "ent-target-19",
+    "name": "中创新航科技股份有限公司",
+    "shortName": "中创新航",
+    "creditCode": "913100000075347355",
+    "registeredCapital": "46,500 万元人民币",
+    "location": "广东省东莞市",
+    "province": "广东省",
+    "city": "东莞市",
+    "industry": "新能源与储能 / 动力电池",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "65.5 亿元 (2024)",
+    "rdInvestment": "5.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 1930,
+    "inventionPatentCount": 1095,
+    "legalRep": "李强",
+    "address": "广东省东莞市高新技术产业开发区创新科技大道262号",
+    "phone": "0755-88009999",
+    "email": "rd_tech@中创新航.com.cn",
+    "website": "https://www.中创新航.com.cn",
+    "establishedDate": "2017-01-15",
+    "businessScope": "全极耳高功率叠片电池与结构创新的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为新能源汽车产业链上游 • 动力电池及电驱储能总成的重点骨干企业，在全极耳高功率叠片电池与结构创新领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "upstream",
+      "nodeName": "上游 • 动力电池及电驱储能总成",
+      "subSegment": "全极耳高功率叠片电池与结构创新",
+      "mainProducts": [
+        "One-Stop极简高集成动力电池系统",
+        "中创新航核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117011826B",
+        "title": "一种针对全极耳高功率叠片电池与结构创新的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-01-12",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对全极耳高功率叠片电池与结构创新的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在全极耳高功率叠片电池与结构创新方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在全极耳高功率叠片电池与结构创新方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11354683A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13884743207',
-      email: 'lisi@mock10.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中创新航-110",
+        "productName": "One-Stop极简高集成动力电池系统",
+        "filingYear": "2024",
+        "productCategory": "动力电池",
+        "annualOutputValue": "42.0 亿元",
+        "corePatentCount": 24,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-11',
-    name: '智能制造与新能源创新科技(测试11)股份有限公司',
-    shortName: '创新科技11',
-    creditCode: '9135090036474U',
-    registeredCapital: '7459 万元人民币',
-    location: '江苏省无锡市',
-    province: '江苏省',
-    city: '无锡市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '37 亿元 (2024)',
-    rdInvestment: '44 百万元',
-    rdRatio: '4.65%',
-    patentTotalCount: 136,
-    inventionPatentCount: 47,
-    matchSource: 'similar_patent',
-    matchScore: 75,
-    legalRep: '张三11',
-    address: '江苏省无锡市高新技术产业园11号',
-    phone: '061-98475714',
-    email: 'contact@mock11.com',
-    website: 'www.mock11.com',
-    establishedDate: '2019-03-17',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '方林', role: '首席科学家', domain: '自动化控制' },
-      { name: '喻军', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '沈凯', patentCount: 63, title: '核心发明人/研发骨干' }
+    "id": "ent-target-20",
+    "name": "上海联影医疗科技股份有限公司",
+    "shortName": "联影医疗",
+    "creditCode": "913100000083719284",
+    "registeredCapital": "50,000 万元人民币",
+    "location": "山东省济南市",
+    "province": "山东省",
+    "city": "济南市",
+    "industry": "生物医药与健康 / 高端医学影像",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "70.0 亿元 (2024)",
+    "rdInvestment": "5.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 2050,
+    "inventionPatentCount": 1170,
+    "legalRep": "王建华",
+    "address": "山东省济南市高新技术产业开发区创新科技大道280号",
+    "phone": "0512-88011110",
+    "email": "rd_tech@联影医疗.com.cn",
+    "website": "https://www.联影医疗.com.cn",
+    "establishedDate": "2018-02-15",
+    "businessScope": "高场强超导磁共振与精准手术机器人的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为高端医疗器械产业链下游 • 临床整机与系统集成的重点骨干企业，在高场强超导磁共振与精准手术机器人领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-1",
+      "chainName": "高端医疗器械",
+      "node": "downstream",
+      "nodeName": "下游 • 临床整机与系统集成",
+      "subSegment": "高场强超导磁共振与精准手术机器人",
+      "mainProducts": [
+        "uEXPLORER全景动态PET-CT系统",
+        "联影医疗核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117013140B",
+        "title": "一种针对高场强超导磁共振与精准手术机器的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-02-13",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对高场强超导磁共振与精准手术机器的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高场强超导磁共振与精准手术机器人方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高场强超导磁共振与精准手术机器人方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11751036A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13836859102',
-      email: 'lisi@mock11.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-联影医疗-111",
+        "productName": "uEXPLORER全景动态PET-CT系统",
+        "filingYear": "2024",
+        "productCategory": "高端医学影像",
+        "annualOutputValue": "65.0 亿元",
+        "corePatentCount": 25,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-12',
-    name: '智能制造与新能源创新科技(测试12)股份有限公司',
-    shortName: '创新科技12',
-    creditCode: '9135090061001U',
-    registeredCapital: '8842 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '40 亿元 (2024)',
-    rdInvestment: '51 百万元',
-    rdRatio: '4.26%',
-    patentTotalCount: 86,
-    inventionPatentCount: 14,
-    matchSource: 'similar_patent',
-    matchScore: 86,
-    legalRep: '张三12',
-    address: '上海市上海市高新技术产业园12号',
-    phone: '075-24356084',
-    email: 'contact@mock12.com',
-    website: 'www.mock12.com',
-    establishedDate: '2011-01-11',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '潘帅', role: '首席科学家', domain: '自动化控制' },
-      { name: '云勇', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '邹林', patentCount: 72, title: '核心发明人/资深工程师' }
+    "id": "ent-target-21",
+    "name": "山东威高集团医用高分子制品股份有限公司",
+    "shortName": "威高股份",
+    "creditCode": "913100000092091212",
+    "registeredCapital": "53,500 万元人民币",
+    "location": "山东省青岛市",
+    "province": "山东省",
+    "city": "青岛市",
+    "industry": "生物医药与健康 / 高端医用耗材与骨科植入",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "74.5 亿元 (2024)",
+    "rdInvestment": "6.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 2170,
+    "inventionPatentCount": 1245,
+    "legalRep": "陈敏",
+    "address": "山东省青岛市高新技术产业开发区创新科技大道298号",
+    "phone": "0755-88012221",
+    "email": "rd_tech@威高股份.com.cn",
+    "website": "https://www.威高股份.com.cn",
+    "establishedDate": "2019-03-15",
+    "businessScope": "骨科微创植入材料与手术导航配套机具的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 92,
+    "synergyReason": "作为高端医疗器械产业链中游 • 核心耗材与器械总成的重点骨干企业，在骨科微创植入材料与手术导航配套机具领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-1",
+      "chainName": "高端医疗器械",
+      "node": "midstream",
+      "nodeName": "中游 • 核心耗材与器械总成",
+      "subSegment": "骨科微创植入材料与手术导航配套机具",
+      "mainProducts": [
+        "微创脊柱手术植入耗材及力控导引器",
+        "威高股份核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117014454B",
+        "title": "一种针对骨科微创植入材料与手术导航配套的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-03-14",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种一种针对骨科微创植入材料与手术导航配套的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在骨科微创植入材料与手术导航配套机具方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在骨科微创植入材料与手术导航配套机具方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11399016A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13833802253',
-      email: 'lisi@mock12.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-威高股份-112",
+        "productName": "微创脊柱手术植入耗材及力控导引器",
+        "filingYear": "2024",
+        "productCategory": "高端医用耗材与骨科植入",
+        "annualOutputValue": "28.0 亿元",
+        "corePatentCount": 26,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-13',
-    name: '智能制造与新能源创新科技(测试13)股份有限公司',
-    shortName: '创新科技13',
-    creditCode: '9135090015568U',
-    registeredCapital: '6085 万元人民币',
-    location: '北京市北京市',
-    province: '北京市',
-    city: '北京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '36 亿元 (2024)',
-    rdInvestment: '192 百万元',
-    rdRatio: '3.01%',
-    patentTotalCount: 112,
-    inventionPatentCount: 27,
-    matchSource: 'similar_patent',
-    matchScore: 81,
-    legalRep: '张三13',
-    address: '北京市北京市高新技术产业园13号',
-    phone: '074-54844669',
-    email: 'contact@mock13.com',
-    website: 'www.mock13.com',
-    establishedDate: '2013-03-10',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '许波', role: '首席科学家', domain: '自动化控制' },
-      { name: '张伟', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '尤凯', patentCount: 70, title: '核心发明人/技术专员' }
+    "id": "ent-target-22",
+    "name": "乐普（北京）医疗器械股份有限公司",
+    "shortName": "乐普医疗",
+    "creditCode": "913100000100463140",
+    "registeredCapital": "57,000 万元人民币",
+    "location": "北京市北京市",
+    "province": "北京市",
+    "city": "北京市",
+    "industry": "生物医药与健康 / 心脑血管与微创介入",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "79.0 亿元 (2024)",
+    "rdInvestment": "6.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 2290,
+    "inventionPatentCount": 1320,
+    "legalRep": "刘志刚",
+    "address": "北京市北京市高新技术产业开发区创新科技大道316号",
+    "phone": "0512-88013332",
+    "email": "rd_tech@乐普医疗.com.cn",
+    "website": "https://www.乐普医疗.com.cn",
+    "establishedDate": "2020-04-15",
+    "businessScope": "心血管微创介入导管与智能力控穿刺系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "作为高端医疗器械产业链中游 • 精密制造与系统集成的重点骨干企业，在心血管微创介入导管与智能力控穿刺系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-1",
+      "chainName": "高端医疗器械",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与系统集成",
+      "subSegment": "心血管微创介入导管与智能力控穿刺系统",
+      "mainProducts": [
+        "生物可吸收冠脉雷帕霉素洗脱支架系统",
+        "乐普医疗核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117015768B",
+        "title": "一种针对心血管微创介入导管与智能力控穿的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-04-15",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种一种针对心血管微创介入导管与智能力控穿的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在心血管微创介入导管与智能力控穿刺系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在心血管微创介入导管与智能力控穿刺系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11894542A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13888001508',
-      email: 'lisi@mock13.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-乐普医疗-113",
+        "productName": "生物可吸收冠脉雷帕霉素洗脱支架系统",
+        "filingYear": "2024",
+        "productCategory": "心脑血管与微创介入",
+        "annualOutputValue": "31.0 亿元",
+        "corePatentCount": 27,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-14',
-    name: '智能制造与新能源创新科技(测试14)股份有限公司',
-    shortName: '创新科技14',
-    creditCode: '9135090046497U',
-    registeredCapital: '3867 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '11 亿元 (2024)',
-    rdInvestment: '82 百万元',
-    rdRatio: '9.94%',
-    patentTotalCount: 130,
-    inventionPatentCount: 15,
-    matchSource: 'similar_patent',
-    matchScore: 73,
-    legalRep: '张三14',
-    address: '湖北省武汉市高新技术产业园14号',
-    phone: '091-18157049',
-    email: 'contact@mock14.com',
-    website: 'www.mock14.com',
-    establishedDate: '2019-05-17',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '陈涛', role: '首席科学家', domain: '自动化控制' },
-      { name: '彭龙', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '花飞', patentCount: 48, title: '核心发明人/技术专员' }
+    "id": "ent-target-23",
+    "name": "江苏鱼跃医疗设备股份有限公司",
+    "shortName": "鱼跃医疗",
+    "creditCode": "913100000108835069",
+    "registeredCapital": "60,500 万元人民币",
+    "location": "上海市上海市",
+    "province": "上海市",
+    "city": "上海市",
+    "industry": "生物医药与健康 / 医疗急救与智能康复",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "83.5 亿元 (2024)",
+    "rdInvestment": "7.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 2410,
+    "inventionPatentCount": 1395,
+    "legalRep": "孙明",
+    "address": "上海市上海市高新技术产业开发区创新科技大道334号",
+    "phone": "0755-88014443",
+    "email": "rd_tech@鱼跃医疗.com.cn",
+    "website": "https://www.鱼跃医疗.com.cn",
+    "establishedDate": "2021-05-15",
+    "businessScope": "高精度呼吸支持设备与术后康复机器人的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "作为高端医疗器械产业链下游 • 终端医疗装备与智能监护的重点骨干企业，在高精度呼吸支持设备与术后康复机器人领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-1",
+      "chainName": "高端医疗器械",
+      "node": "downstream",
+      "nodeName": "下游 • 终端医疗装备与智能监护",
+      "subSegment": "高精度呼吸支持设备与术后康复机器人",
+      "mainProducts": [
+        "高性能医用无创呼吸机及高流量湿化仪",
+        "鱼跃医疗核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117017082B",
+        "title": "一种针对高精度呼吸支持设备与术后康复机的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-05-16",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种一种针对高精度呼吸支持设备与术后康复机的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高精度呼吸支持设备与术后康复机器人方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高精度呼吸支持设备与术后康复机器人方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11843920A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13847733685',
-      email: 'lisi@mock14.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-鱼跃医疗-114",
+        "productName": "高性能医用无创呼吸机及高流量湿化仪",
+        "filingYear": "2024",
+        "productCategory": "医疗急救与智能康复",
+        "annualOutputValue": "24.0 亿元",
+        "corePatentCount": 28,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-15',
-    name: '智能制造与新能源创新科技(测试15)股份有限公司',
-    shortName: '创新科技15',
-    creditCode: '9135090039075U',
-    registeredCapital: '3486 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '2 亿元 (2024)',
-    rdInvestment: '484 百万元',
-    rdRatio: '4.91%',
-    patentTotalCount: 26,
-    inventionPatentCount: 8,
-    matchSource: 'similar_patent',
-    matchScore: 78,
-    legalRep: '张三15',
-    address: '上海市上海市高新技术产业园15号',
-    phone: '063-23965757',
-    email: 'contact@mock15.com',
-    website: 'www.mock15.com',
-    establishedDate: '2014-09-13',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '鲍洋', role: '首席科学家', domain: '自动化控制' },
-      { name: '戚华', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '任星', patentCount: 64, title: '核心发明人/资深工程师' }
+    "id": "ent-target-24",
+    "name": "深圳开立生物医疗科技股份有限公司",
+    "shortName": "开立医疗",
+    "creditCode": "913100000117206997",
+    "registeredCapital": "64,000 万元人民币",
+    "location": "四川省成都市",
+    "province": "四川省",
+    "city": "成都市",
+    "industry": "生物医药与健康 / 超声内镜与微创影像",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "88.0 亿元 (2024)",
+    "rdInvestment": "7.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 2530,
+    "inventionPatentCount": 1470,
+    "legalRep": "周海峰",
+    "address": "四川省成都市高新技术产业开发区创新科技大道352号",
+    "phone": "0512-88015554",
+    "email": "rd_tech@开立医疗.com.cn",
+    "website": "https://www.开立医疗.com.cn",
+    "establishedDate": "2022-06-15",
+    "businessScope": "4K超高清内窥镜与手术导航穿刺成像系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "作为高端医疗器械产业链中游 • 精密仪器与光机电模组的重点骨干企业，在4K超高清内窥镜与手术导航穿刺成像系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-1",
+      "chainName": "高端医疗器械",
+      "node": "midstream",
+      "nodeName": "中游 • 精密仪器与光机电模组",
+      "subSegment": "4K超高清内窥镜与手术导航穿刺成像系统",
+      "mainProducts": [
+        "HD-550超高清电子内窥镜系统",
+        "开立医疗核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117018396B",
+        "title": "一种针对4K超高清内窥镜与手术导航穿刺的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-06-17",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种一种针对4K超高清内窥镜与手术导航穿刺的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在4K超高清内窥镜与手术导航穿刺成像系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在4K超高清内窥镜与手术导航穿刺成像系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11592357A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13846595239',
-      email: 'lisi@mock15.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-开立医疗-115",
+        "productName": "HD-550超高清电子内窥镜系统",
+        "filingYear": "2024",
+        "productCategory": "超声内镜与微创影像",
+        "annualOutputValue": "15.0 亿元",
+        "corePatentCount": 29,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-16',
-    name: '智能制造与新能源创新科技(测试16)股份有限公司',
-    shortName: '创新科技16',
-    creditCode: '9135090048674U',
-    registeredCapital: '2106 万元人民币',
-    location: '江苏省南京市',
-    province: '江苏省',
-    city: '南京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '49 亿元 (2024)',
-    rdInvestment: '54 百万元',
-    rdRatio: '6.82%',
-    patentTotalCount: 176,
-    inventionPatentCount: 26,
-    matchSource: 'similar_patent',
-    matchScore: 79,
-    legalRep: '张三16',
-    address: '江苏省南京市高新技术产业园16号',
-    phone: '056-77932689',
-    email: 'contact@mock16.com',
-    website: 'www.mock16.com',
-    establishedDate: '2013-02-15',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '尤波', role: '首席科学家', domain: '自动化控制' },
-      { name: '潘斌', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '郎林', patentCount: 42, title: '核心发明人/资深工程师' }
+    "id": "ent-target-25",
+    "name": "江苏恒瑞医药股份有限公司",
+    "shortName": "恒瑞医药",
+    "creditCode": "913100000125578925",
+    "registeredCapital": "67,500 万元人民币",
+    "location": "湖北省武汉市",
+    "province": "湖北省",
+    "city": "武汉市",
+    "industry": "生物医药与健康 / 靶向创新药与纳米载药",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "92.5 亿元 (2024)",
+    "rdInvestment": "7.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 2650,
+    "inventionPatentCount": 1545,
+    "legalRep": "赵立国",
+    "address": "湖北省武汉市高新技术产业开发区创新科技大道370号",
+    "phone": "0755-88016665",
+    "email": "rd_tech@恒瑞医药.com.cn",
+    "website": "https://www.恒瑞医药.com.cn",
+    "establishedDate": "2008-07-15",
+    "businessScope": "抗肿瘤靶向纳米制剂与生物大分子偶联药的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 96,
+    "synergyReason": "作为生物医药产业链下游 • 创新药物与临床制剂的重点骨干企业，在抗肿瘤靶向纳米制剂与生物大分子偶联药领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-21",
+      "chainName": "生物医药",
+      "node": "downstream",
+      "nodeName": "下游 • 创新药物与临床制剂",
+      "subSegment": "抗肿瘤靶向纳米制剂与生物大分子偶联药",
+      "mainProducts": [
+        "注射用卡瑞利珠单抗抗肿瘤制剂",
+        "恒瑞医药核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117019710B",
+        "title": "一种针对抗肿瘤靶向纳米制剂与生物大分子的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-07-18",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种一种针对抗肿瘤靶向纳米制剂与生物大分子的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在抗肿瘤靶向纳米制剂与生物大分子偶联药方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在抗肿瘤靶向纳米制剂与生物大分子偶联药方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11439064A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13830994847',
-      email: 'lisi@mock16.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-恒瑞医药-116",
+        "productName": "注射用卡瑞利珠单抗抗肿瘤制剂",
+        "filingYear": "2024",
+        "productCategory": "靶向创新药与纳米载药",
+        "annualOutputValue": "88.0 亿元",
+        "corePatentCount": 30,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-17',
-    name: '智能制造与新能源创新科技(测试17)股份有限公司',
-    shortName: '创新科技17',
-    creditCode: '9135090026010U',
-    registeredCapital: '3316 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '47 亿元 (2024)',
-    rdInvestment: '172 百万元',
-    rdRatio: '6.82%',
-    patentTotalCount: 20,
-    inventionPatentCount: 26,
-    matchSource: 'similar_patent',
-    matchScore: 82,
-    legalRep: '张三17',
-    address: '上海市上海市高新技术产业园17号',
-    phone: '028-93908025',
-    email: 'contact@mock17.com',
-    website: 'www.mock17.com',
-    establishedDate: '2015-09-13',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '鲁洋', role: '首席科学家', domain: '自动化控制' },
-      { name: '鲁明', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '章超', patentCount: 45, title: '核心发明人/研发骨干' }
+    "id": "ent-target-26",
+    "name": "华润三九医药股份有限公司",
+    "shortName": "华润三九",
+    "creditCode": "913100000133950854",
+    "registeredCapital": "71,000 万元人民币",
+    "location": "安徽省合肥市",
+    "province": "安徽省",
+    "city": "合肥市",
+    "industry": "生物医药与健康 / 现代中药与天然植物药",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "97.0 亿元 (2024)",
+    "rdInvestment": "8.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 2770,
+    "inventionPatentCount": 1620,
+    "legalRep": "张伟",
+    "address": "安徽省合肥市高新技术产业开发区创新科技大道388号",
+    "phone": "0512-88017776",
+    "email": "rd_tech@华润三九.com.cn",
+    "website": "https://www.华润三九.com.cn",
+    "establishedDate": "2009-08-15",
+    "businessScope": "长白山道地人参皂苷提取与高纯纳米制剂的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "作为中药产业链下游 • 现代中药制剂与深加工的重点骨干企业，在长白山道地人参皂苷提取与高纯纳米制剂领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-43",
+      "chainName": "中药",
+      "node": "downstream",
+      "nodeName": "下游 • 现代中药制剂与深加工",
+      "subSegment": "长白山道地人参皂苷提取与高纯纳米制剂",
+      "mainProducts": [
+        "人参三七超微粉及高活性口服制剂",
+        "华润三九核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117021024B",
+        "title": "一种针对长白山道地人参皂苷提取与高纯纳的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-08-11",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种一种针对长白山道地人参皂苷提取与高纯纳的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在长白山道地人参皂苷提取与高纯纳米制剂方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在长白山道地人参皂苷提取与高纯纳米制剂方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11271983A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13812250877',
-      email: 'lisi@mock17.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-华润三九-117",
+        "productName": "人参三七超微粉及高活性口服制剂",
+        "filingYear": "2024",
+        "productCategory": "现代中药与天然植物药",
+        "annualOutputValue": "46.0 亿元",
+        "corePatentCount": 31,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-18',
-    name: '智能制造与新能源创新科技(测试18)股份有限公司',
-    shortName: '创新科技18',
-    creditCode: '9135090050330U',
-    registeredCapital: '5697 万元人民币',
-    location: '北京市北京市',
-    province: '北京市',
-    city: '北京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '49 亿元 (2024)',
-    rdInvestment: '78 百万元',
-    rdRatio: '6.95%',
-    patentTotalCount: 79,
-    inventionPatentCount: 10,
-    matchSource: 'similar_patent',
-    matchScore: 84,
-    legalRep: '张三18',
-    address: '北京市北京市高新技术产业园18号',
-    phone: '052-14291112',
-    email: 'contact@mock18.com',
-    website: 'www.mock18.com',
-    establishedDate: '2017-08-19',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '卫建', role: '首席科学家', domain: '自动化控制' },
-      { name: '严磊', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '张勇', patentCount: 65, title: '核心发明人/核心成员' }
+    "id": "ent-target-27",
+    "name": "长春高新技术产业（集团）股份有限公司",
+    "shortName": "长春高新",
+    "creditCode": "913100000142322782",
+    "registeredCapital": "74,500 万元人民币",
+    "location": "陕西省西安市",
+    "province": "陕西省",
+    "city": "西安市",
+    "industry": "生物医药与健康 / 基因重组与生物制药",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "101.5 亿元 (2024)",
+    "rdInvestment": "8.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 2890,
+    "inventionPatentCount": 1695,
+    "legalRep": "李强",
+    "address": "陕西省西安市高新技术产业开发区创新科技大道406号",
+    "phone": "0755-88018887",
+    "email": "rd_tech@长春高新.com.cn",
+    "website": "https://www.长春高新.com.cn",
+    "establishedDate": "2010-09-15",
+    "businessScope": "重组人白蛋白与特异性多肽靶向偶联递送技术的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "作为生物医药产业链中游 • 基因工程与生物反应制备的重点骨干企业，在重组人白蛋白与特异性多肽靶向偶联递送技术领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-21",
+      "chainName": "生物医药",
+      "node": "midstream",
+      "nodeName": "中游 • 基因工程与生物反应制备",
+      "subSegment": "重组人白蛋白与特异性多肽靶向偶联递送技术",
+      "mainProducts": [
+        "注射用重组人生长激素长效水针",
+        "长春高新核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117022338B",
+        "title": "一种针对重组人白蛋白与特异性多肽靶向偶的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-09-12",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种一种针对重组人白蛋白与特异性多肽靶向偶的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在重组人白蛋白与特异性多肽靶向偶联递送技术方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在重组人白蛋白与特异性多肽靶向偶联递送技术方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11821161A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13852923417',
-      email: 'lisi@mock18.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-长春高新-118",
+        "productName": "注射用重组人生长激素长效水针",
+        "filingYear": "2024",
+        "productCategory": "基因重组与生物制药",
+        "annualOutputValue": "72.0 亿元",
+        "corePatentCount": 32,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-19',
-    name: '智能制造与新能源创新科技(测试19)股份有限公司',
-    shortName: '创新科技19',
-    creditCode: '9135090058047U',
-    registeredCapital: '6061 万元人民币',
-    location: '山东省青岛市',
-    province: '山东省',
-    city: '青岛市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '3 亿元 (2024)',
-    rdInvestment: '226 百万元',
-    rdRatio: '6.96%',
-    patentTotalCount: 99,
-    inventionPatentCount: 35,
-    matchSource: 'similar_patent',
-    matchScore: 87,
-    legalRep: '张三19',
-    address: '山东省青岛市高新技术产业园19号',
-    phone: '022-62474110',
-    email: 'contact@mock19.com',
-    website: 'www.mock19.com',
-    establishedDate: '2016-03-14',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '曹鑫', role: '首席科学家', domain: '自动化控制' },
-      { name: '姜辉', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '严林', patentCount: 48, title: '核心发明人/技术专员' }
+    "id": "ent-target-28",
+    "name": "中际旭创股份有限公司",
+    "shortName": "中际旭创",
+    "creditCode": "913100000150694710",
+    "registeredCapital": "78,000 万元人民币",
+    "location": "辽宁省沈阳市",
+    "province": "辽宁省",
+    "city": "沈阳市",
+    "industry": "电子信息与智能算力 / 光通信与光收发模块",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "106.0 亿元 (2024)",
+    "rdInvestment": "9.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 3010,
+    "inventionPatentCount": 1770,
+    "legalRep": "王建华",
+    "address": "辽宁省沈阳市高新技术产业开发区创新科技大道424号",
+    "phone": "0512-88019998",
+    "email": "rd_tech@中际旭创.com.cn",
+    "website": "https://www.中际旭创.com.cn",
+    "establishedDate": "2011-01-15",
+    "businessScope": "800G/1.6T高速光收发模块与微纳光栅耦合的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为传感器产业链中游 • 光电集成与传感器模组的重点骨干企业，在800G/1.6T高速光收发模块与微纳光栅耦合领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-16",
+      "chainName": "传感器",
+      "node": "midstream",
+      "nodeName": "中游 • 光电集成与传感器模组",
+      "subSegment": "800G/1.6T高速光收发模块与微纳光栅耦合",
+      "mainProducts": [
+        "800G OSFP/QSFP-DD高速光通信收发模块",
+        "中际旭创核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117023652B",
+        "title": "一种针对800G/1.6T高速光收发模的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-01-13",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对800G/1.6T高速光收发模的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在800G/1.6T高速光收发模块与微纳光栅耦合方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在800G/1.6T高速光收发模块与微纳光栅耦合方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11977557A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13850659111',
-      email: 'lisi@mock19.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中际旭创-119",
+        "productName": "800G OSFP/QSFP-DD高速光通信收发模块",
+        "filingYear": "2024",
+        "productCategory": "光通信与光收发模块",
+        "annualOutputValue": "110.0 亿元",
+        "corePatentCount": 33,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-20',
-    name: '智能制造与新能源创新科技(测试20)股份有限公司',
-    shortName: '创新科技20',
-    creditCode: '9135090046817U',
-    registeredCapital: '7952 万元人民币',
-    location: '江苏省南京市',
-    province: '江苏省',
-    city: '南京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '44 亿元 (2024)',
-    rdInvestment: '154 百万元',
-    rdRatio: '6.67%',
-    patentTotalCount: 132,
-    inventionPatentCount: 23,
-    matchSource: 'similar_patent',
-    matchScore: 76,
-    legalRep: '张三20',
-    address: '江苏省南京市高新技术产业园20号',
-    phone: '085-96922952',
-    email: 'contact@mock20.com',
-    website: 'www.mock20.com',
-    establishedDate: '2011-03-14',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '尤龙', role: '首席科学家', domain: '自动化控制' },
-      { name: '鲁宁', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '戚飞', patentCount: 43, title: '核心发明人/研发骨干' }
+    "id": "ent-target-29",
+    "name": "歌尔股份有限公司",
+    "shortName": "歌尔股份",
+    "creditCode": "913100000159066639",
+    "registeredCapital": "81,500 万元人民币",
+    "location": "福建省厦门市",
+    "province": "福建省",
+    "city": "厦门市",
+    "industry": "电子信息与智能算力 / 声光电精密微纳制造",
+    "scale": "国家级专精特新",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "110.5 亿元 (2024)",
+    "rdInvestment": "9.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 3130,
+    "inventionPatentCount": 1845,
+    "legalRep": "陈敏",
+    "address": "福建省厦门市高新技术产业开发区创新科技大道442号",
+    "phone": "0755-88021109",
+    "email": "rd_tech@歌尔股份.com.cn",
+    "website": "https://www.歌尔股份.com.cn",
+    "establishedDate": "2012-02-15",
+    "businessScope": "MEMS微纳声学传感与曲面光学微结构透镜的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为传感器产业链中游 • 精密制造与系统集成的重点骨干企业，在MEMS微纳声学传感与曲面光学微结构透镜领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-16",
+      "chainName": "传感器",
+      "node": "midstream",
+      "nodeName": "中游 • 精密制造与系统集成",
+      "subSegment": "MEMS微纳声学传感与曲面光学微结构透镜",
+      "mainProducts": [
+        "微型声电传感与VR近眼显示光学模组",
+        "歌尔股份核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117024966B",
+        "title": "一种针对MEMS微纳声学传感与曲面光学的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-02-14",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对MEMS微纳声学传感与曲面光学的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在MEMS微纳声学传感与曲面光学微结构透镜方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在MEMS微纳声学传感与曲面光学微结构透镜方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11777785A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13848849694',
-      email: 'lisi@mock20.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-歌尔股份-120",
+        "productName": "微型声电传感与VR近眼显示光学模组",
+        "filingYear": "2024",
+        "productCategory": "声光电精密微纳制造",
+        "annualOutputValue": "68.0 亿元",
+        "corePatentCount": 34,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-21',
-    name: '智能制造与新能源创新科技(测试21)股份有限公司',
-    shortName: '创新科技21',
-    creditCode: '9135090060827U',
-    registeredCapital: '8245 万元人民币',
-    location: '江苏省南京市',
-    province: '江苏省',
-    city: '南京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '45 亿元 (2024)',
-    rdInvestment: '149 百万元',
-    rdRatio: '6.32%',
-    patentTotalCount: 24,
-    inventionPatentCount: 50,
-    matchSource: 'similar_patent',
-    matchScore: 81,
-    legalRep: '张三21',
-    address: '江苏省南京市高新技术产业园21号',
-    phone: '032-17240685',
-    email: 'contact@mock21.com',
-    website: 'www.mock21.com',
-    establishedDate: '2015-05-10',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '唐宁', role: '首席科学家', domain: '自动化控制' },
-      { name: '云刚', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '鲁帅', patentCount: 56, title: '核心发明人/技术专员' }
+    "id": "ent-target-30",
+    "name": "上海韦尔半导体股份有限公司",
+    "shortName": "韦尔股份",
+    "creditCode": "913100000167438568",
+    "registeredCapital": "85,000 万元人民币",
+    "location": "吉林省长春市",
+    "province": "吉林省",
+    "city": "长春市",
+    "industry": "电子信息与智能算力 / CIS图像传感器芯片",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "115.0 亿元 (2024)",
+    "rdInvestment": "9.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 3250,
+    "inventionPatentCount": 1920,
+    "legalRep": "刘志刚",
+    "address": "吉林省长春市高新技术产业开发区创新科技大道460号",
+    "phone": "0512-88022220",
+    "email": "rd_tech@韦尔股份.com.cn",
+    "website": "https://www.韦尔股份.com.cn",
+    "establishedDate": "2013-03-15",
+    "businessScope": "高动态车规级CMOS图像传感芯片及光栅的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 92,
+    "synergyReason": "作为集成电路产业链上游 • 核心芯片设计与光刻制造的重点骨干企业，在高动态车规级CMOS图像传感芯片及光栅领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-22",
+      "chainName": "集成电路",
+      "node": "upstream",
+      "nodeName": "上游 • 核心芯片设计与光刻制造",
+      "subSegment": "高动态车规级CMOS图像传感芯片及光栅",
+      "mainProducts": [
+        "车规级800万像素高动态范围CIS芯片",
+        "韦尔股份核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117026280B",
+        "title": "一种针对高动态车规级CMOS图像传感芯的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-03-15",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种一种针对高动态车规级CMOS图像传感芯的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高动态车规级CMOS图像传感芯片及光栅方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高动态车规级CMOS图像传感芯片及光栅方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11459620A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13853841762',
-      email: 'lisi@mock21.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-韦尔股份-121",
+        "productName": "车规级800万像素高动态范围CIS芯片",
+        "filingYear": "2024",
+        "productCategory": "CIS图像传感器芯片",
+        "annualOutputValue": "55.0 亿元",
+        "corePatentCount": 15,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-22',
-    name: '智能制造与新能源创新科技(测试22)股份有限公司',
-    shortName: '创新科技22',
-    creditCode: '9135090013227U',
-    registeredCapital: '3582 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '15 亿元 (2024)',
-    rdInvestment: '450 百万元',
-    rdRatio: '8.83%',
-    patentTotalCount: 106,
-    inventionPatentCount: 24,
-    matchSource: 'similar_patent',
-    matchScore: 86,
-    legalRep: '张三22',
-    address: '湖北省武汉市高新技术产业园22号',
-    phone: '091-77449552',
-    email: 'contact@mock22.com',
-    website: 'www.mock22.com',
-    establishedDate: '2018-02-12',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '曹宁', role: '首席科学家', domain: '自动化控制' },
-      { name: '秦洋', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '冯涛', patentCount: 41, title: '核心发明人/技术专员' }
+    "id": "ent-target-31",
+    "name": "三安光电股份有限公司",
+    "shortName": "三安光电",
+    "creditCode": "913100000175810496",
+    "registeredCapital": "88,500 万元人民币",
+    "location": "吉林省吉林市",
+    "province": "吉林省",
+    "city": "吉林市",
+    "industry": "电子信息与智能算力 / 化合物半导体与光电材料",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "119.5 亿元 (2024)",
+    "rdInvestment": "10.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 3370,
+    "inventionPatentCount": 1995,
+    "legalRep": "孙明",
+    "address": "吉林省吉林市高新技术产业开发区创新科技大道478号",
+    "phone": "0755-88023331",
+    "email": "rd_tech@三安光电.com.cn",
+    "website": "https://www.三安光电.com.cn",
+    "establishedDate": "2014-04-15",
+    "businessScope": "碳化硅SiC功率晶圆与微结构光电发光外延的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "作为纳米新材料产业链上游 • 核心晶圆与微纳外延片的重点骨干企业，在碳化硅SiC功率晶圆与微结构光电发光外延领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-18",
+      "chainName": "纳米新材料",
+      "node": "upstream",
+      "nodeName": "上游 • 核心晶圆与微纳外延片",
+      "subSegment": "碳化硅SiC功率晶圆与微结构光电发光外延",
+      "mainProducts": [
+        "高纯宽禁带SiC衬底及发光晶圆",
+        "三安光电核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117027594B",
+        "title": "一种针对碳化硅SiC功率晶圆与微结构光的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-04-16",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种一种针对碳化硅SiC功率晶圆与微结构光的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在碳化硅SiC功率晶圆与微结构光电发光外延方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在碳化硅SiC功率晶圆与微结构光电发光外延方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11231875A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13818084770',
-      email: 'lisi@mock22.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-三安光电-122",
+        "productName": "高纯宽禁带SiC衬底及发光晶圆",
+        "filingYear": "2024",
+        "productCategory": "化合物半导体与光电材料",
+        "annualOutputValue": "39.0 亿元",
+        "corePatentCount": 16,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-23',
-    name: '智能制造与新能源创新科技(测试23)股份有限公司',
-    shortName: '创新科技23',
-    creditCode: '9135090029001U',
-    registeredCapital: '1368 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '29 亿元 (2024)',
-    rdInvestment: '201 百万元',
-    rdRatio: '6.31%',
-    patentTotalCount: 55,
-    inventionPatentCount: 41,
-    matchSource: 'similar_patent',
-    matchScore: 72,
-    legalRep: '张三23',
-    address: '湖北省武汉市高新技术产业园23号',
-    phone: '042-21911389',
-    email: 'contact@mock23.com',
-    website: 'www.mock23.com',
-    establishedDate: '2019-01-14',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '张强', role: '首席科学家', domain: '自动化控制' },
-      { name: '水勇', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '鲁浩', patentCount: 73, title: '核心发明人/高级研究员' }
+    "id": "ent-target-32",
+    "name": "武汉华工科技产业股份有限公司",
+    "shortName": "华工科技",
+    "creditCode": "913100000184182424",
+    "registeredCapital": "92,000 万元人民币",
+    "location": "江苏省苏州市",
+    "province": "江苏省",
+    "city": "苏州市",
+    "industry": "电子信息与智能算力 / 激光精密制造装备",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "124.0 亿元 (2024)",
+    "rdInvestment": "10.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 3490,
+    "inventionPatentCount": 2070,
+    "legalRep": "周海峰",
+    "address": "江苏省苏州市高新技术产业开发区创新科技大道496号",
+    "phone": "0512-88024442",
+    "email": "rd_tech@华工科技.com.cn",
+    "website": "https://www.华工科技.com.cn",
+    "establishedDate": "2015-05-15",
+    "businessScope": "皮秒/飞秒超快激光精密微纳加工装备的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "作为传感器产业链中游 • 精密装备与激光刻蚀的重点骨干企业，在皮秒/飞秒超快激光精密微纳加工装备领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-16",
+      "chainName": "传感器",
+      "node": "midstream",
+      "nodeName": "中游 • 精密装备与激光刻蚀",
+      "subSegment": "皮秒/飞秒超快激光精密微纳加工装备",
+      "mainProducts": [
+        "超快激光微纳晶圆切割与光栅加工系统",
+        "华工科技核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117028908B",
+        "title": "一种针对皮秒/飞秒超快激光精密微纳加工的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-05-17",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种一种针对皮秒/飞秒超快激光精密微纳加工的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在皮秒/飞秒超快激光精密微纳加工装备方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在皮秒/飞秒超快激光精密微纳加工装备方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11399249A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13852499262',
-      email: 'lisi@mock23.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-华工科技-123",
+        "productName": "超快激光微纳晶圆切割与光栅加工系统",
+        "filingYear": "2024",
+        "productCategory": "激光精密制造装备",
+        "annualOutputValue": "29.0 亿元",
+        "corePatentCount": 17,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-24',
-    name: '智能制造与新能源创新科技(测试24)股份有限公司',
-    shortName: '创新科技24',
-    creditCode: '9135090077538U',
-    registeredCapital: '6224 万元人民币',
-    location: '广东省深圳市',
-    province: '广东省',
-    city: '深圳市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '8 亿元 (2024)',
-    rdInvestment: '100 百万元',
-    rdRatio: '3.61%',
-    patentTotalCount: 128,
-    inventionPatentCount: 46,
-    matchSource: 'similar_patent',
-    matchScore: 75,
-    legalRep: '张三24',
-    address: '广东省深圳市高新技术产业园24号',
-    phone: '043-75573578',
-    email: 'contact@mock24.com',
-    website: 'www.mock24.com',
-    establishedDate: '2012-03-12',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '卫栋', role: '首席科学家', domain: '自动化控制' },
-      { name: '潘健', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '曹伟', patentCount: 57, title: '核心发明人/技术专员' }
+    "id": "ent-target-33",
+    "name": "苏州敏芯微电子技术股份有限公司",
+    "shortName": "敏芯股份",
+    "creditCode": "913100000192554352",
+    "registeredCapital": "95,500 万元人民币",
+    "location": "江苏省无锡市",
+    "province": "江苏省",
+    "city": "无锡市",
+    "industry": "电子信息与智能算力 / MEMS微机电传感",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "128.5 亿元 (2024)",
+    "rdInvestment": "11.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 3610,
+    "inventionPatentCount": 2145,
+    "legalRep": "赵立国",
+    "address": "江苏省无锡市高新技术产业开发区创新科技大道514号",
+    "phone": "0755-88025553",
+    "email": "rd_tech@敏芯股份.com.cn",
+    "website": "https://www.敏芯股份.com.cn",
+    "establishedDate": "2016-06-15",
+    "businessScope": "全产业链MEMS微纳压力与位移传感器芯片的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "作为传感器产业链上游 • MEMS晶圆设计与微纳封装的重点骨干企业，在全产业链MEMS微纳压力与位移传感器芯片领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-16",
+      "chainName": "传感器",
+      "node": "upstream",
+      "nodeName": "上游 • MEMS晶圆设计与微纳封装",
+      "subSegment": "全产业链MEMS微纳压力与位移传感器芯片",
+      "mainProducts": [
+        "高可靠性汽车级MEMS绝对压力传感器",
+        "敏芯股份核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117030222B",
+        "title": "一种针对全产业链MEMS微纳压力与位移的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-06-18",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种一种针对全产业链MEMS微纳压力与位移的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在全产业链MEMS微纳压力与位移传感器芯片方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在全产业链MEMS微纳压力与位移传感器芯片方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11382955A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13820797642',
-      email: 'lisi@mock24.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-敏芯股份-124",
+        "productName": "高可靠性汽车级MEMS绝对压力传感器",
+        "filingYear": "2024",
+        "productCategory": "MEMS微机电传感",
+        "annualOutputValue": "8.2 亿元",
+        "corePatentCount": 18,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-25',
-    name: '智能制造与新能源创新科技(测试25)股份有限公司',
-    shortName: '创新科技25',
-    creditCode: '9135090019393U',
-    registeredCapital: '1747 万元人民币',
-    location: '广东省广州市',
-    province: '广东省',
-    city: '广州市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '45 亿元 (2024)',
-    rdInvestment: '397 百万元',
-    rdRatio: '7.33%',
-    patentTotalCount: 175,
-    inventionPatentCount: 46,
-    matchSource: 'similar_patent',
-    matchScore: 78,
-    legalRep: '张三25',
-    address: '广东省广州市高新技术产业园25号',
-    phone: '025-30001824',
-    email: 'contact@mock25.com',
-    website: 'www.mock25.com',
-    establishedDate: '2017-03-12',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '沈鑫', role: '首席科学家', domain: '自动化控制' },
-      { name: '喻伟', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '鲍平', patentCount: 63, title: '核心发明人/资深工程师' }
+    "id": "ent-target-34",
+    "name": "中简科技股份有限公司",
+    "shortName": "中简科技",
+    "creditCode": "913100000200926281",
+    "registeredCapital": "99,000 万元人民币",
+    "location": "江苏省南京市",
+    "province": "江苏省",
+    "city": "南京市",
+    "industry": "新材料 / 高性能碳纤维及复合材料",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "133.0 亿元 (2024)",
+    "rdInvestment": "11.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 3730,
+    "inventionPatentCount": 2220,
+    "legalRep": "张伟",
+    "address": "江苏省南京市高新技术产业开发区创新科技大道532号",
+    "phone": "0512-88026664",
+    "email": "rd_tech@中简科技.com.cn",
+    "website": "https://www.中简科技.com.cn",
+    "establishedDate": "2017-07-15",
+    "businessScope": "ZT7/ZT9系列高强高模碳纤维预浸料的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 96,
+    "synergyReason": "作为碳纤维产业链上游 • 高性能原丝与碳化材料的重点骨干企业，在ZT7/ZT9系列高强高模碳纤维预浸料领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-6",
+      "chainName": "碳纤维",
+      "node": "upstream",
+      "nodeName": "上游 • 高性能原丝与碳化材料",
+      "subSegment": "ZT7/ZT9系列高强高模碳纤维预浸料",
+      "mainProducts": [
+        "航空级ZT7系列高强碳纤维",
+        "中简科技核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117031536B",
+        "title": "一种针对ZT7/ZT9系列高强高模碳纤的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-07-11",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种一种针对ZT7/ZT9系列高强高模碳纤的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在ZT7/ZT9系列高强高模碳纤维预浸料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在ZT7/ZT9系列高强高模碳纤维预浸料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11801145A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13864602856',
-      email: 'lisi@mock25.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中简科技-125",
+        "productName": "航空级ZT7系列高强碳纤维",
+        "filingYear": "2024",
+        "productCategory": "高性能碳纤维及复合材料",
+        "annualOutputValue": "12.6 亿元",
+        "corePatentCount": 19,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-26',
-    name: '智能制造与新能源创新科技(测试26)股份有限公司',
-    shortName: '创新科技26',
-    creditCode: '9135090089387U',
-    registeredCapital: '2734 万元人民币',
-    location: '浙江省杭州市',
-    province: '浙江省',
-    city: '杭州市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '33 亿元 (2024)',
-    rdInvestment: '485 百万元',
-    rdRatio: '5.33%',
-    patentTotalCount: 55,
-    inventionPatentCount: 34,
-    matchSource: 'similar_patent',
-    matchScore: 93,
-    legalRep: '张三26',
-    address: '浙江省杭州市高新技术产业园26号',
-    phone: '011-44146104',
-    email: 'contact@mock26.com',
-    website: 'www.mock26.com',
-    establishedDate: '2014-02-14',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '吕平', role: '首席科学家', domain: '自动化控制' },
-      { name: '花鑫', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '俞峰', patentCount: 64, title: '核心发明人/技术专员' }
+    "id": "ent-target-35",
+    "name": "光威复合材料股份有限公司",
+    "shortName": "光威复材",
+    "creditCode": "913100000209298209",
+    "registeredCapital": "102,500 万元人民币",
+    "location": "浙江省杭州市",
+    "province": "浙江省",
+    "city": "杭州市",
+    "industry": "新材料 / 碳纤维与热塑性复合材料",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "137.5 亿元 (2024)",
+    "rdInvestment": "11.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 3850,
+    "inventionPatentCount": 2295,
+    "legalRep": "李强",
+    "address": "浙江省杭州市高新技术产业开发区创新科技大道550号",
+    "phone": "0755-88027775",
+    "email": "rd_tech@光威复材.com.cn",
+    "website": "https://www.光威复材.com.cn",
+    "establishedDate": "2018-08-15",
+    "businessScope": "耐500℃高温超强韧PEEK碳纤维复合预浸料的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "作为碳纤维产业链中游 • 织物与预浸料复合加工的重点骨干企业，在耐500℃高温超强韧PEEK碳纤维复合预浸料领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-6",
+      "chainName": "碳纤维",
+      "node": "midstream",
+      "nodeName": "中游 • 织物与预浸料复合加工",
+      "subSegment": "耐500℃高温超强韧PEEK碳纤维复合预浸料",
+      "mainProducts": [
+        "航空级高性能碳纤维织物及热塑性预浸料",
+        "光威复材核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117032850B",
+        "title": "一种针对耐500℃高温超强韧PEEK碳的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-08-12",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种一种针对耐500℃高温超强韧PEEK碳的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在耐500℃高温超强韧PEEK碳纤维复合预浸料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在耐500℃高温超强韧PEEK碳纤维复合预浸料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11521829A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13837330666',
-      email: 'lisi@mock26.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-光威复材-126",
+        "productName": "航空级高性能碳纤维织物及热塑性预浸料",
+        "filingYear": "2024",
+        "productCategory": "碳纤维与热塑性复合材料",
+        "annualOutputValue": "27.5 亿元",
+        "corePatentCount": 20,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-27',
-    name: '智能制造与新能源创新科技(测试27)股份有限公司',
-    shortName: '创新科技27',
-    creditCode: '9135090021299U',
-    registeredCapital: '6013 万元人民币',
-    location: '四川省成都市',
-    province: '四川省',
-    city: '成都市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '14 亿元 (2024)',
-    rdInvestment: '202 百万元',
-    rdRatio: '3.23%',
-    patentTotalCount: 170,
-    inventionPatentCount: 44,
-    matchSource: 'similar_patent',
-    matchScore: 74,
-    legalRep: '张三27',
-    address: '四川省成都市高新技术产业园27号',
-    phone: '077-61046438',
-    email: 'contact@mock27.com',
-    website: 'www.mock27.com',
-    establishedDate: '2015-08-17',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '吕勇', role: '首席科学家', domain: '自动化控制' },
-      { name: '任健', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '章军', patentCount: 40, title: '核心发明人/资深工程师' }
+    "id": "ent-target-36",
+    "name": "联泓新材料科技股份有限公司",
+    "shortName": "联泓新科",
+    "creditCode": "913100000217670137",
+    "registeredCapital": "106,000 万元人民币",
+    "location": "浙江省宁波市",
+    "province": "浙江省",
+    "city": "宁波市",
+    "industry": "新材料 / 电子级特种聚合物与高分子",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "142.0 亿元 (2024)",
+    "rdInvestment": "12.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 3970,
+    "inventionPatentCount": 2370,
+    "legalRep": "王建华",
+    "address": "浙江省宁波市高新技术产业开发区创新科技大道568号",
+    "phone": "0512-88028886",
+    "email": "rd_tech@联泓新科.com.cn",
+    "website": "https://www.联泓新科.com.cn",
+    "establishedDate": "2019-09-15",
+    "businessScope": "高纯度聚芳醚酮(PEEK)及超分子精细化学品的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "作为纳米新材料产业链上游 • 特种单体与高纯高分子树脂的重点骨干企业，在高纯度聚芳醚酮(PEEK)及超分子精细化学品领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-18",
+      "chainName": "纳米新材料",
+      "node": "upstream",
+      "nodeName": "上游 • 特种单体与高纯高分子树脂",
+      "subSegment": "高纯度聚芳醚酮(PEEK)及超分子精细化学品",
+      "mainProducts": [
+        "特种电子级EVA与聚醚功能材料",
+        "联泓新科核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117034164B",
+        "title": "一种针对高纯度聚芳醚酮(PEEK)及超的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-09-13",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种一种针对高纯度聚芳醚酮(PEEK)及超的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高纯度聚芳醚酮(PEEK)及超分子精细化学品方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高纯度聚芳醚酮(PEEK)及超分子精细化学品方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11219142A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13830572778',
-      email: 'lisi@mock27.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-联泓新科-127",
+        "productName": "特种电子级EVA与聚醚功能材料",
+        "filingYear": "2024",
+        "productCategory": "电子级特种聚合物与高分子",
+        "annualOutputValue": "31.0 亿元",
+        "corePatentCount": 21,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-28',
-    name: '智能制造与新能源创新科技(测试28)股份有限公司',
-    shortName: '创新科技28',
-    creditCode: '9135090025878U',
-    registeredCapital: '8185 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '43 亿元 (2024)',
-    rdInvestment: '215 百万元',
-    rdRatio: '3.37%',
-    patentTotalCount: 159,
-    inventionPatentCount: 13,
-    matchSource: 'similar_patent',
-    matchScore: 83,
-    legalRep: '张三28',
-    address: '湖北省武汉市高新技术产业园28号',
-    phone: '047-99767724',
-    email: 'contact@mock28.com',
-    website: 'www.mock28.com',
-    establishedDate: '2014-04-16',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '华健', role: '首席科学家', domain: '自动化控制' },
-      { name: '秦栋', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '范鹏', patentCount: 74, title: '核心发明人/资深工程师' }
+    "id": "ent-target-37",
+    "name": "宝武碳业科技股份有限公司",
+    "shortName": "宝武碳业",
+    "creditCode": "913100000226042066",
+    "registeredCapital": "109,500 万元人民币",
+    "location": "广东省深圳市",
+    "province": "广东省",
+    "city": "深圳市",
+    "industry": "新材料 / 碳基新材料与石墨烯",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "146.5 亿元 (2024)",
+    "rdInvestment": "12.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 4090,
+    "inventionPatentCount": 2445,
+    "legalRep": "陈敏",
+    "address": "广东省深圳市高新技术产业开发区创新科技大道586号",
+    "phone": "0755-88029997",
+    "email": "rd_tech@宝武碳业.com.cn",
+    "website": "https://www.宝武碳业.com.cn",
+    "establishedDate": "2020-01-15",
+    "businessScope": "高导热石墨烯膜与高端锂电负极碳材料的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为石墨烯产业链上游 • 碳化原料与石墨烯浆料的重点骨干企业，在高导热石墨烯膜与高端锂电负极碳材料领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-7",
+      "chainName": "石墨烯",
+      "node": "upstream",
+      "nodeName": "上游 • 碳化原料与石墨烯浆料",
+      "subSegment": "高导热石墨烯膜与高端锂电负极碳材料",
+      "mainProducts": [
+        "高导电超细石墨烯纳米导电浆料",
+        "宝武碳业核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117035478B",
+        "title": "一种针对高导热石墨烯膜与高端锂电负极碳的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-01-14",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对高导热石墨烯膜与高端锂电负极碳的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高导热石墨烯膜与高端锂电负极碳材料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高导热石墨烯膜与高端锂电负极碳材料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11306279A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13815936649',
-      email: 'lisi@mock28.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-宝武碳业-128",
+        "productName": "高导电超细石墨烯纳米导电浆料",
+        "filingYear": "2024",
+        "productCategory": "碳基新材料与石墨烯",
+        "annualOutputValue": "41.0 亿元",
+        "corePatentCount": 22,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-29',
-    name: '智能制造与新能源创新科技(测试29)股份有限公司',
-    shortName: '创新科技29',
-    creditCode: '9135090030806U',
-    registeredCapital: '8705 万元人民币',
-    location: '浙江省宁波市',
-    province: '浙江省',
-    city: '宁波市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '4 亿元 (2024)',
-    rdInvestment: '21 百万元',
-    rdRatio: '8.36%',
-    patentTotalCount: 115,
-    inventionPatentCount: 33,
-    matchSource: 'similar_patent',
-    matchScore: 86,
-    legalRep: '张三29',
-    address: '浙江省宁波市高新技术产业园29号',
-    phone: '097-71825923',
-    email: 'contact@mock29.com',
-    website: 'www.mock29.com',
-    establishedDate: '2012-09-13',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '葛栋', role: '首席科学家', domain: '自动化控制' },
-      { name: '唐建', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '施平', patentCount: 45, title: '核心发明人/核心成员' }
+    "id": "ent-target-38",
+    "name": "无锡先导智能装备股份有限公司",
+    "shortName": "先导智能",
+    "creditCode": "913100000234413994",
+    "registeredCapital": "113,000 万元人民币",
+    "location": "广东省广州市",
+    "province": "广东省",
+    "city": "广州市",
+    "industry": "高端装备制造 / 新能源智能装备",
+    "scale": "国家级专精特新",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "151.0 亿元 (2024)",
+    "rdInvestment": "13.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 4210,
+    "inventionPatentCount": 2520,
+    "legalRep": "刘志刚",
+    "address": "广东省广州市高新技术产业开发区创新科技大道604号",
+    "phone": "0512-88031108",
+    "email": "rd_tech@先导智能.com.cn",
+    "website": "https://www.先导智能.com.cn",
+    "establishedDate": "2021-02-15",
+    "businessScope": "高精度电驱动转子压装与激光加工成套装备的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为数控机床产业链中游 • 高端自动化整机制造的重点骨干企业，在高精度电驱动转子压装与激光加工成套装备领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-10",
+      "chainName": "数控机床",
+      "node": "midstream",
+      "nodeName": "中游 • 高端自动化整机制造",
+      "subSegment": "高精度电驱动转子压装与激光加工成套装备",
+      "mainProducts": [
+        "全自动锂电卷绕叠片智能装备产线",
+        "先导智能核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117036792B",
+        "title": "一种针对高精度电驱动转子压装与激光加工的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-02-15",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对高精度电驱动转子压装与激光加工的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高精度电驱动转子压装与激光加工成套装备方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高精度电驱动转子压装与激光加工成套装备方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11765970A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13851798913',
-      email: 'lisi@mock29.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-先导智能-129",
+        "productName": "全自动锂电卷绕叠片智能装备产线",
+        "filingYear": "2024",
+        "productCategory": "新能源智能装备",
+        "annualOutputValue": "78.0 亿元",
+        "corePatentCount": 23,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-30',
-    name: '智能制造与新能源创新科技(测试30)股份有限公司',
-    shortName: '创新科技30',
-    creditCode: '9135090010228U',
-    registeredCapital: '1578 万元人民币',
-    location: '浙江省杭州市',
-    province: '浙江省',
-    city: '杭州市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '20 亿元 (2024)',
-    rdInvestment: '247 百万元',
-    rdRatio: '6.73%',
-    patentTotalCount: 198,
-    inventionPatentCount: 42,
-    matchSource: 'similar_patent',
-    matchScore: 71,
-    legalRep: '张三30',
-    address: '浙江省杭州市高新技术产业园30号',
-    phone: '053-80728703',
-    email: 'contact@mock30.com',
-    website: 'www.mock30.com',
-    establishedDate: '2014-05-18',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '李峰', role: '首席科学家', domain: '自动化控制' },
-      { name: '郎斌', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '韦波', patentCount: 40, title: '核心发明人/资深工程师' }
+    "id": "ent-target-39",
+    "name": "苏州绿的谐波传动科技股份有限公司",
+    "shortName": "绿的谐波",
+    "creditCode": "913100000242785922",
+    "registeredCapital": "116,500 万元人民币",
+    "location": "广东省东莞市",
+    "province": "广东省",
+    "city": "东莞市",
+    "industry": "高端装备制造 / 精密减速器与机器人核心部件",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "155.5 亿元 (2024)",
+    "rdInvestment": "13.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 4330,
+    "inventionPatentCount": 2595,
+    "legalRep": "孙明",
+    "address": "广东省东莞市高新技术产业开发区创新科技大道622号",
+    "phone": "0755-88032219",
+    "email": "rd_tech@绿的谐波.com.cn",
+    "website": "https://www.绿的谐波.com.cn",
+    "establishedDate": "2022-03-15",
+    "businessScope": "高精度高寿命谐波减速器与一体化执行关节的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 92,
+    "synergyReason": "作为机器人产业链上游 • 核心精密传动部件的重点骨干企业，在高精度高寿命谐波减速器与一体化执行关节领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-9",
+      "chainName": "机器人",
+      "node": "upstream",
+      "nodeName": "上游 • 核心精密传动部件",
+      "subSegment": "高精度高寿命谐波减速器与一体化执行关节",
+      "mainProducts": [
+        "Y系列高刚性精密谐波减速器",
+        "绿的谐波核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117038106B",
+        "title": "一种针对高精度高寿命谐波减速器与一体化的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-03-16",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种一种针对高精度高寿命谐波减速器与一体化的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高精度高寿命谐波减速器与一体化执行关节方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高精度高寿命谐波减速器与一体化执行关节方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11595845A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13854307049',
-      email: 'lisi@mock30.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-绿的谐波-130",
+        "productName": "Y系列高刚性精密谐波减速器",
+        "filingYear": "2024",
+        "productCategory": "精密减速器与机器人核心部件",
+        "annualOutputValue": "14.8 亿元",
+        "corePatentCount": 24,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-31',
-    name: '智能制造与新能源创新科技(测试31)股份有限公司',
-    shortName: '创新科技31',
-    creditCode: '9135090021922U',
-    registeredCapital: '3756 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '38 亿元 (2024)',
-    rdInvestment: '407 百万元',
-    rdRatio: '3.99%',
-    patentTotalCount: 96,
-    inventionPatentCount: 11,
-    matchSource: 'similar_patent',
-    matchScore: 91,
-    legalRep: '张三31',
-    address: '湖北省武汉市高新技术产业园31号',
-    phone: '077-77996528',
-    email: 'contact@mock31.com',
-    website: 'www.mock31.com',
-    establishedDate: '2014-02-17',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '何磊', role: '首席科学家', domain: '自动化控制' },
-      { name: '潘浩', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '苏建', patentCount: 40, title: '核心发明人/研发骨干' }
+    "id": "ent-target-40",
+    "name": "南京埃斯顿自动化股份有限公司",
+    "shortName": "埃斯顿",
+    "creditCode": "913100000251157851",
+    "registeredCapital": "120,000 万元人民币",
+    "location": "山东省济南市",
+    "province": "山东省",
+    "city": "济南市",
+    "industry": "高端装备制造 / 工业机器人及核心伺服",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "160.0 亿元 (2024)",
+    "rdInvestment": "13.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 4450,
+    "inventionPatentCount": 2670,
+    "legalRep": "周海峰",
+    "address": "山东省济南市高新技术产业开发区创新科技大道640号",
+    "phone": "0512-88033330",
+    "email": "rd_tech@埃斯顿.com.cn",
+    "website": "https://www.埃斯顿.com.cn",
+    "establishedDate": "2008-04-15",
+    "businessScope": "大负载多轴工业机器人与末端柔顺力控装配的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "作为机器人产业链中游 • 机器人本体与集成系统的重点骨干企业，在大负载多轴工业机器人与末端柔顺力控装配领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-9",
+      "chainName": "机器人",
+      "node": "midstream",
+      "nodeName": "中游 • 机器人本体与集成系统",
+      "subSegment": "大负载多轴工业机器人与末端柔顺力控装配",
+      "mainProducts": [
+        "ER280系列大负载六轴智能工业机器人",
+        "埃斯顿核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117039420B",
+        "title": "一种针对大负载多轴工业机器人与末端柔顺的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-04-17",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种一种针对大负载多轴工业机器人与末端柔顺的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在大负载多轴工业机器人与末端柔顺力控装配方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在大负载多轴工业机器人与末端柔顺力控装配方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11604825A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13896995796',
-      email: 'lisi@mock31.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-埃斯顿-131",
+        "productName": "ER280系列大负载六轴智能工业机器人",
+        "filingYear": "2024",
+        "productCategory": "工业机器人及核心伺服",
+        "annualOutputValue": "35.0 亿元",
+        "corePatentCount": 25,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-32',
-    name: '智能制造与新能源创新科技(测试32)股份有限公司',
-    shortName: '创新科技32',
-    creditCode: '9135090084879U',
-    registeredCapital: '5035 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '18 亿元 (2024)',
-    rdInvestment: '39 百万元',
-    rdRatio: '9.48%',
-    patentTotalCount: 53,
-    inventionPatentCount: 19,
-    matchSource: 'similar_patent',
-    matchScore: 89,
-    legalRep: '张三32',
-    address: '上海市上海市高新技术产业园32号',
-    phone: '087-96995094',
-    email: 'contact@mock32.com',
-    website: 'www.mock32.com',
-    establishedDate: '2010-07-15',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '柏林', role: '首席科学家', domain: '自动化控制' },
-      { name: '尤帅', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '范超', patentCount: 47, title: '核心发明人/核心成员' }
+    "id": "ent-target-41",
+    "name": "深圳市汇川技术股份有限公司",
+    "shortName": "汇川技术",
+    "creditCode": "913100000259529779",
+    "registeredCapital": "123,500 万元人民币",
+    "location": "山东省青岛市",
+    "province": "山东省",
+    "city": "青岛市",
+    "industry": "高端装备制造 / 工业自动化与电驱总成",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "164.5 亿元 (2024)",
+    "rdInvestment": "14.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 4570,
+    "inventionPatentCount": 2745,
+    "legalRep": "赵立国",
+    "address": "山东省青岛市高新技术产业开发区创新科技大道658号",
+    "phone": "0755-88034441",
+    "email": "rd_tech@汇川技术.com.cn",
+    "website": "https://www.汇川技术.com.cn",
+    "establishedDate": "2009-05-15",
+    "businessScope": "高响应永磁伺服电机与多轴运动控制器的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "作为机器人产业链上游 • 伺服驱动与高性能电控的重点骨干企业，在高响应永磁伺服电机与多轴运动控制器领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-9",
+      "chainName": "机器人",
+      "node": "upstream",
+      "nodeName": "上游 • 伺服驱动与高性能电控",
+      "subSegment": "高响应永磁伺服电机与多轴运动控制器",
+      "mainProducts": [
+        "MD810系列多机驱动伺服系统",
+        "汇川技术核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117040734B",
+        "title": "一种针对高响应永磁伺服电机与多轴运动控的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-05-18",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种一种针对高响应永磁伺服电机与多轴运动控的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高响应永磁伺服电机与多轴运动控制器方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高响应永磁伺服电机与多轴运动控制器方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11701311A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13816782910',
-      email: 'lisi@mock32.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-汇川技术-132",
+        "productName": "MD810系列多机驱动伺服系统",
+        "filingYear": "2024",
+        "productCategory": "工业自动化与电驱总成",
+        "annualOutputValue": "92.0 亿元",
+        "corePatentCount": 26,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-33',
-    name: '智能制造与新能源创新科技(测试33)股份有限公司',
-    shortName: '创新科技33',
-    creditCode: '9135090052301U',
-    registeredCapital: '1338 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '36 亿元 (2024)',
-    rdInvestment: '26 百万元',
-    rdRatio: '5.83%',
-    patentTotalCount: 41,
-    inventionPatentCount: 22,
-    matchSource: 'similar_patent',
-    matchScore: 93,
-    legalRep: '张三33',
-    address: '上海市上海市高新技术产业园33号',
-    phone: '013-44028127',
-    email: 'contact@mock33.com',
-    website: 'www.mock33.com',
-    establishedDate: '2018-03-15',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '鲁勇', role: '首席科学家', domain: '自动化控制' },
-      { name: '袁刚', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '钱鹏', patentCount: 44, title: '核心发明人/研发骨干' }
+    "id": "ent-target-42",
+    "name": "上海鸣志电器股份有限公司",
+    "shortName": "鸣志电器",
+    "creditCode": "913100000267901707",
+    "registeredCapital": "127,000 万元人民币",
+    "location": "北京市北京市",
+    "province": "北京市",
+    "city": "北京市",
+    "industry": "高端装备制造 / 精密控制电机与步进驱动",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "169.0 亿元 (2024)",
+    "rdInvestment": "14.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 4690,
+    "inventionPatentCount": 2820,
+    "legalRep": "张伟",
+    "address": "北京市北京市高新技术产业开发区创新科技大道676号",
+    "phone": "0512-88035552",
+    "email": "rd_tech@鸣志电器.com.cn",
+    "website": "https://www.鸣志电器.com.cn",
+    "establishedDate": "2010-06-15",
+    "businessScope": "机器人灵巧手空心杯电机与微型行星减速器的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "作为机器人产业链上游 • 微特精密电机与空心杯电机的重点骨干企业，在机器人灵巧手空心杯电机与微型行星减速器领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-9",
+      "chainName": "机器人",
+      "node": "upstream",
+      "nodeName": "上游 • 微特精密电机与空心杯电机",
+      "subSegment": "机器人灵巧手空心杯电机与微型行星减速器",
+      "mainProducts": [
+        "高转矩密度精密无刷空心杯电机",
+        "鸣志电器核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117042048B",
+        "title": "一种针对机器人灵巧手空心杯电机与微型行的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-06-11",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种一种针对机器人灵巧手空心杯电机与微型行的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在机器人灵巧手空心杯电机与微型行星减速器方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在机器人灵巧手空心杯电机与微型行星减速器方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11476916A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13846155902',
-      email: 'lisi@mock33.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-鸣志电器-133",
+        "productName": "高转矩密度精密无刷空心杯电机",
+        "filingYear": "2024",
+        "productCategory": "精密控制电机与步进驱动",
+        "annualOutputValue": "21.0 亿元",
+        "corePatentCount": 27,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-34',
-    name: '智能制造与新能源创新科技(测试34)股份有限公司',
-    shortName: '创新科技34',
-    creditCode: '9135090034079U',
-    registeredCapital: '6570 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '20 亿元 (2024)',
-    rdInvestment: '82 百万元',
-    rdRatio: '9.59%',
-    patentTotalCount: 99,
-    inventionPatentCount: 10,
-    matchSource: 'similar_patent',
-    matchScore: 75,
-    legalRep: '张三34',
-    address: '湖北省武汉市高新技术产业园34号',
-    phone: '044-60024719',
-    email: 'contact@mock34.com',
-    website: 'www.mock34.com',
-    establishedDate: '2015-02-13',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '孔杰', role: '首席科学家', domain: '自动化控制' },
-      { name: '钱军', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '吕宁', patentCount: 62, title: '核心发明人/资深工程师' }
+    "id": "ent-target-43",
+    "name": "中航光电科技股份有限公司",
+    "shortName": "中航光电",
+    "creditCode": "913100000276273636",
+    "registeredCapital": "130,500 万元人民币",
+    "location": "上海市上海市",
+    "province": "上海市",
+    "city": "上海市",
+    "industry": "高端装备制造 / 航空航天与高端互连器件",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "173.5 亿元 (2024)",
+    "rdInvestment": "15.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 4810,
+    "inventionPatentCount": 2895,
+    "legalRep": "李强",
+    "address": "上海市上海市高新技术产业开发区创新科技大道694号",
+    "phone": "0755-88036663",
+    "email": "rd_tech@中航光电.com.cn",
+    "website": "https://www.中航光电.com.cn",
+    "establishedDate": "2011-07-15",
+    "businessScope": "超高可靠性抗振光电连接器与深井耐温电缆的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 96,
+    "synergyReason": "作为航空装备产业链上游 • 核心光电互连与传感组件的重点骨干企业，在超高可靠性抗振光电连接器与深井耐温电缆领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-30",
+      "chainName": "航空装备",
+      "node": "upstream",
+      "nodeName": "上游 • 核心光电互连与传感组件",
+      "subSegment": "超高可靠性抗振光电连接器与深井耐温电缆",
+      "mainProducts": [
+        "航空级高密度耐极端环境光纤连接器",
+        "中航光电核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117043362B",
+        "title": "一种针对超高可靠性抗振光电连接器与深井的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-07-12",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种一种针对超高可靠性抗振光电连接器与深井的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在超高可靠性抗振光电连接器与深井耐温电缆方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在超高可靠性抗振光电连接器与深井耐温电缆方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11959489A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13898167669',
-      email: 'lisi@mock34.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中航光电-134",
+        "productName": "航空级高密度耐极端环境光纤连接器",
+        "filingYear": "2024",
+        "productCategory": "航空航天与高端互连器件",
+        "annualOutputValue": "49.0 亿元",
+        "corePatentCount": 28,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-35',
-    name: '智能制造与新能源创新科技(测试35)股份有限公司',
-    shortName: '创新科技35',
-    creditCode: '9135090070991U',
-    registeredCapital: '6966 万元人民币',
-    location: '上海市上海市',
-    province: '上海市',
-    city: '上海市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '19 亿元 (2024)',
-    rdInvestment: '382 百万元',
-    rdRatio: '5.40%',
-    patentTotalCount: 87,
-    inventionPatentCount: 22,
-    matchSource: 'similar_patent',
-    matchScore: 73,
-    legalRep: '张三35',
-    address: '上海市上海市高新技术产业园35号',
-    phone: '020-56270307',
-    email: 'contact@mock35.com',
-    website: 'www.mock35.com',
-    establishedDate: '2010-06-12',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '柏明', role: '首席科学家', domain: '自动化控制' },
-      { name: '冯林', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '李涛', patentCount: 64, title: '核心发明人/研发骨干' }
+    "id": "ent-target-44",
+    "name": "中国一拖集团有限公司",
+    "shortName": "中国一拖",
+    "creditCode": "913100000284645565",
+    "registeredCapital": "134,000 万元人民币",
+    "location": "四川省成都市",
+    "province": "四川省",
+    "city": "成都市",
+    "industry": "高端装备制造 / 农业机械与重型拖拉机",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "178.0 亿元 (2024)",
+    "rdInvestment": "15.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 4930,
+    "inventionPatentCount": 2970,
+    "legalRep": "王建华",
+    "address": "四川省成都市高新技术产业开发区创新科技大道712号",
+    "phone": "0512-88037774",
+    "email": "rd_tech@中国一拖.com.cn",
+    "website": "https://www.中国一拖.com.cn",
+    "establishedDate": "2012-08-15",
+    "businessScope": "大马力智能轮式拖拉机与免耕少耕一体化播种机的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "作为农业机械设备产业链下游 • 智能农机终端与成套装备的重点骨干企业，在大马力智能轮式拖拉机与免耕少耕一体化播种机领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-34",
+      "chainName": "农业机械设备",
+      "node": "downstream",
+      "nodeName": "下游 • 智能农机终端与成套装备",
+      "subSegment": "大马力智能轮式拖拉机与免耕少耕一体化播种机",
+      "mainProducts": [
+        "东方红-LW3204型大马力无级变速轮式拖拉机",
+        "中国一拖核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117044676B",
+        "title": "一种针对大马力智能轮式拖拉机与免耕少耕的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-08-13",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种一种针对大马力智能轮式拖拉机与免耕少耕的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在大马力智能轮式拖拉机与免耕少耕一体化播种机方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在大马力智能轮式拖拉机与免耕少耕一体化播种机方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11903798A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13826185582',
-      email: 'lisi@mock35.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中国一拖-135",
+        "productName": "东方红-LW3204型大马力无级变速轮式拖拉机",
+        "filingYear": "2024",
+        "productCategory": "农业机械与重型拖拉机",
+        "annualOutputValue": "38.0 亿元",
+        "corePatentCount": 29,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-36',
-    name: '智能制造与新能源创新科技(测试36)股份有限公司',
-    shortName: '创新科技36',
-    creditCode: '9135090034423U',
-    registeredCapital: '6400 万元人民币',
-    location: '江苏省苏州市',
-    province: '江苏省',
-    city: '苏州市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '45 亿元 (2024)',
-    rdInvestment: '254 百万元',
-    rdRatio: '5.48%',
-    patentTotalCount: 106,
-    inventionPatentCount: 50,
-    matchSource: 'similar_patent',
-    matchScore: 79,
-    legalRep: '张三36',
-    address: '江苏省苏州市高新技术产业园36号',
-    phone: '098-71650672',
-    email: 'contact@mock36.com',
-    website: 'www.mock36.com',
-    establishedDate: '2018-02-19',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '朱华', role: '首席科学家', domain: '自动化控制' },
-      { name: '张波', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '戚军', patentCount: 71, title: '核心发明人/核心成员' }
+    "id": "ent-target-45",
+    "name": "潍柴雷沃智慧农业科技股份有限公司",
+    "shortName": "雷沃重工",
+    "creditCode": "913100000293017493",
+    "registeredCapital": "137,500 万元人民币",
+    "location": "湖北省武汉市",
+    "province": "湖北省",
+    "city": "武汉市",
+    "industry": "高端装备制造 / 智能农机装备",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "182.5 亿元 (2024)",
+    "rdInvestment": "15.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 5050,
+    "inventionPatentCount": 3045,
+    "legalRep": "陈敏",
+    "address": "湖北省武汉市高新技术产业开发区创新科技大道730号",
+    "phone": "0755-88038885",
+    "email": "rd_tech@雷沃重工.com.cn",
+    "website": "https://www.雷沃重工.com.cn",
+    "establishedDate": "2013-09-15",
+    "businessScope": "黑土地保护性耕作免耕播种机与智能测控系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "作为农业机械设备产业链下游 • 农田作业整机装备的重点骨干企业，在黑土地保护性耕作免耕播种机与智能测控系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-34",
+      "chainName": "农业机械设备",
+      "node": "downstream",
+      "nodeName": "下游 • 农田作业整机装备",
+      "subSegment": "黑土地保护性耕作免耕播种机与智能测控系统",
+      "mainProducts": [
+        "雷沃谷神联合收割机及智能免耕播种机",
+        "雷沃重工核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117045990B",
+        "title": "一种针对黑土地保护性耕作免耕播种机与智的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-09-14",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种一种针对黑土地保护性耕作免耕播种机与智的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在黑土地保护性耕作免耕播种机与智能测控系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在黑土地保护性耕作免耕播种机与智能测控系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11970182A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13886726963',
-      email: 'lisi@mock36.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-雷沃重工-136",
+        "productName": "雷沃谷神联合收割机及智能免耕播种机",
+        "filingYear": "2024",
+        "productCategory": "智能农机装备",
+        "annualOutputValue": "43.0 亿元",
+        "corePatentCount": 30,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-37',
-    name: '智能制造与新能源创新科技(测试37)股份有限公司',
-    shortName: '创新科技37',
-    creditCode: '9135090058520U',
-    registeredCapital: '6946 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '14 亿元 (2024)',
-    rdInvestment: '120 百万元',
-    rdRatio: '4.06%',
-    patentTotalCount: 94,
-    inventionPatentCount: 22,
-    matchSource: 'similar_patent',
-    matchScore: 95,
-    legalRep: '张三37',
-    address: '湖北省武汉市高新技术产业园37号',
-    phone: '010-15412162',
-    email: 'contact@mock37.com',
-    website: 'www.mock37.com',
-    establishedDate: '2010-02-10',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '柳建', role: '首席科学家', domain: '自动化控制' },
-      { name: '马帅', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '窦洋', patentCount: 42, title: '核心发明人/核心成员' }
+    "id": "ent-target-46",
+    "name": "中车时代电气股份有限公司",
+    "shortName": "时代电气",
+    "creditCode": "913100000301389421",
+    "registeredCapital": "141,000 万元人民币",
+    "location": "安徽省合肥市",
+    "province": "安徽省",
+    "city": "合肥市",
+    "industry": "高端装备制造 / 轨道交通与电力电子",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "187.0 亿元 (2024)",
+    "rdInvestment": "16.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 5170,
+    "inventionPatentCount": 3120,
+    "legalRep": "刘志刚",
+    "address": "安徽省合肥市高新技术产业开发区创新科技大道748号",
+    "phone": "0512-88039996",
+    "email": "rd_tech@时代电气.com.cn",
+    "website": "https://www.时代电气.com.cn",
+    "establishedDate": "2014-01-15",
+    "businessScope": "重载列车电液复合制动与IGBT逆变牵引系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为轨道交通产业链中游 • 牵引传动与制动电控的重点骨干企业，在重载列车电液复合制动与IGBT逆变牵引系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-5",
+      "chainName": "轨道交通",
+      "node": "midstream",
+      "nodeName": "中游 • 牵引传动与制动电控",
+      "subSegment": "重载列车电液复合制动与IGBT逆变牵引系统",
+      "mainProducts": [
+        "高可靠机车电制动与微机防滑控制系统",
+        "时代电气核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117047304B",
+        "title": "一种针对重载列车电液复合制动与IGBT的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2023-01-15",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对重载列车电液复合制动与IGBT的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在重载列车电液复合制动与IGBT逆变牵引系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在重载列车电液复合制动与IGBT逆变牵引系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11743400A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13838484682',
-      email: 'lisi@mock37.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-时代电气-137",
+        "productName": "高可靠机车电制动与微机防滑控制系统",
+        "filingYear": "2024",
+        "productCategory": "轨道交通与电力电子",
+        "annualOutputValue": "76.0 亿元",
+        "corePatentCount": 31,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-38',
-    name: '智能制造与新能源创新科技(测试38)股份有限公司',
-    shortName: '创新科技38',
-    creditCode: '9135090016273U',
-    registeredCapital: '2646 万元人民币',
-    location: '四川省成都市',
-    province: '四川省',
-    city: '成都市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '1 亿元 (2024)',
-    rdInvestment: '345 百万元',
-    rdRatio: '7.52%',
-    patentTotalCount: 104,
-    inventionPatentCount: 28,
-    matchSource: 'similar_patent',
-    matchScore: 90,
-    legalRep: '张三38',
-    address: '四川省成都市高新技术产业园38号',
-    phone: '076-31339872',
-    email: 'contact@mock38.com',
-    website: 'www.mock38.com',
-    establishedDate: '2018-05-13',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '施飞', role: '首席科学家', domain: '自动化控制' },
-      { name: '曹洋', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '酆平', patentCount: 75, title: '核心发明人/高级研究员' }
+    "id": "ent-target-47",
+    "name": "中国中车集团有限公司",
+    "shortName": "中国中车",
+    "creditCode": "913100000309761350",
+    "registeredCapital": "144,500 万元人民币",
+    "location": "陕西省西安市",
+    "province": "陕西省",
+    "city": "西安市",
+    "industry": "高端装备制造 / 轨道交通整车装备",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "191.5 亿元 (2024)",
+    "rdInvestment": "16.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 5290,
+    "inventionPatentCount": 3195,
+    "legalRep": "孙明",
+    "address": "陕西省西安市高新技术产业开发区创新科技大道766号",
+    "phone": "0755-88041107",
+    "email": "rd_tech@中国中车.com.cn",
+    "website": "https://www.中国中车.com.cn",
+    "establishedDate": "2015-02-15",
+    "businessScope": "时速350公里复兴号智能动车组与制动安全系统的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为轨道交通产业链下游 • 高速动车组与重载货车的重点骨干企业，在时速350公里复兴号智能动车组与制动安全系统领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-5",
+      "chainName": "轨道交通",
+      "node": "downstream",
+      "nodeName": "下游 • 高速动车组与重载货车",
+      "subSegment": "时速350公里复兴号智能动车组与制动安全系统",
+      "mainProducts": [
+        "CR450新一代更高速度智能动车组",
+        "中国中车核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117048618B",
+        "title": "一种针对时速350公里复兴号智能动车组的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-02-16",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对时速350公里复兴号智能动车组的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在时速350公里复兴号智能动车组与制动安全系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在时速350公里复兴号智能动车组与制动安全系统方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11668860A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13876475324',
-      email: 'lisi@mock38.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中国中车-138",
+        "productName": "CR450新一代更高速度智能动车组",
+        "filingYear": "2024",
+        "productCategory": "轨道交通整车装备",
+        "annualOutputValue": "2,300 亿元",
+        "corePatentCount": 32,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-39',
-    name: '智能制造与新能源创新科技(测试39)股份有限公司',
-    shortName: '创新科技39',
-    creditCode: '9135090041427U',
-    registeredCapital: '8681 万元人民币',
-    location: '湖北省武汉市',
-    province: '湖北省',
-    city: '武汉市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '39 亿元 (2024)',
-    rdInvestment: '483 百万元',
-    rdRatio: '4.89%',
-    patentTotalCount: 101,
-    inventionPatentCount: 31,
-    matchSource: 'similar_patent',
-    matchScore: 93,
-    legalRep: '张三39',
-    address: '湖北省武汉市高新技术产业园39号',
-    phone: '028-23561968',
-    email: 'contact@mock39.com',
-    website: 'www.mock39.com',
-    establishedDate: '2011-08-14',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '方华', role: '首席科学家', domain: '自动化控制' },
-      { name: '俞强', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '许鹏', patentCount: 48, title: '核心发明人/核心成员' }
+    "id": "ent-target-48",
+    "name": "阳光电源股份有限公司",
+    "shortName": "阳光电源",
+    "creditCode": "913100000318133278",
+    "registeredCapital": "148,000 万元人民币",
+    "location": "辽宁省沈阳市",
+    "province": "辽宁省",
+    "city": "沈阳市",
+    "industry": "新能源与储能 / 光伏与储能逆变器",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "196.0 亿元 (2024)",
+    "rdInvestment": "17.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 5410,
+    "inventionPatentCount": 3270,
+    "legalRep": "周海峰",
+    "address": "辽宁省沈阳市高新技术产业开发区创新科技大道784号",
+    "phone": "0512-88042218",
+    "email": "rd_tech@阳光电源.com.cn",
+    "website": "https://www.阳光电源.com.cn",
+    "establishedDate": "2016-03-15",
+    "businessScope": "高压大功率集中式逆变器与液冷储能电站的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 92,
+    "synergyReason": "作为光伏产业链下游 • 储能系统与并网总成的重点骨干企业，在高压大功率集中式逆变器与液冷储能电站领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-3",
+      "chainName": "光伏",
+      "node": "downstream",
+      "nodeName": "下游 • 储能系统与并网总成",
+      "subSegment": "高压大功率集中式逆变器与液冷储能电站",
+      "mainProducts": [
+        "PowerTitan新一代液冷储能系统",
+        "阳光电源核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117049932B",
+        "title": "一种针对高压大功率集中式逆变器与液冷储的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-03-17",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种一种针对高压大功率集中式逆变器与液冷储的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高压大功率集中式逆变器与液冷储能电站方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高压大功率集中式逆变器与液冷储能电站方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11417461A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13895786865',
-      email: 'lisi@mock39.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-阳光电源-139",
+        "productName": "PowerTitan新一代液冷储能系统",
+        "filingYear": "2024",
+        "productCategory": "光伏与储能逆变器",
+        "annualOutputValue": "180.0 亿元",
+        "corePatentCount": 33,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-40',
-    name: '智能制造与新能源创新科技(测试40)股份有限公司',
-    shortName: '创新科技40',
-    creditCode: '9135090035775U',
-    registeredCapital: '2338 万元人民币',
-    location: '广东省深圳市',
-    province: '广东省',
-    city: '深圳市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '21 亿元 (2024)',
-    rdInvestment: '192 百万元',
-    rdRatio: '5.84%',
-    patentTotalCount: 30,
-    inventionPatentCount: 12,
-    matchSource: 'similar_patent',
-    matchScore: 72,
-    legalRep: '张三40',
-    address: '广东省深圳市高新技术产业园40号',
-    phone: '029-20984849',
-    email: 'contact@mock40.com',
-    website: 'www.mock40.com',
-    establishedDate: '2017-05-17',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '喻博', role: '首席科学家', domain: '自动化控制' },
-      { name: '陈明', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '郑鑫', patentCount: 48, title: '核心发明人/核心成员' }
+    "id": "ent-target-49",
+    "name": "新疆金风科技股份有限公司",
+    "shortName": "金风科技",
+    "creditCode": "913100000326505206",
+    "registeredCapital": "151,500 万元人民币",
+    "location": "福建省厦门市",
+    "province": "福建省",
+    "city": "厦门市",
+    "industry": "新能源与储能 / 风力发电与智能微网",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "200.5 亿元 (2024)",
+    "rdInvestment": "17.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 5530,
+    "inventionPatentCount": 3345,
+    "legalRep": "赵立国",
+    "address": "福建省厦门市高新技术产业开发区创新科技大道802号",
+    "phone": "0755-88043329",
+    "email": "rd_tech@金风科技.com.cn",
+    "website": "https://www.金风科技.com.cn",
+    "establishedDate": "2017-04-15",
+    "businessScope": "10MW+海上半直驱风力发电机组与制动控制的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "作为风电装备产业链下游 • 大功率风机整机制造的重点骨干企业，在10MW+海上半直驱风力发电机组与制动控制领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-13",
+      "chainName": "风电装备",
+      "node": "downstream",
+      "nodeName": "下游 • 大功率风机整机制造",
+      "subSegment": "10MW+海上半直驱风力发电机组与制动控制",
+      "mainProducts": [
+        "GWHV12中速永磁智能风力发电机组",
+        "金风科技核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117051246B",
+        "title": "一种针对10MW+海上半直驱风力发电机的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-04-18",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种一种针对10MW+海上半直驱风力发电机的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在10MW+海上半直驱风力发电机组与制动控制方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在10MW+海上半直驱风力发电机组与制动控制方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11820254A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13896644256',
-      email: 'lisi@mock40.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-金风科技-140",
+        "productName": "GWHV12中速永磁智能风力发电机组",
+        "filingYear": "2024",
+        "productCategory": "风力发电与智能微网",
+        "annualOutputValue": "120.0 亿元",
+        "corePatentCount": 34,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-41',
-    name: '智能制造与新能源创新科技(测试41)股份有限公司',
-    shortName: '创新科技41',
-    creditCode: '9135090012991U',
-    registeredCapital: '4585 万元人民币',
-    location: '浙江省宁波市',
-    province: '浙江省',
-    city: '宁波市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '7 亿元 (2024)',
-    rdInvestment: '130 百万元',
-    rdRatio: '6.47%',
-    patentTotalCount: 188,
-    inventionPatentCount: 14,
-    matchSource: 'similar_patent',
-    matchScore: 72,
-    legalRep: '张三41',
-    address: '浙江省宁波市高新技术产业园41号',
-    phone: '040-30209963',
-    email: 'contact@mock41.com',
-    website: 'www.mock41.com',
-    establishedDate: '2013-04-17',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '任华', role: '首席科学家', domain: '自动化控制' },
-      { name: '金军', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '冯波', patentCount: 61, title: '核心发明人/核心成员' }
+    "id": "ent-target-50",
+    "name": "中复神鹰碳纤维股份有限公司",
+    "shortName": "中复神鹰",
+    "creditCode": "913100000334877135",
+    "registeredCapital": "155,000 万元人民币",
+    "location": "吉林省长春市",
+    "province": "吉林省",
+    "city": "长春市",
+    "industry": "新材料 / 高性能碳纤维",
+    "scale": "国家级专精特新",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "205.0 亿元 (2024)",
+    "rdInvestment": "17.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 5650,
+    "inventionPatentCount": 3420,
+    "legalRep": "张伟",
+    "address": "吉林省长春市高新技术产业开发区创新科技大道820号",
+    "phone": "0512-88044440",
+    "email": "rd_tech@中复神鹰.com.cn",
+    "website": "https://www.中复神鹰.com.cn",
+    "establishedDate": "2018-05-15",
+    "businessScope": "SYT49S/SYT55G高性能航空干喷湿纺碳纤维的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "作为碳纤维产业链上游 • 航空级碳纤维原丝及碳化的重点骨干企业，在SYT49S/SYT55G高性能航空干喷湿纺碳纤维领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-6",
+      "chainName": "碳纤维",
+      "node": "upstream",
+      "nodeName": "上游 • 航空级碳纤维原丝及碳化",
+      "subSegment": "SYT49S/SYT55G高性能航空干喷湿纺碳纤维",
+      "mainProducts": [
+        "航空航天级高性能碳纤维束",
+        "中复神鹰核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117052560B",
+        "title": "一种针对SYT49S/SYT55G高性的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-05-11",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种一种针对SYT49S/SYT55G高性的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在SYT49S/SYT55G高性能航空干喷湿纺碳纤维方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在SYT49S/SYT55G高性能航空干喷湿纺碳纤维方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11475783A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13877782740',
-      email: 'lisi@mock41.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中复神鹰-141",
+        "productName": "航空航天级高性能碳纤维束",
+        "filingYear": "2024",
+        "productCategory": "高性能碳纤维",
+        "annualOutputValue": "22.0 亿元",
+        "corePatentCount": 15,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-42',
-    name: '智能制造与新能源创新科技(测试42)股份有限公司',
-    shortName: '创新科技42',
-    creditCode: '9135090045336U',
-    registeredCapital: '3426 万元人民币',
-    location: '四川省成都市',
-    province: '四川省',
-    city: '成都市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '11 亿元 (2024)',
-    rdInvestment: '424 百万元',
-    rdRatio: '3.95%',
-    patentTotalCount: 93,
-    inventionPatentCount: 48,
-    matchSource: 'similar_patent',
-    matchScore: 88,
-    legalRep: '张三42',
-    address: '四川省成都市高新技术产业园42号',
-    phone: '019-62812212',
-    email: 'contact@mock42.com',
-    website: 'www.mock42.com',
-    establishedDate: '2014-03-11',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '华龙', role: '首席科学家', domain: '自动化控制' },
-      { name: '马飞', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '李刚', patentCount: 40, title: '核心发明人/核心成员' }
+    "id": "ent-target-51",
+    "name": "江苏联赢激光股份有限公司",
+    "shortName": "联赢激光",
+    "creditCode": "913100000343249063",
+    "registeredCapital": "158,500 万元人民币",
+    "location": "吉林省吉林市",
+    "province": "吉林省",
+    "city": "吉林市",
+    "industry": "高端装备制造 / 精密激光焊接系统",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "209.5 亿元 (2024)",
+    "rdInvestment": "18.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 5770,
+    "inventionPatentCount": 3495,
+    "legalRep": "李强",
+    "address": "吉林省吉林市高新技术产业开发区创新科技大道838号",
+    "phone": "0755-88045551",
+    "email": "rd_tech@联赢激光.com.cn",
+    "website": "https://www.联赢激光.com.cn",
+    "establishedDate": "2019-06-15",
+    "businessScope": "蓝光/光纤复合超快激光精密焊接装备的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "作为数控机床产业链中游 • 精密激光加工装备的重点骨干企业，在蓝光/光纤复合超快激光精密焊接装备领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-10",
+      "chainName": "数控机床",
+      "node": "midstream",
+      "nodeName": "中游 • 精密激光加工装备",
+      "subSegment": "蓝光/光纤复合超快激光精密焊接装备",
+      "mainProducts": [
+        "多波长复合激光动力电池极耳焊接系统",
+        "联赢激光核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117053874B",
+        "title": "一种针对蓝光/光纤复合超快激光精密焊接的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-06-12",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种一种针对蓝光/光纤复合超快激光精密焊接的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在蓝光/光纤复合超快激光精密焊接装备方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在蓝光/光纤复合超快激光精密焊接装备方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11827655A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13824832469',
-      email: 'lisi@mock42.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-联赢激光-142",
+        "productName": "多波长复合激光动力电池极耳焊接系统",
+        "filingYear": "2024",
+        "productCategory": "精密激光焊接系统",
+        "annualOutputValue": "19.5 亿元",
+        "corePatentCount": 16,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-43',
-    name: '智能制造与新能源创新科技(测试43)股份有限公司',
-    shortName: '创新科技43',
-    creditCode: '9135090078977U',
-    registeredCapital: '7168 万元人民币',
-    location: '浙江省宁波市',
-    province: '浙江省',
-    city: '宁波市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '24 亿元 (2024)',
-    rdInvestment: '156 百万元',
-    rdRatio: '9.00%',
-    patentTotalCount: 108,
-    inventionPatentCount: 24,
-    matchSource: 'similar_patent',
-    matchScore: 82,
-    legalRep: '张三43',
-    address: '浙江省宁波市高新技术产业园43号',
-    phone: '044-78893846',
-    email: 'contact@mock43.com',
-    website: 'www.mock43.com',
-    establishedDate: '2019-08-16',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '奚刚', role: '首席科学家', domain: '自动化控制' },
-      { name: '苗林', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '方帅', patentCount: 49, title: '核心发明人/高级研究员' }
+    "id": "ent-target-52",
+    "name": "西安陕鼓动力股份有限公司",
+    "shortName": "陕鼓动力",
+    "creditCode": "913100000351620991",
+    "registeredCapital": "162,000 万元人民币",
+    "location": "江苏省苏州市",
+    "province": "江苏省",
+    "city": "苏州市",
+    "industry": "高端装备制造 / 工业透平与深井钻进",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "214.0 亿元 (2024)",
+    "rdInvestment": "18.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 5890,
+    "inventionPatentCount": 3570,
+    "legalRep": "王建华",
+    "address": "江苏省苏州市高新技术产业开发区创新科技大道856号",
+    "phone": "0512-88046662",
+    "email": "rd_tech@陕鼓动力.com.cn",
+    "website": "https://www.陕鼓动力.com.cn",
+    "establishedDate": "2020-07-15",
+    "businessScope": "深部地层科学钻探高压泥浆泵与井下自适应动力装置的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 96,
+    "synergyReason": "作为船舶海工产业链下游 • 动力工程与深部钻进成套装备的重点骨干企业，在深部地层科学钻探高压泥浆泵与井下自适应动力装置领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-19",
+      "chainName": "船舶海工",
+      "node": "downstream",
+      "nodeName": "下游 • 动力工程与深部钻进成套装备",
+      "subSegment": "深部地层科学钻探高压泥浆泵与井下自适应动力装置",
+      "mainProducts": [
+        "大型轴流压缩机与井下深钻动力总成",
+        "陕鼓动力核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117055188B",
+        "title": "一种针对深部地层科学钻探高压泥浆泵与井的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-07-13",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种一种针对深部地层科学钻探高压泥浆泵与井的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在深部地层科学钻探高压泥浆泵与井下自适应动力装置方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在深部地层科学钻探高压泥浆泵与井下自适应动力装置方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11898915A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13822545674',
-      email: 'lisi@mock43.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-陕鼓动力-143",
+        "productName": "大型轴流压缩机与井下深钻动力总成",
+        "filingYear": "2024",
+        "productCategory": "工业透平与深井钻进",
+        "annualOutputValue": "28.0 亿元",
+        "corePatentCount": 17,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
   {
-    id: 'ent-mock-44',
-    name: '智能制造与新能源创新科技(测试44)股份有限公司',
-    shortName: '创新科技44',
-    creditCode: '9135090025228U',
-    registeredCapital: '3853 万元人民币',
-    location: '北京市北京市',
-    province: '北京市',
-    city: '北京市',
-    industry: '高端装备制造 / 自动化与控制',
-    scale: '省级专精特新',
-    enterpriseType: '民营企业',
-    revenue: '16 亿元 (2024)',
-    rdInvestment: '377 百万元',
-    rdRatio: '3.56%',
-    patentTotalCount: 156,
-    inventionPatentCount: 9,
-    matchSource: 'similar_patent',
-    matchScore: 83,
-    legalRep: '张三44',
-    address: '北京市北京市高新技术产业园44号',
-    phone: '032-60393463',
-    email: 'contact@mock44.com',
-    website: 'www.mock44.com',
-    establishedDate: '2014-06-14',
-    businessScope: '一般项目：技术开发，高端装备制造，自动化控制系统集成。',
-    registeredProducts: ['高精度传感器设备', '智能伺服驱动器'],
-    keyInventors: [
-      { name: '施林', role: '首席科学家', domain: '自动化控制' },
-      { name: '潘涛', role: '研发总监', domain: '电力电子' }
-    ,
-      { name: '姜辉', patentCount: 52, title: '核心发明人/核心成员' }
+    "id": "ent-target-53",
+    "name": "中煤科工西安研究院（集团）有限公司",
+    "shortName": "中煤科工",
+    "creditCode": "913100000359992919",
+    "registeredCapital": "165,500 万元人民币",
+    "location": "江苏省无锡市",
+    "province": "江苏省",
+    "city": "无锡市",
+    "industry": "高端装备制造 / 复杂地质智能钻探装备",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "218.5 亿元 (2024)",
+    "rdInvestment": "19.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 6010,
+    "inventionPatentCount": 3645,
+    "legalRep": "陈敏",
+    "address": "江苏省无锡市高新技术产业开发区创新科技大道874号",
+    "phone": "0755-88047773",
+    "email": "rd_tech@中煤科工.com.cn",
+    "website": "https://www.中煤科工.com.cn",
+    "establishedDate": "2021-08-15",
+    "businessScope": "千米定向自适应智能钻机与随钻井下参数感知探头的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "作为船舶海工产业链中游 • 随钻测量与自适应钻具的重点骨干企业，在千米定向自适应智能钻机与随钻井下参数感知探头领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-19",
+      "chainName": "船舶海工",
+      "node": "midstream",
+      "nodeName": "中游 • 随钻测量与自适应钻具",
+      "subSegment": "千米定向自适应智能钻机与随钻井下参数感知探头",
+      "mainProducts": [
+        "ZDY系列智能随钻测量定向钻进成套装备",
+        "中煤科工核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117056502B",
+        "title": "一种针对千米定向自适应智能钻机与随钻井的精密加工成型与自适应控制系统",
+        "ipc": "B60T 8/17, G05B 19/40",
+        "grantDate": "2024-08-14",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种一种针对千米定向自适应智能钻机与随钻井的精密加工成型与自适应控制系统，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在千米定向自适应智能钻机与随钻井下参数感知探头方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在千米定向自适应智能钻机与随钻井下参数感知探头方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
     ],
-    similarPatents: [
-      { patentNo: 'CN11130143A', title: '一种基于机器视觉的自动化校准方法' }
-    ],
-    synergyReason: '企业在自动化领域具有一定市场份额，技术方向与吉林大学微电子学院相关成果匹配度高。',
-    matchTags: ['专精特新', '产学研潜力'],
-    contact: {
-      contactPerson: '李四',
-      dept: '研发中心',
-      title: '技术总监',
-      phone: '13836433108',
-      email: 'lisi@mock44.com',
-      suggestedApproach: '建议通过联合实验室或委托开发项目切入合作。'
-    }
+    "patentProducts": [
+      {
+        "productCode": "CP-中煤科工-144",
+        "productName": "ZDY系列智能随钻测量定向钻进成套装备",
+        "filingYear": "2024",
+        "productCategory": "复杂地质智能钻探装备",
+        "annualOutputValue": "16.8 亿元",
+        "corePatentCount": 18,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
   },
+  {
+    "id": "ent-target-54",
+    "name": "长春捷翼汽车科技股份有限公司",
+    "shortName": "捷翼科技",
+    "creditCode": "913100000368364848",
+    "registeredCapital": "169,000 万元人民币",
+    "location": "江苏省南京市",
+    "province": "江苏省",
+    "city": "南京市",
+    "industry": "新能源汽车 / 高压线束与连接系统",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "223.0 亿元 (2024)",
+    "rdInvestment": "19.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 6130,
+    "inventionPatentCount": 3720,
+    "legalRep": "刘志刚",
+    "address": "江苏省南京市高新技术产业开发区创新科技大道892号",
+    "phone": "0512-88048884",
+    "email": "rd_tech@捷翼科技.com.cn",
+    "website": "https://www.捷翼科技.com.cn",
+    "establishedDate": "2022-09-15",
+    "businessScope": "新能源汽车高压快充线束与铝导体轻量化总成的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "作为新能源汽车产业链上游 • 高压线束与连接系统的重点骨干企业，在新能源汽车高压快充线束与铝导体轻量化总成领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "upstream",
+      "nodeName": "上游 • 高压线束与连接系统",
+      "subSegment": "新能源汽车高压快充线束与铝导体轻量化总成",
+      "mainProducts": [
+        "高压大电流铝导体轻量化快充线束",
+        "捷翼科技核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117057816B",
+        "title": "一种针对新能源汽车高压快充线束与铝导体的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-09-15",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种一种针对新能源汽车高压快充线束与铝导体的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在新能源汽车高压快充线束与铝导体轻量化总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在新能源汽车高压快充线束与铝导体轻量化总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-捷翼科技-145",
+        "productName": "高压大电流铝导体轻量化快充线束",
+        "filingYear": "2024",
+        "productCategory": "高压线束与连接系统",
+        "annualOutputValue": "18.2 亿元",
+        "corePatentCount": 19,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-55",
+    "name": "一汽富维汽车零部件股份有限公司",
+    "shortName": "一汽富维",
+    "creditCode": "913100000376736777",
+    "registeredCapital": "172,500 万元人民币",
+    "location": "浙江省杭州市",
+    "province": "浙江省",
+    "city": "杭州市",
+    "industry": "新能源汽车 / 汽车智能外饰与座舱",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "227.5 亿元 (2024)",
+    "rdInvestment": "19.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 6250,
+    "inventionPatentCount": 3795,
+    "legalRep": "孙明",
+    "address": "浙江省杭州市高新技术产业开发区创新科技大道910号",
+    "phone": "0755-88049995",
+    "email": "rd_tech@一汽富维.com.cn",
+    "website": "https://www.一汽富维.com.cn",
+    "establishedDate": "2008-01-15",
+    "businessScope": "轻量化复合材料车身与智能感知格栅的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为新能源汽车产业链上游 • 智能座舱与车身轻量化材料的重点骨干企业，在轻量化复合材料车身与智能感知格栅领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "upstream",
+      "nodeName": "上游 • 智能座舱与车身轻量化材料",
+      "subSegment": "轻量化复合材料车身与智能感知格栅",
+      "mainProducts": [
+        "一体化轻量化智能发光外饰总成",
+        "一汽富维核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117059130B",
+        "title": "一种针对轻量化复合材料车身与智能感知格的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-01-16",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对轻量化复合材料车身与智能感知格的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在轻量化复合材料车身与智能感知格栅方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在轻量化复合材料车身与智能感知格栅方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-一汽富维-146",
+        "productName": "一体化轻量化智能发光外饰总成",
+        "filingYear": "2024",
+        "productCategory": "汽车智能外饰与座舱",
+        "annualOutputValue": "145.0 亿元",
+        "corePatentCount": 20,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-56",
+    "name": "富奥汽车零部件股份有限公司",
+    "shortName": "富奥股份",
+    "creditCode": "913100000385108705",
+    "registeredCapital": "176,000 万元人民币",
+    "location": "浙江省宁波市",
+    "province": "浙江省",
+    "city": "宁波市",
+    "industry": "新能源汽车 / 转向与电控悬架",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "232.0 亿元 (2024)",
+    "rdInvestment": "20.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 6370,
+    "inventionPatentCount": 3870,
+    "legalRep": "周海峰",
+    "address": "浙江省宁波市高新技术产业开发区创新科技大道928号",
+    "phone": "0512-88051106",
+    "email": "rd_tech@富奥股份.com.cn",
+    "website": "https://www.富奥股份.com.cn",
+    "establishedDate": "2009-02-15",
+    "businessScope": "电控空气悬架与可变阻尼减振器电磁阀的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为新能源汽车产业链上游 • 底盘紧固与减振材料的重点骨干企业，在电控空气悬架与可变阻尼减振器电磁阀领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "upstream",
+      "nodeName": "上游 • 底盘紧固与减振材料",
+      "subSegment": "电控空气悬架与可变阻尼减振器电磁阀",
+      "mainProducts": [
+        "智能电控主动空气悬架总成",
+        "富奥股份核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117060444B",
+        "title": "一种针对电控空气悬架与可变阻尼减振器电的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-02-17",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对电控空气悬架与可变阻尼减振器电的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在电控空气悬架与可变阻尼减振器电磁阀方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在电控空气悬架与可变阻尼减振器电磁阀方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-富奥股份-147",
+        "productName": "智能电控主动空气悬架总成",
+        "filingYear": "2024",
+        "productCategory": "转向与电控悬架",
+        "annualOutputValue": "158.0 亿元",
+        "corePatentCount": 21,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-57",
+    "name": "吉林省中研高分子材料股份有限公司",
+    "shortName": "中研股份",
+    "creditCode": "913100000393480633",
+    "registeredCapital": "179,500 万元人民币",
+    "location": "广东省深圳市",
+    "province": "广东省",
+    "city": "深圳市",
+    "industry": "新材料 / 特种工程塑料PEEK",
+    "scale": "国家级专精特新",
+    "enterpriseType": "国家级专精特新“小巨人”",
+    "revenue": "236.5 亿元 (2024)",
+    "rdInvestment": "20.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 6490,
+    "inventionPatentCount": 3945,
+    "legalRep": "赵立国",
+    "address": "广东省深圳市高新技术产业开发区创新科技大道946号",
+    "phone": "0755-88052217",
+    "email": "rd_tech@中研股份.com.cn",
+    "website": "https://www.中研股份.com.cn",
+    "establishedDate": "2010-03-15",
+    "businessScope": "超高纯度聚醚醚酮(PEEK)树脂与微粉的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 92,
+    "synergyReason": "作为纳米新材料产业链上游 • 特种工程塑料与单体合成的重点骨干企业，在超高纯度聚醚醚酮(PEEK)树脂与微粉领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-18",
+      "chainName": "纳米新材料",
+      "node": "upstream",
+      "nodeName": "上游 • 特种工程塑料与单体合成",
+      "subSegment": "超高纯度聚醚醚酮(PEEK)树脂与微粉",
+      "mainProducts": [
+        "医疗级与航空级高流动性PEEK树脂",
+        "中研股份核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117061758B",
+        "title": "一种针对超高纯度聚醚醚酮(PEEK)树的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-03-18",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种一种针对超高纯度聚醚醚酮(PEEK)树的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在超高纯度聚醚醚酮(PEEK)树脂与微粉方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在超高纯度聚醚醚酮(PEEK)树脂与微粉方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-中研股份-148",
+        "productName": "医疗级与航空级高流动性PEEK树脂",
+        "filingYear": "2024",
+        "productCategory": "特种工程塑料PEEK",
+        "annualOutputValue": "6.5 亿元",
+        "corePatentCount": 22,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-58",
+    "name": "吉林碳谷碳纤维股份有限公司",
+    "shortName": "吉林碳谷",
+    "creditCode": "913100000401852562",
+    "registeredCapital": "183,000 万元人民币",
+    "location": "广东省广州市",
+    "province": "广东省",
+    "city": "广州市",
+    "industry": "新材料 / 碳纤维原丝",
+    "scale": "国家级专精特新",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "241.0 亿元 (2024)",
+    "rdInvestment": "21.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 6610,
+    "inventionPatentCount": 4020,
+    "legalRep": "张伟",
+    "address": "广东省广州市高新技术产业开发区创新科技大道964号",
+    "phone": "0512-88053328",
+    "email": "rd_tech@吉林碳谷.com.cn",
+    "website": "https://www.吉林碳谷.com.cn",
+    "establishedDate": "2011-04-15",
+    "businessScope": "24K/48K大丝束高品质碳纤维原丝研发与规模化的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "作为碳纤维产业链上游 • 大丝束碳纤维原丝的重点骨干企业，在24K/48K大丝束高品质碳纤维原丝研发与规模化领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-6",
+      "chainName": "碳纤维",
+      "node": "upstream",
+      "nodeName": "上游 • 大丝束碳纤维原丝",
+      "subSegment": "24K/48K大丝束高品质碳纤维原丝研发与规模化",
+      "mainProducts": [
+        "高稳定大丝束原丝及预氧化丝",
+        "吉林碳谷核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117063072B",
+        "title": "一种针对24K/48K大丝束高品质碳纤的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-04-11",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种一种针对24K/48K大丝束高品质碳纤的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在24K/48K大丝束高品质碳纤维原丝研发与规模化方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在24K/48K大丝束高品质碳纤维原丝研发与规模化方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-吉林碳谷-149",
+        "productName": "高稳定大丝束原丝及预氧化丝",
+        "filingYear": "2024",
+        "productCategory": "碳纤维原丝",
+        "annualOutputValue": "26.0 亿元",
+        "corePatentCount": 23,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-59",
+    "name": "吉林化纤集团有限责任公司",
+    "shortName": "吉林化纤",
+    "creditCode": "913100000410224490",
+    "registeredCapital": "186,500 万元人民币",
+    "location": "广东省东莞市",
+    "province": "广东省",
+    "city": "东莞市",
+    "industry": "新材料 / 碳纤维及复合材料原丝",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "245.5 亿元 (2024)",
+    "rdInvestment": "21.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 6730,
+    "inventionPatentCount": 4095,
+    "legalRep": "李强",
+    "address": "广东省东莞市高新技术产业开发区创新科技大道982号",
+    "phone": "0755-88054439",
+    "email": "rd_tech@吉林化纤.com.cn",
+    "website": "https://www.吉林化纤.com.cn",
+    "establishedDate": "2012-05-15",
+    "businessScope": "高强碳纤维碳化生产与下游风电风电叶片拉挤板的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "作为碳纤维产业链上游 • 腈纶原丝与碳化基料的重点骨干企业，在高强碳纤维碳化生产与下游风电风电叶片拉挤板领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-6",
+      "chainName": "碳纤维",
+      "node": "upstream",
+      "nodeName": "上游 • 腈纶原丝与碳化基料",
+      "subSegment": "高强碳纤维碳化生产与下游风电风电叶片拉挤板",
+      "mainProducts": [
+        "风电叶片用高模拉挤碳板",
+        "吉林化纤核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117064386B",
+        "title": "一种针对高强碳纤维碳化生产与下游风电风的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-05-12",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种一种针对高强碳纤维碳化生产与下游风电风的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高强碳纤维碳化生产与下游风电风电叶片拉挤板方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高强碳纤维碳化生产与下游风电风电叶片拉挤板方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-吉林化纤-150",
+        "productName": "风电叶片用高模拉挤碳板",
+        "filingYear": "2024",
+        "productCategory": "碳纤维及复合材料原丝",
+        "annualOutputValue": "210.0 亿元",
+        "corePatentCount": 24,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-60",
+    "name": "深圳新宙邦科技股份有限公司",
+    "shortName": "新宙邦",
+    "creditCode": "913100000418596418",
+    "registeredCapital": "190,000 万元人民币",
+    "location": "山东省济南市",
+    "province": "山东省",
+    "city": "济南市",
+    "industry": "新能源与储能 / 电池电解液与氟化学品",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "250.0 亿元 (2024)",
+    "rdInvestment": "21.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 6850,
+    "inventionPatentCount": 4170,
+    "legalRep": "王建华",
+    "address": "山东省济南市高新技术产业开发区创新科技大道1000号",
+    "phone": "0512-88055550",
+    "email": "rd_tech@新宙邦.com.cn",
+    "website": "https://www.新宙邦.com.cn",
+    "establishedDate": "2013-06-15",
+    "businessScope": "高电压长寿命固态锂电电解液及有机硅功能助剂的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "作为动力及储能电池产业链上游 • 核心电解质与高压添加剂的重点骨干企业，在高电压长寿命固态锂电电解液及有机硅功能助剂领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-24",
+      "chainName": "动力及储能电池",
+      "node": "upstream",
+      "nodeName": "上游 • 核心电解质与高压添加剂",
+      "subSegment": "高电压长寿命固态锂电电解液及有机硅功能助剂",
+      "mainProducts": [
+        "高电压高安全锂离子电池电解液",
+        "新宙邦核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117065700B",
+        "title": "一种针对高电压长寿命固态锂电电解液及有的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-06-13",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种一种针对高电压长寿命固态锂电电解液及有的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在高电压长寿命固态锂电电解液及有机硅功能助剂方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在高电压长寿命固态锂电电解液及有机硅功能助剂方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-新宙邦-151",
+        "productName": "高电压高安全锂离子电池电解液",
+        "filingYear": "2024",
+        "productCategory": "电池电解液与氟化学品",
+        "annualOutputValue": "46.0 亿元",
+        "corePatentCount": 25,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-61",
+    "name": "天奈科技股份有限公司",
+    "shortName": "天奈科技",
+    "creditCode": "913100000426968347",
+    "registeredCapital": "193,500 万元人民币",
+    "location": "山东省青岛市",
+    "province": "山东省",
+    "city": "青岛市",
+    "industry": "新材料 / 碳纳米管与导电剂",
+    "scale": "国家级专精特新",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "254.5 亿元 (2024)",
+    "rdInvestment": "22.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 6970,
+    "inventionPatentCount": 4245,
+    "legalRep": "陈敏",
+    "address": "山东省青岛市高新技术产业开发区创新科技大道1018号",
+    "phone": "0755-88056661",
+    "email": "rd_tech@天奈科技.com.cn",
+    "website": "https://www.天奈科技.com.cn",
+    "establishedDate": "2014-07-15",
+    "businessScope": "多壁/单壁碳纳米管宏量制备与高导电复合浆料的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 96,
+    "synergyReason": "作为石墨烯产业链上游 • 碳纳米管与导电浆料的重点骨干企业，在多壁/单壁碳纳米管宏量制备与高导电复合浆料领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-7",
+      "chainName": "石墨烯",
+      "node": "upstream",
+      "nodeName": "上游 • 碳纳米管与导电浆料",
+      "subSegment": "多壁/单壁碳纳米管宏量制备与高导电复合浆料",
+      "mainProducts": [
+        "高纯单壁碳纳米管导电母粒",
+        "天奈科技核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117067014B",
+        "title": "一种针对多壁/单壁碳纳米管宏量制备与高的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2024-07-14",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种一种针对多壁/单壁碳纳米管宏量制备与高的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在多壁/单壁碳纳米管宏量制备与高导电复合浆料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在多壁/单壁碳纳米管宏量制备与高导电复合浆料方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-天奈科技-152",
+        "productName": "高纯单壁碳纳米管导电母粒",
+        "filingYear": "2024",
+        "productCategory": "碳纳米管与导电剂",
+        "annualOutputValue": "16.5 亿元",
+        "corePatentCount": 26,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-62",
+    "name": "璞泰来新能源科技股份有限公司",
+    "shortName": "璞泰来",
+    "creditCode": "913100000435340275",
+    "registeredCapital": "197,000 万元人民币",
+    "location": "北京市北京市",
+    "province": "北京市",
+    "city": "北京市",
+    "industry": "新能源与储能 / 负极材料与涂覆隔膜",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "259.0 亿元 (2024)",
+    "rdInvestment": "22.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 7090,
+    "inventionPatentCount": 4320,
+    "legalRep": "刘志刚",
+    "address": "北京市北京市高新技术产业开发区创新科技大道1036号",
+    "phone": "0512-88057772",
+    "email": "rd_tech@璞泰来.com.cn",
+    "website": "https://www.璞泰来.com.cn",
+    "establishedDate": "2015-08-15",
+    "businessScope": "硅碳高容量负极材料与芳纶涂覆隔膜的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "作为动力及储能电池产业链上游 • 负极活性材料与基膜的重点骨干企业，在硅碳高容量负极材料与芳纶涂覆隔膜领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-24",
+      "chainName": "动力及储能电池",
+      "node": "upstream",
+      "nodeName": "上游 • 负极活性材料与基膜",
+      "subSegment": "硅碳高容量负极材料与芳纶涂覆隔膜",
+      "mainProducts": [
+        "高首效纳米硅碳复合负极材料",
+        "璞泰来核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117068328B",
+        "title": "一种针对硅碳高容量负极材料与芳纶涂覆隔的材料制备与高精度调控方法",
+        "ipc": "C08G 65/40, H01M 10/052",
+        "grantDate": "2023-08-15",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种一种针对硅碳高容量负极材料与芳纶涂覆隔的材料制备与高精度调控方法，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在硅碳高容量负极材料与芳纶涂覆隔膜方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在硅碳高容量负极材料与芳纶涂覆隔膜方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-璞泰来-153",
+        "productName": "高首效纳米硅碳复合负极材料",
+        "filingYear": "2024",
+        "productCategory": "负极材料与涂覆隔膜",
+        "annualOutputValue": "62.0 亿元",
+        "corePatentCount": 27,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-63",
+    "name": "长春客车厂轨道客车装备有限公司",
+    "shortName": "长客装备",
+    "creditCode": "913100000443712203",
+    "registeredCapital": "200,500 万元人民币",
+    "location": "上海市上海市",
+    "province": "上海市",
+    "city": "上海市",
+    "industry": "高端装备制造 / 轨道交通装备",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "263.5 亿元 (2024)",
+    "rdInvestment": "23.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 7210,
+    "inventionPatentCount": 4395,
+    "legalRep": "孙明",
+    "address": "上海市上海市高新技术产业开发区创新科技大道1054号",
+    "phone": "0755-88058883",
+    "email": "rd_tech@长客装备.com.cn",
+    "website": "https://www.长客装备.com.cn",
+    "establishedDate": "2016-09-15",
+    "businessScope": "全自动无人驾驶地铁列车与轻量化车体制造的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "作为轨道交通产业链下游 • 城市轨道列车整车的重点骨干企业，在全自动无人驾驶地铁列车与轻量化车体制造领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-5",
+      "chainName": "轨道交通",
+      "node": "downstream",
+      "nodeName": "下游 • 城市轨道列车整车",
+      "subSegment": "全自动无人驾驶地铁列车与轻量化车体制造",
+      "mainProducts": [
+        "智能无人驾驶磁浮与地铁整车",
+        "长客装备核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117069642B",
+        "title": "一种针对全自动无人驾驶地铁列车与轻量化的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-09-16",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种一种针对全自动无人驾驶地铁列车与轻量化的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在全自动无人驾驶地铁列车与轻量化车体制造方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在全自动无人驾驶地铁列车与轻量化车体制造方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-长客装备-154",
+        "productName": "智能无人驾驶磁浮与地铁整车",
+        "filingYear": "2024",
+        "productCategory": "轨道交通装备",
+        "annualOutputValue": "120.0 亿元",
+        "corePatentCount": 28,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-64",
+    "name": "中通客车股份有限公司",
+    "shortName": "中通客车",
+    "creditCode": "913100000452084132",
+    "registeredCapital": "204,000 万元人民币",
+    "location": "四川省成都市",
+    "province": "四川省",
+    "city": "成都市",
+    "industry": "新能源汽车 / 客车整车制造",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "268.0 亿元 (2024)",
+    "rdInvestment": "23.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 7330,
+    "inventionPatentCount": 4470,
+    "legalRep": "周海峰",
+    "address": "四川省成都市高新技术产业开发区创新科技大道1072号",
+    "phone": "0512-88059994",
+    "email": "rd_tech@中通客车.com.cn",
+    "website": "https://www.中通客车.com.cn",
+    "establishedDate": "2017-01-15",
+    "businessScope": "纯电动与氢燃料电池智能商用客车整车的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为新能源汽车产业链下游 • 新能源客车与智能物流车的重点骨干企业，在纯电动与氢燃料电池智能商用客车整车领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 新能源客车与智能物流车",
+      "subSegment": "纯电动与氢燃料电池智能商用客车整车",
+      "mainProducts": [
+        "氢燃料电池城市智能公交客车",
+        "中通客车核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117070956B",
+        "title": "一种针对纯电动与氢燃料电池智能商用客车的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-01-17",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对纯电动与氢燃料电池智能商用客车的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在纯电动与氢燃料电池智能商用客车整车方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在纯电动与氢燃料电池智能商用客车整车方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-中通客车-155",
+        "productName": "氢燃料电池城市智能公交客车",
+        "filingYear": "2024",
+        "productCategory": "客车整车制造",
+        "annualOutputValue": "52.0 亿元",
+        "corePatentCount": 29,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-65",
+    "name": "宇通客车股份有限公司",
+    "shortName": "宇通客车",
+    "creditCode": "913100000460456060",
+    "registeredCapital": "207,500 万元人民币",
+    "location": "湖北省武汉市",
+    "province": "湖北省",
+    "city": "武汉市",
+    "industry": "新能源汽车 / 智能新能源客车",
+    "scale": "国家级专精特新",
+    "enterpriseType": "制造业单项冠军",
+    "revenue": "272.5 亿元 (2024)",
+    "rdInvestment": "23.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 7450,
+    "inventionPatentCount": 4545,
+    "legalRep": "赵立国",
+    "address": "湖北省武汉市高新技术产业开发区创新科技大道1090号",
+    "phone": "0755-88061105",
+    "email": "rd_tech@宇通客车.com.cn",
+    "website": "https://www.宇通客车.com.cn",
+    "establishedDate": "2018-02-15",
+    "businessScope": "全电线控底盘新能源重卡及高端宇通轻卡的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为新能源汽车产业链下游 • 商用车与整车制造的重点骨干企业，在全电线控底盘新能源重卡及高端宇通轻卡领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 商用车与整车制造",
+      "subSegment": "全电线控底盘新能源重卡及高端宇通轻卡",
+      "mainProducts": [
+        "睿控E平台高端纯电动客车",
+        "宇通客车核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117072270B",
+        "title": "一种针对全电线控底盘新能源重卡及高端宇的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-02-18",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对全电线控底盘新能源重卡及高端宇的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在全电线控底盘新能源重卡及高端宇通轻卡方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在全电线控底盘新能源重卡及高端宇通轻卡方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-宇通客车-156",
+        "productName": "睿控E平台高端纯电动客车",
+        "filingYear": "2024",
+        "productCategory": "智能新能源客车",
+        "annualOutputValue": "270.0 亿元",
+        "corePatentCount": 30,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-66",
+    "name": "金龙联合汽车工业（苏州）有限公司",
+    "shortName": "苏州金龙",
+    "creditCode": "913100000468827988",
+    "registeredCapital": "211,000 万元人民币",
+    "location": "安徽省合肥市",
+    "province": "安徽省",
+    "city": "合肥市",
+    "industry": "新能源汽车 / 新能源商用车",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "277.0 亿元 (2024)",
+    "rdInvestment": "24.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 7570,
+    "inventionPatentCount": 4620,
+    "legalRep": "张伟",
+    "address": "安徽省合肥市高新技术产业开发区创新科技大道1108号",
+    "phone": "0512-88062216",
+    "email": "rd_tech@苏州金龙.com.cn",
+    "website": "https://www.苏州金龙.com.cn",
+    "establishedDate": "2019-03-15",
+    "businessScope": "海格智能重卡与线控换电重卡整车的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 92,
+    "synergyReason": "作为新能源汽车产业链下游 • 专用车与客车整机的重点骨干企业，在海格智能重卡与线控换电重卡整车领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 专用车与客车整机",
+      "subSegment": "海格智能重卡与线控换电重卡整车",
+      "mainProducts": [
+        "海格智能网联重型电动牵引车",
+        "苏州金龙核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117073584B",
+        "title": "一种针对海格智能重卡与线控换电重卡整车的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-03-11",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种一种针对海格智能重卡与线控换电重卡整车的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在海格智能重卡与线控换电重卡整车方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在海格智能重卡与线控换电重卡整车方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-苏州金龙-157",
+        "productName": "海格智能网联重型电动牵引车",
+        "filingYear": "2024",
+        "productCategory": "新能源商用车",
+        "annualOutputValue": "68.0 亿元",
+        "corePatentCount": 31,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-67",
+    "name": "吉林修正药业集团股份有限公司",
+    "shortName": "修正药业",
+    "creditCode": "913100000477199917",
+    "registeredCapital": "214,500 万元人民币",
+    "location": "陕西省西安市",
+    "province": "陕西省",
+    "city": "西安市",
+    "industry": "生物医药与健康 / 现代中药与大健康",
+    "scale": "国家级专精特新",
+    "enterpriseType": "高新技术企业",
+    "revenue": "281.5 亿元 (2024)",
+    "rdInvestment": "24.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 7690,
+    "inventionPatentCount": 4695,
+    "legalRep": "李强",
+    "address": "陕西省西安市高新技术产业开发区创新科技大道1126号",
+    "phone": "0755-88063327",
+    "email": "rd_tech@修正药业.com.cn",
+    "website": "https://www.修正药业.com.cn",
+    "establishedDate": "2020-04-15",
+    "businessScope": "人参/鹿茸道地长白山药材提取物创新成药的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 93,
+    "synergyReason": "作为中药产业链下游 • 中药制剂与成药深加工的重点骨干企业，在人参/鹿茸道地长白山药材提取物创新成药领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-43",
+      "chainName": "中药",
+      "node": "downstream",
+      "nodeName": "下游 • 中药制剂与成药深加工",
+      "subSegment": "人参/鹿茸道地长白山药材提取物创新成药",
+      "mainProducts": [
+        "参鹿扶正口服液及抗疲劳纳米制剂",
+        "修正药业核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117074898B",
+        "title": "一种针对人参/鹿茸道地长白山药材提取物的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-04-12",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种一种针对人参/鹿茸道地长白山药材提取物的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在人参/鹿茸道地长白山药材提取物创新成药方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在人参/鹿茸道地长白山药材提取物创新成药方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-修正药业-158",
+        "productName": "参鹿扶正口服液及抗疲劳纳米制剂",
+        "filingYear": "2024",
+        "productCategory": "现代中药与大健康",
+        "annualOutputValue": "86.0 亿元",
+        "corePatentCount": 32,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-68",
+    "name": "吉林敖东药业集团股份有限公司",
+    "shortName": "吉林敖东",
+    "creditCode": "913100000485571846",
+    "registeredCapital": "218,000 万元人民币",
+    "location": "辽宁省沈阳市",
+    "province": "辽宁省",
+    "city": "沈阳市",
+    "industry": "生物医药与健康 / 现代中成药与天然药",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "286.0 亿元 (2024)",
+    "rdInvestment": "25.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 7810,
+    "inventionPatentCount": 4770,
+    "legalRep": "王建华",
+    "address": "辽宁省沈阳市高新技术产业开发区创新科技大道1144号",
+    "phone": "0512-88064438",
+    "email": "rd_tech@吉林敖东.com.cn",
+    "website": "https://www.吉林敖东.com.cn",
+    "establishedDate": "2021-05-15",
+    "businessScope": "天然植物活性成分提取与靶向中药缓释制剂的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 94,
+    "synergyReason": "作为中药产业链下游 • 中药微丸与注射液制剂的重点骨干企业，在天然植物活性成分提取与靶向中药缓释制剂领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-43",
+      "chainName": "中药",
+      "node": "downstream",
+      "nodeName": "下游 • 中药微丸与注射液制剂",
+      "subSegment": "天然植物活性成分提取与靶向中药缓释制剂",
+      "mainProducts": [
+        "安神补脑液及人参皂苷纳米冻干粉针",
+        "吉林敖东核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117076212B",
+        "title": "一种针对天然植物活性成分提取与靶向中药的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-05-13",
+        "similarityScore": 94,
+        "abstract": "本发明公开了一种一种针对天然植物活性成分提取与靶向中药的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在天然植物活性成分提取与靶向中药缓释制剂方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在天然植物活性成分提取与靶向中药缓释制剂方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-吉林敖东-159",
+        "productName": "安神补脑液及人参皂苷纳米冻干粉针",
+        "filingYear": "2024",
+        "productCategory": "现代中成药与天然药",
+        "annualOutputValue": "38.0 亿元",
+        "corePatentCount": 33,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-69",
+    "name": "吉林省大成生化科技集团有限公司",
+    "shortName": "大成生化",
+    "creditCode": "913100000493943774",
+    "registeredCapital": "221,500 万元人民币",
+    "location": "福建省厦门市",
+    "province": "福建省",
+    "city": "厦门市",
+    "industry": "新材料 / 生物基高分子与赖氨酸",
+    "scale": "国家级专精特新",
+    "enterpriseType": "高新技术企业",
+    "revenue": "290.5 亿元 (2024)",
+    "rdInvestment": "25.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 7930,
+    "inventionPatentCount": 4845,
+    "legalRep": "陈敏",
+    "address": "福建省厦门市高新技术产业开发区创新科技大道1162号",
+    "phone": "0755-88065549",
+    "email": "rd_tech@大成生化.com.cn",
+    "website": "https://www.大成生化.com.cn",
+    "establishedDate": "2022-06-15",
+    "businessScope": "玉米深加工生物基聚酯与高纯发酵赖氨酸的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 95,
+    "synergyReason": "作为纳米新材料产业链下游 • 生物基新材料终端应用的重点骨干企业，在玉米深加工生物基聚酯与高纯发酵赖氨酸领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-18",
+      "chainName": "纳米新材料",
+      "node": "downstream",
+      "nodeName": "下游 • 生物基新材料终端应用",
+      "subSegment": "玉米深加工生物基聚酯与高纯发酵赖氨酸",
+      "mainProducts": [
+        "生物基全降解聚乳酸(PLA)复合材料",
+        "大成生化核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117077526B",
+        "title": "一种针对玉米深加工生物基聚酯与高纯发酵的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-06-14",
+        "similarityScore": 95,
+        "abstract": "本发明公开了一种一种针对玉米深加工生物基聚酯与高纯发酵的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在玉米深加工生物基聚酯与高纯发酵赖氨酸方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在玉米深加工生物基聚酯与高纯发酵赖氨酸方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-大成生化-160",
+        "productName": "生物基全降解聚乳酸(PLA)复合材料",
+        "filingYear": "2024",
+        "productCategory": "生物基高分子与赖氨酸",
+        "annualOutputValue": "45.0 亿元",
+        "corePatentCount": 34,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-70",
+    "name": "沈阳机床股份有限公司",
+    "shortName": "沈阳机床",
+    "creditCode": "913100000502315702",
+    "registeredCapital": "225,000 万元人民币",
+    "location": "吉林省长春市",
+    "province": "吉林省",
+    "city": "长春市",
+    "industry": "高端装备制造 / 金属切削机床整机",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "295.0 亿元 (2024)",
+    "rdInvestment": "25.8 亿元",
+    "rdRatio": "5.50%",
+    "patentTotalCount": 8050,
+    "inventionPatentCount": 4920,
+    "legalRep": "刘志刚",
+    "address": "吉林省长春市高新技术产业开发区创新科技大道1180号",
+    "phone": "0512-88066660",
+    "email": "rd_tech@沈阳机床.com.cn",
+    "website": "https://www.沈阳机床.com.cn",
+    "establishedDate": "2008-07-15",
+    "businessScope": "大型立卧式加工中心与智能机加生产线的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 96,
+    "synergyReason": "作为数控机床产业链下游 • 智能机床整机与产线的重点骨干企业，在大型立卧式加工中心与智能机加生产线领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-10",
+      "chainName": "数控机床",
+      "node": "downstream",
+      "nodeName": "下游 • 智能机床整机与产线",
+      "subSegment": "大型立卧式加工中心与智能机加生产线",
+      "mainProducts": [
+        "i5智能数控系统高端卧式车床",
+        "沈阳机床核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117078840B",
+        "title": "一种针对大型立卧式加工中心与智能机加生的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-07-15",
+        "similarityScore": 96,
+        "abstract": "本发明公开了一种一种针对大型立卧式加工中心与智能机加生的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在大型立卧式加工中心与智能机加生产线方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在大型立卧式加工中心与智能机加生产线方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-沈阳机床-161",
+        "productName": "i5智能数控系统高端卧式车床",
+        "filingYear": "2024",
+        "productCategory": "金属切削机床整机",
+        "annualOutputValue": "31.0 亿元",
+        "corePatentCount": 15,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-71",
+    "name": "中国重汽集团济南卡车股份有限公司",
+    "shortName": "中国重汽",
+    "creditCode": "913100000510687631",
+    "registeredCapital": "228,500 万元人民币",
+    "location": "吉林省吉林市",
+    "province": "吉林省",
+    "city": "吉林市",
+    "industry": "新能源汽车 / 重型汽车整车",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "299.5 亿元 (2024)",
+    "rdInvestment": "26.2 亿元",
+    "rdRatio": "6.40%",
+    "patentTotalCount": 8170,
+    "inventionPatentCount": 4995,
+    "legalRep": "孙明",
+    "address": "吉林省吉林市高新技术产业开发区创新科技大道1198号",
+    "phone": "0755-88067771",
+    "email": "rd_tech@中国重汽.com.cn",
+    "website": "https://www.中国重汽.com.cn",
+    "establishedDate": "2009-08-15",
+    "businessScope": "黄河/汕德卡高端新能源智能重卡线控底盘的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 97,
+    "synergyReason": "作为新能源汽车产业链下游 • 重型商用车整车制造的重点骨干企业，在黄河/汕德卡高端新能源智能重卡线控底盘领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 重型商用车整车制造",
+      "subSegment": "黄河/汕德卡高端新能源智能重卡线控底盘",
+      "mainProducts": [
+        "黄河X7高端超低风阻智能牵引车",
+        "中国重汽核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117080154B",
+        "title": "一种针对黄河/汕德卡高端新能源智能重卡的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-08-16",
+        "similarityScore": 97,
+        "abstract": "本发明公开了一种一种针对黄河/汕德卡高端新能源智能重卡的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在黄河/汕德卡高端新能源智能重卡线控底盘方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在黄河/汕德卡高端新能源智能重卡线控底盘方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-中国重汽-162",
+        "productName": "黄河X7高端超低风阻智能牵引车",
+        "filingYear": "2024",
+        "productCategory": "重型汽车整车",
+        "annualOutputValue": "480.0 亿元",
+        "corePatentCount": 16,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-72",
+    "name": "陕汽集团商用车有限公司",
+    "shortName": "陕汽商用车",
+    "creditCode": "913100000519059559",
+    "registeredCapital": "232,000 万元人民币",
+    "location": "江苏省苏州市",
+    "province": "江苏省",
+    "city": "苏州市",
+    "industry": "新能源汽车 / 智能商用车与新能源重卡",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "304.0 亿元 (2024)",
+    "rdInvestment": "26.6 亿元",
+    "rdRatio": "7.30%",
+    "patentTotalCount": 8290,
+    "inventionPatentCount": 5070,
+    "legalRep": "周海峰",
+    "address": "江苏省苏州市高新技术产业开发区创新科技大道1216号",
+    "phone": "0512-88068882",
+    "email": "rd_tech@陕汽商用车.com.cn",
+    "website": "https://www.陕汽商用车.com.cn",
+    "establishedDate": "2010-09-15",
+    "businessScope": "德龙X6000新能源重卡及线控电液制动总成的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 98,
+    "synergyReason": "作为新能源汽车产业链下游 • 商用车与特种车辆整车的重点骨干企业，在德龙X6000新能源重卡及线控电液制动总成领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 商用车与特种车辆整车",
+      "subSegment": "德龙X6000新能源重卡及线控电液制动总成",
+      "mainProducts": [
+        "德龙新能源纯电动换电牵引车",
+        "陕汽商用车核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117081468B",
+        "title": "一种针对德龙X6000新能源重卡及线控的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-09-17",
+        "similarityScore": 98,
+        "abstract": "本发明公开了一种一种针对德龙X6000新能源重卡及线控的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在德龙X6000新能源重卡及线控电液制动总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在德龙X6000新能源重卡及线控电液制动总成方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-陕汽商用车-163",
+        "productName": "德龙新能源纯电动换电牵引车",
+        "filingYear": "2024",
+        "productCategory": "智能商用车与新能源重卡",
+        "annualOutputValue": "190.0 亿元",
+        "corePatentCount": 17,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-73",
+    "name": "东风商用车有限公司",
+    "shortName": "东风商用车",
+    "creditCode": "913100000527431487",
+    "registeredCapital": "235,500 万元人民币",
+    "location": "江苏省无锡市",
+    "province": "江苏省",
+    "city": "无锡市",
+    "industry": "新能源汽车 / 中重型商用车整车",
+    "scale": "行业央国企",
+    "enterpriseType": "行业龙头国企",
+    "revenue": "308.5 亿元 (2024)",
+    "rdInvestment": "27.0 亿元",
+    "rdRatio": "8.20%",
+    "patentTotalCount": 8410,
+    "inventionPatentCount": 5145,
+    "legalRep": "赵立国",
+    "address": "江苏省无锡市高新技术产业开发区创新科技大道1234号",
+    "phone": "0755-88069993",
+    "email": "rd_tech@东风商用车.com.cn",
+    "website": "https://www.东风商用车.com.cn",
+    "establishedDate": "2011-01-15",
+    "businessScope": "天龙旗舰智能驾驶新能源重卡及线控执行平台的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 90,
+    "synergyReason": "作为新能源汽车产业链下游 • 商用车整机制造的重点骨干企业，在天龙旗舰智能驾驶新能源重卡及线控执行平台领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "downstream",
+      "nodeName": "下游 • 商用车整机制造",
+      "subSegment": "天龙旗舰智能驾驶新能源重卡及线控执行平台",
+      "mainProducts": [
+        "东风天龙GX高端智慧重卡",
+        "东风商用车核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117082782B",
+        "title": "一种针对天龙旗舰智能驾驶新能源重卡及线的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2024-01-18",
+        "similarityScore": 90,
+        "abstract": "本发明公开了一种一种针对天龙旗舰智能驾驶新能源重卡及线的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在天龙旗舰智能驾驶新能源重卡及线控执行平台方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在天龙旗舰智能驾驶新能源重卡及线控执行平台方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-东风商用车-164",
+        "productName": "东风天龙GX高端智慧重卡",
+        "filingYear": "2024",
+        "productCategory": "中重型商用车整车",
+        "annualOutputValue": "320.0 亿元",
+        "corePatentCount": 18,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-target-74",
+    "name": "吉林亚泰（集团）股份有限公司",
+    "shortName": "亚泰集团",
+    "creditCode": "913100000535803415",
+    "registeredCapital": "239,000 万元人民币",
+    "location": "江苏省南京市",
+    "province": "江苏省",
+    "city": "南京市",
+    "industry": "生物医药与健康 / 现代医药与健康产业",
+    "scale": "上市公司",
+    "enterpriseType": "上市企业",
+    "revenue": "313.0 亿元 (2024)",
+    "rdInvestment": "27.4 亿元",
+    "rdRatio": "9.10%",
+    "patentTotalCount": 8530,
+    "inventionPatentCount": 5220,
+    "legalRep": "张伟",
+    "address": "江苏省南京市高新技术产业开发区创新科技大道1252号",
+    "phone": "0512-88071104",
+    "email": "rd_tech@亚泰集团.com.cn",
+    "website": "https://www.亚泰集团.com.cn",
+    "establishedDate": "2012-02-15",
+    "businessScope": "长白山珍贵道地中药材提取与抗衰老功能食品的研发、制造、系统集成与技术咨询服务。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "industry_chain",
+    "matchScore": 91,
+    "synergyReason": "作为中药产业链下游 • 现代中药与原料深加工的重点骨干企业，在长白山珍贵道地中药材提取与抗衰老功能食品领域具有成熟产业布局，对相关技术成果存在强烈的产业升级需求。",
+    "chainPosition": {
+      "chainId": "chain-43",
+      "chainName": "中药",
+      "node": "downstream",
+      "nodeName": "下游 • 现代中药与原料深加工",
+      "subSegment": "长白山珍贵道地中药材提取与抗衰老功能食品",
+      "mainProducts": [
+        "参一胶囊抗肿瘤中药单体原料",
+        "亚泰集团核心总成模组",
+        "高性能智能配套系统"
+      ]
+    },
+    "similarPatents": [
+      {
+        "patentNo": "CN117084096B",
+        "title": "一种针对长白山珍贵道地中药材提取与抗衰的整机集成动力学优化与安全控制装置",
+        "ipc": "B60W 30/00, A61B 34/30",
+        "grantDate": "2023-02-11",
+        "similarityScore": 91,
+        "abstract": "本发明公开了一种一种针对长白山珍贵道地中药材提取与抗衰的整机集成动力学优化与安全控制装置，涉及相关高新技术装备与精密制造领域。该技术方案针对传统工艺在响应时滞、控制精度及恶劣工况下稳定性不足的技术难题，提出了基于多源参数融合的自适应闭环控制架构与核心结构拓扑优化设计，配合高可靠性硬件执行机构与动态补偿算法，有效降低系统功耗与响应延迟，显著提升了核心指标的一致性与产品使用寿命。在长白山珍贵道地中药材提取与抗衰老功能食品方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。",
+        "techOverlapDescription": "在长白山珍贵道地中药材提取与抗衰老功能食品方向与相关专利技术方案高度重合，具备极强技术协同价值与落地产业化可行性。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "CP-亚泰集团-165",
+        "productName": "参一胶囊抗肿瘤中药单体原料",
+        "filingYear": "2024",
+        "productCategory": "现代医药与健康产业",
+        "annualOutputValue": "110.0 亿元",
+        "corePatentCount": 19,
+        "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  }
 ];

@@ -12,6 +12,7 @@ import { PatentProductSearchHub } from './components/PatentProductSearchHub';
 import { AiEnterpriseAgent } from './components/AiEnterpriseAgent';
 import { AiActionPlanPage } from './components/AiActionPlanPage';
 import { EnterpriseProfilePage } from './components/EnterpriseProfilePage';
+import { PatentProductAiReportPage } from './components/PatentProductAiReportPage';
 
 import { UnpatentedTechHub } from './components/UnpatentedTechHub';
 import { EnterpriseLandingPage } from './components/EnterpriseLandingPage';
@@ -23,6 +24,7 @@ import { ThemeProvider, useAppTheme } from './context/ThemeContext';
 
 import { INITIAL_PATENTS } from './data/mockData';
 import { TARGET_ENTERPRISES_DATA } from './data/targetEnterprisesData';
+import { PatentIntensiveProduct } from './data/patentProductsData';
 import { TabType, UserRole, PatentItem, TargetEnterprise } from './types';
 import { CheckCircle2, Palette } from 'lucide-react';
 
@@ -52,6 +54,7 @@ function AppContent() {
   const [selectedPatentForDetailModal, setSelectedPatentForDetailModal] = useState<PatentItem | null>(null);
   const [selectedEnterpriseForDetailModal, setSelectedEnterpriseForDetailModal] = useState<TargetEnterprise | null>(null);
   const [selectedEnterpriseForActionPlan, setSelectedEnterpriseForActionPlan] = useState<TargetEnterprise | null>(null);
+  const [selectedProductForAiReport, setSelectedProductForAiReport] = useState<{ product: PatentIntensiveProduct; patent: PatentItem } | null>(null);
   const [previousTab, setPreviousTab] = useState<TabType>('overview');
   const [isNewPatentModalOpen, setIsNewPatentModalOpen] = useState(false);
 
@@ -63,7 +66,7 @@ function AppContent() {
   // Scroll to top on navigation change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [activeTab, selectedEnterpriseForDetailModal, selectedEnterpriseForActionPlan]);
+  }, [activeTab, selectedEnterpriseForDetailModal, selectedEnterpriseForActionPlan, selectedProductForAiReport]);
 
   // Global search submit
   const handleSearchSubmit = (text: string) => {
@@ -112,6 +115,7 @@ function AppContent() {
           setActiveTab(tab);
           setSelectedEnterpriseForDetailModal(null);
           setSelectedEnterpriseForActionPlan(null);
+          setSelectedProductForAiReport(null);
         }}
         userRole={userRole}
         onRoleChange={handleRoleChange}
@@ -125,7 +129,20 @@ function AppContent() {
 
       {/* Main SaaS Workspace Container */}
       <main className={`flex-1 w-full ${activeTab === 'tech-map' ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6'}`}>
-        {selectedEnterpriseForActionPlan ? (
+        {selectedProductForAiReport ? (
+          <PatentProductAiReportPage
+            product={selectedProductForAiReport.product}
+            patent={selectedProductForAiReport.patent}
+            onBack={() => setSelectedProductForAiReport(null)}
+            onOpenEnterpriseProfile={(entId) => {
+              const ent = TARGET_ENTERPRISES_DATA.find(e => e.id === entId);
+              if (ent) {
+                setSelectedProductForAiReport(null);
+                setSelectedEnterpriseForDetailModal(ent);
+              }
+            }}
+          />
+        ) : selectedEnterpriseForActionPlan ? (
           <AiActionPlanPage
             enterprise={selectedEnterpriseForActionPlan}
             activePatent={selectedPatent || patents[0]}
@@ -149,6 +166,7 @@ function AppContent() {
           setActiveTab(tab);
           setSelectedEnterpriseForDetailModal(null);
           setSelectedEnterpriseForActionPlan(null);
+          setSelectedProductForAiReport(null);
         }}
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
             onOpenAiActionPlan={handleOpenAiActionPlan}
@@ -174,11 +192,12 @@ function AppContent() {
         {/* TAB 3: PATH 2 - 57 INDUSTRY CHAINS */}
         {activeTab === 'industry-chain' && (
           <IndustryChain57Hub
+            patents={patents}
+            selectedPatent={selectedPatent}
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
             onOpenAiActionPlan={handleOpenAiActionPlan}
             onSelectPatent={(p) => {
               setSelectedPatent(p);
-              setSelectedPatentForDetailModal(p);
             }}
           />
         )}
@@ -186,11 +205,15 @@ function AppContent() {
         {/* TAB 4: PATH 3 - PATENT-INTENSIVE PRODUCTS */}
         {activeTab === 'patent-product' && (
           <PatentProductSearchHub
+            patents={patents}
+            selectedPatent={selectedPatent}
             onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
             onOpenAiActionPlan={handleOpenAiActionPlan}
+            onOpenAiProductReport={(prod, pat) => {
+              setSelectedProductForAiReport({ product: prod, patent: pat });
+            }}
             onSelectPatent={(p) => {
               setSelectedPatent(p);
-              setSelectedPatentForDetailModal(p);
             }}
           />
         )}
@@ -230,7 +253,15 @@ function AppContent() {
         
         {/* ENTERPRISE TAB: SEARCH RESULTS */}
         {activeTab === 'tech-search' && (
-          <TechSearchHub query={enterpriseSearchQuery} onBack={() => setActiveTab(selectedUniversity ? 'tech-map' : 'enterprise-landing')} universityScope={selectedUniversity} />
+          <TechSearchHub 
+            query={enterpriseSearchQuery} 
+            onBack={() => setActiveTab(selectedUniversity ? 'tech-map' : 'enterprise-landing')} 
+            universityScope={selectedUniversity}
+            onSelectUniversity={(uni) => {
+              setSelectedUniversity(uni);
+              setActiveTab('tech-map');
+            }}
+          />
         )}
         
         

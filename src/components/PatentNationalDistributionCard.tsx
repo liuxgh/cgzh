@@ -12,7 +12,18 @@ import { PatentItem, TargetEnterprise } from '../types';
 import { PatentChinaMapVisualizer } from './PatentChinaMapVisualizer';
 
 interface PatentNationalDistributionCardProps {
-  activePatent: PatentItem;
+  activePatent?: PatentItem;
+  chainInfo?: {
+    name: string;
+    category?: string;
+    nodeName?: string;
+  };
+  productInfo?: {
+    name: string;
+    filingEnterprise?: string;
+    industryCategory?: string;
+  };
+  title?: string;
   enterprises: TargetEnterprise[];
   selectedProvince?: string;
   onSelectProvince?: (province: string) => void;
@@ -21,6 +32,9 @@ interface PatentNationalDistributionCardProps {
 
 export const PatentNationalDistributionCard: React.FC<PatentNationalDistributionCardProps> = ({
   activePatent,
+  chainInfo,
+  productInfo,
+  title,
   enterprises,
   selectedProvince = 'all',
   onSelectProvince,
@@ -79,18 +93,52 @@ export const PatentNationalDistributionCard: React.FC<PatentNationalDistribution
       <div className="p-5 sm:p-6 bg-gradient-to-r from-slate-50 via-blue-50/30 to-indigo-50/20 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1.5 min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs text-slate-500 font-medium flex items-center gap-1.5 flex-wrap">
-              <span>关联专利：</span>
-              <strong className="font-mono text-[#0F52BA] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/70 font-bold">
-                {activePatent.patentNo}
-              </strong>
-              <span className="text-slate-800 font-bold text-xs sm:text-sm">
-                {activePatent.title}
+            {activePatent && (
+              <span className="text-xs text-slate-500 font-medium flex items-center gap-1.5 flex-wrap">
+                <span>关联专利：</span>
+                <strong className="font-mono text-[#0F52BA] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/70 font-bold">
+                  {activePatent.patentNo}
+                </strong>
+                <span className="text-slate-800 font-bold text-xs sm:text-sm">
+                  {activePatent.title}
+                </span>
               </span>
-            </span>
+            )}
+            {chainInfo && (
+              <span className="text-xs text-slate-500 font-medium flex items-center gap-1.5 flex-wrap">
+                <span>关联产业链：</span>
+                <strong className="font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded border border-indigo-200/70 text-xs sm:text-sm">
+                  {chainInfo.name}
+                </strong>
+                {chainInfo.category && (
+                  <span className="text-xs text-slate-500 font-medium">({chainInfo.category})</span>
+                )}
+                {chainInfo.nodeName && (
+                  <span className="px-2 py-0.5 bg-blue-50 text-[#0F52BA] rounded text-xs font-bold border border-blue-200/60">
+                    {chainInfo.nodeName}
+                  </span>
+                )}
+              </span>
+            )}
+            {productInfo && (
+              <span className="text-xs text-slate-500 font-medium flex items-center gap-1.5 flex-wrap">
+                <span>关联备案产品：</span>
+                <strong className="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200/70 text-xs sm:text-sm">
+                  {productInfo.name}
+                </strong>
+                {productInfo.industryCategory && (
+                  <span className="text-xs text-slate-500 font-medium">({productInfo.industryCategory})</span>
+                )}
+                {productInfo.filingEnterprise && (
+                  <span className="px-2 py-0.5 bg-blue-50 text-[#0F52BA] rounded text-xs font-bold border border-blue-200/60">
+                    {productInfo.filingEnterprise}
+                  </span>
+                )}
+              </span>
+            )}
           </div>
           <h3 className="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
-            <span>当前技术全国匹配企业总量与省市分布</span>
+            <span>{title || (productInfo ? "国家专利密集型产品备案企业全国地理与省市分布" : chainInfo ? "当前产业链重点靶向企业全国地理与省市分布" : "当前技术全国匹配企业总量与省市分布")}</span>
           </h3>
         </div>
 
