@@ -5,6 +5,7 @@ import { TabType, PatentItem, TargetEnterprise } from '../types';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { INDUSTRY_CHAINS_57_DATA } from '../data/industryChains57Data';
 import { PATENT_INTENSIVE_PRODUCTS_DATA } from '../data/patentProductsData';
+import { useIntents } from '../context/IntentContext';
 import { 
   Building2, 
   Sparkles, 
@@ -24,8 +25,12 @@ import {
   Inbox,
   ChevronLeft,
   CheckCircle2,
-  Cpu
-, Download } from 'lucide-react';
+  Cpu,
+  Clock,
+  User,
+  AlertCircle,
+  Download
+} from 'lucide-react';
 
 
 interface OverviewDashboardProps {
@@ -52,6 +57,9 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
   const totalPages = Math.ceil(TARGET_ENTERPRISES_DATA.length / itemsPerPage);
   const currentEnterprises = TARGET_ENTERPRISES_DATA.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
+
+  const { intents, unreadPendingCount } = useIntents();
+  const latestIntents = intents.slice(0, 3);
 
   const handleQuickAgent = (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,6 +122,82 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
 
       <div className="mt-2">
         <JluTechAdvantageShowcase onNavigateToFullMap={() => setActiveTab('tech-map')} />
+      </div>
+
+      {/* 2. Enterprise Docking Intent Workspace Quick Access (企业对接意向工作台快捷待办入口) */}
+      <div className="bg-linear-to-r from-blue-50/90 via-indigo-50/50 to-white rounded-3xl p-6 border border-blue-200 shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-4 bg-[#0F52BA] rounded-full"></span>
+              <h3 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-[#0F52BA]" />
+                企业转化对接意向管理中心
+              </h3>
+              {unreadPendingCount > 0 && (
+                <span className="px-2.5 py-0.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-full text-xs font-bold animate-pulse flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                  {unreadPendingCount} 项新意向待响应
+                </span>
+              )}
+            </div>
+            <p className="text-xs text-slate-500">
+              实时接收全国企业针对吉林大学专利及专有技术提交的合作诉求，专员可在线跟进流转与安排对接
+            </p>
+          </div>
+
+          <button
+            onClick={() => setActiveTab('intent-management')}
+            className="px-4 py-2 bg-[#0F52BA] hover:bg-[#082C6C] text-white text-xs font-bold rounded-xl shadow-xs transition-colors flex items-center gap-1.5 shrink-0 self-start sm:self-auto cursor-pointer"
+          >
+            <span>进入意向管理工作台</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {/* Latest 3 Intents Preview Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 pt-1">
+          {latestIntents.map(item => (
+            <div
+              key={item.id}
+              onClick={() => setActiveTab('intent-management')}
+              className="bg-white p-4 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between space-y-2 group"
+            >
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                    {item.domain}
+                  </span>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                    item.status === 'pending'
+                      ? 'bg-rose-50 text-rose-700 border border-rose-200'
+                      : item.status === 'contract_signed'
+                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                      : 'bg-amber-50 text-amber-700 border border-amber-200'
+                  }`}>
+                    {item.status === 'pending' ? '待高校响应' : item.status === 'contract_signed' ? '已签约转化' : '洽谈对接中'}
+                  </span>
+                </div>
+
+                <div className="font-bold text-slate-900 text-xs group-hover:text-[#0F52BA] transition-colors line-clamp-1">
+                  {item.companyName}
+                </div>
+
+                <div className="text-[11px] text-slate-600 line-clamp-2 leading-relaxed bg-slate-50 p-2 rounded-lg border border-slate-100">
+                  <span className="font-semibold text-slate-800">申请成果：</span>
+                  {item.targetTitle}
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                <span>对接人：{item.contactPerson}</span>
+                <span className="text-[#0F52BA] font-bold group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                  查看流转 &rarr;
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       {/* 3. Three Core Enterprise Discovery Paths (三大靶向寻客路径直接入口) */}
       <div className="space-y-4">

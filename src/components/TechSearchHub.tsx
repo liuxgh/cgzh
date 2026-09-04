@@ -621,8 +621,8 @@ export const TechSearchHub: React.FC<Props> = ({
       setShowBookingModal(false);
       setBookingSubmitted(false);
       showToast(isUniversityMode 
-        ? '预约对接需求已成功提交！吉林大学技术转移中心科技经纪人将在 30 分钟内与您电话联络。'
-        : '预约对接需求已成功提交！高校科技成果转移专班将在 30 分钟内与您电话联络。'
+        ? '预约对接需求已成功提交！吉林大学科技开发中心专员及科研团队将根据排期与您对接联络。'
+        : '预约对接需求已成功提交！高校科技成果转移专员及科研团队将根据排期与您对接联络。'
       );
     }, 1600);
   };
@@ -695,7 +695,7 @@ export const TechSearchHub: React.FC<Props> = ({
                     </div>
                     <h4 className="text-lg font-bold text-slate-900">对接需求已提交成功</h4>
                     <p className="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
-                      技术转移中心专职科技经纪人将在 <strong>30分钟内</strong> 与您电话联系，确认闭门对接研讨安排与技术资料准备。
+                      高校技术转移专员与科研团队将根据工作排期与您取得联系，确认闭门对接研讨安排与技术资料准备。
                     </p>
                     <div className="pt-2">
                       <Loader2 className="w-4 h-4 text-blue-600 animate-spin mx-auto" />
@@ -1378,10 +1378,9 @@ export const TechSearchHub: React.FC<Props> = ({
                           
                           <h3 
                             onClick={() => setSelectedTechForDetail(mapSearchResultToTechDetail(res))}
-                            className="text-xl font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between gap-2"
+                            className="text-xl font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors cursor-pointer"
                           >
-                            <span>{res.title}</span>
-                            <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all shrink-0" />
+                            {res.title}
                           </h3>
                           
                           <div className="text-sm text-slate-500 mt-3 flex flex-wrap items-center gap-4">
@@ -1484,7 +1483,7 @@ export const TechSearchHub: React.FC<Props> = ({
                   </div>
                   <h4 className="text-lg font-bold text-slate-900">对接需求已提交成功</h4>
                   <p className="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
-                    技术转移中心专职科技经纪人将在 <strong>30分钟内</strong> 与您电话联系，确认闭门对接研讨安排与技术资料准备。
+                    高校技术转移专员与科研团队将根据工作排期与您取得联系，确认闭门对接研讨安排与技术资料准备。
                   </p>
                   <div className="pt-2">
                     <Loader2 className="w-4 h-4 text-blue-600 animate-spin mx-auto" />

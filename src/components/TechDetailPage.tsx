@@ -626,7 +626,7 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                 预约发明人闭门技术研讨
               </h3>
               <p className="text-xs text-blue-100/80 leading-relaxed mb-4">
-                1个工作日内安排专职经纪人与技术发明人对接，支持线上保密视频会或实地技术考察。
+                高校技术转移专员将协同技术发明人团队安排对接，支持线上保密视频会或实地技术考察。
               </p>
 
               <button

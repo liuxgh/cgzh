@@ -19,12 +19,13 @@ import {
   FileText, 
   TrendingUp, 
   Layers, 
-  Filter,
-  ChevronDown,
-  RefreshCw,
-  Cpu,
-  ShieldCheck,
-  Check
+  Filter, 
+  ChevronDown, 
+  RefreshCw, 
+  Cpu, 
+  ShieldCheck, 
+  Check,
+  Globe
 } from 'lucide-react';
 
 interface PatentProductSearchHubProps {
@@ -188,9 +189,9 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Module Header */}
-      <div className="bg-linear-to-r from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-400/30">
+      <div className="bg-linear-to-r from-[#06382F] via-[#0B5345] to-[#052E26] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-emerald-400/30">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
+          <span className="px-3 py-1 rounded-full bg-white/15 text-emerald-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
             <Package className="w-4 h-4 text-emerald-300" />
             <span>核心寻客路径三：国家专利密集型产品备案公开数据</span>
           </span>
@@ -199,9 +200,53 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
           通过吉大专利 ➔ 国家专利密集型产品找企业
         </h2>
-        <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-emerald-100/90 mt-2 max-w-3xl leading-relaxed">
           先检索并选择待转化的吉林大学专利成果，系统将自动关联国家专利密集型产品备案公开数据，穿透匹配具备技术协同与采购升级需求的目标制造企业。
         </p>
+      </div>
+
+      {/* Prominent Introduction to National Patent-Intensive Products */}
+      <div className="bg-linear-to-r from-blue-50/90 via-indigo-50/60 to-emerald-50/70 rounded-2xl p-5 sm:p-6 border border-blue-200/80 shadow-xs relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 relative z-10">
+          <div className="space-y-2 flex-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#0F52BA] text-white text-xs font-bold shadow-2xs">
+                <Award className="w-3.5 h-3.5 text-amber-300" />
+                什么是“国家专利密集型产品”？
+              </span>
+            </div>
+            
+            <p className="text-sm sm:text-[15px] text-slate-800 leading-relaxed font-semibold">
+              国家专利密集型产品是全国企业在《<span className="text-[#0F52BA] font-bold">国家专利密集型产品备案认定试点平台</span>》上进行备案或认定的专利密集型产品。
+            </p>
+          </div>
+
+          {/* Eye-catching Platform Link Button */}
+          <div className="shrink-0 w-full lg:w-auto flex flex-col items-stretch lg:items-end gap-1.5">
+            <a
+              href="https://www.zlcp.org.cn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md hover:shadow-lg cursor-pointer group"
+              title="点击在新窗口打开：国家专利密集型产品备案认定试点平台 (https://www.zlcp.org.cn/)"
+            >
+              <Globe className="w-4 h-4 text-blue-200 group-hover:rotate-12 transition-transform" />
+              <span>国家专利密集型产品备案认定试点平台</span>
+              <ExternalLink className="w-4 h-4 text-blue-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+            <div className="text-[11px] text-slate-500 font-mono text-center lg:text-right flex items-center justify-center lg:justify-end gap-1">
+              <span>官方访问入口：</span>
+              <a 
+                href="https://www.zlcp.org.cn/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#0F52BA] hover:underline font-bold"
+              >
+                https://www.zlcp.org.cn/
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Step 1: Search & Select JLU Patent */}

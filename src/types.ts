@@ -5,12 +5,52 @@ export type TabType = 'enterprise-profile' | 'overview'
   | 'ai-agent'
   | 'tech-map'
   | 'unpatented-tech'
+  | 'intent-management'
   | 'enterprise-dashboard'
   | 'tech-search'
   | 'enterprise-landing'
   | 'enterprise-demands';
 
 export type UserRole = 'university' | 'enterprise';
+
+export type IntentTargetType = 'patent' | 'unpatented';
+export type IntentStatus = 'pending' | 'negotiating' | 'meeting_arranged' | 'contract_signed' | 'closed';
+
+export interface IntentStatusLog {
+  time: string;
+  operator: string;
+  action: string;
+  note?: string;
+}
+
+export interface CooperationIntentRecord {
+  id: string;
+  targetType: IntentTargetType; // 'patent' 或 'unpatented'
+  targetId: string; // 专利ID或非专利ID
+  targetTitle: string; // 成果名称
+  targetNo?: string; // 专利号或成果编号，如 CN202310892341.2
+  domain: string; // 学科领域 / 产业领域
+  inventorOrContact: string; // 发明人 / 研发专家 / 学院团队
+  
+  // 企业端提交的信息
+  companyName: string; // 意向企业名称
+  contactPerson: string; // 对接人姓名及职务
+  phone: string; // 联系电话
+  email?: string; // 电子邮箱
+  mode: string; // 拟开展合作模式
+  demandDesc: string; // 意向对接诉求与应用场景说明
+  expectedDate?: string; // 期望对接时间
+  
+  // 状态流转与高校端处置
+  status: IntentStatus; // 待高校响应 / 商务洽谈中 / 已安排研讨对接 / 已达成转化签约 / 已归档
+  createdAt: string; // 提交日期
+  updatedAt?: string;
+  
+  // 高校端专员跟进与协作记录
+  assignedStaff?: string; // 负责跟进的高校专员
+  replyNote?: string; // 高校回复与处置备注
+  statusLogs: IntentStatusLog[];
+}
 
 export interface PatentItem {
   id: string;

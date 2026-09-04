@@ -345,10 +345,10 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Module Header */}
-      <div className="bg-linear-to-r from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-400/30">
+      <div className="bg-linear-to-r from-[#17133C] via-[#2A246B] to-[#161238] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-indigo-400/30">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
-            <Layers className="w-4 h-4 text-blue-200" />
+          <span className="px-3 py-1 rounded-full bg-white/15 text-indigo-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
+            <Layers className="w-4 h-4 text-indigo-300" />
             <span>核心寻客路径二：细分战略产业链图谱</span>
           </span>
         </div>
@@ -356,7 +356,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
           通过吉大专利 ➔ 产业链全链条图谱找企业
         </h2>
-        <p className="text-sm sm:text-base text-blue-100/90 mt-2 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-indigo-100/90 mt-2 max-w-3xl leading-relaxed">
           先检索并选择待转化的吉林大学专利成果，系统将自动穿透关联 57 条战略产业链图谱，智能定位上游关键材料、中游精密制造与下游整机集成节点中的靶向企业。
         </p>
       </div>

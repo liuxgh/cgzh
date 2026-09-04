@@ -150,10 +150,10 @@ export const PatentSimilarSearchHub: React.FC<PatentSimilarSearchHubProps> = ({
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Module Header */}
-      <div className="bg-linear-to-r from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-400/30">
+      <div className="bg-linear-to-r from-[#091E42] via-[#0C3875] to-[#081B3B] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-blue-400/30">
         <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="px-3 py-1 rounded-full bg-white/15 text-blue-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <ShieldCheck className="w-4 h-4 text-cyan-300" />
             <span>核心寻客路径一：专利语义向量大模型</span>
           </span>
         </div>

@@ -21,9 +21,11 @@ import {
   Flame,
   Globe,
   Award,
-  Target
+  Target,
+  Bell
 } from 'lucide-react';
 import { useAppTheme } from '../context/ThemeContext';
+import { useIntents } from '../context/IntentContext';
 
 interface HeaderProps {
   activeTab: TabType;
@@ -46,23 +48,26 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const isGenericEnterprise = userRole === 'enterprise' && !selectedUniversity;
   const [searchInput, setSearchInput] = React.useState('');
-  const [searchCategory, setSearchCategory] = React.useState<'patent' | 'enterprise' | 'industry' | 'product'>('patent');
   const { themeConfig } = useAppTheme();
+  const { unreadPendingCount, intents } = useIntents();
 
   const navItems = userRole === 'university' ? [
     { key: 'overview', label: '全景驾驶舱', icon: TrendingUp },
     { key: 'patent-similar', label: '相似专利找企业', icon: ShieldCheck },
     { key: 'industry-chain', label: '产业链找企业', icon: Layers },
     { key: 'patent-product', label: '专利产品找企业', icon: Package },
-    { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit, highlight: true },
-    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
+    { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit },
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award },
+    { key: 'intent-management', label: '企业对接意向', icon: Building2, badge: unreadPendingCount, highlight: true }
   ] : (selectedUniversity ? [
     { key: 'tech-map', label: '成果技术图谱', icon: Compass, highlight: true },
     { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
-    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award },
+    { key: 'intent-management', label: '我的对接进度', icon: Building2 }
   ] : [
     { key: 'enterprise-landing', label: '首页', icon: Building2, highlight: true },
-    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search }
+    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
+    { key: 'intent-management', label: '企业对接记录', icon: Building2 }
   ]);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -73,9 +78,9 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 text-slate-800 bg-white shadow-sm border-b border-slate-200">
+    <header className="sticky top-0 z-40 text-slate-800 bg-white shadow-xs border-b border-slate-200">
       {/* 1. 主品牌栏与统一检索 (Main Header Bar) */}
-      <div className={`px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors`}>
+      <div className="px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors">
         {/* Brand & Title */}
         <div className="flex items-center gap-4 cursor-pointer group" onClick={() => {
             if (userRole === 'enterprise' && selectedUniversity) {
@@ -88,7 +93,7 @@ export const Header: React.FC<HeaderProps> = ({
         }}>
           {isGenericEnterprise ? (
              <div className="flex items-center gap-3">
-               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-linear-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
                  <Globe className="w-6 h-6 sm:w-7 sm:h-7" />
                </div>
                <div className="flex flex-col justify-center">
@@ -111,7 +116,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <span className="text-[22px] sm:text-[26px] font-black text-slate-900 tracking-tight leading-none" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                       吉林大学
                     </span>
-                    <span className="hidden sm:inline-flex items-center px-2 py-[3px] rounded-md bg-gradient-to-br from-blue-50 to-indigo-50/50 border border-blue-100/80 text-blue-700 text-[10px] font-bold tracking-widest leading-none shadow-[0_1px_2px_rgba(0,0,0,0.02)] translate-y-[-2px]">
+                    <span className="hidden sm:inline-flex items-center px-2 py-[3px] rounded-md bg-linear-to-br from-blue-50 to-indigo-50/50 border border-blue-100/80 text-blue-700 text-[10px] font-bold tracking-widest leading-none shadow-[0_1px_2px_rgba(0,0,0,0.02)] translate-y-[-2px]">
                       佰腾大数据驱动
                     </span>
                   </div>
@@ -129,13 +134,13 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200/60 shadow-inner">
             <button
               onClick={() => onRoleChange('university')}
-              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 ${userRole === 'university' ? 'bg-white text-[#0F52BA] shadow-sm ring-1 ring-slate-200/50' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${userRole === 'university' ? 'bg-white text-[#0F52BA] shadow-xs ring-1 ring-slate-200/50' : 'text-slate-500 hover:text-slate-700'}`}
             >
               🎓 高校端
             </button>
             <button
               onClick={() => onRoleChange('enterprise')}
-              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 ${userRole === 'enterprise' ? 'bg-[#0F52BA] text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${userRole === 'enterprise' ? 'bg-[#0F52BA] text-white shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
             >
               🏢 企业端
             </button>
@@ -154,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-xl text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-600 shadow-sm"
+              className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-xl text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-600 shadow-xs"
             >
               <span>{userRole === 'enterprise' ? '技术匹配' : '精准寻客'}</span>
             </button>
@@ -163,7 +168,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* 3. 佰腾网功能导航标签栏 (Primary Navigation Tabs) */}
-      <nav className={`px-4 sm:px-8 border-t border-slate-200 bg-white flex overflow-x-auto no-scrollbar transition-colors`}>
+      <nav className="px-4 sm:px-8 border-t border-slate-200 bg-white flex overflow-x-auto no-scrollbar transition-colors">
         <div className="flex space-x-2 py-0">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -171,17 +176,22 @@ export const Header: React.FC<HeaderProps> = ({
             return (
               <button
                 key={item.key}
-                onClick={() => setActiveTab(item.key)}
+                onClick={() => setActiveTab(item.key as TabType)}
                 className={`relative px-4 py-3.5 text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer border-b-2 ${
                   isActive
                     ? 'border-blue-600 text-blue-700 font-bold'
                     : item.highlight
-                    ? 'border-transparent text-blue-700 hover:text-blue-700 hover:border-blue-300'
+                    ? 'border-transparent text-blue-700 hover:text-blue-800 hover:border-blue-300'
                     : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
                 }`}
               >
                 <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : item.highlight ? 'text-blue-600' : 'text-slate-400'}`} />
                 <span>{item.label}</span>
+                {typeof item.badge === 'number' && item.badge > 0 && (
+                  <span className="ml-0.5 px-1.5 py-0.2 bg-rose-500 text-white text-[10px] font-black rounded-full shadow-xs animate-pulse font-mono">
+                    {item.badge}
+                  </span>
+                )}
               </button>
             );
           })}
@@ -190,4 +200,3 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
-

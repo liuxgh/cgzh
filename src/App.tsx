@@ -20,7 +20,9 @@ import { TechSearchHub } from './components/TechSearchHub';
 import { JluTechMapPage } from './components/JluTechMapPage';
 import { PatentDetailModal } from './components/PatentDetailModal';
 import { NewPatentModal } from './components/NewPatentModal';
+import { IntentManagementHub } from './components/IntentManagementHub';
 import { ThemeProvider, useAppTheme } from './context/ThemeContext';
+import { IntentProvider } from './context/IntentContext';
 
 import { INITIAL_PATENTS } from './data/mockData';
 import { TARGET_ENTERPRISES_DATA } from './data/targetEnterprisesData';
@@ -55,7 +57,6 @@ function AppContent() {
   const [selectedEnterpriseForDetailModal, setSelectedEnterpriseForDetailModal] = useState<TargetEnterprise | null>(null);
   const [selectedEnterpriseForActionPlan, setSelectedEnterpriseForActionPlan] = useState<TargetEnterprise | null>(null);
   const [selectedProductForAiReport, setSelectedProductForAiReport] = useState<{ product: PatentIntensiveProduct; patent: PatentItem } | null>(null);
-  const [previousTab, setPreviousTab] = useState<TabType>('overview');
   const [isNewPatentModalOpen, setIsNewPatentModalOpen] = useState(false);
 
   // Quick Agent queries
@@ -156,122 +157,128 @@ function AppContent() {
           />
         ) : (
           <>
+            {/* TAB 1: OVERVIEW DASHBOARD */}
+            {activeTab === 'overview' && (
+              <OverviewDashboard
+                patents={patents}
+                setActiveTab={(tab) => {
+                  setActiveTab(tab);
+                  setSelectedEnterpriseForDetailModal(null);
+                  setSelectedEnterpriseForActionPlan(null);
+                  setSelectedProductForAiReport(null);
+                }}
+                onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+                onOpenAiActionPlan={handleOpenAiActionPlan}
+                onSelectPatent={(p) => {
+                  setSelectedPatent(p);
+                  setSelectedPatentForDetailModal(p);
+                }}
+                onLaunchAiAgentWithQuery={handleLaunchAiAgentWithQuery}
+              />
+            )}
 
-        
-        {/* TAB 1: OVERVIEW DASHBOARD */}
-        {activeTab === 'overview' && (
-          <OverviewDashboard
-            patents={patents}
-            setActiveTab={(tab) => {
-          setActiveTab(tab);
-          setSelectedEnterpriseForDetailModal(null);
-          setSelectedEnterpriseForActionPlan(null);
-          setSelectedProductForAiReport(null);
-        }}
-            onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
-            onOpenAiActionPlan={handleOpenAiActionPlan}
-            onSelectPatent={(p) => {
-              setSelectedPatent(p);
-              setSelectedPatentForDetailModal(p);
-            }}
-            onLaunchAiAgentWithQuery={handleLaunchAiAgentWithQuery}
-          />
-        )}
+            {/* TAB: INTENT MANAGEMENT HUB (高校端对接工作台 / 企业端意向跟踪) */}
+            {activeTab === 'intent-management' && (
+              <IntentManagementHub 
+                userRole={userRole}
+                onSelectPatent={(p) => {
+                  setSelectedPatent(p);
+                  setSelectedPatentForDetailModal(p);
+                }}
+              />
+            )}
 
-        {/* TAB 2: PATH 1 - SIMILAR PATENTS */}
-        {activeTab === 'patent-similar' && (
-          <PatentSimilarSearchHub
-            patents={patents}
-            selectedPatent={selectedPatent}
-            onSelectPatent={(p) => setSelectedPatent(p)}
-            onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
-            onOpenAiActionPlan={handleOpenAiActionPlan}
-/>
-        )}
+            {/* TAB 2: PATH 1 - SIMILAR PATENTS */}
+            {activeTab === 'patent-similar' && (
+              <PatentSimilarSearchHub
+                patents={patents}
+                selectedPatent={selectedPatent}
+                onSelectPatent={(p) => setSelectedPatent(p)}
+                onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+                onOpenAiActionPlan={handleOpenAiActionPlan}
+              />
+            )}
 
-        {/* TAB 3: PATH 2 - 57 INDUSTRY CHAINS */}
-        {activeTab === 'industry-chain' && (
-          <IndustryChain57Hub
-            patents={patents}
-            selectedPatent={selectedPatent}
-            onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
-            onOpenAiActionPlan={handleOpenAiActionPlan}
-            onSelectPatent={(p) => {
-              setSelectedPatent(p);
-            }}
-          />
-        )}
+            {/* TAB 3: PATH 2 - 57 INDUSTRY CHAINS */}
+            {activeTab === 'industry-chain' && (
+              <IndustryChain57Hub
+                patents={patents}
+                selectedPatent={selectedPatent}
+                onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+                onOpenAiActionPlan={handleOpenAiActionPlan}
+                onSelectPatent={(p) => {
+                  setSelectedPatent(p);
+                }}
+              />
+            )}
 
-        {/* TAB 4: PATH 3 - PATENT-INTENSIVE PRODUCTS */}
-        {activeTab === 'patent-product' && (
-          <PatentProductSearchHub
-            patents={patents}
-            selectedPatent={selectedPatent}
-            onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
-            onOpenAiActionPlan={handleOpenAiActionPlan}
-            onOpenAiProductReport={(prod, pat) => {
-              setSelectedProductForAiReport({ product: prod, patent: pat });
-            }}
-            onSelectPatent={(p) => {
-              setSelectedPatent(p);
-            }}
-          />
-        )}
+            {/* TAB 4: PATH 3 - PATENT-INTENSIVE PRODUCTS */}
+            {activeTab === 'patent-product' && (
+              <PatentProductSearchHub
+                patents={patents}
+                selectedPatent={selectedPatent}
+                onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+                onOpenAiActionPlan={handleOpenAiActionPlan}
+                onOpenAiProductReport={(prod, pat) => {
+                  setSelectedProductForAiReport({ product: prod, patent: pat });
+                }}
+                onSelectPatent={(p) => {
+                  setSelectedPatent(p);
+                }}
+              />
+            )}
 
-        {/* TAB 5: AI ENTERPRISE TARGETING AGENT */}
-        {activeTab === 'ai-agent' && (
-          <AiEnterpriseAgent
-            patents={patents}
-            initialQuery={agentInitialQuery}
-            initialEnterprise={agentInitialEnterprise}
-            onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
-            onOpenAiActionPlan={handleOpenAiActionPlan}
-          />
-        )}
+            {/* TAB 5: AI ENTERPRISE TARGETING AGENT */}
+            {activeTab === 'ai-agent' && (
+              <AiEnterpriseAgent
+                patents={patents}
+                initialQuery={agentInitialQuery}
+                initialEnterprise={agentInitialEnterprise}
+                onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+                onOpenAiActionPlan={handleOpenAiActionPlan}
+              />
+            )}
 
-        
-
-        
-
-        {/* NEW TAB: TECH MAP */}
-        {activeTab === 'tech-map' && (
-          <JluTechMapPage userRole={userRole} onNavigateToSearch={() => { setEnterpriseSearchQuery(''); setActiveTab('tech-search'); }} onSelectPatent={(p) => setSelectedPatentForDetailModal(p)} />
-        )}
-        
-        {/* NEW TAB: UNPATENTED TECH */}
-        {activeTab === 'unpatented-tech' && (
-          <UnpatentedTechHub userRole={userRole} />
-        )}
-        
-        {/* ENTERPRISE TAB: LANDING */}
-        {activeTab === 'enterprise-landing' && (
-          <EnterpriseLandingPage onSelectUniversity={(uni) => {
-             setSelectedUniversity(uni);
-             setActiveTab('tech-map');
-          }} />
-        )}
-        
-        {/* ENTERPRISE TAB: SEARCH RESULTS */}
-        {activeTab === 'tech-search' && (
-          <TechSearchHub 
-            query={enterpriseSearchQuery} 
-            onBack={() => setActiveTab(selectedUniversity ? 'tech-map' : 'enterprise-landing')} 
-            universityScope={selectedUniversity}
-            onSelectUniversity={(uni) => {
-              setSelectedUniversity(uni);
-              setActiveTab('tech-map');
-            }}
-          />
-        )}
-        
-        
-
+            {/* TAB: TECH MAP */}
+            {activeTab === 'tech-map' && (
+              <JluTechMapPage 
+                userRole={userRole} 
+                onNavigateToSearch={() => { setEnterpriseSearchQuery(''); setActiveTab('tech-search'); }} 
+                onSelectPatent={(p) => setSelectedPatentForDetailModal(p)} 
+              />
+            )}
+            
+            {/* TAB: UNPATENTED TECH */}
+            {activeTab === 'unpatented-tech' && (
+              <UnpatentedTechHub 
+                userRole={userRole} 
+                onNavigateToIntentHub={() => setActiveTab('intent-management')}
+              />
+            )}
+            
+            {/* ENTERPRISE TAB: LANDING */}
+            {activeTab === 'enterprise-landing' && (
+              <EnterpriseLandingPage onSelectUniversity={(uni) => {
+                 setSelectedUniversity(uni);
+                 setActiveTab('tech-map');
+              }} />
+            )}
+            
+            {/* ENTERPRISE TAB: SEARCH RESULTS */}
+            {activeTab === 'tech-search' && (
+              <TechSearchHub 
+                query={enterpriseSearchQuery} 
+                onBack={() => setActiveTab(selectedUniversity ? 'tech-map' : 'enterprise-landing')} 
+                universityScope={selectedUniversity}
+                onSelectUniversity={(uni) => {
+                  setSelectedUniversity(uni);
+                  setActiveTab('tech-map');
+                }}
+              />
+            )}
           </>
         )}
       </main>
-
-      {/* Target Enterprise Full Dossier Modal */}
-      
 
       {/* Patent Detail Modal */}
       <PatentDetailModal
@@ -303,7 +310,7 @@ function AppContent() {
       )}
 
       {/* Global 佰腾网官方统一底栏 (Baiten Official SaaS Footer) */}
-      <footer className={`bg-slate-900 text-slate-300 text-sm py-8 border-t border-black/20 mt-12 transition-colors`}>
+      <footer className="bg-slate-900 text-slate-300 text-sm py-8 border-t border-black/20 mt-12 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6 border-b border-white/10">
             <div className="flex items-center gap-4">
@@ -335,7 +342,7 @@ function AppContent() {
             </div>
           </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
             <div>
               © 2006-2026 江苏佰腾科技有限公司 (Baiten.cn) 版权所有 | 百业腾飞 • 专利为先
             </div>
@@ -353,8 +360,9 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <IntentProvider>
+        <AppContent />
+      </IntentProvider>
     </ThemeProvider>
   );
 }
-
