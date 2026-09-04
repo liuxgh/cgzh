@@ -50,6 +50,33 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         "similarityScore": 96,
         "abstract": "本发明公开了一种电动车辆电液复合制动能量回收自适应控制方法及系统，涉及新能源车辆制动控制技术领域。该方法通过实时采集车速、轮速、制动踏板行程及电池SOC状态，利用自适应模糊控制算法动态分配电机再生制动力矩与机械液压制动力矩，在保障车辆制动平顺性与行车安全性的前提下，最大化制动动能回馈效率，使综合能量回收率提升15%以上。",
         "techOverlapDescription": "均涉及电液复合制动力矩精确解耦与高回收率能量管理控制算法，技术路线重合度达96%。"
+      },
+      {
+        "patentNo": "CN116374021B",
+        "title": "高压电驱总成扭矩动态补偿与复合制动防滑控制装置",
+        "ipc": "B60L 15/20, B60T 8/175",
+        "grantDate": "2024-05-18",
+        "similarityScore": 93,
+        "abstract": "本发明公开了一种高压电驱总成扭矩动态补偿与复合制动防滑控制装置，通过电机控制器与轮端滑移率估算模块协同，在低附着力湿滑路面上实现电机反拖力矩与机械摩擦制动力的高频平滑交替控制，防止车轮抱死失稳。",
+        "techOverlapDescription": "在电驱动力矩毫秒级动态补偿及低附着路面电液防滑介入算法上具备极高技术契合度。"
+      },
+      {
+        "patentNo": "CN114954719B",
+        "title": "一种轮端电机与液压制动系统一体化协调控制方法及装置",
+        "ipc": "B60T 13/74, B60K 7/00",
+        "grantDate": "2023-09-22",
+        "similarityScore": 89,
+        "abstract": "本发明提供一种轮端电机与液压制动系统一体化协调控制方法，在轮边直驱电机回馈减速与机械制动之间构建阶梯压力分配模型，解决了分布式驱动轮端制动力不均衡导致的跑偏问题。",
+        "techOverlapDescription": "同属分布式多源电液协同制动力控制构型，技术架构与吉大线控专利互通性极强。"
+      },
+      {
+        "patentNo": "CN113879105B",
+        "title": "新能源汽车再生制动能量回馈工况下的电控液压增压阀控机构",
+        "ipc": "B60T 8/34, F15B 13/04",
+        "grantDate": "2023-02-14",
+        "similarityScore": 87,
+        "abstract": "本发明涉及电控液压制动领域，公开了一种电控液压高速增压电磁阀机构，具有低功耗、快响应和高线性度调节特性，支持深度能量回收下的微动建压调节。",
+        "techOverlapDescription": "为吉大线控电液复合制动系统提供了硬件执行端的关键高速阀控支撑方案。"
       }
     ],
     "patentProducts": [
@@ -113,6 +140,33 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         "similarityScore": 95,
         "abstract": "本发明公开了一种商用车线控电液复合制动系统压力协调控制方法，属于智能商用车底盘控制技术领域。通过构建主缸主动增压与轮缸快速建压的双闭环控制模型，有效克服了传统气压/液压制动系统建压响应滞后的缺陷，实现了制动踏板解耦与高精度紧急制动防抱死控制，大幅缩短制动距离并提升行驶稳定性。",
         "techOverlapDescription": "均聚焦商用车线控电液制动建压控制与主被动安全响应协调，契合度极高。"
+      },
+      {
+        "patentNo": "CN115027581B",
+        "title": "基于多轴分布式重型智能商用车的电子机械制动系统压力闭环控制算法",
+        "ipc": "B60T 13/58, B60T 8/17",
+        "grantDate": "2024-01-16",
+        "similarityScore": 92,
+        "abstract": "本发明公开了一种基于多轴分布式重型智能商用车的电子机械制动系统压力闭环控制算法，针对商用车重载长坡制动热衰退难题，提出多级轮端压力梯度分级施加策略，有效避免轮端制动器高温失效。",
+        "techOverlapDescription": "技术路径与吉大重型商用车长坡电液辅助缓速制动理论高度重叠。"
+      },
+      {
+        "patentNo": "CN116118432B",
+        "title": "一种智能商用车电子驻车与紧急行车制动平稳过渡系统及控制策略",
+        "ipc": "B60T 7/12, B60T 13/74",
+        "grantDate": "2023-10-30",
+        "similarityScore": 88,
+        "abstract": "本发明提供一种智能商用车电子驻车与紧急行车制动平稳过渡系统，在行车制动主回路失灵的极端安全工况下，由电子驻车卡钳按动态减速度曲线实现防抱死安全减速制动。",
+        "techOverlapDescription": "与吉大失效保护与电液容错双冗余安全机制形成直接技术呼应。"
+      },
+      {
+        "patentNo": "CN113401290B",
+        "title": "商用车线控底盘防抱死与主动转向横摆力矩协调控制方法",
+        "ipc": "B60W 30/02, B60T 8/175",
+        "grantDate": "2022-12-05",
+        "similarityScore": 85,
+        "abstract": "本发明公开了一种商用车线控底盘防抱死与主动转向横摆力矩协调控制方法，在紧急避障工况下综合调度差动制动与线控转向，显著降低商用车侧翻与折头风险。",
+        "techOverlapDescription": "聚焦底盘线控协同控制与极限工况稳定性边界拓展。"
       }
     ],
     "patentProducts": [
@@ -176,6 +230,33 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         "similarityScore": 94,
         "abstract": "本发明公开了一种集成式线控制动系统主缸液压主动调节与故障容错控制方法，属于智能车辆主动安全控制技术领域。该方法在主传感器失效或电机异常状态下，自动切换至多模态备用液压建压回路，保证基础制动力不丢失，并在毫秒级完成踏板感反馈补偿与轮端制动压力精确控制。",
         "techOverlapDescription": "均涉及线控制动主动建压控制、制动意图解析与电液失效容错控制。"
+      },
+      {
+        "patentNo": "CN115431908B",
+        "title": "One-Box线控制动系统高压蓄能器快速充液与踏板感模拟装置",
+        "ipc": "B60T 7/06, B60T 11/16",
+        "grantDate": "2023-11-20",
+        "similarityScore": 91,
+        "abstract": "本发明涉及一种One-Box集成线控制动系统的踏板脚感解耦与高压蓄能回路动态补偿装置，通过电控伺服阀组消除踩踏反冲振荡，显著改善紧急制动与轻微制动工况下的驾驶员踏板质感。",
+        "techOverlapDescription": "在踏板模拟解耦与液压快速建压充液技术细节上与吉大专利高度呼应。"
+      },
+      {
+        "patentNo": "CN114620188B",
+        "title": "电子机械制动执行器夹紧力自校准与热衰退在线补偿算法",
+        "ipc": "B60T 8/172, B60T 1/06",
+        "grantDate": "2023-07-15",
+        "similarityScore": 88,
+        "abstract": "本发明提供一种电子机械制动卡钳执行器夹紧力自校准算法，基于电机电流与转角观测器，实时估算摩擦片磨损与高温热膨胀量，实现高精度夹紧力闭环控制。",
+        "techOverlapDescription": "解决制动执行机构机电热多物理场耦合控制难题，契合吉大前沿电驱制动研究。"
+      },
+      {
+        "patentNo": "CN113942360B",
+        "title": "双电控单元冗余制动系统的电液切换控制逻辑与健康状态检测方法",
+        "ipc": "B60T 17/18, G06F 11/20",
+        "grantDate": "2022-08-09",
+        "similarityScore": 86,
+        "abstract": "本发明公开了一种双ECU冗余架构下的制动系统热备切换与故障隔离方法，保证线控制动在单点电气故障发生时在5毫秒内无缝完成备用通道接管。",
+        "techOverlapDescription": "高度契合吉大在线控底盘高可靠性安全冗余架构方面的核心发明布局。"
       }
     ],
     "patentProducts": [
@@ -4597,6 +4678,150 @@ export const TARGET_ENTERPRISES_DATA: TargetEnterprise[] = [
         "annualOutputValue": "110.0 亿元",
         "corePatentCount": 19,
         "patentSynergyPoint": "可直接对接相关科研成果进行技术导入与产业化升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-changan",
+    "name": "重庆长安汽车股份有限公司",
+    "shortName": "长安汽车",
+    "creditCode": "9150000020286320X6",
+    "registeredCapital": "992,179 万元人民币",
+    "location": "重庆市江北区",
+    "province": "重庆市",
+    "city": "重庆市",
+    "industry": "新能源汽车 / 智能网联整车与电驱底盘",
+    "scale": "大型央企控股上市",
+    "enterpriseType": "上市企业",
+    "revenue": "1,512 亿元 (2024)",
+    "rdInvestment": "90.0 亿元",
+    "rdRatio": "5.95%",
+    "patentTotalCount": 12850,
+    "inventionPatentCount": 6820,
+    "legalRep": "朱华荣",
+    "address": "重庆市江北区建新东路260号",
+    "phone": "023-67591111",
+    "email": "changan_tech@changan.com.cn",
+    "website": "https://www.changan.com.cn",
+    "establishedDate": "1996-10-31",
+    "businessScope": "汽车（含轿车）、汽车发动机系列产品、配套零部件的设计、开发、制造、销售，并提供售后服务；新能源汽车及关键零部件研发制造。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "patent_product",
+    "matchScore": 96,
+    "synergyReason": "长安汽车启源E07新汽车重点发力数智化与全可变线控底盘，急需吉大线控电液复合制动与多模态能量回收算法突破高算力电驱控制瓶颈。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车",
+      "node": "midstream",
+      "nodeName": "中游 • 整车集成与智能系统",
+      "subSegment": "新能源可变形态智能乘用车整车制造",
+      "mainProducts": [
+        "启源E07数智可变SUV",
+        "长安SDA天枢架构智能底盘",
+        "智慧高压电驱动总成"
+      ]
+    },
+    "keyInventors": [
+      { "name": "李伟", "department": "智能化研究院", "title": "副总经理 / 首席智能化专家" },
+      { "name": "张晓宇", "department": "动力研究院", "title": "总工程师 / 电驱底盘技术负责人" }
+    ],
+    "similarPatents": [
+      {
+        "patentNo": "CN116853210B",
+        "title": "一种面向智能电动汽车的电液复合线控制动协调控制系统及方法",
+        "ipc": "B60T 13/74, B60L 7/18",
+        "grantDate": "2024-03-12",
+        "abstract": "本发明公开了一种面向智能电动汽车的电液复合线控制动协调控制系统及方法，针对不同滑移率工况下电机制动扭矩与液压机械制动压力的动态分配难题，建立了基于车辆纵横向运动状态重构的动态滑模解耦控制律，大幅缩短制动响应时间并最大化制动能量回收率。"
+      },
+      {
+        "patentNo": "CN117246189A",
+        "title": "基于多轴协同的智能底盘线控转向与差动制动集成控制系统",
+        "ipc": "B62D 6/00, B60T 8/1755",
+        "grantDate": "2024-08-20",
+        "abstract": "本发明提供一种基于多轴协同的智能底盘线控转向与差动制动集成控制系统，在紧急避障与低附着路面工况下，联合调节各轮液压制动器与驱动电机扭矩，实现极限工况下车辆侧向稳定性与防侧翻安全控制。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "20255000002494.3",
+        "productName": "启源E07汽车",
+        "filingYear": "2025年度",
+        "productCategory": "交通运输设备 > 汽车 > 乘用车 > 运动型多用途乘用车（SUV）",
+        "annualOutputValue": "85.0 亿元",
+        "corePatentCount": 1268,
+        "patentSynergyPoint": "与吉大智能新能源汽车线控电液复合制动系统高度互补，可直接赋能启源E07线控底盘升级"
+      }
+    ]
+  },
+  {
+    "id": "ent-weichai",
+    "name": "潍柴动力股份有限公司",
+    "shortName": "潍柴动力",
+    "creditCode": "913700007456729524",
+    "registeredCapital": "872,655 万元人民币",
+    "location": "山东省潍坊市",
+    "province": "山东省",
+    "city": "潍坊市",
+    "industry": "动力装备 / 商用汽车内燃机与重卡底盘动力",
+    "scale": "中国重工龙头上市",
+    "enterpriseType": "上市企业",
+    "revenue": "2,139 亿元 (2024)",
+    "rdInvestment": "88.5 亿元",
+    "rdRatio": "4.14%",
+    "patentTotalCount": 14200,
+    "inventionPatentCount": 7890,
+    "legalRep": "谭旭光",
+    "address": "山东省潍坊市高新技术产业开发区福寿东街197号甲",
+    "phone": "0536-2297777",
+    "email": "weichai_tech@weichai.com",
+    "website": "https://www.weichai.com",
+    "establishedDate": "2002-12-23",
+    "businessScope": "柴油机及配套零部件设计、开发、生产、销售、维修；新能源动力总成、电控系统、液压件制造。",
+    "status": "存续（在营、开业、在册）",
+    "matchSource": "patent_product",
+    "matchScore": 94,
+    "synergyReason": "潍柴重型商用车发动机与智能动力系统与吉大新能源商用车线控电液复合制动及能量回收控制方法具备极高产业协同契合度。",
+    "chainPosition": {
+      "chainId": "chain-2",
+      "chainName": "新能源汽车与商用车",
+      "node": "midstream",
+      "nodeName": "中游 • 核心动力总成制造",
+      "subSegment": "商用车重型柴油机与混合动力系统",
+      "mainProducts": [
+        "潍柴蓝擎WP系列高热效率发动机",
+        "重卡商用车电液混合动力总成",
+        "智能ECU发动机控制系统"
+      ]
+    },
+    "keyInventors": [
+      { "name": "郭圣刚", "department": "发动机研究院", "title": "常务副院长 / 国家科技进步一等奖核心成员" },
+      { "name": "佟德辉", "department": "电控技术开发所", "title": "首席电控专家" }
+    ],
+    "similarPatents": [
+      {
+        "patentNo": "CN116292305B",
+        "title": "一种商用车内燃机制动与液力减速器协同减速制动控制方法",
+        "ipc": "F02D 9/06, B60T 1/087",
+        "grantDate": "2023-11-18",
+        "abstract": "本发明公开了一种商用车内燃机制动与液力减速器协同减速制动控制方法，在长下坡等重载商用车典型工况下，根据制动踏板行程与车速动态调度发动机制动门阀开度与减速器充液压力，显著减少行车机械制动热衰退风险。"
+      },
+      {
+        "patentNo": "CN117188722A",
+        "title": "基于高热效率柴油机与电液复合制动的大型车辆能量回收系统",
+        "ipc": "B60W 20/14, B60L 7/10",
+        "grantDate": "2024-05-10",
+        "abstract": "本发明公开了一种基于高热效率柴油机与电液复合制动的大型车辆能量回收系统，利用发动机制动阻力与高压液压储能器瞬时吸收大吨位车辆减速惯性能量，有效降低整车百公里综合油耗。"
+      }
+    ],
+    "patentProducts": [
+      {
+        "productCode": "20253700003692.8",
+        "productName": "发动机",
+        "filingYear": "2026年度",
+        "productCategory": "通用设备 > 发动机 > 汽车用发动机 > 汽车用柴油发动机",
+        "annualOutputValue": "320.0 亿元",
+        "corePatentCount": 1107,
+        "patentSynergyPoint": "与吉大面向智能新能源商用车的线控电液复合制动系统与能量回收控制方法深度互补"
       }
     ]
   }

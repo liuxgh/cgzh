@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   MapPin, 
   TrendingUp, 
@@ -6,7 +6,8 @@ import {
   Sparkles, 
   ChevronUp, 
   ChevronDown, 
-  Filter
+  Filter,
+  Package
 } from 'lucide-react';
 import { PatentItem, TargetEnterprise } from '../types';
 import { PatentChinaMapVisualizer } from './PatentChinaMapVisualizer';
@@ -28,6 +29,8 @@ interface PatentNationalDistributionCardProps {
   selectedProvince?: string;
   onSelectProvince?: (province: string) => void;
   filteredCount?: number;
+  matchedProductsCount?: number;
+  defaultCollapsed?: boolean;
 }
 
 export const PatentNationalDistributionCard: React.FC<PatentNationalDistributionCardProps> = ({
@@ -38,9 +41,15 @@ export const PatentNationalDistributionCard: React.FC<PatentNationalDistribution
   enterprises,
   selectedProvince = 'all',
   onSelectProvince,
-  filteredCount
+  filteredCount,
+  matchedProductsCount,
+  defaultCollapsed = false
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(defaultCollapsed);
+
+  useEffect(() => {
+    setIsCollapsed(defaultCollapsed);
+  }, [defaultCollapsed]);
 
   // Calculate real distribution from enterprises data
   const { 
@@ -138,7 +147,7 @@ export const PatentNationalDistributionCard: React.FC<PatentNationalDistribution
             )}
           </div>
           <h3 className="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
-            <span>{title || (productInfo ? "国家专利密集型产品备案企业全国地理与省市分布" : chainInfo ? "当前产业链重点靶向企业全国地理与省市分布" : "当前技术全国匹配企业总量与省市分布")}</span>
+            <span>{title || (productInfo ? "国家专利密集型产品备案企业全国地理与省市分布" : chainInfo ? "当前产业链重点靶向企业全国地理与省市分布" : "本专利技术全国匹配企业总量与省市分布")}</span>
           </h3>
         </div>
 
@@ -156,9 +165,27 @@ export const PatentNationalDistributionCard: React.FC<PatentNationalDistribution
         </div>
       </div>
 
-      {/* KPI Highlight Strip (Clean 2-Metric Layout) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 bg-slate-50/50 border-b border-slate-100">
+      {/* KPI Highlight Strip */}
+      <div className={`grid grid-cols-1 ${matchedProductsCount !== undefined ? 'md:grid-cols-3' : 'sm:grid-cols-2'} divide-y md:divide-y-0 md:divide-x divide-slate-100 bg-slate-50/50 border-b border-slate-100`}>
         
+        {/* Metric 0: Total National Matched Patent Products (if provided) */}
+        {matchedProductsCount !== undefined && (
+          <div className="p-4 sm:p-5 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-500/20 shrink-0">
+              <Package className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="text-xs text-slate-500 font-semibold">全国匹配专利产品量</div>
+              <div className="flex items-baseline gap-2 mt-0.5">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-emerald-800">
+                  {matchedProductsCount}
+                </span>
+                <span className="text-xs font-bold text-slate-400">项备案产品</span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Metric 1: Total National Matched Enterprises */}
         <div className="p-4 sm:p-5 flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-500/20 shrink-0">

@@ -25,7 +25,6 @@ import {
   Bell
 } from 'lucide-react';
 import { useAppTheme } from '../context/ThemeContext';
-import { useIntents } from '../context/IntentContext';
 
 interface HeaderProps {
   activeTab: TabType;
@@ -49,7 +48,6 @@ export const Header: React.FC<HeaderProps> = ({
   const isGenericEnterprise = userRole === 'enterprise' && !selectedUniversity;
   const [searchInput, setSearchInput] = React.useState('');
   const { themeConfig } = useAppTheme();
-  const { unreadPendingCount, intents } = useIntents();
 
   const navItems = userRole === 'university' ? [
     { key: 'overview', label: '全景驾驶舱', icon: TrendingUp },
@@ -57,17 +55,14 @@ export const Header: React.FC<HeaderProps> = ({
     { key: 'industry-chain', label: '产业链找企业', icon: Layers },
     { key: 'patent-product', label: '专利产品找企业', icon: Package },
     { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit },
-    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award },
-    { key: 'intent-management', label: '企业对接意向', icon: Building2, badge: unreadPendingCount, highlight: true }
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
   ] : (selectedUniversity ? [
     { key: 'tech-map', label: '成果技术图谱', icon: Compass, highlight: true },
     { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
-    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award },
-    { key: 'intent-management', label: '我的对接进度', icon: Building2 }
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
   ] : [
     { key: 'enterprise-landing', label: '首页', icon: Building2, highlight: true },
-    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
-    { key: 'intent-management', label: '企业对接记录', icon: Building2 }
+    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search }
   ]);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -83,10 +78,8 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors">
         {/* Brand & Title */}
         <div className="flex items-center gap-4 cursor-pointer group" onClick={() => {
-            if (userRole === 'enterprise' && selectedUniversity) {
-              if (onSelectUniversity) onSelectUniversity(null);
-            } else if (userRole === 'enterprise') {
-              setActiveTab('enterprise-landing');
+            if (userRole === 'enterprise') {
+              setActiveTab('tech-map');
             } else {
               setActiveTab('overview');
             }
@@ -187,11 +180,6 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : item.highlight ? 'text-blue-600' : 'text-slate-400'}`} />
                 <span>{item.label}</span>
-                {typeof item.badge === 'number' && item.badge > 0 && (
-                  <span className="ml-0.5 px-1.5 py-0.2 bg-rose-500 text-white text-[10px] font-black rounded-full shadow-xs animate-pulse font-mono">
-                    {item.badge}
-                  </span>
-                )}
               </button>
             );
           })}

@@ -2,7 +2,7 @@ export interface UnpatentedTechItem {
   id: string;
   title: string;
   domain: string;
-  status: 'seeking' | 'negotiating' | 'cooperating';
+  status?: string;
   date: string;
   desc: string;
   contact: string;

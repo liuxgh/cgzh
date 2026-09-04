@@ -706,7 +706,7 @@ export const TechSearchHub: React.FC<Props> = ({
                     {selectedTechForBooking && (
                       <div className="bg-blue-50/80 p-3 rounded-xl border border-blue-200/60 text-xs space-y-1">
                         <div className="text-blue-700 font-bold flex items-center gap-1">
-                          <Sparkles className="w-3.5 h-3.5" /> 意向对接成果：
+                          <Sparkles className="w-3.5 h-3.5" /> 拟对接成果：
                         </div>
                         <div className="font-bold text-slate-800 text-xs leading-snug">{selectedTechForBooking.title}</div>
                         <div className="text-slate-500 font-mono text-[11px]">{selectedTechForBooking.no} • {selectedTechForBooking.university}</div>
@@ -1283,7 +1283,7 @@ export const TechSearchHub: React.FC<Props> = ({
                     <p className="text-xs text-slate-500 mt-1">
                       {isUniversityMode 
                         ? '展示仅限吉林大学的专利与非专利技术/成果，支持直联吉大技术转移中心'
-                        : '展示涵盖全国重点高校的匹配成果，支持跨校筛选与产学研意向对接'
+                        : '展示涵盖全国重点高校的匹配成果，支持跨校筛选与产学研精准对接'
                       }
                     </p>
                   </div>
@@ -1494,7 +1494,7 @@ export const TechSearchHub: React.FC<Props> = ({
                   {selectedTechForBooking && (
                     <div className="bg-blue-50/80 p-3 rounded-xl border border-blue-200/60 text-xs space-y-1">
                       <div className="text-blue-700 font-bold flex items-center gap-1">
-                        <Sparkles className="w-3.5 h-3.5" /> 意向对接成果：
+                        <Sparkles className="w-3.5 h-3.5" /> 拟对接成果：
                       </div>
                       <div className="font-bold text-slate-800 text-xs leading-snug">{selectedTechForBooking.title}</div>
                       <div className="text-slate-500 font-mono text-[11px]">{selectedTechForBooking.no} • {selectedTechForBooking.university}</div>

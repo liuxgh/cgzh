@@ -20,9 +20,7 @@ import { TechSearchHub } from './components/TechSearchHub';
 import { JluTechMapPage } from './components/JluTechMapPage';
 import { PatentDetailModal } from './components/PatentDetailModal';
 import { NewPatentModal } from './components/NewPatentModal';
-import { IntentManagementHub } from './components/IntentManagementHub';
 import { ThemeProvider, useAppTheme } from './context/ThemeContext';
-import { IntentProvider } from './context/IntentContext';
 
 import { INITIAL_PATENTS } from './data/mockData';
 import { TARGET_ENTERPRISES_DATA } from './data/targetEnterprisesData';
@@ -38,12 +36,15 @@ function AppContent() {
 
   const handleRoleChange = (role: UserRole) => {
     setUserRole(role);
+    setSelectedEnterpriseForDetailModal(null);
+    setSelectedEnterpriseForActionPlan(null);
+    setSelectedProductForAiReport(null);
     if (role === 'university') {
       setSelectedUniversity('jlu');
       setActiveTab('overview');
     } else {
-      setSelectedUniversity(null);
-      setActiveTab('enterprise-landing');
+      setSelectedUniversity('jlu');
+      setActiveTab('tech-map');
     }
   };
 
@@ -177,17 +178,6 @@ function AppContent() {
               />
             )}
 
-            {/* TAB: INTENT MANAGEMENT HUB (高校端对接工作台 / 企业端意向跟踪) */}
-            {activeTab === 'intent-management' && (
-              <IntentManagementHub 
-                userRole={userRole}
-                onSelectPatent={(p) => {
-                  setSelectedPatent(p);
-                  setSelectedPatentForDetailModal(p);
-                }}
-              />
-            )}
-
             {/* TAB 2: PATH 1 - SIMILAR PATENTS */}
             {activeTab === 'patent-similar' && (
               <PatentSimilarSearchHub
@@ -252,7 +242,6 @@ function AppContent() {
             {activeTab === 'unpatented-tech' && (
               <UnpatentedTechHub 
                 userRole={userRole} 
-                onNavigateToIntentHub={() => setActiveTab('intent-management')}
               />
             )}
             
@@ -360,9 +349,7 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <IntentProvider>
-        <AppContent />
-      </IntentProvider>
+      <AppContent />
     </ThemeProvider>
   );
 }

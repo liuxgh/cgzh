@@ -25,11 +25,9 @@ import {
   Inbox
 } from 'lucide-react';
 import { UNPATENTED_TECH_LIST, UnpatentedTechItem } from '../data/unpatentedTechData';
-import { useIntents } from '../context/IntentContext';
 
 interface Props { 
   userRole: UserRole;
-  onNavigateToIntentHub?: () => void;
 }
 
 const ITEMS_PER_PAGE = 6;
@@ -43,9 +41,8 @@ export const UNPATENTED_DOMAINS = [
   '电子信息'
 ];
 
-export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToIntentHub }) => {
+export const UnpatentedTechHub: React.FC<Props> = ({ userRole }) => {
   const isEnterprise = userRole === 'enterprise';
-  const { intents, addIntent, getIntentsByTarget } = useIntents();
 
   const [techs, setTechs] = useState<UnpatentedTechItem[]>(UNPATENTED_TECH_LIST);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -56,8 +53,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
     domain: UNPATENTED_DOMAINS[0], 
     desc: '', 
     contact: '', 
-    team: '',
-    status: 'seeking' as UnpatentedTechItem['status']
+    team: ''
   });
 
   // Edit Tech State
@@ -74,9 +70,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
     demandDesc: '希望就该专有技术的工程化参数及小试/中试放大数据进行深入技术对接与交流，拟共同申请省级重大科技成果转化专项。'
   });
 
-  // Selected Tech for Viewing Intents (University Modal)
-  const [viewingTechIntents, setViewingTechIntents] = useState<UnpatentedTechItem | null>(null);
-
   // Toast Notification
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const showToast = (msg: string) => {
@@ -89,7 +82,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
   // Search & Filter States
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const domainOptions = [
@@ -108,7 +100,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
         desc: formData.desc.trim(),
         contact: formData.contact.trim() || '吉林大学科研团队',
         team: formData.team.trim() || undefined,
-        status: formData.status, 
         date: new Date().toISOString().split('T')[0] 
       };
       setTechs([newTech, ...techs]);
@@ -118,8 +109,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
         domain: UNPATENTED_DOMAINS[0], 
         desc: '', 
         contact: '', 
-        team: '',
-        status: 'seeking'
+        team: ''
       });
       showToast(`已成功发布非专利成果《${newTech.title.slice(0, 16)}...》！`);
     }
@@ -130,54 +120,16 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
     e.preventDefault();
     if (!editingTech) return;
     setTechs(techs.map(t => t.id === editingTech.id ? editingTech : t));
-    showToast(`已更新成果《${editingTech.title.slice(0, 14)}...》的档案信息与合作状态！`);
+    showToast(`已更新成果《${editingTech.title.slice(0, 14)}...》的档案信息！`);
     setEditingTech(null);
   };
 
-  // Quick Change Status (University role in card)
-  const handleStatusChangeForTech = (techId: string, newStatus: UnpatentedTechItem['status'], e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    setTechs(prev => prev.map(t => {
-      if (t.id === techId) {
-        return { ...t, status: newStatus };
-      }
-      return t;
-    }));
-    const statusName = newStatus === 'seeking' ? '寻求转化合作' : newStatus === 'negotiating' ? '商务洽谈中' : '已达成中试合作';
-    showToast(`该成果合作状态已变更为【${statusName}】`);
-  };
-
-  // Enterprise: Submit Docking Intent (Sync to Global IntentContext)
+  // Enterprise: Submit Docking Request
   const handleDockingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!dockingTech) return;
 
-    // 1. Add to global intent system
-    addIntent({
-      targetType: 'unpatented',
-      targetId: dockingTech.id,
-      targetTitle: dockingTech.title,
-      targetNo: dockingTech.id.toUpperCase(),
-      domain: dockingTech.domain,
-      inventorOrContact: `${dockingTech.contact}${dockingTech.team ? ' (' + dockingTech.team + ')' : ''}`,
-      companyName: dockingFormData.companyName.trim(),
-      contactPerson: dockingFormData.contactPerson.trim(),
-      phone: dockingFormData.phone.trim(),
-      email: dockingFormData.email.trim(),
-      mode: dockingFormData.mode,
-      demandDesc: dockingFormData.demandDesc.trim(),
-      status: 'pending'
-    });
-
-    // 2. Automatically transition tech status to 'negotiating'
-    setTechs(prev => prev.map(t => {
-      if (t.id === dockingTech.id) {
-        return { ...t, status: 'negotiating' };
-      }
-      return t;
-    }));
-
-    showToast(`已成功向【${dockingTech.contact}】团队提交对接申请！高校端已实时接收并可在【转化对接意向工作台】集中推进。`);
+    showToast(`已成功向【${dockingTech.contact}】团队提交对接申请！高校科研团队与技术转移专员已实时接收。`);
     setDockingTech(null);
   };
 
@@ -186,9 +138,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
     return techs.filter(tech => {
       // Domain filter
       if (selectedDomain !== 'all' && tech.domain !== selectedDomain) return false;
-      
-      // Status filter
-      if (selectedStatus !== 'all' && tech.status !== selectedStatus) return false;
 
       // Keyword query
       if (searchQuery.trim()) {
@@ -204,7 +153,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
 
       return true;
     });
-  }, [techs, selectedDomain, selectedStatus, searchQuery]);
+  }, [techs, selectedDomain, searchQuery]);
 
   // Pagination calculation
   const totalItems = filteredTechs.length;
@@ -227,37 +176,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
     setCurrentPage(1);
   };
 
-  const handleStatusFilterChange = (status: string) => {
-    setSelectedStatus(status);
-    setCurrentPage(1);
-  };
-
-  const getStatusBadge = (status: UnpatentedTechItem['status']) => {
-    switch (status) {
-      case 'seeking':
-        return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold rounded-md">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            寻求转化合作
-          </span>
-        );
-      case 'negotiating':
-        return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold rounded-md">
-            <Clock className="w-3 h-3 text-amber-500" />
-            商务洽谈中
-          </span>
-        );
-      case 'cooperating':
-        return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 text-[#0F52BA] border border-blue-200 text-xs font-bold rounded-md">
-            <CheckCircle className="w-3 h-3 text-[#0F52BA]" />
-            已达成中试合作
-          </span>
-        );
-    }
-  };
-
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
       {/* Toast Feedback */}
@@ -273,27 +191,17 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
         <div className="space-y-1">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100/70 text-[#0F52BA] text-xs font-bold mb-1">
             <ShieldCheck className="w-3.5 h-3.5" />
-            专有技术秘密 / 实验室在研成果中试库
+            专有技术秘密 / 实验室在研成果
           </div>
           <h2 className="text-2xl font-black text-slate-900">
-            非专利技术 / 专有成果管理
+            非专利技术 / 成果
           </h2>
           <p className="text-xs text-slate-500 max-w-2xl leading-relaxed">
-            汇聚吉林大学各重点实验室未公开申请专利的核心配方工艺、算法底座、中试熟化项目与在研成果。支持高校科研团队自主发布与成果状态流转，企业端可在线发起定向对接意向。
+            汇聚吉林大学各重点实验室未公开申请专利的核心配方工艺、算法底座、中试熟化项目与在研成果。支持高校科研团队自主发布与成果对接转化。
           </p>
         </div>
 
         <div className="flex items-center gap-3 shrink-0">
-          {!isEnterprise && onNavigateToIntentHub && (
-            <button
-              onClick={onNavigateToIntentHub}
-              className="flex items-center gap-2 px-4 py-2.5 bg-blue-50 text-[#0F52BA] border border-blue-200 rounded-xl font-bold hover:bg-blue-100 transition-colors shadow-xs text-xs cursor-pointer"
-            >
-              <Building2 className="w-4 h-4" />
-              <span>查看全部企业对接意向 &rarr;</span>
-            </button>
-          )}
-
           {!isEnterprise && (
             <button 
               onClick={() => setShowAddForm(!showAddForm)}
@@ -358,7 +266,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700 flex items-center gap-1">
                   <span className="text-rose-500">*</span>主要研发专家及院系
@@ -381,18 +289,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:outline-hidden focus:border-[#0F52BA] text-xs font-medium" 
                   placeholder="例如：超硬材料国家重点实验室" 
                 />
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-700">初始合作状态</label>
-                <select 
-                  value={formData.status} 
-                  onChange={e => setFormData({...formData, status: e.target.value as UnpatentedTechItem['status']})} 
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:outline-hidden focus:border-[#0F52BA] text-xs cursor-pointer font-medium"
-                >
-                  <option value="seeking">寻求转化合作</option>
-                  <option value="negotiating">商务洽谈中</option>
-                  <option value="cooperating">已达成中试合作</option>
-                </select>
               </div>
             </div>
 
@@ -479,20 +375,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
           </div>
 
           <div className="flex items-center justify-between md:justify-end gap-3 text-xs">
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-slate-500 font-bold">合作状态：</span>
-              <select
-                value={selectedStatus}
-                onChange={(e) => handleStatusFilterChange(e.target.value)}
-                className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1 text-xs font-medium text-slate-700 focus:outline-hidden focus:border-[#0F52BA] cursor-pointer"
-              >
-                <option value="all">全部状态</option>
-                <option value="seeking">寻求转化合作</option>
-                <option value="negotiating">商务洽谈中</option>
-                <option value="cooperating">已达成中试合作</option>
-              </select>
-            </div>
-
             <div className="text-slate-500 shrink-0 font-medium">
               共筛选出 <strong className="text-[#0F52BA] font-bold font-mono">{totalItems}</strong> 项成果
             </div>
@@ -504,21 +386,19 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
       {paginatedTechs.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {paginatedTechs.map(tech => {
-            const techIntents = getIntentsByTarget(tech.id);
-
             return (
               <div 
                 key={tech.id} 
                 className="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs hover:shadow-md hover:border-blue-200 transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex justify-between items-start mb-3 gap-2">
+                  <div className="flex justify-between items-center mb-3 gap-2">
                     <span className="px-2.5 py-0.5 bg-slate-100 text-slate-700 text-xs font-bold rounded-lg shrink-0">
                       {tech.domain}
                     </span>
-                    
-                    {/* Status Badge */}
-                    {getStatusBadge(tech.status)}
+                    <span className="text-[11px] font-medium text-slate-400">
+                      发布于 {tech.date}
+                    </span>
                   </div>
 
                   <h4 className="text-sm font-bold text-slate-900 leading-snug mb-2 line-clamp-2 hover:text-[#0F52BA] transition-colors">
@@ -527,27 +407,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
                   <p className="text-xs text-slate-500 leading-relaxed line-clamp-3 mb-3">
                     {tech.desc}
                   </p>
-
-                  {/* University view: Show received Enterprise Intents badge */}
-                  {!isEnterprise && techIntents.length > 0 && (
-                    <div 
-                      onClick={() => setViewingTechIntents(tech)}
-                      className="mb-3 bg-amber-50/80 hover:bg-amber-100/80 border border-amber-200 rounded-xl p-2.5 text-xs text-amber-900 cursor-pointer transition-colors"
-                    >
-                      <div className="flex items-center justify-between font-bold text-[11px]">
-                        <span className="flex items-center gap-1">
-                          <Building className="w-3.5 h-3.5 text-amber-600" />
-                          已收到 <strong className="text-amber-700 font-mono">{techIntents.length}</strong> 家企业对接意向
-                        </span>
-                        <span className="text-amber-700 flex items-center gap-0.5">
-                          查看意向 <ChevronRight className="w-3 h-3" />
-                        </span>
-                      </div>
-                      <div className="text-[11px] text-slate-600 truncate mt-1">
-                        最新意向：{techIntents[0].companyName} ({techIntents[0].contactPerson})
-                      </div>
-                    </div>
-                  )}
                 </div>
                 
                 <div className="pt-3.5 border-t border-slate-100">
@@ -561,94 +420,41 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
                         {tech.team}
                       </div>
                     )}
-                    <div className="text-[11px] text-slate-400 pl-4.5">
-                      发布于 {tech.date}
-                    </div>
                   </div>
 
-                  {/* Role-based Action Buttons & Status Management */}
-                  <div className="space-y-2">
+                  {/* Role-based Action Buttons */}
+                  <div>
                     {isEnterprise ? (
                       // Enterprise Side: Docking Button
-                      <div>
-                        {tech.status === 'seeking' && (
-                          <button 
-                            onClick={() => setDockingTech(tech)}
-                            className="w-full flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs"
-                          >
-                            <CheckCircle className="w-3.5 h-3.5" />
-                            发起转化对接意向
-                          </button>
-                        )}
-                        {tech.status === 'negotiating' && (
-                          <button 
-                            onClick={() => setDockingTech(tech)}
-                            className="w-full flex items-center justify-center gap-1.5 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs"
-                          >
-                            <Clock className="w-3.5 h-3.5" />
-                            洽谈中 · 追加意向沟通
-                          </button>
-                        )}
-                        {tech.status === 'cooperating' && (
-                          <button 
-                            onClick={() => setDockingTech(tech)}
-                            className="w-full flex items-center justify-center gap-1.5 px-4 py-2 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs"
-                          >
-                            <ShieldCheck className="w-3.5 h-3.5" />
-                            已中试合作 · 申请衍生合作
-                          </button>
-                        )}
-                      </div>
+                      <button 
+                        onClick={() => setDockingTech(tech)}
+                        className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs"
+                      >
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        发起转化对接意向
+                      </button>
                     ) : (
-                      // University Side: Full Management & Direct Status Selector
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between gap-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200">
-                          <span className="text-[11px] font-bold text-slate-600 pl-1">管理状态：</span>
-                          <select
-                            value={tech.status}
-                            onChange={(e) => handleStatusChangeForTech(tech.id, e.target.value as UnpatentedTechItem['status'])}
-                            className="text-xs font-bold bg-white border border-slate-200 rounded-lg px-2 py-1 text-slate-800 focus:outline-hidden focus:border-[#0F52BA] cursor-pointer"
-                          >
-                            <option value="seeking">🟢 寻求转化合作</option>
-                            <option value="negotiating">🟡 商务洽谈中</option>
-                            <option value="cooperating">🔵 已达成中试合作</option>
-                          </select>
-                        </div>
-
-                        <div className="flex items-center justify-between pt-0.5">
-                          <div className="flex gap-1.5">
-                            <button 
-                              onClick={() => setEditingTech(tech)}
-                              className="flex items-center gap-1 px-2.5 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors cursor-pointer text-xs font-medium" 
-                              title="编辑成果"
-                            >
-                              <Edit3 className="w-3.5 h-3.5" />
-                              编辑
-                            </button>
-                            <button 
-                              onClick={() => {
-                                setTechs(techs.filter(t => t.id !== tech.id));
-                                showToast('已从非专利成果库中移除该成果');
-                              }}
-                              className="flex items-center gap-1 px-2.5 py-1.5 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-lg transition-colors cursor-pointer text-xs font-medium"
-                              title="下架成果"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" />
-                              下架
-                            </button>
-                          </div>
-
-                          {techIntents.length > 0 ? (
-                            <button
-                              onClick={() => setViewingTechIntents(tech)}
-                              className="text-[11px] font-bold text-amber-700 hover:text-amber-800 bg-amber-50 px-2 py-1 rounded-md border border-amber-200 cursor-pointer"
-                            >
-                              查看企业意向 ({techIntents.length})
-                            </button>
-                          ) : (
-                            <span className="text-[11px] text-slate-400">暂无意向</span>
-                          )}
-                        </div>
+                      // University Side: Edit & Remove
+                      <div className="flex items-center gap-2">
+                        <button 
+                          onClick={() => setEditingTech(tech)}
+                          className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-xl transition-colors cursor-pointer text-xs font-semibold" 
+                          title="编辑成果"
+                        >
+                          <Edit3 className="w-3.5 h-3.5" />
+                          编辑
+                        </button>
+                        <button 
+                          onClick={() => {
+                            setTechs(techs.filter(t => t.id !== tech.id));
+                            showToast('已从非专利成果库中移除该成果');
+                          }}
+                          className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-xl transition-colors cursor-pointer text-xs font-semibold"
+                          title="下架成果"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          下架
+                        </button>
                       </div>
                     )}
                   </div>
@@ -664,13 +470,12 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
           </div>
           <h4 className="text-base font-bold text-slate-900 mb-1">未匹配到符合条件的非专利成果</h4>
           <p className="text-xs text-slate-500 max-w-sm mx-auto mb-4">
-            当前筛选条件下暂无成果，您可以尝试切换学科领域、更改合作状态或清除搜索关键词。
+            当前筛选条件下暂无成果，您可以尝试切换学科领域或清除搜索关键词。
           </p>
           <button 
             onClick={() => {
               setSearchQuery('');
               setSelectedDomain('all');
-              setSelectedStatus('all');
               setCurrentPage(1);
             }}
             className="px-4 py-2 bg-[#0F52BA] text-white rounded-xl text-xs font-bold hover:bg-[#082C6C] transition-colors cursor-pointer"
@@ -878,77 +683,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
         </div>
       )}
 
-      {/* University: View Tech's Enterprise Intents Modal */}
-      {viewingTechIntents && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto space-y-4">
-            <div className="flex items-start justify-between pb-3 border-b border-slate-100">
-              <div>
-                <span className="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-md border border-amber-200 inline-block mb-1">
-                  企业意向清单
-                </span>
-                <h3 className="text-base font-bold text-slate-900">
-                  《{viewingTechIntents.title}》收到的企业对接申请
-                </h3>
-              </div>
-              <button 
-                onClick={() => setViewingTechIntents(null)} 
-                className="p-1.5 text-slate-400 hover:text-slate-600 rounded-full cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              {getIntentsByTarget(viewingTechIntents.id).map(intent => (
-                <div key={intent.id} className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-900 text-sm">{intent.companyName}</span>
-                    <span className="px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-[11px] font-bold">
-                      {intent.status === 'pending' ? '待高校响应' : '洽谈跟进中'}
-                    </span>
-                  </div>
-                  <div className="text-slate-600 flex items-center gap-3">
-                    <span>对接人：<strong className="text-slate-800">{intent.contactPerson}</strong></span>
-                    <span>电话：<strong className="text-slate-800 font-mono">{intent.phone}</strong></span>
-                  </div>
-                  <div className="text-slate-700">
-                    <span className="font-bold">合作模式：</span>{intent.mode}
-                  </div>
-                  <div className="bg-white p-2.5 rounded-xl border border-slate-100 text-slate-800 leading-relaxed">
-                    {intent.demandDesc}
-                  </div>
-                  <div className="text-[11px] text-slate-400 text-right">
-                    提交时间：{intent.createdAt}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-              {onNavigateToIntentHub ? (
-                <button
-                  onClick={() => {
-                    setViewingTechIntents(null);
-                    onNavigateToIntentHub();
-                  }}
-                  className="px-4 py-2 bg-[#0F52BA] text-white rounded-xl text-xs font-bold hover:bg-[#082C6C] transition-colors flex items-center gap-1 cursor-pointer"
-                >
-                  进入转化对接意向工作台统一处置 &rarr;
-                </button>
-              ) : <div />}
-
-              <button 
-                onClick={() => setViewingTechIntents(null)}
-                className="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-bold hover:bg-slate-200 cursor-pointer"
-              >
-                关闭
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* University Edit Tech Modal */}
       {editingTech && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
@@ -957,10 +691,10 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
               <div>
                 <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                   <Edit3 className="w-5 h-5 text-[#0F52BA]" />
-                  编辑非专利成果档案与合作状态
+                  编辑非专利成果档案
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  高校成果负责人可实时更新技术描述、团队信息以及合作进展状态
+                  高校成果负责人可实时更新技术描述与科研团队信息
                 </p>
               </div>
               <button 
@@ -972,18 +706,18 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
             </div>
 
             <form onSubmit={handleEditSave} className="space-y-4">
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-700">成果/技术名称</label>
-                <input 
-                  required 
-                  type="text"
-                  value={editingTech.title}
-                  onChange={e => setEditingTech({...editingTech, title: e.target.value})}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-medium focus:outline-hidden focus:border-[#0F52BA]"
-                />
-              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="sm:col-span-2 space-y-1">
+                  <label className="text-xs font-bold text-slate-700">成果/技术名称</label>
+                  <input 
+                    required 
+                    type="text"
+                    value={editingTech.title}
+                    onChange={e => setEditingTech({...editingTech, title: e.target.value})}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-medium focus:outline-hidden focus:border-[#0F52BA]"
+                  />
+                </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-700">学科领域</label>
                   <select 
@@ -994,19 +728,6 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole, onNavigateToInten
                     {UNPATENTED_DOMAINS.map(domain => (
                       <option key={domain} value={domain}>{domain}</option>
                     ))}
-                  </select>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-700">当前合作状态</label>
-                  <select 
-                    value={editingTech.status}
-                    onChange={e => setEditingTech({...editingTech, status: e.target.value as UnpatentedTechItem['status']})}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-900 focus:outline-hidden focus:border-[#0F52BA] cursor-pointer"
-                  >
-                    <option value="seeking">🟢 寻求转化合作 (开放对接)</option>
-                    <option value="negotiating">🟡 商务洽谈中 (已有意向企业)</option>
-                    <option value="cooperating">🔵 已达成中试合作 (协议签署)</option>
                   </select>
                 </div>
               </div>

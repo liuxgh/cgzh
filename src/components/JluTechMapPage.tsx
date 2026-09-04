@@ -115,7 +115,7 @@ const scatterData = [
 ];
 
 const Y_DOMAINS = ['G01N', 'G06F', 'A61B', 'A61M', 'A61G', 'A61K', 'G01V', 'A61F', 'B60W', 'G01M'];
-const X_YEARS = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'];
+const X_YEARS = ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017'];
 const IPC_DESCRIPTIONS: Record<string, string> = {
   'G01N': '借助于测定材料的化学或物理...',
   'G06F': '电数字数据处理（基于特定计...',
@@ -271,7 +271,7 @@ export const JluTechMapPage: React.FC<Props> = ({ userRole = 'university', onNav
         <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
           <h3 className="text-xl font-bold text-white flex items-center gap-2">
             <Layers className="w-5 h-5 text-blue-400" />
-            知识产权概览 <span className="text-sm font-normal text-slate-400 tracking-wide ml-2">（仅统计中国专利）</span>
+            知识产权全景
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

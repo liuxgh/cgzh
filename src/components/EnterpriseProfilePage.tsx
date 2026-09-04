@@ -9,8 +9,25 @@ import {
   Shuffle, 
   HelpCircle,
   BarChart2,
-  List
-, BrainCircuit, Lightbulb, Package, Layers, MapPin, User, Mail, Phone, Briefcase, Globe } from 'lucide-react';
+  List,
+  BrainCircuit, 
+  Lightbulb, 
+  Package, 
+  Layers, 
+  MapPin, 
+  User, 
+  Mail, 
+  Phone, 
+  Briefcase, 
+  Globe,
+  Search,
+  Calendar,
+  FileText,
+  ChevronDown,
+  ChevronUp,
+  X,
+  LayoutGrid
+} from 'lucide-react';
 import { Area, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, ScatterChart, Scatter, ZAxis } from 'recharts';
 
 interface EnterpriseProfilePageProps {
@@ -116,6 +133,17 @@ const getDomainStyles = (domain: string) => {
 };
 
 export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ enterprise, onBack, onOpenAiActionPlan }) => {
+  const [patentSearch, setPatentSearch] = useState('');
+  const [patentViewMode, setPatentViewMode] = useState<'card' | 'table'>('card');
+  const [patentPage, setPatentPage] = useState(1);
+  const [expandedAbstracts, setExpandedAbstracts] = useState<Record<string, boolean>>({});
+
+  const toggleAbstract = (patentNo: string) => {
+    setExpandedAbstracts(prev => ({
+      ...prev,
+      [patentNo]: !prev[patentNo]
+    }));
+  };
   
   const establishedDate = enterprise.establishedDate || "2017-02-24";
   const registeredCapital = enterprise.registeredCapital || "9100 万元人民币";
@@ -152,17 +180,21 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
           <h2 className="text-lg font-black text-slate-900">基本信息</h2>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-8 border-b border-slate-100">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-slate-100">
+          <div className="flex items-start gap-4">
             <div className="w-16 h-16 bg-[#00A1D6] rounded-xl flex items-center justify-center text-white text-xl font-bold shadow-sm shrink-0">
               {logoText}
             </div>
             <div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap">
                 <CopyableText text={enterprise.name}><h1 className="text-2xl font-black text-slate-900">{enterprise.name}</h1></CopyableText>
-                <span className="px-2.5 py-0.5 border border-[#89E198] text-[#34A853] text-[13px] bg-[#E8F8EE] rounded-sm font-medium">
+                <span className="px-2.5 py-0.5 border border-[#89E198] text-[#34A853] text-[13px] bg-[#E8F8EE] rounded-sm font-medium shrink-0">
                   {status}
                 </span>
+                <div className="flex items-center gap-1.5 text-sm text-slate-600 shrink-0">
+                  <span className="text-slate-400">注册地址：</span>
+                  <CopyableText text={address}><span className="text-slate-700 hover:text-blue-700 cursor-pointer font-medium">{address}</span></CopyableText>
+                </div>
               </div>
             </div>
           </div>
@@ -200,27 +232,6 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
             <CopyableText text={legalRep}><span className="text-slate-800">{legalRep}</span></CopyableText>
           </div>
 
-          <div className="flex gap-4 items-center">
-            <span className="text-slate-500 shrink-0 w-24 flex items-center gap-1 whitespace-nowrap">
-              <Phone className="w-3.5 h-3.5 text-blue-500" />公司电话：
-            </span>
-            <CopyableText text={phone}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{phone}</span></CopyableText>
-          </div>
-          
-          <div className="flex gap-4 items-center">
-            <span className="text-slate-500 shrink-0 w-24 flex items-center gap-1 whitespace-nowrap">
-              <Mail className="w-3.5 h-3.5 text-blue-500" />公司邮箱：
-            </span>
-            <CopyableText text={email}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{email}</span></CopyableText>
-          </div>
-
-          <div className="flex gap-4 items-center">
-            <span className="text-slate-500 shrink-0 w-24 flex items-center gap-1 whitespace-nowrap">
-              <Globe className="w-3.5 h-3.5 text-blue-500" />企业网址：
-            </span>
-            <CopyableText text={website}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100 hover:underline cursor-pointer">{website}</span></CopyableText>
-          </div>
-
           <div className="flex gap-4">
             <span className="text-slate-500 shrink-0 w-24">企业简称：</span>
             <CopyableText text={shortName}><span className="text-slate-800">{shortName}</span></CopyableText>
@@ -231,9 +242,57 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
             <CopyableText text={oldName}><span className="text-slate-800">{oldName}</span></CopyableText>
           </div>
 
-          <div className="flex gap-4 md:col-span-1">
-            <span className="text-slate-500 shrink-0 w-24">注册地址：</span>
-            <CopyableText text={address}><span className="text-slate-800">{address}</span></CopyableText>
+          <div className="hidden md:block"></div>
+
+          <div className="flex gap-4 items-center">
+            <span className="text-slate-500 shrink-0 w-24 whitespace-nowrap">
+              公司电话：
+            </span>
+            <CopyableText text={phone}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{phone}</span></CopyableText>
+          </div>
+          
+          <div className="flex gap-4 items-center">
+            <span className="text-slate-500 shrink-0 w-24 whitespace-nowrap">
+              公司邮箱：
+            </span>
+            <CopyableText text={email}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{email}</span></CopyableText>
+          </div>
+
+          <div className="flex gap-4 items-center">
+            <span className="text-slate-500 shrink-0 w-24 whitespace-nowrap">
+              企业网址：
+            </span>
+            <CopyableText text={website}><span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-100 hover:underline cursor-pointer">{website}</span></CopyableText>
+          </div>
+
+          <div className="flex gap-4 items-center md:col-span-3">
+            <span className="text-slate-500 shrink-0 w-24 whitespace-nowrap">
+              主要发明人：
+            </span>
+            <div className="flex flex-wrap items-center gap-3">
+              {enterprise.keyInventors && enterprise.keyInventors.length > 0 ? (
+                enterprise.keyInventors.slice(0, 2).map((inv, idx) => (
+                  <CopyableText key={idx} text={inv.name}>
+                    <span className="text-blue-700 font-bold hover:underline cursor-pointer">
+                      {inv.name}
+                    </span>
+                  </CopyableText>
+                ))
+              ) : (
+                <>
+                  <CopyableText text="卢友文">
+                    <span className="text-blue-700 font-bold hover:underline cursor-pointer">
+                      卢友文
+                    </span>
+                  </CopyableText>
+                  <CopyableText text="陈金柱">
+                    <span className="text-blue-700 font-bold hover:underline cursor-pointer">
+                      陈金柱
+                    </span>
+                  </CopyableText>
+                </>
+              )}
+            </div>
           </div>
 
           <div className="flex gap-4 md:col-span-3">
@@ -250,7 +309,7 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
             <span className="w-1 h-4 bg-blue-600 rounded-sm"></span>
             <span className="w-1 h-4 bg-blue-400 rounded-sm transform translate-x-1 rotate-12 -ml-2"></span>
           </div>
-          <h2 className="text-lg font-black text-slate-900 ml-1">知识产权概览</h2>
+          <h2 className="text-lg font-black text-slate-900 ml-1">知识产权全景</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
@@ -347,80 +406,291 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
           </div>
         </div>
       </div>
-      {/* 企业相似专利与主要发明人 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden flex flex-col h-full">
-          <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-2 shrink-0">
-            <Lightbulb className="w-5 h-5 text-amber-500" />
-            <h2 className="text-lg font-black text-slate-900">企业相似专利</h2>
-          </div>
-          <div className="p-5 flex-1 flex flex-col gap-3 max-h-[400px] overflow-y-auto">
-            {enterprise.similarPatents && enterprise.similarPatents.length > 0 ? (
-              enterprise.similarPatents.map((p, idx) => (
-                <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:border-amber-300 hover:bg-amber-50/30 transition-all flex flex-col group relative overflow-hidden">
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="flex items-start justify-between mb-2">
-                    <span className="font-mono text-slate-500 text-[11px] bg-white px-2 py-1 rounded shadow-sm border border-slate-100">
-                      <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
-                    </span>
+      {/* 企业相似专利 */}
+      {(() => {
+        const similarPatentsList = enterprise.similarPatents || [];
+        const filteredPatents = similarPatentsList.filter(p => {
+          if (!patentSearch.trim()) return true;
+          const q = patentSearch.toLowerCase().trim();
+          return (
+            p.title?.toLowerCase().includes(q) ||
+            p.patentNo?.toLowerCase().includes(q) ||
+            (p.ipc && p.ipc.toLowerCase().includes(q)) ||
+            (p.abstract && p.abstract.toLowerCase().includes(q))
+          );
+        });
 
-                  </div>
-                  <div className="text-[14px] text-slate-900 font-bold mb-2 leading-snug">
-                    {p.title}
-                  </div>
-                  {p.techOverlapDescription && (
-                    <div className="mt-1 text-[12px] text-slate-600 leading-relaxed bg-white p-2.5 rounded-lg border border-slate-100">
-                      <span className="font-bold text-slate-700 mr-1">摘要:</span>
-                      {p.techOverlapDescription}
-                    </div>
-                  )}
-                </div>
-              ))
-            ) : (
-               <div className="flex-1 flex items-center justify-center text-slate-400 text-sm">
-                 暂无相似专利数据
-               </div>
-            )}
-          </div>
-        </div>
+        const pageSize = 4;
+        const totalPages = Math.ceil(filteredPatents.length / pageSize) || 1;
+        const safeCurrentPage = Math.min(patentPage, totalPages);
+        const currentPatents = filteredPatents.slice((safeCurrentPage - 1) * pageSize, safeCurrentPage * pageSize);
 
-        <div className="bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden flex flex-col h-full">
-          <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-2 shrink-0">
-            <User className="w-5 h-5 text-indigo-600" />
-            <h2 className="text-lg font-black text-slate-900">主要发明人</h2>
-          </div>
-          <div className="p-5 flex-1 flex flex-col gap-3 max-h-[400px] overflow-y-auto">
-            {enterprise.keyInventors && enterprise.keyInventors.length > 0 ? (
-              enterprise.keyInventors.slice(0, 5).map((inv, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-4 border border-slate-100 rounded-xl bg-white hover:border-indigo-300 hover:shadow-md transition-all group">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200 flex items-center justify-center text-indigo-700 font-black text-lg shrink-0 shadow-inner group-hover:scale-105 transition-transform">
-                    {inv.name.charAt(0)}
-                  </div>
-                  <div className="flex flex-col flex-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-bold text-slate-900 text-[15px]"><CopyableText text={inv.name}>{inv.name}</CopyableText></h4>
-                      <span className="px-2 py-0.5 bg-blue-50 text-blue-700 font-bold text-[11px] rounded-md border border-blue-100">
-                        Top {idx + 1}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[12px] text-slate-500">
-                      <span className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                        相关专利申请量: <span className="font-mono font-bold text-slate-700">{inv.patentCount || Math.floor(Math.random() * 50) + 10}件</span>
-                      </span>
-                    </div>
-                  </div>
+        return (
+          <div className="bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden flex flex-col">
+            {/* Header with Title, Count, Search, View Mode Switcher */}
+            <div className="px-6 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 shrink-0 bg-slate-50/50">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
+                  <Lightbulb className="w-5 h-5 text-amber-600" />
                 </div>
-              ))
-            ) : (
-              <div className="flex-1 flex flex-col items-center justify-center text-slate-400">
-                <Briefcase className="w-10 h-10 mb-3 text-slate-200" />
-                <p className="text-sm">暂未收录具体联系人信息</p>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-black text-slate-900">企业相似专利</h2>
+                    {similarPatentsList.length > 0 && (
+                      <span className="text-xs font-bold px-2.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
+                        共 {similarPatentsList.length} 项高相关专利
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    企业拥有的与本项成果IPC技术领域密切相关的中国有效专利
+                  </p>
+                </div>
               </div>
-            )}
+
+              {/* Action Toolbar: Search & View Switcher */}
+              <div className="flex items-center gap-3 self-end md:self-center">
+                {similarPatentsList.length > 0 && (
+                  <div className="relative w-52 sm:w-64">
+                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={patentSearch}
+                      onChange={(e) => {
+                        setPatentSearch(e.target.value);
+                        setPatentPage(1);
+                      }}
+                      placeholder="搜索专利名称/编号/IPC..."
+                      className="w-full pl-8.5 pr-7 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all text-slate-700 placeholder:text-slate-400"
+                    />
+                    {patentSearch && (
+                      <button
+                        onClick={() => {
+                          setPatentSearch('');
+                          setPatentPage(1);
+                        }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {/* View Switch Buttons */}
+                <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+                  <button
+                    type="button"
+                    onClick={() => setPatentViewMode('card')}
+                    className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${
+                      patentViewMode === 'card'
+                        ? 'bg-white text-slate-900 shadow-2xs font-bold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                    title="卡片视图"
+                  >
+                    <LayoutGrid className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">卡片</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPatentViewMode('table')}
+                    className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${
+                      patentViewMode === 'table'
+                        ? 'bg-white text-slate-900 shadow-2xs font-bold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                    title="表格视图"
+                  >
+                    <List className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">表格</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Body */}
+            <div className="p-6">
+              {similarPatentsList.length === 0 ? (
+                <div className="py-12 flex flex-col items-center justify-center text-slate-400 text-sm">
+                  <FileText className="w-8 h-8 text-slate-300 mb-2" />
+                  <span>暂无相似专利数据</span>
+                </div>
+              ) : filteredPatents.length === 0 ? (
+                <div className="py-12 flex flex-col items-center justify-center text-slate-400 text-sm">
+                  <Search className="w-8 h-8 text-slate-300 mb-2" />
+                  <span>未匹配到符合“{patentSearch}”的相似专利</span>
+                  <button
+                    onClick={() => {
+                      setPatentSearch('');
+                      setPatentPage(1);
+                    }}
+                    className="mt-3 text-xs text-amber-600 hover:underline cursor-pointer"
+                  >
+                    清除搜索条件
+                  </button>
+                </div>
+              ) : patentViewMode === 'card' ? (
+                /* Card Mode */
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {currentPatents.map((p, idx) => {
+                      const isExpanded = !!expandedAbstracts[p.patentNo];
+                      return (
+                        <div
+                          key={idx}
+                          className="bg-slate-50/70 hover:bg-white p-4.5 rounded-xl border border-slate-200 hover:border-amber-300 hover:shadow-md transition-all flex flex-col justify-between group relative overflow-hidden"
+                        >
+                          <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-linear-to-b from-amber-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                          
+                          <div>
+                            {/* Top Meta: Patent No & IPC & Grant Date */}
+                            <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="font-mono text-[11px] font-semibold text-slate-700 bg-white px-2.5 py-1 rounded shadow-2xs border border-slate-200">
+                                  <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
+                                </span>
+                                {p.ipc && (
+                                  <span className="font-mono text-[11px] text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded">
+                                    IPC: {p.ipc}
+                                  </span>
+                                )}
+                              </div>
+                              {p.grantDate && (
+                                <div className="flex items-center gap-1 text-[11px] text-slate-400 shrink-0">
+                                  <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                                  <span>公布/授权日：{p.grantDate}</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Title */}
+                            <div className="text-[14px] text-slate-900 font-bold mb-2.5 leading-snug group-hover:text-blue-700 transition-colors">
+                              {p.title}
+                            </div>
+                          </div>
+
+                          {/* Collapsible Abstract */}
+                          {p.abstract && (
+                            <div className="pt-2 border-t border-slate-200/60 mt-1">
+                              <button
+                                type="button"
+                                onClick={() => toggleAbstract(p.patentNo)}
+                                className="w-full flex items-center justify-between text-[11px] text-slate-500 hover:text-amber-700 py-0.5 font-medium transition-colors cursor-pointer"
+                              >
+                                <span className="flex items-center gap-1">
+                                  <FileText className="w-3.5 h-3.5 text-slate-400" />
+                                  {isExpanded ? '收起技术摘要' : '展开技术摘要'}
+                                </span>
+                                {isExpanded ? (
+                                  <ChevronUp className="w-3.5 h-3.5" />
+                                ) : (
+                                  <ChevronDown className="w-3.5 h-3.5" />
+                                )}
+                              </button>
+                              {isExpanded ? (
+                                <div className="mt-2 text-[11px] text-slate-600 leading-relaxed bg-white p-2.5 rounded-lg border border-slate-200 text-justify animate-in fade-in duration-200">
+                                  <span className="font-bold text-slate-700 mr-1">摘要：</span>
+                                  {p.abstract}
+                                </div>
+                              ) : (
+                                <div className="mt-1 text-[11px] text-slate-500 line-clamp-2 leading-relaxed text-justify">
+                                  {p.abstract}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                /* Table Mode */
+                <div className="overflow-x-auto border border-slate-200 rounded-xl">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold">
+                      <tr>
+                        <th className="py-3 px-3 w-10 text-center">#</th>
+                        <th className="py-3 px-3 w-36">专利号</th>
+                        <th className="py-3 px-4 min-w-[200px]">专利名称</th>
+                        <th className="py-3 px-3 w-28">IPC分类</th>
+                        <th className="py-3 px-3 w-28 whitespace-nowrap">公布/授权日</th>
+                        <th className="py-3 px-4 min-w-[260px]">技术摘要</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 bg-white">
+                      {currentPatents.map((p, idx) => (
+                        <tr key={idx} className="hover:bg-amber-50/20 transition-colors">
+                          <td className="py-3 px-3 text-center font-mono text-slate-400">
+                            {(safeCurrentPage - 1) * pageSize + idx + 1}
+                          </td>
+                          <td className="py-3 px-3 font-mono font-medium text-slate-800 whitespace-nowrap">
+                            <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
+                          </td>
+                          <td className="py-3 px-4 font-bold text-slate-900 leading-snug">
+                            {p.title}
+                          </td>
+                          <td className="py-3 px-3 font-mono text-slate-500 whitespace-nowrap">
+                            {p.ipc || '-'}
+                          </td>
+                          <td className="py-3 px-3 text-slate-500 whitespace-nowrap">
+                            {p.grantDate || '-'}
+                          </td>
+                          <td className="py-3 px-4 text-slate-600 leading-relaxed text-justify">
+                            {p.abstract || '-'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {/* Pagination Bar when multiple patents exist */}
+              {totalPages > 1 && (
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 mt-4 border-t border-slate-100 text-xs">
+                  <span className="text-slate-500">
+                    显示第 {(safeCurrentPage - 1) * pageSize + 1} - {Math.min(safeCurrentPage * pageSize, filteredPatents.length)} 项，共 {filteredPatents.length} 项
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      disabled={safeCurrentPage <= 1}
+                      onClick={() => setPatentPage(p => Math.max(1, p - 1))}
+                      className="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                    >
+                      上一页
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
+                      <button
+                        key={pg}
+                        type="button"
+                        onClick={() => setPatentPage(pg)}
+                        className={`w-7 h-7 rounded text-xs font-bold transition-colors cursor-pointer ${
+                          safeCurrentPage === pg
+                            ? 'bg-amber-500 text-white shadow-2xs'
+                            : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        {pg}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      disabled={safeCurrentPage >= totalPages}
+                      onClick={() => setPatentPage(p => Math.min(totalPages, p + 1))}
+                      className="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                    >
+                      下一页
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
+        );
+      })()}
 
 
       {/* Section 3: 10-year Trend */}
@@ -492,7 +762,7 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {trendData.map((row) => (
+                  {[...trendData].reverse().map((row) => (
                     <tr key={row.year} className="hover:bg-slate-50 transition-colors">
                       <td className="px-4 py-2.5 text-slate-600">{row.year}</td>
                       <td className="px-4 py-2.5 text-blue-600">{row.apply}</td>
@@ -540,7 +810,7 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
                  ))}
                </div>
                
-               {[2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026].map(year => (
+               {[2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017].map(year => (
                  <div key={year} className="flex-1 flex flex-col justify-around items-center py-2 relative group/col">
                    <div className="absolute inset-y-0 w-full max-w-[40px] bg-slate-50/0 group-hover/col:bg-slate-100/50 rounded-lg transition-colors z-0"></div>
                    <div className="absolute -bottom-6 font-mono text-[10px] text-slate-500">{year}</div>

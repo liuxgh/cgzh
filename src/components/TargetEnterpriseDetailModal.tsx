@@ -131,7 +131,7 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
             }`}
           >
             <ShieldCheck className="w-4 h-4 text-blue-600" />
-            <span>【路径一】相似专利对比与技术重叠 ({enterprise.similarPatents?.length || 0})</span>
+            <span>【路径一】企业相似专利 ({enterprise.similarPatents?.length || 0})</span>
           </button>
 
           <button
@@ -198,15 +198,8 @@ export const TargetEnterpriseDetailModal: React.FC<TargetEnterpriseDetailModalPr
                     </div>
 
                     <div className="mt-3 pt-3 border-t border-slate-100 bg-slate-50/70 p-3 rounded-xl">
-                      <span className="text-[11px] font-bold text-slate-700 block mb-1">
-                        技术互补 / 替代对比分析：
-                      </span>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {pat.techOverlapDescription}
-                      </p>
-
                       {/* Direct Patent Drawing Thumbnails */}
-                      <div className="mt-3 pt-2 border-t border-slate-200/80">
+                      <div>
                         <span className="text-[11px] font-bold text-slate-700 block mb-1.5 flex items-center gap-1">
                           <FileText className="w-3.5 h-3.5 text-blue-600" />
                           说明书附图：

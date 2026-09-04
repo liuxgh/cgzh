@@ -7,20 +7,30 @@ interface Props {
 }
 
 const scatterData = [
-  { year: '2017', domain: 'G01N', value: 379 }, { year: '2018', domain: 'G01N', value: 432 }, { year: '2019', domain: 'G01N', value: 504 }, { year: '2020', domain: 'G01N', value: 535 }, { year: '2021', domain: 'G01N', value: 485 }, { year: '2022', domain: 'G01N', value: 295 },
-  { year: '2017', domain: 'G06F', value: 215 }, { year: '2018', domain: 'G06F', value: 312 }, { year: '2019', domain: 'G06F', value: 440 }, { year: '2020', domain: 'G06F', value: 512 }, { year: '2021', domain: 'G06F', value: 531 }, { year: '2022', domain: 'G06F', value: 326 },
-  { year: '2017', domain: 'A61B', value: 251 }, { year: '2018', domain: 'A61B', value: 297 }, { year: '2019', domain: 'A61B', value: 350 }, { year: '2020', domain: 'A61B', value: 406 }, { year: '2021', domain: 'A61B', value: 457 }, { year: '2022', domain: 'A61B', value: 236 },
-  { year: '2017', domain: 'A61M', value: 89 },  { year: '2018', domain: 'A61M', value: 111 }, { year: '2019', domain: 'A61M', value: 153 }, { year: '2020', domain: 'A61M', value: 202 }, { year: '2021', domain: 'A61M', value: 198 }, { year: '2022', domain: 'A61M', value: 115 },
-  { year: '2017', domain: 'A61G', value: 76 },  { year: '2018', domain: 'A61G', value: 92 },  { year: '2019', domain: 'A61G', value: 120 }, { year: '2020', domain: 'A61G', value: 115 }, { year: '2021', domain: 'A61G', value: 105 }, { year: '2022', domain: 'A61G', value: 71 },
-  { year: '2017', domain: 'A61K', value: 167 }, { year: '2018', domain: 'A61K', value: 191 }, { year: '2019', domain: 'A61K', value: 220 }, { year: '2020', domain: 'A61K', value: 174 }, { year: '2021', domain: 'A61K', value: 147 }, { year: '2022', domain: 'A61K', value: 98 },
-  { year: '2017', domain: 'G01V', value: 156 }, { year: '2018', domain: 'G01V', value: 162 }, { year: '2019', domain: 'G01V', value: 152 }, { year: '2020', domain: 'G01V', value: 127 }, { year: '2021', domain: 'G01V', value: 154 }, { year: '2022', domain: 'G01V', value: 104 },
-  { year: '2017', domain: 'A61F', value: 90 },  { year: '2018', domain: 'A61F', value: 104 }, { year: '2019', domain: 'A61F', value: 128 }, { year: '2020', domain: 'A61F', value: 118 }, { year: '2021', domain: 'A61F', value: 119 }, { year: '2022', domain: 'A61F', value: 71 },
-  { year: '2017', domain: 'B60W', value: 65 },  { year: '2018', domain: 'B60W', value: 89 },  { year: '2019', domain: 'B60W', value: 112 }, { year: '2020', domain: 'B60W', value: 145 }, { year: '2021', domain: 'B60W', value: 141 }, { year: '2022', domain: 'B60W', value: 117 },
-  { year: '2017', domain: 'G01M', value: 151 }, { year: '2018', domain: 'G01M', value: 114 }, { year: '2019', domain: 'G01M', value: 131 }, { year: '2020', domain: 'G01M', value: 114 }, { year: '2021', domain: 'G01M', value: 71 },  { year: '2022', domain: 'G01M', value: 38 }
+  // G01N: 测试或分析材料
+  { year: '2017', domain: 'G01N', value: 238 }, { year: '2018', domain: 'G01N', value: 314 }, { year: '2019', domain: 'G01N', value: 303 }, { year: '2020', domain: 'G01N', value: 194 }, { year: '2021', domain: 'G01N', value: 231 }, { year: '2022', domain: 'G01N', value: 221 }, { year: '2023', domain: 'G01N', value: 204 }, { year: '2024', domain: 'G01N', value: 223 }, { year: '2025', domain: 'G01N', value: 165 }, { year: '2026', domain: 'G01N', value: 80 },
+  // G06F: 电数字数据处理
+  { year: '2017', domain: 'G06F', value: 79 },  { year: '2018', domain: 'G06F', value: 79 },  { year: '2019', domain: 'G06F', value: 106 }, { year: '2020', domain: 'G06F', value: 99 },  { year: '2021', domain: 'G06F', value: 133 }, { year: '2022', domain: 'G06F', value: 171 }, { year: '2023', domain: 'G06F', value: 250 }, { year: '2024', domain: 'G06F', value: 318 }, { year: '2025', domain: 'G06F', value: 374 }, { year: '2026', domain: 'G06F', value: 226 },
+  // A61B: 诊断外科与鉴定
+  { year: '2017', domain: 'A61B', value: 105 }, { year: '2018', domain: 'A61B', value: 132 }, { year: '2019', domain: 'A61B', value: 254 }, { year: '2020', domain: 'A61B', value: 228 }, { year: '2021', domain: 'A61B', value: 208 }, { year: '2022', domain: 'A61B', value: 168 }, { year: '2023', domain: 'A61B', value: 231 }, { year: '2024', domain: 'A61B', value: 180 }, { year: '2025', domain: 'A61B', value: 96 },  { year: '2026', domain: 'A61B', value: 40 },
+  // A61M: 介质输入输到体内
+  { year: '2017', domain: 'A61M', value: 62 },  { year: '2018', domain: 'A61M', value: 107 }, { year: '2019', domain: 'A61M', value: 301 }, { year: '2020', domain: 'A61M', value: 265 }, { year: '2021', domain: 'A61M', value: 248 }, { year: '2022', domain: 'A61M', value: 144 }, { year: '2023', domain: 'A61M', value: 244 }, { year: '2024', domain: 'A61M', value: 147 }, { year: '2025', domain: 'A61M', value: 112 }, { year: '2026', domain: 'A61M', value: 55 },
+  // A61G: 残疾人的运输床椅
+  { year: '2017', domain: 'A61G', value: 44 },  { year: '2018', domain: 'A61G', value: 90 },  { year: '2019', domain: 'A61G', value: 198 }, { year: '2020', domain: 'A61G', value: 254 }, { year: '2021', domain: 'A61G', value: 203 }, { year: '2022', domain: 'A61G', value: 118 }, { year: '2023', domain: 'A61G', value: 183 }, { year: '2024', domain: 'A61G', value: 73 },  { year: '2025', domain: 'A61G', value: 62 },  { year: '2026', domain: 'A61G', value: 28 },
+  // A61K: 医用牙科配制品
+  { year: '2017', domain: 'A61K', value: 72 },  { year: '2018', domain: 'A61K', value: 62 },  { year: '2019', domain: 'A61K', value: 65 },  { year: '2020', domain: 'A61K', value: 52 },  { year: '2021', domain: 'A61K', value: 99 },  { year: '2022', domain: 'A61K', value: 65 },  { year: '2023', domain: 'A61K', value: 109 }, { year: '2024', domain: 'A61K', value: 145 }, { year: '2025', domain: 'A61K', value: 186 }, { year: '2026', domain: 'A61K', value: 116 },
+  // G01V: 地球物理重力测量
+  { year: '2017', domain: 'G01V', value: 80 },  { year: '2018', domain: 'G01V', value: 86 },  { year: '2019', domain: 'G01V', value: 112 }, { year: '2020', domain: 'G01V', value: 82 },  { year: '2021', domain: 'G01V', value: 53 },  { year: '2022', domain: 'G01V', value: 83 },  { year: '2023', domain: 'G01V', value: 81 },  { year: '2024', domain: 'G01V', value: 77 },  { year: '2025', domain: 'G01V', value: 142 }, { year: '2026', domain: 'G01V', value: 88 },
+  // A61F: 假体及血管内滤器
+  { year: '2017', domain: 'A61F', value: 36 },  { year: '2018', domain: 'A61F', value: 53 },  { year: '2019', domain: 'A61F', value: 149 }, { year: '2020', domain: 'A61F', value: 149 }, { year: '2021', domain: 'A61F', value: 108 }, { year: '2022', domain: 'A61F', value: 113 }, { year: '2023', domain: 'A61F', value: 102 }, { year: '2024', domain: 'A61F', value: 85 },  { year: '2025', domain: 'A61F', value: 68 },  { year: '2026', domain: 'A61F', value: 32 },
+  // B60W: 车辆控制系统
+  { year: '2017', domain: 'B60W', value: 38 },  { year: '2018', domain: 'B60W', value: 47 },  { year: '2019', domain: 'B60W', value: 66 },  { year: '2020', domain: 'B60W', value: 62 },  { year: '2021', domain: 'B60W', value: 76 },  { year: '2022', domain: 'B60W', value: 60 },  { year: '2023', domain: 'B60W', value: 87 },  { year: '2024', domain: 'B60W', value: 87 },  { year: '2025', domain: 'B60W', value: 122 }, { year: '2026', domain: 'B60W', value: 76 },
+  // G01M: 部件静或动平衡
+  { year: '2017', domain: 'G01M', value: 151 }, { year: '2018', domain: 'G01M', value: 114 }, { year: '2019', domain: 'G01M', value: 131 }, { year: '2020', domain: 'G01M', value: 114 }, { year: '2021', domain: 'G01M', value: 71 },  { year: '2022', domain: 'G01M', value: 38 },  { year: '2023', domain: 'G01M', value: 52 },  { year: '2024', domain: 'G01M', value: 46 },  { year: '2025', domain: 'G01M', value: 35 },  { year: '2026', domain: 'G01M', value: 18 }
 ];
 
 const Y_DOMAINS = ['G01N', 'G06F', 'A61B', 'A61M', 'A61G', 'A61K', 'G01V', 'A61F', 'B60W', 'G01M'];
-const X_YEARS = ['2017', '2018', '2019', '2020', '2021', '2022'];
+const X_YEARS = ['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017'];
 const IPC_DESCRIPTIONS: Record<string, string> = {
   'G01N': '测试或分析材料',
   'G06F': '电数字数据处理',
@@ -66,11 +76,11 @@ export const JluTechAdvantageShowcase: React.FC<Props> = ({ onNavigateToFullMap 
   return (
     <div className="space-y-6 mt-8">
       
-      {/* 1. 知识产权概览 */}
+      {/* 1. 知识产权全景 */}
       <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
         <h3 className="text-xl font-black text-slate-900 flex items-center gap-2 mb-6">
           <Layers className="w-5 h-5 text-blue-600" />
-          知识产权概览 <span className="text-sm font-normal text-slate-500 tracking-wide ml-2">（仅统计中国专利）</span>
+          知识产权全景
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200 border border-slate-100 rounded-2xl overflow-hidden">
