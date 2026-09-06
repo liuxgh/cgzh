@@ -457,7 +457,11 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                     <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <div>
                       <strong className="font-bold">知识产权尽调结论：</strong>
-                      <span>已完成PCT检索与自由实施(FTO)排查，专利权属清晰，不含开源传染组件，支持独占实施与商务转让。</span>
+                      <span>
+                        {tech.type === 'patent'
+                          ? '已完成PCT检索与自由实施(FTO)排查，专利权属清晰，不含开源传染组件，支持独占实施与商务转让。'
+                          : '已完成专有技术秘密确权与查重尽调，成果权属清晰，不含侵权风险，支持技术转让、许可与深度合作开发。'}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -475,7 +479,7 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                 <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
                   <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                     <FileText className="w-4 h-4 text-blue-600" />
-                    专利公开技术说明与保护范围
+                    {tech.type === 'patent' ? '专利公开技术说明与保护范围' : '成果技术说明与研发参数'}
                   </h3>
                   <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
                     {tech.abstract}
@@ -487,7 +491,7 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                   <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                     <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                       <FileText className="w-4 h-4 text-blue-600" />
-                      官方专利说明书附图与结构拓扑
+                      {tech.type === 'patent' ? '官方专利说明书附图与结构拓扑' : '成果设计原理图解与结构拓扑'}
                     </h3>
                     <span className="text-[11px] text-slate-500 font-mono">共 4 幅公开图纸</span>
                   </div>

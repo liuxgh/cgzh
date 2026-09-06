@@ -250,7 +250,7 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
             </div>
             
             <p className="text-sm sm:text-[15px] text-slate-800 leading-relaxed font-semibold">
-              国家专利密集型产品是全国企业在《<span className="text-[#0F52BA] font-bold">国家专利密集型产品备案认定试点平台</span>》上进行备案或认定的专利密集型产品。
+              国家专利密集型产品是通过《<span className="text-[#0F52BA] font-bold">国家专利密集型产品备案认定试点平台</span>》核准备案或认定的专利产品。
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
-  Search, Building2, ChevronLeft, User, FileText, ChevronDown, ChevronUp, Image, 
+  Search, Building2, ChevronLeft, ChevronRight, User, FileText, ChevronDown, ChevronUp, Image, 
   CheckCircle, Loader2, Sparkles, BrainCircuit, ArrowRight, Edit3, X, MapPin, 
   Phone, Mail, Calendar, ShieldCheck, Compass, Navigation, ExternalLink, Award,
   PhoneCall, MessageSquare, Check, HelpCircle, Building
@@ -128,7 +128,7 @@ const JLU_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '一种基于深度学习的多模态特征融合方法及系统',
     no: 'CN202310458921.X',
-    university: '吉林大学人工智能学院',
+    university: '吉林大学',
     universityKey: 'jlu',
     universityBadge: '吉林大学',
     inventor: { name: '王教授' },
@@ -140,10 +140,10 @@ const JLU_RESULTS: SearchResult[] = [
     type: 'knowhow',
     title: '高效能自然语言理解引擎与领域知识图谱构建技术',
     no: 'JLU-TECH-2023-088',
-    university: '吉林大学计算机科学与技术学院',
+    university: '吉林大学',
     universityKey: 'jlu',
     universityBadge: '吉林大学',
-    inventor: { name: '李研究员', title: '知识工程联合实验室主任' },
+    inventor: { name: '李研究员' },
     description: '本技术成果包含一套完整的垂直领域知识图谱自动化构建工具链，以及轻量级的NLU推理引擎。可快速针对特定行业（如医疗、法律、金融）进行知识抽取与推理。',
     details: '技术成熟度：TRL 7（系统原型在真实环境中演示）。已与某大型律所合作建立法律行业知识问答系统，响应时间小于200ms。该技术可作为SaaS服务或私有化部署。'
   },
@@ -152,10 +152,10 @@ const JLU_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '重型商用车电控空气悬架与可变阻尼自适应减振控制系统',
     no: 'CN202310889212.4',
-    university: '吉林大学车辆工程学院',
+    university: '吉林大学',
     universityKey: 'jlu',
     universityBadge: '吉林大学',
-    inventor: { name: '陈教授', title: '长江学者 / 汽车底盘国家重点实验室' },
+    inventor: { name: '陈教授' },
     description: '针对商用车复杂路况工况，发明了高动态响应电液比例控制阻尼阀及自适应高度平顺性调节算法，大幅降低车身纵向俯仰与侧倾振动幅度，有效延长车架疲劳寿命。',
     details: '技术成熟度：TRL 7（装车实测验证）。已在一汽解放重卡车型上完成寒区与山区5万公里实车路试验证，现已具备规模化量产配套实施条件。'
   },
@@ -164,10 +164,10 @@ const JLU_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '聚醚醚酮(PEEK)特种工程塑料分子链结构设计与超韧耐高温改性技术',
     no: 'CN202310334512.1',
-    university: '吉林大学特种工程塑料教育部重点实验室',
+    university: '吉林大学',
     universityKey: 'jlu',
     universityBadge: '吉林大学',
-    inventor: { name: '张教授', title: '国家杰出青年基金获得者' },
+    inventor: { name: '张教授' },
     description: '突破了高纯度PEEK单体合成与连续聚合技术瓶颈，通过芳香杂环刚性链调控与纳米晶须复合改性，热变形温度达315℃，抗冲击韧性提升45%，适用于航天与高端医疗植入物。',
     details: '技术成熟度：TRL 6（工程中试放大阶段）。已建成百吨级中试示范线，打破国外垄断，具备全套产业化配方与工艺包。'
   },
@@ -176,12 +176,240 @@ const JLU_RESULTS: SearchResult[] = [
     type: 'knowhow',
     title: '地质超深钻探智能钻井姿态在线监测与自适应减振控制装备',
     no: 'JLU-TECH-2023-145',
-    university: '吉林大学建设工程学院/极地深部钻探实验室',
+    university: '吉林大学',
     universityKey: 'jlu',
     universityBadge: '吉林大学',
-    inventor: { name: '孙总工', title: '国家深部探测重大专项首席' },
+    inventor: { name: '孙总工' },
     description: '针对万米深地与极地恶劣钻进工况，研制出耐高温高压（230℃/180MPa）随钻姿态测量模组及主动阻尼液力减振短节，保障深孔垂直度与钻头寿命。',
     details: '技术成熟度：TRL 8（重大工程实测应用）。已在松辽盆地“地壳一号”及塔里木万米科探井成功示范应用，性能稳定可靠。'
+  },
+  {
+    id: 'jlu-res-6',
+    type: 'patent',
+    title: '基于仿生表面微织构的汽车制动盘耐磨降噪一体化制造工艺',
+    no: 'CN202310921443.2',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '高教授' },
+    description: '模拟穿山甲鳞片与沙漠沙蜥体表非光滑减磨机理，采用飞秒激光加工技术在灰铸铁制动盘表面微加工特定凹坑阵列，摩擦异响衰减18dB，制动盘使用寿命提高50%。',
+    details: '技术成熟度：TRL 7（台架及实车测试）。已与国内头部刹车制动零部件企业完成台架10万次循环刹车耐久工况试验。'
+  },
+  {
+    id: 'jlu-res-7',
+    type: 'knowhow',
+    title: '特种耐候聚酰亚胺(PI)超薄绝缘薄膜连续化聚合与拉伸定型技术',
+    no: 'JLU-TECH-2023-092',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '钱研究员' },
+    description: '开发了含氟联苯型二酐单体纯化与双向拉伸取向技术，薄膜厚度均匀性控制在±0.3μm以内，耐热分解温度超过560℃，击穿场强达320kV/mm，打破进口垄断。',
+    details: '技术成熟度：TRL 6（产线试产阶段）。中试线宽幅600mm卷对卷样品已通过5G高频印制电路板(FPC)头部客户验证。'
+  },
+  {
+    id: 'jlu-res-8',
+    type: 'patent',
+    title: '新能源车用高功率密度轮毂电机多目标电磁热固耦合拓扑优化设计',
+    no: 'CN202310712534.6',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '刘教授' },
+    description: '针对轮毂电机非簧载质量大与散热困难的痛点，提出定子铁芯轻量化骨架与转子直冷油道协同设计方案，峰值转矩密度达26N·m/kg，持续工作工况温升降低28℃。',
+    details: '技术成熟度：TRL 6（台架样品测试）。电机总成通过连续48小时全负荷运转考核，综合电驱系统效率提升至96.2%。'
+  },
+  {
+    id: 'jlu-res-9',
+    type: 'knowhow',
+    title: '兆瓦级电解水制氢高活性非贵金属析氢催化电极研制及中试包',
+    no: 'JLU-TECH-2023-118',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '赵教授' },
+    description: '采用过渡金属磷硫化物原位纳米阵列自组装生长工艺，在泡沫镍基底上构建高比表面积多孔多级催化电极，大电流密度（1000mA/cm²）下过电位仅为132mV。',
+    details: '技术成熟度：TRL 7（标方电解槽组装验证）。已在吉林西部风光制氢示范项目中完成500小时连续电解并网运行测试。'
+  },
+  {
+    id: 'jlu-res-10',
+    type: 'patent',
+    title: '大尺寸高质量金刚石功能晶体高温高压合成与超精密线切割技术',
+    no: 'CN202310651298.1',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '邹教授' },
+    description: '依托超硬材料国家重点实验室，利用六面顶压机触媒法生长出英寸级单晶金刚石，结合纳秒激光切片与化学机械抛光(CMP)，表面粗糙度Ra小于0.5nm。',
+    details: '技术成熟度：TRL 8（成熟量产工艺包）。广泛适用于高功率半导体热沉片、第四代超宽禁带半导体衬底材料。'
+  },
+  {
+    id: 'jlu-res-11',
+    type: 'patent',
+    title: '严寒工况重型商用车全电控线控制动系统(EMB)容错控制策略',
+    no: 'CN202310892014.X',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '姜研究员' },
+    description: '发明了无气源纯机电制动执行器动态响应死区补偿算法，在-40℃极低温下卡钳夹紧力响应时间小于90ms，具备双ECU冗余热备与单轮制动失效时侧滑抑制能力。',
+    details: '技术成熟度：TRL 7（黑河冬季寒区实车路试）。已通过国家重型商用车检验中心严苛制动安全性能认证。'
+  },
+  {
+    id: 'jlu-res-12',
+    type: 'knowhow',
+    title: '仿生土壤动物非光滑耐磨脱附曲面铲斗及智能激光熔覆工艺',
+    no: 'JLU-TECH-2023-162',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '韩教授' },
+    description: '结合蜣螂体表脱附微形貌与激光熔覆高熵合金涂层，使工程机械挖掘机铲斗在黏湿黑土与泥岩工况下粘附阻力降低35%，斗齿耐磨寿命延长2.4倍。',
+    details: '技术成熟度：TRL 8（矿山与土方实测）。已在一重集团、三一重工等主机厂大型矿用挖掘机铲斗开展批量配套示范。'
+  },
+  {
+    id: 'jlu-res-13',
+    type: 'patent',
+    title: '面向黑土地保护性耕作的宽幅气吹式高速精量玉米播种机单体',
+    no: 'CN202310558913.3',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '贾教授' },
+    description: '发明了导种管负压流场主动稳种与强秸秆覆盖地免耕破茬防堵切盘，作业速度在12-16km/h时粒距合格指数达94%以上，大幅提升黑土地免耕播种作业效率。',
+    details: '技术成熟度：TRL 8（农机大面积田间作业示范）。在吉林省梨树县黑土地现代农业示范区连续两年进行万亩作业实测。'
+  },
+  {
+    id: 'jlu-res-14',
+    type: 'patent',
+    title: '全固态聚合物电解质薄膜微结构调控与界面原位锂枝晶自愈合技术',
+    no: 'CN202310493012.7',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '郑教授' },
+    description: '设计了交联刚柔共济交替网络结构聚合物电解质，室温离子电导率达1.8×10⁻³ S/cm，电化学窗口拓宽至4.9V，实现对高电压三元正极与超薄金属锂负极的稳定界面兼容。',
+    details: '技术成熟度：TRL 6（软包电芯中试）。10Ah级固态锂电池在针刺、200℃热箱测试中无起火无冒烟，循环800周容量保持率89%。'
+  },
+  {
+    id: 'jlu-res-15',
+    type: 'patent',
+    title: '复杂地质构造万米科学钻探随钻声波测井与井眼安全预警系统',
+    no: 'CN202310781290.4',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '冯总工' },
+    description: '突破特种耐高温压电陶瓷换能器材料与随钻微弱声波信号高保真采集，实现泥浆脉冲在高温高压环境下对地层裂隙与卡钻隐患的毫秒级在线预警。',
+    details: '技术成熟度：TRL 8（油田实井应用）。在大庆油田古龙页岩油及新疆塔里木超深层油气勘探井中成功部署应用。'
+  },
+  {
+    id: 'jlu-res-16',
+    type: 'knowhow',
+    title: '新型多肽类抗肿瘤靶向免疫抑制剂高效微生物发酵表达纯化工艺',
+    no: 'JLU-TECH-2023-176',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '郭教授' },
+    description: '通过毕赤酵母工程菌高密度发酵代谢流改造，重组多肽分泌表达量达到6.2g/L，研发的三步层析纯化工艺使最终纯度超过99.2%，内毒素残留低于0.05EU/mg。',
+    details: '技术成熟度：TRL 6（百升发酵罐中试工艺包）。已完成临床前药效学及初步安全性评价，具备GMP中试车间转移条件。'
+  },
+  {
+    id: 'jlu-res-17',
+    type: 'patent',
+    title: '智能座舱视线追踪与驾驶员疲劳状态端侧毫秒级多任务卷积神经网络',
+    no: 'CN202310619022.1',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '吴副教授' },
+    description: '针对强逆光、佩戴墨镜等复杂乘车舱内光照条件，开发轻量化瞳孔中心角膜反射与微眨眼时序模型，在车载车规级DSP芯片上运算耗时小于8ms，识别准确率98.6%。',
+    details: '技术成熟度：TRL 7（车规级软硬件联调）。已在自主品牌主流乘用车智能座舱平台完成实车实景测试。'
+  },
+  {
+    id: 'jlu-res-18',
+    type: 'knowhow',
+    title: '汽车高强钢热气胀成形精密模具与变温控冷却集成工艺',
+    no: 'JLU-TECH-2023-189',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '董教授' },
+    description: '针对1500-2000MPa热成形超高强钢管件复杂封闭截面制造，开发出多段高压气体自适应内胀与模内差温淬火工艺包，构件尺寸公差控制在±0.25mm以内。',
+    details: '技术成熟度：TRL 7（零部件自动化生产线示范）。为一汽红旗多款车型A柱及门槛防撞梁实现轻量化减重18%。'
+  },
+  {
+    id: 'jlu-res-19',
+    type: 'patent',
+    title: '基于微流控器官芯片的体外药物代谢动力学高通量筛选评价平台',
+    no: 'CN202310398125.8',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '潘教授' },
+    description: '在厘米级微流控硅胶芯片内共培养人原代肝实质细胞与肾近端小管上皮细胞，模拟活体多器官级联代谢过程，药物体外清除率预测与人体临床相关性达91%。',
+    details: '技术成熟度：TRL 6（自动化仪器原型）。已供多家知名药企用于新化学实体(NCE)先导化合物的早期成药性快速筛查。'
+  },
+  {
+    id: 'jlu-res-20',
+    type: 'knowhow',
+    title: '高频高速覆铜板用低介电常数热固性聚苯醚树脂改性配方',
+    no: 'JLU-TECH-2023-205',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '陆研究员' },
+    description: '通过对低分子量乙烯基封端聚苯醚(PPO)实施嵌段共聚交联改性，在10GHz高频下介电常数Dk≤2.45，介质损耗角正切Df≤0.0018，具备优异的耐热剥离强度。',
+    details: '技术成熟度：TRL 7（百公斤级配方工艺转让）。已通过电子级玻纤布浸胶与热压覆铜板小批量试制。'
+  },
+  {
+    id: 'jlu-res-21',
+    type: 'patent',
+    title: '超大型商用车驾驶室液压衬套主动隔振器与振动自适应对消算法',
+    no: 'CN202310512998.7',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '马教授' },
+    description: '将电磁惯性式执行器与流体惯性液压悬置集成于一体，开发基于Filtered-X LMS滤波的主动防振算法，在柴油机怠速及恶劣路面低频共振工况下，驾驶员座椅振动降低60%。',
+    details: '技术成熟度：TRL 7（装车实测验证）。有效改善长途重卡驾驶员职业腰肌劳损与乘坐舒适性指标。'
+  },
+  {
+    id: 'jlu-res-22',
+    type: 'patent',
+    title: '极寒地区大型风电机组叶片智能电热融冰涂层与微波除冰协同控制装备',
+    no: 'CN202310733819.5',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '崔教授' },
+    description: '利用石墨烯/碳纳米管导电高分子超疏水复合涂层作为面状发热体，结合叶片内部微波加热共振除冰，在-35℃强结冰气象下除冰耗能降低40%，保障冬季风电平稳满发。',
+    details: '技术成熟度：TRL 7（风电场叶片现地测试）。已在吉林松原、白城百万千瓦级风电基地完成整个冰雪季的挂机考核。'
+  },
+  {
+    id: 'jlu-res-23',
+    type: 'knowhow',
+    title: '宽温域高倍率磷酸铁锂车用动力电池低温自加热脉冲内阻平衡控制',
+    no: 'JLU-TECH-2023-221',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '严教授' },
+    description: '在不增加车外加热膜与附加硬件的前提下，利用电机绕组逆变高频脉冲电流驱动电芯内部离子极化自发热，在-30℃环境下实现每分钟升温4-6℃，电池充放电功率恢复90%。',
+    details: '技术成熟度：TRL 7（整车BMS软件量产升级包）。已在一汽红旗新能源车型完成冬季极寒标定验证。'
+  },
+  {
+    id: 'jlu-res-24',
+    type: 'patent',
+    title: '智能协作机器人关节轻量化高刚度双摆线针轮减速器与抗冲击结构',
+    no: 'CN202310845910.3',
+    university: '吉林大学',
+    universityKey: 'jlu',
+    universityBadge: '吉林大学',
+    inventor: { name: '袁研究员' },
+    description: '提出新型双偏心齿形修形曲线与高承载双排滚子一体化轴承支承构型，减速器背隙小于1弧分，扭转刚度较同尺寸谐波减速器提升80%，抗过载瞬态冲击能力翻倍。',
+    details: '技术成熟度：TRL 6（工程样机寿命测试）。累计通过12000小时疲劳运转台架测试，定位精度无衰减。'
   }
 ];
 
@@ -192,10 +420,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '重型商用车电控空气悬架与可变阻尼自适应减振控制系统',
     no: 'CN202310889212.4',
-    university: '吉林大学车辆工程学院',
+    university: '吉林大学',
     universityKey: 'jlu',
     universityBadge: '吉林大学',
-    inventor: { name: '陈教授', title: '汽车底盘国家重点实验室' },
+    inventor: { name: '陈教授' },
     description: '针对商用车复杂路况工况，发明了高动态响应电液比例控制阻尼阀及自适应高度平顺性调节算法，大幅降低车身纵向俯仰与侧倾振动幅度，有效延长车架疲劳寿命。',
     details: '技术成熟度：TRL 7（装车实测验证）。已在一汽解放重卡车型上完成寒区与山区5万公里实车路试验证，现已具备规模化量产配套实施条件。'
   },
@@ -204,10 +432,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '高比能全固态锂电池微结构电极与固态电解质界面复合技术',
     no: 'CN202310678912.8',
-    university: '清华大学材料学院',
+    university: '清华大学',
     universityKey: 'thu',
     universityBadge: '清华大学',
-    inventor: { name: '林教授', title: '新能源材料与器件研究所' },
+    inventor: { name: '林教授' },
     description: '提出新型硫化物/聚合物原位固化复合电解质，界面阻抗降低70%，单体电芯能量密度突破420Wh/kg，通过针刺与150℃热箱严苛安全测试。',
     details: '技术成熟度：TRL 6（A样电芯实测）。在储能与高端动力电池领域已与国内头部整车厂展开联合研发测试。'
   },
@@ -216,10 +444,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'knowhow',
     title: '超低延时高可靠车路云协同感知边缘计算模组及融合算法',
     no: 'SEU-TECH-2023-112',
-    university: '东南大学信息科学与工程学院',
+    university: '东南大学',
     universityKey: 'seu',
     universityBadge: '东南大学',
-    inventor: { name: '赵教授', title: '未来交通协同创新中心' },
+    inventor: { name: '赵教授' },
     description: '自研轻量化车载端侧AI边缘感知一体机，支持多路激光雷达与4K视频纳秒级时钟同步，协同感知端到端延迟控制在12ms以内。',
     details: '技术成熟度：TRL 7（车路协同示范区规模部署）。已在江苏、浙江多个国家级车联网先导区实现规模化路侧部署。'
   },
@@ -228,10 +456,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '一种基于深度学习的多模态特征融合方法及系统',
     no: 'CN202310458921.X',
-    university: '吉林大学人工智能学院',
+    university: '吉林大学',
     universityKey: 'jlu',
     universityBadge: '吉林大学',
-    inventor: { name: '王教授', title: '人工智能学院副院长' },
+    inventor: { name: '王教授' },
     description: '该发明提出了一种新颖的多模态特征融合架构，有效解决了异构数据在联合表示学习中的语义对齐问题。在跨模态检索任务中准确率提升了15%以上。',
     details: '技术成熟度：TRL 5（实验室验证阶段）。已在多模态医疗影像辅助诊断、智能工业缺陷检测等场景进行初步验证。'
   },
@@ -240,10 +468,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '耐极寒超低温特种润滑耐磨涂层与航空级精密减速器',
     no: 'CN202310542318.5',
-    university: '哈尔滨工业大学机器人技术与系统全国重点实验室',
+    university: '哈尔滨工业大学',
     universityKey: 'hit',
     universityBadge: '哈尔滨工业大学',
-    inventor: { name: '刘研究员', title: '特种机器人传动技术团队' },
+    inventor: { name: '刘研究员' },
     description: '开发出-60℃极寒工况下自润滑耐磨纳米复合涂层，配套自研高精度谐波/RV减速器，在低温严苛环境下无卡死、寿命提升3倍。',
     details: '技术成熟度：TRL 7（极地科考装备与极寒机械验证）。已配套极地科考特种巡检装备。'
   },
@@ -252,10 +480,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'knowhow',
     title: '面向智能制造的高精度工业视觉缺陷实时在线检测系统',
     no: 'ZJU-TECH-2023-045',
-    university: '浙江大学控制科学与工程学院',
+    university: '浙江大学',
     universityKey: 'zju',
     universityBadge: '浙江大学',
-    inventor: { name: '郑教授', title: '智能系统与控制研究所' },
+    inventor: { name: '郑教授' },
     description: '集成了多光谱成像与亚像素级深度边缘检测网络，对金属冲压件微裂纹、锂电隔膜划痕实现99.8%检出率，节拍时间小于30ms。',
     details: '技术成熟度：TRL 8（产线规模量产部署）。已在长三角多家汽车冲压与新能源电池上市企业产线落地运行。'
   },
@@ -264,10 +492,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'patent',
     title: '大功率燃料电池电堆金属双极板超薄精密成形与表面改性技术',
     no: 'CN202310992314.1',
-    university: '上海交通大学机械与动力工程学院',
+    university: '上海交通大学',
     universityKey: 'sjtu',
     universityBadge: '上海交通大学',
-    inventor: { name: '严教授', title: '薄板结构制造研究所' },
+    inventor: { name: '严教授' },
     description: '突破0.075mm超薄钛/不锈钢板微流道超塑性微胀形与高耐蚀非晶碳镀层技术，接触电阻低于2.5mΩ·cm²，电堆功率密度超4.8kW/L。',
     details: '技术成熟度：TRL 7（车规级实测）。已通过第三方车规级5000小时耐久性考核，形成完备模具设计规范。'
   },
@@ -276,10 +504,10 @@ const ALL_UNIVERSITIES_RESULTS: SearchResult[] = [
     type: 'knowhow',
     title: '复杂水工环境下耐腐蚀高强混凝土及裂缝自修复注浆材料',
     no: 'HHU-TECH-2023-019',
-    university: '河海大学水利水电学院',
+    university: '河海大学',
     universityKey: 'hhu',
     universityBadge: '河海大学',
-    inventor: { name: '陆教授', title: '水利工程防灾减灾中心' },
+    inventor: { name: '陆教授' },
     description: '结合微生物矿化自愈合微胶囊与超高性能水泥基复合材料，在水下0.3mm微裂缝可在14天内完成自主矿化封堵，抗氯离子渗透提升5倍。',
     details: '技术成熟度：TRL 7（大型水利工程应用）。已在沿海船闸与引水工程隧道衬砌修复中成功示范。'
   }
@@ -542,6 +770,20 @@ export const TechSearchHub: React.FC<Props> = ({
   const displayedResults = (!isUniversityMode && selectedUniFilter !== 'all')
     ? searchResults.filter(r => r.universityKey === selectedUniFilter)
     : searchResults;
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 6;
+  const totalPages = Math.max(1, Math.ceil(displayedResults.length / itemsPerPage));
+  const paginatedResults = displayedResults.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // Reset pagination when filter, scope or query changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedUniFilter, universityScope, currentQuery]);
   
   // Selected City / Regional Tech Transfer Center (吉林大学)
   const [selectedCityKey, setSelectedCityKey] = useState<string>('changchun');
@@ -1138,92 +1380,69 @@ export const TechSearchHub: React.FC<Props> = ({
                   </div>
 
                   {/* Content Layout */}
-                  <div className="mt-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                    {/* Left & Center: Real Contact Info & Functions */}
-                    <div className="lg:col-span-8 space-y-3">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-600">
-                        <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                          <Phone className="w-4 h-4 text-blue-600 shrink-0" />
-                          <span className="truncate">
-                            转化专线: <strong className="text-slate-900 font-mono font-bold">{currentCenter.techTransferPhone}</strong>
-                          </span>
-                          <button
-                            onClick={() => handleCopyText(currentCenter.techTransferPhone, '成果转化专线')}
-                            className="ml-auto text-[11px] text-blue-600 font-semibold hover:underline cursor-pointer"
-                          >
-                            复制
-                          </button>
-                        </div>
-
-                        <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                          <PhoneCall className="w-4 h-4 text-emerald-600 shrink-0" />
-                          <span className="truncate">
-                            总机/合作: <strong className="text-slate-900 font-mono font-bold">{currentCenter.mainPhone}</strong>
-                          </span>
-                          <button
-                            onClick={() => handleCopyText(currentCenter.mainPhone, '办公电话')}
-                            className="ml-auto text-[11px] text-blue-600 font-semibold hover:underline cursor-pointer"
-                          >
-                            复制
-                          </button>
-                        </div>
-
-                        <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                          <Mail className="w-4 h-4 text-indigo-600 shrink-0" />
-                          <span className="truncate">
-                            受理邮箱: <strong className="text-slate-900 font-mono">{currentCenter.email}</strong>
-                          </span>
-                          <button
-                            onClick={() => handleCopyText(currentCenter.email, '受理邮箱')}
-                            className="ml-auto text-[11px] text-blue-600 font-semibold hover:underline cursor-pointer"
-                          >
-                            复制
-                          </button>
-                        </div>
-
-                        <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                          <Building className="w-4 h-4 text-amber-600 shrink-0" />
-                          <span className="truncate">
-                            对接科室: <strong className="text-slate-900">{currentCenter.department}</strong>
-                          </span>
-                        </div>
+                  <div className="mt-4 space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs text-slate-600">
+                      <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <Phone className="w-4 h-4 text-blue-600 shrink-0" />
+                        <span className="truncate">
+                          转化专线: <strong className="text-slate-900 font-mono font-bold">{currentCenter.techTransferPhone}</strong>
+                        </span>
+                        <button
+                          onClick={() => handleCopyText(currentCenter.techTransferPhone, '成果转化专线')}
+                          className="ml-auto text-[11px] text-blue-600 font-semibold hover:underline cursor-pointer"
+                        >
+                          复制
+                        </button>
                       </div>
 
-                      <div className="flex items-start gap-2 text-xs text-slate-500 bg-slate-50/70 p-2.5 rounded-xl border border-slate-100">
-                        <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+                      <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <PhoneCall className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span className="truncate">
+                          总机/合作: <strong className="text-slate-900 font-mono font-bold">{currentCenter.mainPhone}</strong>
+                        </span>
+                        <button
+                          onClick={() => handleCopyText(currentCenter.mainPhone, '办公电话')}
+                          className="ml-auto text-[11px] text-blue-600 font-semibold hover:underline cursor-pointer"
+                        >
+                          复制
+                        </button>
+                      </div>
+
+                      <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <Mail className="w-4 h-4 text-indigo-600 shrink-0" />
+                        <span className="truncate">
+                          受理邮箱: <strong className="text-slate-900 font-mono">{currentCenter.email}</strong>
+                        </span>
+                        <button
+                          onClick={() => handleCopyText(currentCenter.email, '受理邮箱')}
+                          className="ml-auto text-[11px] text-blue-600 font-semibold hover:underline cursor-pointer"
+                        >
+                          复制
+                        </button>
+                      </div>
+
+                      <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <Building className="w-4 h-4 text-amber-600 shrink-0" />
+                        <span className="truncate">
+                          对接科室: <strong className="text-slate-900">{currentCenter.department}</strong>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500 bg-slate-50/70 p-2.5 rounded-xl border border-slate-100">
+                      <div className="flex items-start sm:items-center gap-2">
+                        <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5 sm:mt-0" />
                         <span><strong>办公地址：</strong>{currentCenter.address}</span>
                       </div>
 
                       {/* Service Tags */}
-                      <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                      <div className="flex flex-wrap items-center gap-1.5">
                         <span className="text-[11px] text-slate-400 font-medium">支持通道：</span>
                         {currentCenter.serviceTags.map((tag, idx) => (
                           <span key={idx} className="text-[11px] bg-blue-50/70 text-blue-700 px-2 py-0.5 rounded-md border border-blue-100 font-medium">
                             {tag}
                           </span>
                         ))}
-                      </div>
-                    </div>
-
-                    {/* Right Action Section */}
-                    <div className="lg:col-span-4 flex flex-col justify-center space-y-3 bg-slate-50/80 p-4 rounded-xl border border-slate-200/60">
-                      <button
-                        id="btn-book-transfer-center"
-                        onClick={() => handleOpenBooking()}
-                        className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                      >
-                        <Calendar className="w-4 h-4" /> 一键预约吉大经纪人对接
-                      </button>
-
-                      <button
-                        onClick={() => handleCopyText(currentCenter.techTransferPhone, '转化专线')}
-                        className="w-full py-2 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs rounded-xl border border-slate-200 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                      >
-                        <Phone className="w-3.5 h-3.5 text-slate-500" /> 复制转化直通电话
-                      </button>
-
-                      <div className="text-[11px] text-slate-500 text-center leading-tight">
-                        吉大官方直通 • 闭门答辩 • 中试验证 • 快速签约
                       </div>
                     </div>
                   </div>
@@ -1274,7 +1493,7 @@ export const TechSearchHub: React.FC<Props> = ({
                   </div>
                 )}
               
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div id="search-results-section" className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 scroll-mt-6">
                   <div>
                     <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
                       <Search className="w-6 h-6 text-[#0F52BA]" /> 
@@ -1331,7 +1550,7 @@ export const TechSearchHub: React.FC<Props> = ({
                     <div className="py-12 text-center text-slate-500">
                       暂无匹配的技术成果，请尝试调整需求描述或高校筛选
                     </div>
-                  ) : displayedResults.map((res) => (
+                  ) : paginatedResults.map((res) => (
                     <motion.div 
                       key={res.id}
                       initial={{ opacity: 0, y: 16 }}
@@ -1382,12 +1601,6 @@ export const TechSearchHub: React.FC<Props> = ({
                           >
                             {res.title}
                           </h3>
-                          
-                          <div className="text-sm text-slate-500 mt-3 flex flex-wrap items-center gap-4">
-                            <span className="flex items-center gap-1.5 font-medium">
-                              <Building2 className="w-4 h-4 text-slate-400" /> {res.university}
-                            </span>
-                          </div>
                         </div>
                         
                         <div className="flex items-center gap-2 shrink-0">
@@ -1402,12 +1615,12 @@ export const TechSearchHub: React.FC<Props> = ({
                             </button>
                           )}
                           <button 
-                            onClick={() => handleOpenBooking(res)}
-                            className={`px-5 py-2.5 text-white font-bold rounded-xl text-sm shadow-xs transition-all hover:shadow-md flex items-center gap-2 cursor-pointer ${res.type === 'patent' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-emerald-600 hover:bg-emerald-700'}`}
+                            onClick={() => setSelectedTechForDetail(mapSearchResultToTechDetail(res))}
+                            className="px-4 py-2.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white font-bold rounded-xl text-xs shadow-xs transition-all hover:shadow-md flex items-center gap-1.5 cursor-pointer"
                           >
-                            <Calendar className="w-4 h-4" /> 
-                            {isUniversityMode ? '预约中心对接' : '预约产学研对接'} 
-                            <ArrowRight className="w-4 h-4" />
+                            <FileText className="w-3.5 h-3.5 text-white" />
+                            {res.type === 'patent' ? '查看专利详情与AI建议' : '查看成果详情与AI建议'}
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       </div>
@@ -1416,25 +1629,73 @@ export const TechSearchHub: React.FC<Props> = ({
                         {res.description}
                       </p>
                       
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-slate-200/60">
+                      <div className="flex items-center justify-between gap-4 pt-4 border-t border-slate-200/60">
                         <div className="flex items-center gap-2">
                           <div className="font-bold text-slate-700 text-sm flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-lg">
-                            <User className="w-4 h-4 text-slate-400" /> {res.inventor.name} <span className="text-slate-400 font-normal">|</span> <span className="text-slate-500 font-normal">{res.inventor.title}</span>
+                            <User className="w-4 h-4 text-slate-400" /> {res.inventor.name}
                           </div>
                         </div>
-                        
-                        <button 
-                          onClick={() => setSelectedTechForDetail(mapSearchResultToTechDetail(res))}
-                          className="text-sm font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100/80 flex items-center gap-1.5 transition-colors px-4 py-2 rounded-xl border border-blue-200 cursor-pointer shadow-xs hover:shadow-sm"
-                        >
-                          <FileText className="w-4 h-4 text-blue-600" />
-                          查看专利详情与AI建议
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
                       </div>
                     </motion.div>
                   ))}
                 </div>
+
+                {/* 分页控制栏 */}
+                {displayedResults.length > itemsPerPage && (
+                  <div className="mt-8 pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="text-xs text-slate-500 font-medium">
+                      共 <span className="font-bold text-slate-800">{displayedResults.length}</span> 项匹配成果，
+                      当前第 <span className="font-bold text-blue-600">{currentPage}</span> / {totalPages} 页
+                      （每页展示 {itemsPerPage} 项）
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => {
+                          setCurrentPage(p => Math.max(1, p - 1));
+                          const el = document.getElementById('search-results-section');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        disabled={currentPage === 1}
+                        className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-100 disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-all flex items-center gap-1 cursor-pointer shadow-2xs"
+                      >
+                        <ChevronLeft className="w-4 h-4" /> 上一页
+                      </button>
+
+                      <div className="flex items-center gap-1.5">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                          <button
+                            key={pageNum}
+                            onClick={() => {
+                              setCurrentPage(pageNum);
+                              const el = document.getElementById('search-results-section');
+                              if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className={`min-w-[34px] h-[34px] px-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center ${
+                              currentPage === pageNum
+                                ? 'bg-blue-600 text-white shadow-xs'
+                                : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          setCurrentPage(p => Math.min(totalPages, p + 1));
+                          const el = document.getElementById('search-results-section');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        disabled={currentPage === totalPages}
+                        className="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-100 disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-all flex items-center gap-1 cursor-pointer shadow-2xs"
+                      >
+                        下一页 <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
