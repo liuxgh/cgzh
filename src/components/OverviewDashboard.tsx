@@ -101,7 +101,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
                 type="text"
                 value={quickQuery}
                 onChange={(e) => setQuickQuery(e.target.value)}
-                placeholder="输入吉大专利号（如 CN202310892341.2）、研究关键词或成果名称..."
+                placeholder="输入技术关键词、成果名称或专利号..."
                 className="w-full bg-white text-slate-900 placeholder-slate-400 px-4 py-3 pl-10 rounded-2xl text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-blue-500 shadow-md border border-slate-200"
               />
               <BrainCircuit className="w-4 h-4 text-[#0F52BA] absolute left-3.5 top-3.5" />

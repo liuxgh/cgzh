@@ -717,6 +717,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
                 setRegionFilter({ p: prov, c: 'all', d: 'all' });
               }}
               filteredCount={chainEnterprises.length}
+              defaultCollapsed={true}
             />
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
