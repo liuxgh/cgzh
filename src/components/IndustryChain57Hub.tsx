@@ -297,11 +297,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('全部产业链');
   const [selectedChainId, setSelectedChainId] = useState<string>('chain-2');
   const [selectedNode, setSelectedNode] = useState<'all' | 'upstream' | 'midstream' | 'downstream'>('all');
-  const [enterpriseSearchKeyword, setEnterpriseSearchKeyword] = useState<string>('');
-  const [regionFilter, setRegionFilter] = useState<{p: string, c: string, d: string}>({p: 'all', c: 'all', d: 'all'});
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [isChainSelectorOpen, setIsChainSelectorOpen] = useState<boolean>(false);
-  const itemsPerPage = 6;
 
   // Auto-switch chain and node recommendation when primary mapping changes
   useEffect(() => {
@@ -326,17 +322,16 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   }, [selectedCategory]);
 
   const handleTogglePatent = (id: string) => {
-    setSelectedPatentIds(prev => {
-      const exists = prev.includes(id);
-      const next = exists ? prev.filter(item => item !== id) : [...prev, id];
-      if (!exists) {
-        const p = patents.find(item => item.id === id);
-        if (p && onSelectPatent) {
-          onSelectPatent(p);
-        }
+    const isSelected = selectedPatentIds.includes(id);
+    if (isSelected) {
+      setSelectedPatentIds(prev => prev.filter(item => item !== id));
+    } else {
+      setSelectedPatentIds(prev => [...prev, id]);
+      const p = patents.find(item => item.id === id);
+      if (p && onSelectPatent) {
+        onSelectPatent(p);
       }
-      return next;
-    });
+    }
   };
 
   const handleSelectAllFiltered = () => {
@@ -352,52 +347,6 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   const getSelectedMatchCount = (chainId: string) => {
     return selectedPatents.filter(p => getPatentMapping(p).chainId === chainId).length;
   };
-
-  // Calculate node counts derived directly from TARGET_ENTERPRISES_DATA (matching chainPosition)
-  const nodeCounts = useMemo(() => {
-    const upstream = TARGET_ENTERPRISES_DATA.filter(e => e.chainPosition?.node === 'upstream').length;
-    const midstream = TARGET_ENTERPRISES_DATA.filter(e => e.chainPosition?.node === 'midstream').length;
-    const downstream = TARGET_ENTERPRISES_DATA.filter(e => e.chainPosition?.node === 'downstream').length;
-    return {
-      upstream,
-      midstream,
-      downstream,
-      total: upstream + midstream + downstream
-    };
-  }, []);
-
-  // Full target enterprises matched to this chain/node (used for the national map visualizer)
-  const nodeMatchedEnterprises = useMemo(() => {
-    return TARGET_ENTERPRISES_DATA.filter(ent => {
-      if (!ent.chainPosition) return false;
-      if (selectedNode !== 'all' && ent.chainPosition.node !== selectedNode) return false;
-      return true;
-    });
-  }, [selectedNode]);
-
-  // Target enterprises matched to this chain & filtered by search and region
-  const chainEnterprises = useMemo(() => {
-    return TARGET_ENTERPRISES_DATA.filter(ent => {
-      if (!ent.chainPosition) return false;
-      if (selectedNode !== 'all' && ent.chainPosition.node !== selectedNode) return false;
-      
-      if (enterpriseSearchKeyword.trim() && !ent.name.includes(enterpriseSearchKeyword.trim())) return false;
-
-      if (regionFilter.p !== 'all' && !ent.province?.includes(regionFilter.p) && !ent.city?.includes(regionFilter.p)) return false;
-      if (regionFilter.c !== 'all' && !ent.city?.includes(regionFilter.c)) return false;
-      if (regionFilter.d !== 'all' && !ent.address?.includes(regionFilter.d) && !ent.location?.includes(regionFilter.d)) return false;
-
-      return true;
-    });
-  }, [selectedNode, enterpriseSearchKeyword, regionFilter]);
-
-  const totalPages = Math.ceil(chainEnterprises.length / itemsPerPage);
-  const currentEnterprises = chainEnterprises.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-
-  // Reset page when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [regionFilter.p, regionFilter.c, regionFilter.d, selectedNode, selectedChainId, enterpriseSearchKeyword]);
 
   return (
     <div className="space-y-3.5 animate-in fade-in duration-300">
