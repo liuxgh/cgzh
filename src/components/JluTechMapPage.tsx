@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { UserRole } from '../types';
-import { Beaker, Car, Microchip, Leaf, Stethoscope, Cpu, CheckCircle2, Search, ArrowRight, Activity, Network, LineChart as LineChartIcon, BarChart3, Star, ShieldCheck, PieChart, Layers, Handshake } from 'lucide-react';
+import { UserRole, PatentItem } from '../types';
+import { Beaker, Car, Microchip, Leaf, Stethoscope, Cpu, CheckCircle2, Search, ArrowRight, Activity, Network, LineChart as LineChartIcon, BarChart3, Star, ShieldCheck, PieChart, Layers, Handshake, X, Building2, CheckCircle, Loader2, Check, Sparkles } from 'lucide-react';
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { motion, AnimatePresence } from 'motion/react';
+import { LatestTechAchievementsSection } from './LatestTechAchievementsSection';
+import { TechDetailPage, TechDetailData } from './TechDetailPage';
+import { mapPatentToTechDetail } from '../utils/techDetailMapper';
 
 const techDomains = [
   {
@@ -188,9 +192,6 @@ const CustomBarTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-import { PatentItem } from '../types';
-import { LatestTechAchievementsSection } from './LatestTechAchievementsSection';
-
 interface Props { 
   userRole?: UserRole; 
   onNavigateToSearch?: () => void; 
@@ -204,10 +205,37 @@ export const JluTechMapPage: React.FC<Props> = ({
   onSelectPatent,
   onNavigateToUnpatented
 }) => {
-      const [activeDomain, setActiveDomain] = useState(techDomains[0]);
+  const [activeDomain, setActiveDomain] = useState(techDomains[0]);
+  const [selectedTechForDetail, setSelectedTechForDetail] = useState<TechDetailData | null>(null);
+
+  // Booking Modal State
+  const [showBookingModal, setShowBookingModal] = useState(false);
+  const [selectedTechForBooking, setSelectedTechForBooking] = useState<TechDetailData | null>(null);
+  const [bookingSubmitted, setBookingSubmitted] = useState(false);
+  const [bookingFormData, setBookingFormData] = useState({
+    companyName: '吉林省智能网联汽车产业研究院有限公司',
+    contactPerson: '李总',
+    contactPhone: '13904318888',
+    collabMode: '线上视频技术研讨会',
+    notes: '希望与吉大科研团队开展技术研讨与中试落地对接'
+  });
+
+  const handleOpenBooking = (tech: TechDetailData) => {
+    setSelectedTechForBooking(tech);
+    setBookingSubmitted(false);
+    setShowBookingModal(true);
+  };
+
+  const handleSubmitBooking = (e: React.FormEvent) => {
+    e.preventDefault();
+    setBookingSubmitted(true);
+    setTimeout(() => {
+      setShowBookingModal(false);
+      setBookingSubmitted(false);
+    }, 2000);
+  };
 
   const handlePatentClick = (pat: any) => {
-    if (!onSelectPatent) return;
     const mockPatent: PatentItem = {
       id: pat.id,
       patentNo: pat.no,
@@ -231,10 +259,164 @@ export const JluTechMapPage: React.FC<Props> = ({
       applicableIndustries: ['智能制造', '新能源', '高端装备'],
       viewCount: 1542,
       matchCount: 36,
-      documents: [{ title: '专利说明书.pdf', size: '2.4 MB', type: 'pdf' }]
+      documents: [{ title: '专利公开说明书与权利要求书.pdf', size: '2.8 MB', type: 'PDF' }]
     };
-    onSelectPatent(mockPatent);
+    setSelectedTechForDetail(mapPatentToTechDetail(mockPatent));
   };
+
+  // If Detail Page is Selected, render TechDetailPage as a full top-level page
+  if (selectedTechForDetail) {
+    return (
+      <div className="w-full relative min-h-screen bg-slate-50">
+        <TechDetailPage
+          tech={selectedTechForDetail}
+          onBack={() => {
+            setSelectedTechForDetail(null);
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          }}
+          onOpenBooking={(t) => handleOpenBooking(t)}
+          universityScope="jlu"
+        />
+
+        {/* 预约技术转移中心对接弹窗 */}
+        <AnimatePresence>
+          {showBookingModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+              <motion.div 
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+              >
+                <div className="bg-slate-900 p-5 text-white relative">
+                  <button 
+                    onClick={() => setShowBookingModal(false)}
+                    className="absolute right-4 top-4 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                  <div className="flex items-center gap-1.5 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
+                    <Building2 className="w-3.5 h-3.5 text-blue-400" />
+                    官方产学研对接通道
+                  </div>
+                  <h3 className="text-lg font-bold text-white">
+                    预约吉林大学科技开发中心对接
+                  </h3>
+                  <p className="text-xs text-slate-300 mt-0.5">
+                    成果转化专线：0431-85168225 • 专班科技经纪人全程跟进
+                  </p>
+                </div>
+
+                {bookingSubmitted ? (
+                  <div className="p-8 text-center space-y-4">
+                    <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+                      <CheckCircle className="w-7 h-7" />
+                    </div>
+                    <h4 className="text-lg font-bold text-slate-900">对接需求已提交成功</h4>
+                    <p className="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
+                      吉林大学科技开发中心专员与科研团队将根据工作排期与您取得联系，确认对接研讨安排与技术资料准备。
+                    </p>
+                    <div className="pt-2">
+                      <Loader2 className="w-4 h-4 text-blue-600 animate-spin mx-auto" />
+                    </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmitBooking} className="p-5 space-y-3.5">
+                    {selectedTechForBooking && (
+                      <div className="bg-blue-50/80 p-3 rounded-xl border border-blue-200/60 text-xs space-y-1">
+                        <div className="text-blue-700 font-bold flex items-center gap-1">
+                          <Sparkles className="w-3.5 h-3.5" /> 拟对接成果：
+                        </div>
+                        <div className="font-bold text-slate-800 text-xs leading-snug">{selectedTechForBooking.title}</div>
+                        <div className="text-slate-500 font-mono text-[11px]">{selectedTechForBooking.no} • {selectedTechForBooking.university}</div>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">企业全称</label>
+                        <input 
+                          type="text"
+                          required
+                          value={bookingFormData.companyName}
+                          onChange={(e) => setBookingFormData({...bookingFormData, companyName: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-hidden focus:border-blue-600"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">对接联系人</label>
+                        <input 
+                          type="text"
+                          required
+                          value={bookingFormData.contactPerson}
+                          onChange={(e) => setBookingFormData({...bookingFormData, contactPerson: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-hidden focus:border-blue-600"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">联系电话</label>
+                        <input 
+                          type="tel"
+                          required
+                          value={bookingFormData.contactPhone}
+                          onChange={(e) => setBookingFormData({...bookingFormData, contactPhone: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-hidden focus:border-blue-600"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">期望对接形式</label>
+                        <select
+                          value={bookingFormData.collabMode}
+                          onChange={(e) => setBookingFormData({...bookingFormData, collabMode: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-hidden focus:border-blue-600"
+                        >
+                          <option value="线上视频技术研讨会">线上闭门技术研讨会</option>
+                          <option value="专家进企现场指导">高校专家进企现场指导</option>
+                          <option value="来校考察与实验室参观">来校考察与重点实验室参观</option>
+                          <option value="专利排他转让/许可商务谈判">专利转让 / 许可商务谈判</option>
+                          <option value="校企联合攻关申报专项">校企联合申报科技重大专项</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1">需求细节与预期目标</label>
+                      <textarea 
+                        rows={2}
+                        value={bookingFormData.notes}
+                        onChange={(e) => setBookingFormData({...bookingFormData, notes: e.target.value})}
+                        placeholder="请简要阐述企业目前的具体指标要求或产业化场景..."
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 focus:outline-hidden focus:border-blue-600 resize-none"
+                      />
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-end gap-2.5">
+                      <button 
+                        type="button"
+                        onClick={() => setShowBookingModal(false)}
+                        className="px-3.5 py-2 text-xs font-bold text-slate-500 hover:text-slate-700 cursor-pointer"
+                      >
+                        取消
+                      </button>
+                      <button 
+                        type="submit"
+                        className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                      >
+                        <Check className="w-3.5 h-3.5" /> 确认提交
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full relative">
@@ -482,6 +664,7 @@ export const JluTechMapPage: React.FC<Props> = ({
         <LatestTechAchievementsSection
           userRole={userRole}
           onSelectPatent={onSelectPatent}
+          onSelectTechDetail={(tech) => setSelectedTechForDetail(tech)}
           onNavigateToSearch={onNavigateToSearch}
           onNavigateToUnpatented={onNavigateToUnpatented}
         />

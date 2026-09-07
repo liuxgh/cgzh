@@ -16,10 +16,13 @@ import {
 import { PatentItem, UserRole } from '../types';
 import { INITIAL_PATENTS } from '../data/mockData';
 import { UNPATENTED_TECH_LIST, UnpatentedTechItem } from '../data/unpatentedTechData';
+import { TechDetailData } from './TechDetailPage';
+import { mapUnifiedItemToTechDetail } from '../utils/techDetailMapper';
 
 interface Props {
   userRole?: UserRole;
   onSelectPatent?: (patent: PatentItem) => void;
+  onSelectTechDetail?: (tech: TechDetailData) => void;
   onNavigateToSearch?: () => void;
   onNavigateToUnpatented?: () => void;
 }
@@ -29,6 +32,7 @@ export type TechTypeFilter = 'all' | 'patent' | 'unpatented';
 export const LatestTechAchievementsSection: React.FC<Props> = ({
   userRole = 'enterprise',
   onSelectPatent,
+  onSelectTechDetail,
   onNavigateToSearch,
   onNavigateToUnpatented
 }) => {
@@ -168,6 +172,15 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
     return [1, '...', current - 1, current, current + 1, '...', total];
   };
 
+  const handleItemClick = (item: UnifiedItem) => {
+    const detailData = mapUnifiedItemToTechDetail(item);
+    if (onSelectTechDetail) {
+      onSelectTechDetail(detailData);
+    } else if (item.type === 'patent' && item.rawPatent && onSelectPatent) {
+      onSelectPatent(item.rawPatent);
+    }
+  };
+
   return (
     <div id="latest-tech-achievements-module" className="bg-slate-900/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-700/50 shadow-2xl relative overflow-hidden group flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700">
       {/* Ambient background glows */}
@@ -186,7 +199,7 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
             </h3>
           </div>
           <p className="text-xs sm:text-sm text-slate-300 max-w-2xl font-light">
-            汇聚吉林大学2026年授权专利与特色专有技术成果，精准赋能重点产业创新升级。
+            汇聚吉林大学2026年授权专利与特色专有技术成果，点击任意技术卡片即可查看技术解读与落地建议。
           </p>
         </div>
 
@@ -221,52 +234,57 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
           <button
             onClick={() => setTechType('all')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              techType === 'all'
-                ? 'bg-blue-600 text-white shadow-md'
+              techType === 'all' 
+                ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/30' 
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
-            全部成果 (2,568)
+            <span>全部类型</span>
+            <span className="text-[10px] opacity-70">({filteredPatents.length + filteredUnpatented.length})</span>
           </button>
+
           <button
             onClick={() => setTechType('patent')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              techType === 'patent'
-                ? 'bg-blue-600 text-white shadow-md'
+              techType === 'patent' 
+                ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/30' 
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-blue-300" />
-            专利技术 (2,079)
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>专利技术</span>
+            <span className="text-[10px] opacity-70">({filteredPatents.length})</span>
           </button>
+
           <button
             onClick={() => setTechType('unpatented')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              techType === 'unpatented'
-                ? 'bg-amber-600 text-white shadow-md'
+              techType === 'unpatented' 
+                ? 'bg-amber-600 text-white shadow-sm shadow-amber-500/30' 
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Award className="w-3.5 h-3.5 text-amber-300" />
-            非专利技术/成果 (489)
+            <Award className="w-3.5 h-3.5" />
+            <span>非专利技术/成果</span>
+            <span className="text-[10px] opacity-70">({filteredUnpatented.length})</span>
           </button>
         </div>
 
-        {/* Search Input Box */}
-        <div className="relative flex-1 max-w-md">
+        {/* Search Input */}
+        <div className="relative min-w-[240px] sm:w-72">
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="检索最新技术关键词、团队、成果名称..."
-            className="w-full bg-slate-800/70 border border-slate-700/80 rounded-xl px-4 py-2 pl-9 text-xs text-white placeholder-slate-400 focus:outline-hidden focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+            placeholder="搜索成果名称、发明人、关键词..."
+            className="w-full bg-slate-800/80 border border-slate-700/80 rounded-xl pl-9 pr-8 py-2 text-xs text-white placeholder-slate-400 focus:outline-hidden focus:border-blue-500/80 focus:ring-1 focus:ring-blue-500/40 transition-all"
           />
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-2.5 text-slate-400 hover:text-white"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -274,29 +292,31 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* Domain Quick Chips */}
-      <div className="flex flex-wrap items-center gap-2 relative z-10">
-        <span className="text-xs text-slate-400 font-medium mr-1">前沿赛道:</span>
-        {domains.map(d => (
-          <button
-            key={d.key}
-            onClick={() => setSelectedDomain(d.key)}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer border ${
-              selectedDomain === d.key
-                ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.2)] font-bold'
-                : 'bg-slate-800/40 text-slate-400 border-slate-700/50 hover:bg-slate-800 hover:text-slate-200'
-            }`}
-          >
-            {d.label}
-          </button>
-        ))}
+      {/* Domain Tabs */}
+      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide relative z-10">
+        {domains.map(d => {
+          const isActive = selectedDomain === d.key;
+          return (
+            <button
+              key={d.key}
+              onClick={() => setSelectedDomain(d.key)}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 border cursor-pointer ${
+                isActive 
+                  ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/50 shadow-[0_0_12px_rgba(6,182,212,0.2)]' 
+                  : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:text-slate-200 hover:border-slate-600'
+              }`}
+            >
+              {d.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Unified Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 relative z-10 pt-2">
-        {unifiedList.length === 0 ? (
-          <div className="col-span-full py-12 text-center text-slate-400 bg-slate-800/30 rounded-2xl border border-slate-700/40">
-            <Compass className="w-10 h-10 mx-auto text-slate-600 mb-2 animate-bounce" />
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 relative z-10 min-h-[380px]">
+        {currentItems.length === 0 ? (
+          <div className="col-span-full flex flex-col items-center justify-center py-16 text-slate-400 bg-slate-800/30 rounded-2xl border border-slate-700/40">
+            <Compass className="w-10 h-10 text-slate-600 mb-2 stroke-[1.5]" />
             <p className="text-sm font-medium">未找到符合筛选条件的吉大最新技术成果</p>
             <button
               onClick={() => { setTechType('all'); setSelectedDomain('all'); setSearchQuery(''); }}
@@ -311,14 +331,8 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
             return (
               <div
                 key={`${item.type}-${item.id}`}
-                onClick={() => {
-                  if (isPatent && item.rawPatent && onSelectPatent) {
-                    onSelectPatent(item.rawPatent);
-                  }
-                }}
-                className={`bg-slate-800/50 hover:bg-slate-800/80 border border-slate-700/60 hover:border-blue-500/50 rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between group/card shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 relative overflow-hidden ${
-                  isPatent && onSelectPatent ? 'cursor-pointer' : ''
-                }`}
+                onClick={() => handleItemClick(item)}
+                className="bg-slate-800/50 hover:bg-slate-800/85 border border-slate-700/60 hover:border-blue-500/60 rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between group/card shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 relative overflow-hidden cursor-pointer"
               >
                 {/* Top Accent Strip */}
                 <div className={`absolute top-0 left-0 right-0 h-1 ${
@@ -368,13 +382,15 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
                     {item.description}
                   </p>
 
-                  {/* Tag Chips */}
-                  <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-slate-700/40">
-                    {item.tagList.filter(Boolean).map((t, i) => (
-                      <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-slate-700/50 text-slate-300 border border-slate-600/40">
-                        {t}
-                      </span>
-                    ))}
+                  {/* Bottom Bar with Tags */}
+                  <div className="pt-3 border-t border-slate-700/40 flex items-center justify-between gap-2 mt-auto">
+                    <div className="flex flex-wrap gap-1.5 overflow-hidden">
+                      {item.tagList.filter(Boolean).slice(0, 3).map((t, i) => (
+                        <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-slate-700/50 text-slate-300 border border-slate-600/40 truncate max-w-[140px]">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

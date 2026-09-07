@@ -546,6 +546,16 @@ function mapSearchResultToTechDetail(res: SearchResult): TechDetailData {
         '显存占用缩减62%，单帧特征抽取与对齐推理时延控制在18ms以内。',
         '提供开箱即用的Python/C++工业级推理SDK及ONNX/TensorRT格式模型转换工具链。'
       ],
+      priorArtDeficiencies: [
+        '【异构数据时间不同步】传统多模态算法对图像、文本和传感器时序信号的处理存在时钟对齐偏差，导致特征融合时产生严重语义漂移。',
+        '【工业端侧显存与算力吃紧】主流开源大模型参数量庞大，在车载芯片或工业嵌入式工控机上无法实现低延迟实时推理（时延常 >60ms）。',
+        '【跨模态少样本泛化能力弱】现有方案高度依赖百万级昂贵标注数据集，制造业小批量定制化场景下迁移微调成本高昂且易过拟合。'
+      ],
+      technicalEffects: [
+        '【多源异构流形精准自适应对齐】首创非对称交叉注意力映射与自适应流形投影算法，跨模态检索与识别准确率提升 15.3%。',
+        '【极速轻量化端侧部署】显存峰值占用缩减 62%（仅需1.2GB），单帧端到端推理时延压缩至 16.8ms，支持主流嵌入式平台即插即用。',
+        '【零门槛工业级SDK交付】提供开箱即用的ONNX/TensorRT动态链接库与少样本微调工具链，企业落地研发周期从6个月缩短至2周。'
+      ],
       techMetrics: [
         { label: '跨模态检索准确率 (mAP@R)', value: '89.4%', benchmark: '行业传统平均 74.1%' },
         { label: '边缘端单帧推理延迟', value: '16.8 ms', benchmark: '行业基准 > 55 ms' },
@@ -553,6 +563,16 @@ function mapSearchResultToTechDetail(res: SearchResult): TechDetailData {
       ],
       aiSummary: {
         coreHighlights: '本成果深度契合当前制造业智能化升级中对“视觉+文本+传感时序”多源异构数据融合分析的迫切需求。算法具有计算开销低、抗噪鲁棒性强的显著优势，可直接嵌入企业现有视觉质检系统、智能客服系统及工业数字孪生中枢，显著缩短AI算法自研周期。',
+        priorArtDeficiencies: [
+          '多源传感器时钟不同步导致跨模态特征对齐错位与语义漂移',
+          '大模型参数过大难以在工业工控机与车载端侧低延迟部署',
+          '缺乏少样本迁移能力，企业面临昂贵的复杂样本标注沉没成本'
+        ],
+        technicalEffects: [
+          '流形投影算法使跨模态检索准确率提升15.3%，抗噪鲁棒性极强',
+          '显存占用缩减62%，单帧推理时延降至16.8ms满足工业实时要求',
+          '开箱即用SDK支持少样本迁移，降低90%落地算法开发成本'
+        ],
         industryPainPointsSolved: [
           '解决多源传感器时钟不同步导致的模态特征错位难题',
           '攻克工业边缘工控机算力不足、大模型难以部署的痛点',
@@ -619,6 +639,16 @@ function mapSearchResultToTechDetail(res: SearchResult): TechDetailData {
         '攻克了高寒（-40℃）工况下电磁比例阀油液黏温特性补偿算法，杜绝卡滞。',
         '完成一汽解放重卡5万公里严苛高寒（黑河）及山区（云南）实车耐久测试。'
       ],
+      priorArtDeficiencies: [
+        '【电磁比例阀低温卡滞】传统空气悬架与减振器阀系在-30℃以下极易因油液黏度骤增发生阀芯卡滞，丧失主动阻尼调节能力。',
+        '【开环控制无法预瞄路况】传统悬架缺乏多传感器路面预瞄融合算法，车辆在突发坑洼或过弯时存在明显侧倾与点头顿挫。',
+        '【重卡ECAS电控软件受制于人】国内重卡主机厂长期采购国外Tier-1高价黑盒控制器，无法针对国内特定路况自主标定。'
+      ],
+      technicalEffects: [
+        '【全温域高低温自适应补偿】首创黏温特性非线性在线补偿算法，在-45℃极限极寒环境下依然保持阻尼无级调节毫秒级响应（<12ms）。',
+        '【车身振动与冲击显著衰减】车身垂向振动加速度降低 38.5%，俯仰与侧倾稳定性大幅提升，显著缓解重卡驾驶员长途疲劳与底盘疲劳。',
+        '【国产化全栈ASIL-D就绪】打破国外垄断，提供全套车规级ECU硬件原理图与AUTOSAR底层控制固件，直接导入前装量产配套。'
+      ],
       techMetrics: [
         { label: '车身俯仰/侧倾振动幅度降低率', value: '38.5%', benchmark: '行业传统标准 18.0%' },
         { label: '阻尼连续调节响应时间', value: '< 12 ms', benchmark: '行业主流 35 ms' },
@@ -626,6 +656,16 @@ function mapSearchResultToTechDetail(res: SearchResult): TechDetailData {
       ],
       aiSummary: {
         coreHighlights: '商用车高端化与智能悬架升级的核心卡脖子技术突破。吉林大学依托“汽车仿真与控制国家重点实验室”，打破国外大陆（Continental）、威伯科（WABCO）在重型电控悬架系统的软硬件垄断。成果已具备成熟装车软硬件配套图纸、控制策略代码及标定工具链，企业引入后可直接向一汽、东风、陕汽等主机厂供货。',
+        priorArtDeficiencies: [
+          '传统减振器比例阀在低温高寒工况下极易卡滞失控',
+          '悬架控制缺乏动态预瞄，重卡侧倾与过弯颠簸严重',
+          '国外Tier-1黑盒垄断，自主主机厂采购成本高昂且无标定自主权'
+        ],
+        technicalEffects: [
+          '黏温补偿使-45℃低温下阻尼无级调节响应依然<12ms',
+          '车身振动加速度降低38.5%，大幅提升抗侧倾与平顺性',
+          '具备完整AUTOSAR源码及ASIL-D合规体系，实现全栈自主替代'
+        ],
         industryPainPointsSolved: [
           '打破国外Tier-1巨头在商用车ECAS电控空气悬架系统的技术封锁与高昂采购成本',
           '解决重卡满载/空载工况下路感颠簸剧烈、底盘悬架结构疲劳开裂的工程通病',
@@ -691,6 +731,16 @@ function mapSearchResultToTechDetail(res: SearchResult): TechDetailData {
         '降低制造综合成本与能耗，具备成熟的产线适配与工程放大基础。',
         '已完成严苛工业级工况实测，形成完整自主知识产权保护网络。'
       ],
+      priorArtDeficiencies: [
+        `【${res.type === 'patent' ? '现有技术' : '传统工艺'}性能与寿命受限】行业通用方案在重载、高温或复杂工况下易发生性能衰减，使用寿命与可靠性偏低。`,
+        '【工业制备与中试放大良品率低】关键工艺参数控制窗口狭窄，工业化批量生产时批次间一致性差、废品率较高。',
+        '【核心关键材料/部件受制于人】同类高性能产品主要依赖进口供应商，采购周期长、单价昂贵且售后响应迟滞。'
+      ],
+      technicalEffects: [
+        '【关键性能指标显著跨越】独创结构与优化算法使核心性能指标实测提升 35% 以上，打破国外技术封锁。',
+        '【严苛工况高可靠长寿命】工业级工况连续无故障运行突破 3000 小时，大幅降低企业产线维护与停机成本。',
+        '【降本增效与绿色节能】综合制造成本与能耗降低 22%，实现高良品率（>98%）与短周期快速导入。'
+      ],
       techMetrics: [
         { label: '核心性能突破指标', value: '提升 35%+', benchmark: '行业传统标准 100%' },
         { label: '工业工况连续无故障运行', value: '> 3000 小时', benchmark: '行业基准 1200 小时' },
@@ -698,6 +748,16 @@ function mapSearchResultToTechDetail(res: SearchResult): TechDetailData {
       ],
       aiSummary: {
         coreHighlights: `本项成果（${res.title}）针对产业链关键环节的卡脖子难题提供了全新解决方案。研发团队由${res.university}顶尖科研力量领衔，兼具学术前沿性与工程落地可行性。成果已在示范工程或实验室完成充分验证，可帮助引进企业快速实现产品升级换代。`,
+        priorArtDeficiencies: [
+          '传统工艺路线性能衰减快、一致性差且失效率偏高',
+          '核心元器件与高端材料受制于人，采购与维保成本高昂',
+          '现有技术缺乏动态自适应机制，复杂工况鲁棒性不足'
+        ],
+        technicalEffects: [
+          '核心性能指标突破提升35%以上，打破产业链瓶颈',
+          '工业连续无故障运行超3000小时，大幅削减运维成本',
+          '制造综合成本降低22%，具备极高中试放大与量产可行性'
+        ],
         industryPainPointsSolved: [
           '攻克传统工艺路线中一致性差、失效频次高的行业痛点',
           '打破高端元器件/材料依赖高价进口的被动局面',
@@ -1028,7 +1088,7 @@ export const TechSearchHub: React.FC<Props> = ({
                         type="submit"
                         className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                       >
-                        <Check className="w-3.5 h-3.5" /> 确认提交预约
+                        <Check className="w-3.5 h-3.5" /> 确认提交
                       </button>
                     </div>
                   </form>
@@ -1835,7 +1895,7 @@ export const TechSearchHub: React.FC<Props> = ({
                       type="submit"
                       className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                     >
-                      <Check className="w-3.5 h-3.5" /> 确认提交预约
+                      <Check className="w-3.5 h-3.5" /> 确认提交
                     </button>
                   </div>
                 </form>
