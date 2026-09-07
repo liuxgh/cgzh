@@ -6,6 +6,9 @@ import {
   Upload
 } from 'lucide-react';
 
+const DEFAULT_PANORAMIC_IMG = 'https://static.zlbaba.com/jida/cyl01.png';
+const DEFAULT_MATCHING_IMG = 'https://static.zlbaba.com/jida/gyl01.png';
+
 interface IndustryChainPanoramaViewProps {
   chainName?: string;
 }
@@ -16,17 +19,17 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
   const [activeTab, setActiveTab] = useState<'panoramic' | 'matching'>('panoramic');
   const [isDragging, setIsDragging] = useState(false);
 
-  // Read saved image from localStorage if previously loaded
+  // Read saved image from localStorage if custom uploaded
   const [customPanoramicImg, setCustomPanoramicImg] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('jlu_custom_panoramic_img') || null;
+      return localStorage.getItem('jlu_custom_panoramic_img_v2') || null;
     }
     return null;
   });
 
   const [customMatchingImg, setCustomMatchingImg] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('jlu_custom_matching_img') || null;
+      return localStorage.getItem('jlu_custom_matching_img_v2') || null;
     }
     return null;
   });
@@ -36,14 +39,14 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
     if (type === 'panoramic') {
       setCustomPanoramicImg(dataUrl);
       try {
-        localStorage.setItem('jlu_custom_panoramic_img', dataUrl);
+        localStorage.setItem('jlu_custom_panoramic_img_v2', dataUrl);
       } catch {
         // LocalStorage quota fallback
       }
     } else {
       setCustomMatchingImg(dataUrl);
       try {
-        localStorage.setItem('jlu_custom_matching_img', dataUrl);
+        localStorage.setItem('jlu_custom_matching_img_v2', dataUrl);
       } catch {
         // LocalStorage quota fallback
       }
@@ -114,8 +117,8 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
     return () => window.removeEventListener('paste', handlePaste);
   }, [activeTab]);
 
-  const panoramicSrc = customPanoramicImg || '/industry-chain-panoramic.png';
-  const matchingSrc = customMatchingImg || '/supply-chain-matching.png';
+  const panoramicSrc = customPanoramicImg || DEFAULT_PANORAMIC_IMG;
+  const matchingSrc = customMatchingImg || DEFAULT_MATCHING_IMG;
   const currentSrc = activeTab === 'panoramic' ? panoramicSrc : matchingSrc;
 
   return (
@@ -148,7 +151,7 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
             </span>
           </div>
           <h3 className="text-base sm:text-xl font-black text-white flex items-center gap-2">
-            {activeTab === 'panoramic' ? '战略产业链全景图' : '重点企业供应链匹配'}
+            {activeTab === 'panoramic' ? '战略产业链匹配图' : '重点企业供应链匹配'}
           </h3>
         </div>
 
@@ -163,7 +166,7 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
             }`}
           >
             <Layers className="w-4 h-4" />
-            <span>产业链全景图</span>
+            <span>产业链匹配图</span>
           </button>
           <button
             onClick={() => setActiveTab('matching')}
@@ -185,8 +188,16 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
         <div className="relative rounded-2xl overflow-hidden border border-blue-900/60 bg-[#030919] shadow-2xl w-full flex items-center justify-center p-1">
           <img 
             src={currentSrc}
-            alt={activeTab === 'panoramic' ? '产业链全景图' : '供应链匹配'}
+            alt={activeTab === 'panoramic' ? '战略产业链匹配图' : '重点企业供应链匹配'}
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              if (activeTab === 'panoramic' && !target.src.includes('industry-chain-panoramic.png')) {
+                target.src = '/industry-chain-panoramic.png';
+              } else if (activeTab === 'matching' && !target.src.includes('supply-chain-matching.png')) {
+                target.src = '/supply-chain-matching.png';
+              }
+            }}
             className="w-full h-auto object-contain block select-none"
           />
         </div>

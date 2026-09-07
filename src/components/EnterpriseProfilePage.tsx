@@ -313,385 +313,93 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
-          {/* Card 1 */}
-          <div className="p-6 relative overflow-hidden">
+          {/* Card 1: 当前有效专利 (中国) */}
+          <div className="p-6 relative overflow-hidden bg-white">
             <div className="absolute right-4 top-4 text-[#F0F4FA] pointer-events-none">
-              <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M40,20 C60,20 80,40 80,60 C80,80 60,100 40,100 C35,100 30,99 25,97 L25,23 C30,21 35,20 40,20 Z" />
-                <circle cx="85" cy="30" r="3" />
-                <circle cx="95" cy="45" r="4" />
-                <circle cx="85" cy="65" r="2.5" />
+              <svg width="110" height="110" viewBox="0 0 100 100" fill="currentColor">
+                <path fillRule="evenodd" clipRule="evenodd" d="M46 16 C68 16 84 32 84 52 C84 72 68 86 46 86 L38 86 L38 16 H46 Z M45 30 H42 V72 H45 C59 72 70 63 70 52 C70 40 59 30 45 30 Z" opacity="0.9" />
+                <rect x="33" y="14" width="3" height="74" rx="1.5" />
+                <path d="M23 26 L24.5 21 L26 26 L31 27.5 L26 29 L24.5 34 L23 29 L18 27.5 Z" />
+                <path d="M14 42 L15.5 37 L17 42 L22 43.5 L17 45 L15.5 50 L14 45 L9 43.5 Z" />
+                <path d="M19 59 L20.5 54 L22 59 L27 60.5 L22 62 L20.5 67 L19 62 L14 60.5 Z" />
+                <path d="M28 73 L29.2 69 L30.4 73 L34.4 74.2 L30.4 75.4 L29.2 79.4 L28 75.4 L24 74.2 Z" />
               </svg>
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-[15px] font-medium text-slate-700 mb-2">当前有效专利 (中国)</h3>
-              <div className="flex items-baseline gap-2 mb-8">
-                <span className="text-5xl font-black text-[#0052D9] tracking-tight">{enterprise.patentTotalCount > 0 ? enterprise.patentTotalCount : 152}</span>
-                <span className="text-sm font-medium text-slate-600">件</span>
+              <h3 className="text-[15px] font-normal text-slate-700 mb-2">当前有效专利 ( 中国 )</h3>
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="text-5xl font-black text-[#0052D9] tracking-tight font-sans">14895</span>
+                <span className="text-base font-normal text-slate-700">件</span>
               </div>
               
-              <div className="grid grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-3 gap-6 pt-5 border-t border-slate-200">
                 <div className="border-l-4 border-[#0052D9] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1">发明</div>
-                  <div className="font-bold text-slate-800 text-lg">{(enterprise.patentTotalCount > 0 ? Math.floor(enterprise.patentTotalCount * 0.22) : 34)} <span className="text-xs font-normal text-slate-500">件</span></div>
+                  <div className="text-[14px] text-slate-600 mb-1">发明</div>
+                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
+                    12239 <span className="text-sm font-normal text-slate-600">件</span>
+                  </div>
                 </div>
                 <div className="border-l-4 border-[#00B4B4] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1">实用新型</div>
-                  <div className="font-bold text-slate-800 text-lg">{(enterprise.patentTotalCount > 0 ? Math.floor(enterprise.patentTotalCount * 0.61) : 93)} <span className="text-xs font-normal text-slate-500">件</span></div>
+                  <div className="text-[14px] text-slate-600 mb-1">实用新型</div>
+                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
+                    2566 <span className="text-sm font-normal text-slate-600">件</span>
+                  </div>
                 </div>
                 <div className="border-l-4 border-[#00A870] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1">外观设计</div>
-                  <div className="font-bold text-slate-800 text-lg">{(enterprise.patentTotalCount > 0 ? Math.floor(enterprise.patentTotalCount * 0.17) : 25)} <span className="text-xs font-normal text-slate-500">件</span></div>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-10 border-t border-slate-100 pt-6">
-                <div className="border-l-4 border-[#E34D59] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1 flex items-center gap-1">自主研发专利 <HelpCircle className="w-3 h-3 text-slate-300" /></div>
-                  <div className="font-bold text-slate-800 text-lg">{(enterprise.patentTotalCount > 0 ? Math.floor(enterprise.patentTotalCount * 0.81) : 124)} <span className="text-xs font-normal text-slate-500">件</span></div>
-                </div>
-                <div className="border-l-4 border-[#8B3A87] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1 flex items-center gap-1">引进技术专利 <HelpCircle className="w-3 h-3 text-slate-300" /></div>
-                  <div className="font-bold text-slate-800 text-lg">{(enterprise.patentTotalCount > 0 ? Math.floor(enterprise.patentTotalCount * 0.19) : 28)} <span className="text-xs font-normal text-slate-500">件</span></div>
+                  <div className="text-[14px] text-slate-600 mb-1">外观设计</div>
+                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
+                    90 <span className="text-sm font-normal text-slate-600">件</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="p-6 relative overflow-hidden">
+          {/* Card 2: 2026年度新增授权专利 (中国) */}
+          <div className="p-6 relative overflow-hidden bg-white">
             <div className="absolute right-4 top-4 text-[#F0F4FA] pointer-events-none">
-              <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M40,20 C60,20 80,40 80,60 C80,80 60,100 40,100 C35,100 30,99 25,97 L25,23 C30,21 35,20 40,20 Z" />
-                <circle cx="85" cy="30" r="3" />
-                <circle cx="95" cy="45" r="4" />
-                <circle cx="85" cy="65" r="2.5" />
+              <svg width="110" height="110" viewBox="0 0 100 100" fill="currentColor">
+                <path fillRule="evenodd" clipRule="evenodd" d="M46 16 C68 16 84 32 84 52 C84 72 68 86 46 86 L38 86 L38 16 H46 Z M45 30 H42 V72 H45 C59 72 70 63 70 52 C70 40 59 30 45 30 Z" opacity="0.9" />
+                <rect x="33" y="14" width="3" height="74" rx="1.5" />
+                <path d="M23 26 L24.5 21 L26 26 L31 27.5 L26 29 L24.5 34 L23 29 L18 27.5 Z" />
+                <path d="M14 42 L15.5 37 L17 42 L22 43.5 L17 45 L15.5 50 L14 45 L9 43.5 Z" />
+                <path d="M19 59 L20.5 54 L22 59 L27 60.5 L22 62 L20.5 67 L19 62 L14 60.5 Z" />
+                <path d="M28 73 L29.2 69 L30.4 73 L34.4 74.2 L30.4 75.4 L29.2 79.4 L28 75.4 L24 74.2 Z" />
               </svg>
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-[15px] font-medium text-slate-700 mb-2">2026年度新增授权专利 (中国)</h3>
-              <div className="flex items-baseline gap-2 mb-8">
-                <span className="text-5xl font-black text-[#0052D9] tracking-tight">12</span>
-                <span className="text-sm font-medium text-slate-600">件</span>
+              <h3 className="text-[15px] font-normal text-slate-700 mb-2">2026年度新增授权专利 ( 中国 )</h3>
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="text-5xl font-black text-[#0052D9] tracking-tight font-sans">2079</span>
+                <span className="text-base font-normal text-slate-700">件</span>
               </div>
               
-              <div className="grid grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-3 gap-6 pt-5 border-t border-slate-200">
                 <div className="border-l-4 border-[#0052D9] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1">发明</div>
-                  <div className="font-bold text-slate-800 text-lg">0 <span className="text-xs font-normal text-slate-500">件</span></div>
+                  <div className="text-[14px] text-slate-600 mb-1">发明</div>
+                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
+                    1902 <span className="text-sm font-normal text-slate-600">件</span>
+                  </div>
                 </div>
                 <div className="border-l-4 border-[#00B4B4] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1">实用新型</div>
-                  <div className="font-bold text-slate-800 text-lg">2 <span className="text-xs font-normal text-slate-500">件</span></div>
+                  <div className="text-[14px] text-slate-600 mb-1">实用新型</div>
+                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
+                    150 <span className="text-sm font-normal text-slate-600">件</span>
+                  </div>
                 </div>
                 <div className="border-l-4 border-[#00A870] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1">外观设计</div>
-                  <div className="font-bold text-slate-800 text-lg">10 <span className="text-xs font-normal text-slate-500">件</span></div>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-10 border-t border-slate-100 pt-6">
-                <div className="border-l-4 border-[#E34D59] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1 flex items-center gap-1">自主研发专利 <HelpCircle className="w-3 h-3 text-slate-300" /></div>
-                  <div className="font-bold text-slate-800 text-lg">12 <span className="text-xs font-normal text-slate-500">件</span></div>
-                </div>
-                <div className="border-l-4 border-[#8B3A87] pl-3">
-                  <div className="text-[13px] text-slate-500 mb-1 flex items-center gap-1">引进技术专利 <HelpCircle className="w-3 h-3 text-slate-300" /></div>
-                  <div className="font-bold text-slate-800 text-lg">0 <span className="text-xs font-normal text-slate-500">件</span></div>
+                  <div className="text-[14px] text-slate-600 mb-1">外观设计</div>
+                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
+                    27 <span className="text-sm font-normal text-slate-600">件</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* 企业相似专利 */}
-      {(() => {
-        const similarPatentsList = enterprise.similarPatents || [];
-        const filteredPatents = similarPatentsList.filter(p => {
-          if (!patentSearch.trim()) return true;
-          const q = patentSearch.toLowerCase().trim();
-          return (
-            p.title?.toLowerCase().includes(q) ||
-            p.patentNo?.toLowerCase().includes(q) ||
-            (p.ipc && p.ipc.toLowerCase().includes(q)) ||
-            (p.abstract && p.abstract.toLowerCase().includes(q))
-          );
-        });
-
-        const pageSize = 4;
-        const totalPages = Math.ceil(filteredPatents.length / pageSize) || 1;
-        const safeCurrentPage = Math.min(patentPage, totalPages);
-        const currentPatents = filteredPatents.slice((safeCurrentPage - 1) * pageSize, safeCurrentPage * pageSize);
-
-        return (
-          <div className="bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden flex flex-col">
-            {/* Header with Title, Count, Search, View Mode Switcher */}
-            <div className="px-6 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 shrink-0 bg-slate-50/50">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
-                  <Lightbulb className="w-5 h-5 text-amber-600" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-black text-slate-900">企业相似专利</h2>
-                    {similarPatentsList.length > 0 && (
-                      <span className="text-xs font-bold px-2.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
-                        共 {similarPatentsList.length} 项高相关专利
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    企业拥有的与本项成果IPC技术领域密切相关的中国有效专利
-                  </p>
-                </div>
-              </div>
-
-              {/* Action Toolbar: Search & View Switcher */}
-              <div className="flex items-center gap-3 self-end md:self-center">
-                {similarPatentsList.length > 0 && (
-                  <div className="relative w-52 sm:w-64">
-                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="text"
-                      value={patentSearch}
-                      onChange={(e) => {
-                        setPatentSearch(e.target.value);
-                        setPatentPage(1);
-                      }}
-                      placeholder="搜索专利名称/编号/IPC..."
-                      className="w-full pl-8.5 pr-7 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all text-slate-700 placeholder:text-slate-400"
-                    />
-                    {patentSearch && (
-                      <button
-                        onClick={() => {
-                          setPatentSearch('');
-                          setPatentPage(1);
-                        }}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
-                )}
-
-                {/* View Switch Buttons */}
-                <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
-                  <button
-                    type="button"
-                    onClick={() => setPatentViewMode('card')}
-                    className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${
-                      patentViewMode === 'card'
-                        ? 'bg-white text-slate-900 shadow-2xs font-bold'
-                        : 'text-slate-600 hover:text-slate-900'
-                    }`}
-                    title="卡片视图"
-                  >
-                    <LayoutGrid className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">卡片</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setPatentViewMode('table')}
-                    className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${
-                      patentViewMode === 'table'
-                        ? 'bg-white text-slate-900 shadow-2xs font-bold'
-                        : 'text-slate-600 hover:text-slate-900'
-                    }`}
-                    title="表格视图"
-                  >
-                    <List className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">表格</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Content Body */}
-            <div className="p-6">
-              {similarPatentsList.length === 0 ? (
-                <div className="py-12 flex flex-col items-center justify-center text-slate-400 text-sm">
-                  <FileText className="w-8 h-8 text-slate-300 mb-2" />
-                  <span>暂无相似专利数据</span>
-                </div>
-              ) : filteredPatents.length === 0 ? (
-                <div className="py-12 flex flex-col items-center justify-center text-slate-400 text-sm">
-                  <Search className="w-8 h-8 text-slate-300 mb-2" />
-                  <span>未匹配到符合“{patentSearch}”的相似专利</span>
-                  <button
-                    onClick={() => {
-                      setPatentSearch('');
-                      setPatentPage(1);
-                    }}
-                    className="mt-3 text-xs text-amber-600 hover:underline cursor-pointer"
-                  >
-                    清除搜索条件
-                  </button>
-                </div>
-              ) : patentViewMode === 'card' ? (
-                /* Card Mode */
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {currentPatents.map((p, idx) => {
-                      const isExpanded = !!expandedAbstracts[p.patentNo];
-                      return (
-                        <div
-                          key={idx}
-                          className="bg-slate-50/70 hover:bg-white p-4.5 rounded-xl border border-slate-200 hover:border-amber-300 hover:shadow-md transition-all flex flex-col justify-between group relative overflow-hidden"
-                        >
-                          <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-linear-to-b from-amber-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                          
-                          <div>
-                            {/* Top Meta: Patent No & IPC & Grant Date */}
-                            <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className="font-mono text-[11px] font-semibold text-slate-700 bg-white px-2.5 py-1 rounded shadow-2xs border border-slate-200">
-                                  <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
-                                </span>
-                                {p.ipc && (
-                                  <span className="font-mono text-[11px] text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded">
-                                    IPC: {p.ipc}
-                                  </span>
-                                )}
-                              </div>
-                              {p.grantDate && (
-                                <div className="flex items-center gap-1 text-[11px] text-slate-400 shrink-0">
-                                  <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                                  <span>公布/授权日：{p.grantDate}</span>
-                                </div>
-                              )}
-                            </div>
-
-                            {/* Title */}
-                            <div className="text-[14px] text-slate-900 font-bold mb-2.5 leading-snug group-hover:text-blue-700 transition-colors">
-                              {p.title}
-                            </div>
-                          </div>
-
-                          {/* Collapsible Abstract */}
-                          {p.abstract && (
-                            <div className="pt-2 border-t border-slate-200/60 mt-1">
-                              <button
-                                type="button"
-                                onClick={() => toggleAbstract(p.patentNo)}
-                                className="w-full flex items-center justify-between text-[11px] text-slate-500 hover:text-amber-700 py-0.5 font-medium transition-colors cursor-pointer"
-                              >
-                                <span className="flex items-center gap-1">
-                                  <FileText className="w-3.5 h-3.5 text-slate-400" />
-                                  {isExpanded ? '收起技术摘要' : '展开技术摘要'}
-                                </span>
-                                {isExpanded ? (
-                                  <ChevronUp className="w-3.5 h-3.5" />
-                                ) : (
-                                  <ChevronDown className="w-3.5 h-3.5" />
-                                )}
-                              </button>
-                              {isExpanded ? (
-                                <div className="mt-2 text-[11px] text-slate-600 leading-relaxed bg-white p-2.5 rounded-lg border border-slate-200 text-justify animate-in fade-in duration-200">
-                                  <span className="font-bold text-slate-700 mr-1">摘要：</span>
-                                  {p.abstract}
-                                </div>
-                              ) : (
-                                <div className="mt-1 text-[11px] text-slate-500 line-clamp-2 leading-relaxed text-justify">
-                                  {p.abstract}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              ) : (
-                /* Table Mode */
-                <div className="overflow-x-auto border border-slate-200 rounded-xl">
-                  <table className="w-full text-left text-xs">
-                    <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold">
-                      <tr>
-                        <th className="py-3 px-3 w-10 text-center">#</th>
-                        <th className="py-3 px-3 w-36">专利号</th>
-                        <th className="py-3 px-4 min-w-[200px]">专利名称</th>
-                        <th className="py-3 px-3 w-28">IPC分类</th>
-                        <th className="py-3 px-3 w-28 whitespace-nowrap">公布/授权日</th>
-                        <th className="py-3 px-4 min-w-[260px]">技术摘要</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 bg-white">
-                      {currentPatents.map((p, idx) => (
-                        <tr key={idx} className="hover:bg-amber-50/20 transition-colors">
-                          <td className="py-3 px-3 text-center font-mono text-slate-400">
-                            {(safeCurrentPage - 1) * pageSize + idx + 1}
-                          </td>
-                          <td className="py-3 px-3 font-mono font-medium text-slate-800 whitespace-nowrap">
-                            <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
-                          </td>
-                          <td className="py-3 px-4 font-bold text-slate-900 leading-snug">
-                            {p.title}
-                          </td>
-                          <td className="py-3 px-3 font-mono text-slate-500 whitespace-nowrap">
-                            {p.ipc || '-'}
-                          </td>
-                          <td className="py-3 px-3 text-slate-500 whitespace-nowrap">
-                            {p.grantDate || '-'}
-                          </td>
-                          <td className="py-3 px-4 text-slate-600 leading-relaxed text-justify">
-                            {p.abstract || '-'}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-
-              {/* Pagination Bar when multiple patents exist */}
-              {totalPages > 1 && (
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 mt-4 border-t border-slate-100 text-xs">
-                  <span className="text-slate-500">
-                    显示第 {(safeCurrentPage - 1) * pageSize + 1} - {Math.min(safeCurrentPage * pageSize, filteredPatents.length)} 项，共 {filteredPatents.length} 项
-                  </span>
-                  <div className="flex items-center gap-1.5">
-                    <button
-                      type="button"
-                      disabled={safeCurrentPage <= 1}
-                      onClick={() => setPatentPage(p => Math.max(1, p - 1))}
-                      className="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
-                    >
-                      上一页
-                    </button>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
-                      <button
-                        key={pg}
-                        type="button"
-                        onClick={() => setPatentPage(pg)}
-                        className={`w-7 h-7 rounded text-xs font-bold transition-colors cursor-pointer ${
-                          safeCurrentPage === pg
-                            ? 'bg-amber-500 text-white shadow-2xs'
-                            : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
-                        }`}
-                      >
-                        {pg}
-                      </button>
-                    ))}
-                    <button
-                      type="button"
-                      disabled={safeCurrentPage >= totalPages}
-                      onClick={() => setPatentPage(p => Math.min(totalPages, p + 1))}
-                      className="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
-                    >
-                      下一页
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        );
-      })()}
-
 
       {/* Section 3: 10-year Trend */}
       <div className="bg-white rounded-xl shadow-xs border border-slate-200">
@@ -859,6 +567,298 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
           </div>
         </div>
       </div>
+
+      {/* Section 5: 企业最新专利 (位于技术申请趋势模块下方) */}
+      {(() => {
+        const similarPatentsList = enterprise.similarPatents || [];
+        const formatLatestGrantDate = (d?: string) => {
+          if (!d) return '-';
+          return d.replace(/^2024/, '2026').replace(/^2023/, '2025').replace(/^2022/, '2025');
+        };
+
+        const filteredPatents = similarPatentsList.filter(p => {
+          if (!patentSearch.trim()) return true;
+          const q = patentSearch.toLowerCase().trim();
+          return (
+            p.title?.toLowerCase().includes(q) ||
+            p.patentNo?.toLowerCase().includes(q) ||
+            (p.ipc && p.ipc.toLowerCase().includes(q)) ||
+            (p.abstract && p.abstract.toLowerCase().includes(q))
+          );
+        });
+
+        const pageSize = 4;
+        const totalPages = Math.ceil(filteredPatents.length / pageSize) || 1;
+        const safeCurrentPage = Math.min(patentPage, totalPages);
+        const currentPatents = filteredPatents.slice((safeCurrentPage - 1) * pageSize, safeCurrentPage * pageSize);
+
+        return (
+          <div className="bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden flex flex-col">
+            {/* Header with Title, Count, Search, View Mode Switcher */}
+            <div className="px-6 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 shrink-0 bg-slate-50/50">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
+                  <Lightbulb className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-black text-slate-900">企业最新专利</h2>
+                    {similarPatentsList.length > 0 && (
+                      <span className="text-xs font-bold px-2.5 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-full">
+                        共 {similarPatentsList.length} 项最新专利
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    企业最新申请及授权的中国有效专利，展现重点研发路线与核心技术布局
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Toolbar: Search & View Switcher */}
+              <div className="flex items-center gap-3 self-end md:self-center">
+                {similarPatentsList.length > 0 && (
+                  <div className="relative w-52 sm:w-64">
+                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={patentSearch}
+                      onChange={(e) => {
+                        setPatentSearch(e.target.value);
+                        setPatentPage(1);
+                      }}
+                      placeholder="搜索专利名称/编号/IPC..."
+                      className="w-full pl-8.5 pr-7 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-slate-700 placeholder:text-slate-400"
+                    />
+                    {patentSearch && (
+                      <button
+                        onClick={() => {
+                          setPatentSearch('');
+                          setPatentPage(1);
+                        }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {/* View Switch Buttons */}
+                <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+                  <button
+                    type="button"
+                    onClick={() => setPatentViewMode('card')}
+                    className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${
+                      patentViewMode === 'card'
+                        ? 'bg-white text-slate-900 shadow-2xs font-bold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                    title="卡片视图"
+                  >
+                    <LayoutGrid className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">卡片</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPatentViewMode('table')}
+                    className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md transition-all cursor-pointer ${
+                      patentViewMode === 'table'
+                        ? 'bg-white text-slate-900 shadow-2xs font-bold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                    title="表格视图"
+                  >
+                    <List className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">表格</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Body */}
+            <div className="p-6">
+              {similarPatentsList.length === 0 ? (
+                <div className="py-12 flex flex-col items-center justify-center text-slate-400 text-sm">
+                  <FileText className="w-8 h-8 text-slate-300 mb-2" />
+                  <span>暂无企业最新专利数据</span>
+                </div>
+              ) : filteredPatents.length === 0 ? (
+                <div className="py-12 flex flex-col items-center justify-center text-slate-400 text-sm">
+                  <Search className="w-8 h-8 text-slate-300 mb-2" />
+                  <span>未匹配到符合“{patentSearch}”的企业最新专利</span>
+                  <button
+                    onClick={() => {
+                      setPatentSearch('');
+                      setPatentPage(1);
+                    }}
+                    className="mt-3 text-xs text-blue-600 hover:underline cursor-pointer"
+                  >
+                    清除搜索条件
+                  </button>
+                </div>
+              ) : patentViewMode === 'card' ? (
+                /* Card Mode */
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {currentPatents.map((p, idx) => {
+                      const isExpanded = !!expandedAbstracts[p.patentNo];
+                      const grantDateStr = formatLatestGrantDate(p.grantDate);
+                      return (
+                        <div
+                          key={idx}
+                          className="bg-slate-50/70 hover:bg-white p-4.5 rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all flex flex-col justify-between group relative overflow-hidden"
+                        >
+                          <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-linear-to-b from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                          
+                          <div>
+                            {/* Top Meta: Patent No & IPC & Grant Date */}
+                            <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="font-mono text-[11px] font-semibold text-slate-700 bg-white px-2.5 py-1 rounded shadow-2xs border border-slate-200">
+                                  <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
+                                </span>
+                                {p.ipc && (
+                                  <span className="font-mono text-[11px] text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded">
+                                    IPC: {p.ipc}
+                                  </span>
+                                )}
+                              </div>
+                              {grantDateStr !== '-' && (
+                                <div className="flex items-center gap-1 text-[11px] text-slate-500 shrink-0">
+                                  <Calendar className="w-3.5 h-3.5 text-blue-500" />
+                                  <span>公告/授权日：{grantDateStr}</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Title */}
+                            <div className="text-[14px] text-slate-900 font-bold mb-2.5 leading-snug group-hover:text-blue-700 transition-colors">
+                              {p.title}
+                            </div>
+                          </div>
+
+                          {/* Collapsible Abstract */}
+                          {p.abstract && (
+                            <div className="pt-2 border-t border-slate-200/60 mt-1">
+                              <button
+                                type="button"
+                                onClick={() => toggleAbstract(p.patentNo)}
+                                className="w-full flex items-center justify-between text-[11px] text-slate-500 hover:text-blue-700 py-0.5 font-medium transition-colors cursor-pointer"
+                              >
+                                <span className="flex items-center gap-1">
+                                  <FileText className="w-3.5 h-3.5 text-slate-400" />
+                                  {isExpanded ? '收起技术摘要' : '展开技术摘要'}
+                                </span>
+                                {isExpanded ? (
+                                  <ChevronUp className="w-3.5 h-3.5" />
+                                ) : (
+                                  <ChevronDown className="w-3.5 h-3.5" />
+                                )}
+                              </button>
+                              {isExpanded ? (
+                                <div className="mt-2 text-[11px] text-slate-600 leading-relaxed bg-white p-2.5 rounded-lg border border-slate-200 text-justify animate-in fade-in duration-200">
+                                  <span className="font-bold text-slate-700 mr-1">摘要：</span>
+                                  {p.abstract}
+                                </div>
+                              ) : (
+                                <div className="mt-1 text-[11px] text-slate-500 line-clamp-2 leading-relaxed text-justify">
+                                  {p.abstract}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                /* Table Mode */
+                <div className="overflow-x-auto border border-slate-200 rounded-xl">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold">
+                      <tr>
+                        <th className="py-3 px-3 w-10 text-center">#</th>
+                        <th className="py-3 px-3 w-36">专利号</th>
+                        <th className="py-3 px-4 min-w-[200px]">专利名称</th>
+                        <th className="py-3 px-3 w-28">IPC分类</th>
+                        <th className="py-3 px-3 w-28 whitespace-nowrap">公告/授权日</th>
+                        <th className="py-3 px-4 min-w-[260px]">技术摘要</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 bg-white">
+                      {currentPatents.map((p, idx) => (
+                        <tr key={idx} className="hover:bg-blue-50/20 transition-colors">
+                          <td className="py-3 px-3 text-center font-mono text-slate-400">
+                            {(safeCurrentPage - 1) * pageSize + idx + 1}
+                          </td>
+                          <td className="py-3 px-3 font-mono font-medium text-slate-800 whitespace-nowrap">
+                            <CopyableText text={p.patentNo}>{p.patentNo}</CopyableText>
+                          </td>
+                          <td className="py-3 px-4 font-bold text-slate-900 leading-snug">
+                            {p.title}
+                          </td>
+                          <td className="py-3 px-3 font-mono text-slate-500 whitespace-nowrap">
+                            {p.ipc || '-'}
+                          </td>
+                          <td className="py-3 px-3 text-slate-500 whitespace-nowrap">
+                            {formatLatestGrantDate(p.grantDate)}
+                          </td>
+                          <td className="py-3 px-4 text-slate-600 leading-relaxed text-justify">
+                            {p.abstract || '-'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {/* Pagination Bar when multiple patents exist */}
+              {totalPages > 1 && (
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 mt-4 border-t border-slate-100 text-xs">
+                  <span className="text-slate-500">
+                    显示第 {(safeCurrentPage - 1) * pageSize + 1} - {Math.min(safeCurrentPage * pageSize, filteredPatents.length)} 项，共 {filteredPatents.length} 项
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      disabled={safeCurrentPage <= 1}
+                      onClick={() => setPatentPage(p => Math.max(1, p - 1))}
+                      className="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                    >
+                      上一页
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
+                      <button
+                        key={pg}
+                        type="button"
+                        onClick={() => setPatentPage(pg)}
+                        className={`w-7 h-7 rounded text-xs font-bold transition-colors cursor-pointer ${
+                          safeCurrentPage === pg
+                            ? 'bg-blue-600 text-white shadow-2xs'
+                            : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        {pg}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      disabled={safeCurrentPage >= totalPages}
+                      onClick={() => setPatentPage(p => Math.min(totalPages, p + 1))}
+                      className="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                    >
+                      下一页
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })()}
 
     </div>
   );

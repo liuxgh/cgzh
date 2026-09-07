@@ -26,7 +26,10 @@ import {
   Workflow,
   ArrowRight,
   ShieldCheck,
-  ArrowDown
+  ArrowDown,
+  Check,
+  CheckSquare,
+  X
 } from 'lucide-react';
 
 interface IndustryChain57HubProps {
@@ -159,6 +162,59 @@ const PATENT_CHAIN_MAP: Record<string, PatentChainMappingInfo> = {
   }
 };
 
+// Pure helper to extract chain recommendation info for any patent
+const getPatentMapping = (patent: PatentItem): PatentChainMappingInfo => {
+  if (PATENT_CHAIN_MAP[patent.id]) {
+    return PATENT_CHAIN_MAP[patent.id];
+  }
+  // Dynamic fallback matching based on field or title keywords
+  const title = patent.title || '';
+  const field = patent.field || '';
+  if (field.includes('auto') || title.includes('车') || title.includes('制动') || title.includes('底盘')) {
+    return {
+      chainId: 'chain-2',
+      chainName: '新能源汽车',
+      category: '新能源汽车',
+      recommendedNode: 'midstream',
+      nodeTitle: '中游 • 精密制造与模块总成',
+      nodeReason: `该专利涉及智能网联与新能源汽车关键技术，推荐对接汽车产业链中下游零部件及整车企业。`,
+      applicationScenarios: ['新能源汽车关键总成', '整车集成与智能制造']
+    };
+  }
+  if (field.includes('material') || title.includes('材料') || title.includes('高分子') || title.includes('合金')) {
+    return {
+      chainId: 'chain-6',
+      chainName: '碳纤维',
+      category: '新材料',
+      recommendedNode: 'upstream',
+      nodeTitle: '上游 • 核心材料与元器件',
+      nodeReason: `该专利属于高性能新材料领域，处于产业链上游关键基础材料供给节点。`,
+      applicationScenarios: ['高性能复合材料制造', '特种功能结构件']
+    };
+  }
+  if (field.includes('bio') || field.includes('medical') || title.includes('药') || title.includes('医') || title.includes('生化')) {
+    return {
+      chainId: 'chain-1',
+      chainName: '高端医疗器械',
+      category: '生物医药与健康',
+      recommendedNode: 'upstream',
+      nodeTitle: '上游 • 核心材料与天然原料',
+      nodeReason: `该专利属于现代生物医药与医疗健康领域，具备良好的临床转化与药械协同前景。`,
+      applicationScenarios: ['创新药物研发', '高端医疗器械配套']
+    };
+  }
+  // Default fallback
+  return {
+    chainId: 'chain-2',
+    chainName: '新能源汽车',
+    category: '全部产业链',
+    recommendedNode: 'midstream',
+    nodeTitle: '中游 • 装备制造与系统集成',
+    nodeReason: `该专利具备较强的工程实用性，可广泛对接战略产业链中下游制造企业。`,
+    applicationScenarios: ['工业智能装备制造', '系统总成与工艺集成']
+  };
+};
+
 export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   patents = INITIAL_PATENTS,
   selectedPatent,
@@ -166,18 +222,24 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   onSelectEnterprise,
   onOpenAiActionPlan
 }) => {
-  // Patent Selection State
-  const [currentPatentId, setCurrentPatentId] = useState<string>(selectedPatent?.id || patents[0]?.id || 'pat-001');
+  // Multi-patent Selection State
+  const [selectedPatentIds, setSelectedPatentIds] = useState<string[]>(() => {
+    if (selectedPatent?.id) return [selectedPatent.id];
+    return [patents[0]?.id || 'pat-001'];
+  });
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [patentSearchQuery, setPatentSearchQuery] = useState<string>('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Sync selectedPatent prop
+  // Sync selectedPatent prop when parent switches it
   useEffect(() => {
     if (selectedPatent?.id) {
-      setCurrentPatentId(selectedPatent.id);
+      setSelectedPatentIds(prev => {
+        if (prev.includes(selectedPatent.id)) return prev;
+        return [selectedPatent.id, ...prev];
+      });
     }
-  }, [selectedPatent]);
+  }, [selectedPatent?.id]);
 
   // Dropdown outside click handler
   useEffect(() => {
@@ -192,9 +254,13 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
     };
   }, []);
 
-  const activePatent = useMemo(() => {
-    return patents.find(p => p.id === currentPatentId) || patents[0] || INITIAL_PATENTS[0];
-  }, [patents, currentPatentId]);
+  const selectedPatents = useMemo(() => {
+    return patents.filter(p => selectedPatentIds.includes(p.id));
+  }, [patents, selectedPatentIds]);
+
+  const primaryPatent = useMemo(() => {
+    return selectedPatents[0] || patents[0] || INITIAL_PATENTS[0];
+  }, [selectedPatents, patents]);
 
   const filteredPatents = useMemo(() => {
     return patents.filter(p => 
@@ -205,58 +271,27 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
     );
   }, [patents, patentSearchQuery]);
 
-  // Determine smart recommended chain & node based on selected patent
-  const recommendedMapping = useMemo<PatentChainMappingInfo>(() => {
-    if (PATENT_CHAIN_MAP[activePatent.id]) {
-      return PATENT_CHAIN_MAP[activePatent.id];
-    }
-    // Dynamic fallback matching based on field or title keywords
-    const title = activePatent.title || '';
-    const field = activePatent.field || '';
-    if (field.includes('auto') || title.includes('车') || title.includes('制动') || title.includes('底盘')) {
-      return {
-        chainId: 'chain-2',
-        chainName: '新能源汽车',
-        category: '新能源汽车',
-        recommendedNode: 'midstream',
-        nodeTitle: '中游 • 精密制造与模块总成',
-        nodeReason: `该专利涉及智能网联与新能源汽车关键技术，推荐对接汽车产业链中下游零部件及整车企业。`,
-        applicationScenarios: ['新能源汽车关键总成', '整车集成与智能制造']
-      };
-    }
-    if (field.includes('material') || title.includes('材料') || title.includes('高分子') || title.includes('合金')) {
-      return {
-        chainId: 'chain-6',
-        chainName: '碳纤维',
-        category: '新材料',
-        recommendedNode: 'upstream',
-        nodeTitle: '上游 • 核心材料与元器件',
-        nodeReason: `该专利属于高性能新材料领域，处于产业链上游关键基础材料供给节点。`,
-        applicationScenarios: ['高性能复合材料制造', '特种功能结构件']
-      };
-    }
-    if (field.includes('bio') || field.includes('medical') || title.includes('药') || title.includes('医') || title.includes('生化')) {
-      return {
-        chainId: 'chain-1',
-        chainName: '高端医疗器械',
-        category: '生物医药与健康',
-        recommendedNode: 'upstream',
-        nodeTitle: '上游 • 核心材料与天然原料',
-        nodeReason: `该专利属于现代生物医药与医疗健康领域，具备良好的临床转化与药械协同前景。`,
-        applicationScenarios: ['创新药物研发', '高端医疗器械配套']
-      };
-    }
-    // Default fallback
-    return {
-      chainId: 'chain-2',
-      chainName: '新能源汽车',
-      category: '全部产业链',
-      recommendedNode: 'midstream',
-      nodeTitle: '中游 • 装备制造与系统集成',
-      nodeReason: `该专利具备较强的工程实用性，可广泛对接战略产业链中下游制造企业。`,
-      applicationScenarios: ['工业智能装备制造', '系统总成与工艺集成']
-    };
-  }, [activePatent]);
+  // Multi-patent chain recommendations aggregation
+  const chainMatches = useMemo(() => {
+    const targetPatents = selectedPatents.length > 0 ? selectedPatents : [patents[0] || INITIAL_PATENTS[0]];
+    const map = new Map<string, { mapping: PatentChainMappingInfo; count: number; patents: PatentItem[] }>();
+    
+    targetPatents.forEach(p => {
+      if (!p) return;
+      const m = getPatentMapping(p);
+      const existing = map.get(m.chainId);
+      if (existing) {
+        existing.count += 1;
+        existing.patents.push(p);
+      } else {
+        map.set(m.chainId, { mapping: m, count: 1, patents: [p] });
+      }
+    });
+
+    return Array.from(map.values()).sort((a, b) => b.count - a.count);
+  }, [selectedPatents, patents]);
+
+  const primaryMapping = chainMatches[0]?.mapping;
 
   // Category & Chain & Node states
   const [selectedCategory, setSelectedCategory] = useState<string>('全部产业链');
@@ -268,16 +303,16 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   const [isChainSelectorOpen, setIsChainSelectorOpen] = useState<boolean>(false);
   const itemsPerPage = 6;
 
-  // Auto-switch chain and node recommendation when patent changes
+  // Auto-switch chain and node recommendation when primary mapping changes
   useEffect(() => {
-    if (recommendedMapping) {
-      setSelectedChainId(recommendedMapping.chainId);
-      if (recommendedMapping.category && recommendedMapping.category !== '全部产业链') {
-        setSelectedCategory(recommendedMapping.category);
+    if (primaryMapping) {
+      setSelectedChainId(primaryMapping.chainId);
+      if (primaryMapping.category && primaryMapping.category !== '全部产业链') {
+        setSelectedCategory(primaryMapping.category);
       }
-      setSelectedNode(recommendedMapping.recommendedNode);
+      setSelectedNode(primaryMapping.recommendedNode);
     }
-  }, [recommendedMapping]);
+  }, [primaryMapping?.chainId]);
 
   const activeChain = useMemo(() => {
     return INDUSTRY_CHAINS_57_DATA.find(c => c.id === selectedChainId) || INDUSTRY_CHAINS_57_DATA[0];
@@ -290,12 +325,32 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
     });
   }, [selectedCategory]);
 
-  const handlePatentChange = (id: string) => {
-    setCurrentPatentId(id);
-    const p = patents.find(item => item.id === id);
-    if (p && onSelectPatent) {
-      onSelectPatent(p);
-    }
+  const handleTogglePatent = (id: string) => {
+    setSelectedPatentIds(prev => {
+      const exists = prev.includes(id);
+      const next = exists ? prev.filter(item => item !== id) : [...prev, id];
+      if (!exists) {
+        const p = patents.find(item => item.id === id);
+        if (p && onSelectPatent) {
+          onSelectPatent(p);
+        }
+      }
+      return next;
+    });
+  };
+
+  const handleSelectAllFiltered = () => {
+    const filteredIds = filteredPatents.map(p => p.id);
+    setSelectedPatentIds(prev => Array.from(new Set([...prev, ...filteredIds])));
+  };
+
+  const handleClearAllSelected = () => {
+    setSelectedPatentIds([]);
+  };
+
+  // Helper to count how many of the currently selected patents match a given chain
+  const getSelectedMatchCount = (chainId: string) => {
+    return selectedPatents.filter(p => getPatentMapping(p).chainId === chainId).length;
   };
 
   // Calculate node counts derived directly from TARGET_ENTERPRISES_DATA (matching chainPosition)
@@ -375,7 +430,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
             }}
             className="px-3 py-1 rounded-xl bg-blue-600/80 hover:bg-blue-500 text-cyan-200 hover:text-white border border-cyan-400/40 text-xs font-bold flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer"
           >
-            <span>直达全景图谱</span>
+            <span>直达匹配图谱</span>
             <ArrowDown className="w-3.5 h-3.5 animate-bounce text-cyan-300" />
           </button>
         </div>
@@ -384,76 +439,188 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
       {/* Step 1 & Step 2: High Efficiency 2-Column Responsive Selector Hub */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         
-        {/* Step 1: Select JLU Patent */}
+        {/* Step 1: Select JLU Patent (Supports Multi-Select) */}
         <div className="bg-[#061026]/90 rounded-2xl p-3.5 border border-blue-900/50 shadow-xl space-y-2 flex flex-col justify-between">
           <div className="space-y-1.5 relative" ref={dropdownRef}>
             <label className="text-xs sm:text-sm font-bold text-slate-200 flex items-center justify-between gap-1.5">
               <span className="flex items-center gap-1.5">
                 <FileText className="w-3.5 h-3.5 text-cyan-400" />
                 <span>第一步：选择待转化的吉大专利</span>
+                <span className="text-[10px] bg-cyan-950/90 text-cyan-300 px-1.5 py-0.2 rounded border border-cyan-700/60 font-semibold shadow-xs">
+                  支持多选
+                </span>
               </span>
               <span className="text-[11px] text-slate-400 font-normal">
-                已收录 {patents.length} 项成果
+                已选 <strong className="text-cyan-300 font-mono font-bold">{selectedPatentIds.length}</strong> 项 / 共 {patents.length} 项
               </span>
             </label>
 
+            {/* Custom Multi-select Trigger Box */}
             <div 
-              className="w-full bg-[#0a1838] border border-blue-800/60 rounded-xl px-3 py-2 text-xs sm:text-sm text-white font-medium focus-within:ring-2 focus-within:ring-cyan-400 focus-within:bg-[#0c224e] transition-all cursor-pointer flex items-center justify-between gap-2 hover:border-cyan-400/60"
+              className="w-full bg-[#0a1838] border border-blue-800/60 rounded-xl px-3 py-2 text-xs sm:text-sm text-white font-medium focus-within:ring-2 focus-within:ring-cyan-400 focus-within:bg-[#0c224e] transition-all cursor-pointer flex items-center justify-between gap-2 hover:border-cyan-400/60 min-h-[42px]"
               onClick={() => setIsDropdownOpen(true)}
             >
-              <div className="truncate flex-1">
-                {activePatent ? (
-                  <span className="flex items-center gap-1.5 truncate">
+              <div className="flex items-center gap-1.5 flex-1 min-w-0 flex-wrap py-0.5">
+                {selectedPatents.length === 0 ? (
+                  <span className="text-slate-400 text-xs">点击勾选一项或多项待转化的吉大专利...</span>
+                ) : selectedPatents.length === 1 ? (
+                  <div className="flex items-center gap-1.5 truncate max-w-full">
                     <span className="font-mono text-cyan-300 bg-blue-950/80 px-1.5 py-0.5 rounded border border-blue-700/60 text-[11px] font-bold shrink-0">
-                      {activePatent.patentNo}
+                      {selectedPatents[0].patentNo}
                     </span>
-                    <span className="font-bold text-white truncate text-xs sm:text-sm">{activePatent.title}</span>
-                    <span className="text-[11px] text-slate-400 shrink-0">({activePatent.inventor})</span>
-                  </span>
+                    <span className="font-bold text-white truncate text-xs sm:text-sm">{selectedPatents[0].title}</span>
+                    <span className="text-[11px] text-slate-400 shrink-0 hidden sm:inline">({selectedPatents[0].inventor})</span>
+                  </div>
                 ) : (
-                  '请选择或搜索专利...'
+                  <div className="flex items-center gap-1.5 flex-wrap max-w-full">
+                    <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-slate-950 font-black text-[11px] px-2 py-0.5 rounded-full shrink-0 shadow-xs">
+                      已组合选定 {selectedPatents.length} 项成果
+                    </span>
+                    {selectedPatents.slice(0, 2).map(p => (
+                      <span 
+                        key={p.id}
+                        className="inline-flex items-center gap-1 bg-blue-950/90 text-cyan-200 border border-blue-700/80 px-2 py-0.5 rounded-md text-[11px] font-medium max-w-[200px] truncate"
+                      >
+                        <span className="truncate">{p.title}</span>
+                        <button 
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleTogglePatent(p.id);
+                          }}
+                          className="hover:text-white hover:bg-blue-800 rounded p-0.5 ml-0.5 shrink-0 transition-colors"
+                          title="移除此项"
+                        >
+                          <X className="w-2.5 h-2.5" />
+                        </button>
+                      </span>
+                    ))}
+                    {selectedPatents.length > 2 && (
+                      <span className="text-[11px] text-cyan-300 font-bold bg-blue-900/60 px-1.5 py-0.5 rounded border border-blue-700/50">
+                        +{selectedPatents.length - 2} 项
+                      </span>
+                    )}
+                  </div>
                 )}
               </div>
-              <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+
+              <div className="flex items-center gap-2 shrink-0">
+                {selectedPatents.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleClearAllSelected();
+                    }}
+                    className="text-[11px] text-slate-400 hover:text-red-300 transition-colors px-1 py-0.5 hover:bg-red-950/40 rounded cursor-pointer"
+                    title="清空已选专利"
+                  >
+                    清空
+                  </button>
+                )}
+                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </div>
             </div>
 
+            {/* Dropdown Menu with Multi-selection Checkboxes */}
             {isDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-1.5 bg-[#071536] border border-blue-700/80 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[320px]">
-                <div className="p-2 border-b border-blue-800/60 bg-[#05102a] sticky top-0 z-10">
-                   <div className="relative">
-                     <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
-                     <input 
-                       type="text"
-                       autoFocus
-                       placeholder="输入专利名称、专利号或发明人进行模糊检索..."
-                       value={patentSearchQuery}
-                       onChange={e => setPatentSearchQuery(e.target.value)}
-                       className="w-full bg-[#0c224e] border border-blue-600/50 rounded-lg py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-400 focus:outline-hidden focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
-                     />
-                   </div>
-                </div>
-                <div className="overflow-y-auto p-1.5">
-                  {filteredPatents.length > 0 ? (
-                    filteredPatents.map(p => (
-                      <div 
-                        key={p.id}
-                        onClick={() => {
-                          handlePatentChange(p.id);
-                          setIsDropdownOpen(false);
-                          setPatentSearchQuery('');
-                        }}
-                        className={`p-2.5 rounded-lg cursor-pointer transition-colors ${currentPatentId === p.id ? 'bg-blue-900/80 border border-cyan-400/60' : 'hover:bg-blue-900/40 border border-transparent'}`}
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-[#071536] border border-blue-700/80 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[380px]">
+                {/* Search & Batch Action Header */}
+                <div className="p-2 border-b border-blue-800/60 bg-[#05102a] sticky top-0 z-10 space-y-1.5">
+                  <div className="relative">
+                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
+                    <input 
+                      type="text"
+                      autoFocus
+                      placeholder="输入专利名称、专利号或发明人进行模糊检索..."
+                      value={patentSearchQuery}
+                      onChange={e => setPatentSearchQuery(e.target.value)}
+                      className="w-full bg-[#0c224e] border border-blue-600/50 rounded-lg py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-400 focus:outline-hidden focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between text-[11px] px-1 pt-0.5">
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={handleSelectAllFiltered}
+                        className="text-cyan-300 hover:text-white font-medium hover:underline flex items-center gap-1 cursor-pointer"
                       >
-                        <div className="font-bold text-white text-xs sm:text-sm line-clamp-1">{p.title}</div>
-                        <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[11px] text-slate-400">
-                           <span className="font-mono text-cyan-300 bg-blue-950 px-1.5 py-0.5 rounded border border-blue-800/60">{p.patentNo}</span>
-                           <span>•</span>
-                           <span className="font-medium text-slate-300">{p.inventor}</span>
-                           <span>•</span>
-                           <span className="text-slate-400">{p.fieldName || '战略科技成果'}</span>
+                        <CheckSquare className="w-3 h-3" />
+                        全选检索结果 ({filteredPatents.length})
+                      </button>
+                      <span className="text-slate-600">|</span>
+                      <button
+                        type="button"
+                        onClick={handleClearAllSelected}
+                        className="text-slate-400 hover:text-red-300 font-medium hover:underline cursor-pointer"
+                      >
+                        清空已选
+                      </button>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="text-slate-300">
+                        已勾选 <strong className="text-cyan-300 font-bold">{selectedPatentIds.length}</strong> 项
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="px-2.5 py-0.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-md shadow-xs cursor-pointer active:scale-95 transition-transform"
+                      >
+                        完成
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Patent list */}
+                <div className="overflow-y-auto p-1.5 space-y-1">
+                  {filteredPatents.length > 0 ? (
+                    filteredPatents.map(p => {
+                      const isChecked = selectedPatentIds.includes(p.id);
+                      return (
+                        <div 
+                          key={p.id}
+                          onClick={() => handleTogglePatent(p.id)}
+                          className={`p-2 rounded-lg cursor-pointer transition-colors flex items-start gap-2.5 ${
+                            isChecked 
+                              ? 'bg-blue-900/80 border border-cyan-400/60 shadow-xs' 
+                              : 'hover:bg-blue-900/40 border border-transparent'
+                          }`}
+                        >
+                          <div className="mt-0.5 shrink-0">
+                            {isChecked ? (
+                              <div className="w-4 h-4 rounded bg-cyan-400 border border-cyan-300 flex items-center justify-center text-slate-950 font-bold shadow-xs">
+                                <Check className="w-3 h-3 stroke-[3]" />
+                              </div>
+                            ) : (
+                              <div className="w-4 h-4 rounded border border-slate-600 bg-slate-800/80 hover:border-slate-400 transition-colors" />
+                            )}
+                          </div>
+
+                          <div className="flex-1 min-w-0">
+                            <div className="font-bold text-white text-xs sm:text-sm line-clamp-1 flex items-center gap-1.5">
+                              <span className="truncate">{p.title}</span>
+                              {isChecked && (
+                                <span className="px-1 py-0.2 rounded bg-cyan-950 text-cyan-300 border border-cyan-700/60 text-[10px] font-semibold shrink-0">
+                                  已勾选
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[11px] text-slate-400">
+                              <span className="font-mono text-cyan-300 bg-blue-950 px-1.5 py-0.5 rounded border border-blue-800/60">
+                                {p.patentNo}
+                              </span>
+                              <span>•</span>
+                              <span className="font-medium text-slate-300">{p.inventor}</span>
+                              <span>•</span>
+                              <span className="text-slate-400">{p.fieldName || '战略科技成果'}</span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    ))
+                      );
+                    })
                   ) : (
                     <div className="p-6 text-center text-xs text-slate-400">
                       没有找到匹配的吉大专利记录
@@ -465,24 +632,55 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
           </div>
 
           {/* AI Recommended Chain Strip */}
-          {recommendedMapping && (
-            <div className="bg-gradient-to-r from-blue-950/80 via-indigo-950/60 to-[#071536] px-2.5 py-1.5 rounded-xl border border-cyan-500/30 flex items-center justify-between gap-2 shadow-sm text-xs">
-              <div className="flex items-center gap-1.5 truncate">
+          {chainMatches.length > 0 && (
+            <div className="bg-gradient-to-r from-blue-950/90 via-indigo-950/70 to-[#071536] px-2.5 py-1.5 rounded-xl border border-cyan-500/30 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 shadow-sm text-xs">
+              <div className="flex items-center gap-1.5 truncate flex-1 min-w-0">
                 <span className="px-1.5 py-0.5 rounded bg-blue-600 text-white font-black text-[10px] shrink-0 flex items-center gap-0.5">
                   <Sparkles className="w-2.5 h-2.5 text-cyan-200" />
                   AI穿透
                 </span>
-                <span className="text-slate-300 truncate text-[11px] sm:text-xs">
-                  推荐链条：<strong className="text-cyan-300">{recommendedMapping.chainName}</strong> ➔ <span className="text-indigo-300">{recommendedMapping.nodeTitle.split('(')[0]}</span>
-                </span>
+                {selectedPatents.length <= 1 ? (
+                  <span className="text-slate-300 truncate text-[11px] sm:text-xs">
+                    推荐链条：<strong className="text-cyan-300">{primaryMapping?.chainName}</strong> ➔ <span className="text-indigo-300">{primaryMapping?.nodeTitle.split('(')[0]}</span>
+                  </span>
+                ) : (
+                  <div className="flex items-center gap-1.5 truncate text-[11px] sm:text-xs text-slate-300">
+                    <span className="shrink-0">对口 {chainMatches.length} 条战略产业链：</span>
+                    <div className="flex items-center gap-1 truncate">
+                      {chainMatches.map(cm => (
+                        <button
+                          key={cm.mapping.chainId}
+                          type="button"
+                          onClick={() => {
+                            setSelectedChainId(cm.mapping.chainId);
+                            if (cm.mapping.category && cm.mapping.category !== '全部产业链') {
+                              setSelectedCategory(cm.mapping.category);
+                            }
+                            setSelectedNode(cm.mapping.recommendedNode);
+                          }}
+                          className={`px-1.5 py-0.5 rounded text-[10px] font-bold border transition-colors cursor-pointer shrink-0 flex items-center gap-1 ${
+                            selectedChainId === cm.mapping.chainId
+                              ? 'bg-cyan-500 text-slate-950 border-cyan-400'
+                              : 'bg-blue-950/80 text-cyan-300 border-blue-700/60 hover:bg-blue-900'
+                          }`}
+                        >
+                          <span>{cm.mapping.chainName}</span>
+                          <span className="opacity-80">({cm.count}项)</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
               <button
                 onClick={() => {
-                  setSelectedChainId(recommendedMapping.chainId);
-                  if (recommendedMapping.category && recommendedMapping.category !== '全部产业链') {
-                    setSelectedCategory(recommendedMapping.category);
+                  if (primaryMapping) {
+                    setSelectedChainId(primaryMapping.chainId);
+                    if (primaryMapping.category && primaryMapping.category !== '全部产业链') {
+                      setSelectedCategory(primaryMapping.category);
+                    }
+                    setSelectedNode(primaryMapping.recommendedNode);
                   }
-                  setSelectedNode(recommendedMapping.recommendedNode);
                 }}
                 className="px-2 py-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-lg text-[11px] font-bold transition-all shadow-xs shrink-0 cursor-pointer border border-blue-400/40 active:scale-95"
               >
@@ -527,7 +725,14 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
             <div className="flex items-center gap-2 text-[11px] shrink-0">
               <span className="text-cyan-400 font-semibold">{activeChain?.totalEnterprises || 428}家企业</span>
               <span className="text-slate-400">|</span>
-              <span className="text-slate-300">吉大专利: <strong className="text-white font-mono">{activeChain?.jluPatentsCount || 24}项</strong></span>
+              <span className="text-slate-300">
+                吉大专利: <strong className="text-white font-mono">{activeChain?.jluPatentsCount || 24}项</strong>
+                {getSelectedMatchCount(activeChain?.id || '') > 0 && (
+                  <span className="ml-1 text-cyan-300 font-bold bg-blue-950 px-1 py-0.2 rounded border border-blue-700/60">
+                    (含选定 {getSelectedMatchCount(activeChain?.id || '')} 项)
+                  </span>
+                )}
+              </span>
             </div>
           </div>
         </div>
@@ -562,7 +767,8 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 max-h-56 overflow-y-auto pr-1">
             {filteredChains.map((chain) => {
               const isSelected = selectedChainId === chain.id;
-              const isRecommended = recommendedMapping?.chainId === chain.id;
+              const matchCount = getSelectedMatchCount(chain.id);
+              const isRecommended = matchCount > 0 || primaryMapping?.chainId === chain.id;
               return (
                 <button
                   key={chain.id}
@@ -576,7 +782,11 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
                       : 'bg-[#08183a]/80 border-blue-900/50 hover:border-cyan-400/60 hover:bg-[#0c2352] text-slate-300'
                   }`}
                 >
-                  {isRecommended && (
+                  {matchCount > 0 ? (
+                    <span className="absolute -top-2 right-2 px-1.5 py-0.2 rounded bg-cyan-500 text-slate-950 text-[9px] font-black shadow-xs flex items-center gap-0.5">
+                      <Sparkles className="w-2.5 h-2.5" /> 选定对口 ({matchCount}项)
+                    </span>
+                  ) : isRecommended && (
                     <span className="absolute -top-2 right-2 px-1.5 py-0.2 rounded bg-amber-500 text-white text-[9px] font-black shadow-xs flex items-center gap-0.5">
                       <Sparkles className="w-2.5 h-2.5" /> 专利对口
                     </span>

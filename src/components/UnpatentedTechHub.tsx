@@ -675,7 +675,7 @@ export const UnpatentedTechHub: React.FC<Props> = ({ userRole }) => {
                   className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-sm transition-colors cursor-pointer flex items-center gap-1.5"
                 >
                   <Check className="w-4 h-4" />
-                  确认提交对接申请并进入洽谈
+                  确认提交
                 </button>
               </div>
             </form>

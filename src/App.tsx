@@ -243,6 +243,7 @@ function AppContent() {
                 userRole={userRole} 
                 onNavigateToSearch={() => { setEnterpriseSearchQuery(''); setActiveTab('tech-search'); }} 
                 onSelectPatent={(p) => setSelectedPatentForDetailModal(p)} 
+                onNavigateToUnpatented={() => setActiveTab('unpatented-tech')}
               />
             )}
             
