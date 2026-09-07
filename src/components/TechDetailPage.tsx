@@ -279,7 +279,7 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
-            <span>企业采纳决策要点（技术、指标、痛点、导入条件）</span>
+            <span>企业落地评估</span>
           </button>
 
           <button
@@ -390,43 +390,45 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                   </div>
                 </div>
 
-                {/* Patent Drawings (说明书附图) */}
-                <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-blue-600" />
-                      说明书附图
-                    </h3>
-                    <span className="text-[11px] text-slate-500 font-mono">共 4 幅公开图纸</span>
-                  </div>
+                {/* Patent Drawings (说明书附图 - 仅专利成果展示) */}
+                {tech.type === 'patent' && (
+                  <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
+                    <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                      <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                        <FileText className="w-4 h-4 text-blue-600" />
+                        说明书附图
+                      </h3>
+                      <span className="text-[11px] text-slate-500 font-mono">共 4 幅公开图纸</span>
+                    </div>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {[
-                      { url: 'https://img.baiten.cn/img/80cf1c09b08cbe1163a6718e894efe0b/196/0', title: '图 1 系统总成结构拓扑' },
-                      { url: 'https://img.baiten.cn/img/90bc077708a45df95599f087955931b9/196/0', title: '图 2 核心控制算法框图' },
-                      { url: 'https://img.baiten.cn/img/917492d999de3001a829443916c67a58/196/0', title: '图 3 实车动态响应曲线' },
-                      { url: 'https://img.baiten.cn/img/a61abd83c0a5351d6ddd490dd0f180d4/196/0', title: '图 4 电磁阻尼阀构型图' }
-                    ].map((fig, idx) => (
-                      <div key={idx} className="group relative bg-slate-50 rounded-xl border border-slate-200 p-2 overflow-hidden hover:border-blue-400 hover:shadow-xs transition-all flex flex-col items-center">
-                        <div className="w-full h-28 flex items-center justify-center bg-white rounded-lg p-1 border border-slate-100 overflow-hidden">
-                          <img 
-                            src={fig.url} 
-                            alt={fig.title} 
-                            referrerPolicy="no-referrer"
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
-                            loading="lazy"
-                          />
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                      {[
+                        { url: 'https://img.baiten.cn/img/80cf1c09b08cbe1163a6718e894efe0b/196/0', title: '图 1 系统总成结构拓扑' },
+                        { url: 'https://img.baiten.cn/img/90bc077708a45df95599f087955931b9/196/0', title: '图 2 核心控制算法框图' },
+                        { url: 'https://img.baiten.cn/img/917492d999de3001a829443916c67a58/196/0', title: '图 3 实车动态响应曲线' },
+                        { url: 'https://img.baiten.cn/img/a61abd83c0a5351d6ddd490dd0f180d4/196/0', title: '图 4 电磁阻尼阀构型图' }
+                      ].map((fig, idx) => (
+                        <div key={idx} className="group relative bg-slate-50 rounded-xl border border-slate-200 p-2 overflow-hidden hover:border-blue-400 hover:shadow-xs transition-all flex flex-col items-center">
+                          <div className="w-full h-28 flex items-center justify-center bg-white rounded-lg p-1 border border-slate-100 overflow-hidden">
+                            <img 
+                              src={fig.url} 
+                              alt={fig.title} 
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="mt-2 text-[11px] font-bold text-slate-700 text-center truncate w-full">
+                            {fig.title}
+                          </div>
                         </div>
-                        <div className="mt-2 text-[11px] font-bold text-slate-700 text-center truncate w-full">
-                          {fig.title}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Claims */}
-                {tech.claimsSummary && tech.claimsSummary.length > 0 && (
+                {/* Claims (仅专利成果展示权利要求) */}
+                {tech.type === 'patent' && tech.claimsSummary && tech.claimsSummary.length > 0 && (
                   <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
                     <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                       <FileCheck2 className="w-4 h-4 text-indigo-600" />
