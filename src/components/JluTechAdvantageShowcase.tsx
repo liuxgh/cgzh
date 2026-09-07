@@ -200,14 +200,6 @@ export const JluTechAdvantageShowcase: React.FC<Props> = ({ onNavigateToFullMap 
              <Activity className="w-5 h-5 text-emerald-600" />
              核心科技成果演进趋势
            </h3>
-           {onNavigateToFullMap && (
-             <button
-                onClick={onNavigateToFullMap}
-               className="text-xs font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors"
-             >
-               查看完整技术图谱 &rarr;
-             </button>
-           )}
         </div>
         <p className="text-xs text-slate-500 mb-6">图表展示的是分析对象在不同技术方向专利量的分布情况和发展情况。分析各阶段的技术分布有助于了解特定时期的重要技术分布，挖掘近期热门技术动向，便于对接产学研合作点。</p>
 

@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Sparkles, 
   ShieldCheck, 
   Award, 
   Search, 
-  ArrowRight, 
   User, 
   Calendar, 
   X, 
   Layers,
   Clock,
-  Compass
+  Compass,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { PatentItem, UserRole } from '../types';
 import { INITIAL_PATENTS } from '../data/mockData';
@@ -34,6 +35,13 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
   const [techType, setTechType] = useState<TechTypeFilter>('all');
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pageSize = 6;
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [techType, selectedDomain, searchQuery]);
 
   // Domains for filtering
   const domains = [
@@ -67,10 +75,10 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
     return true;
   };
 
-  // Helper to format date with current 2025/2026 data
+  // Helper to format date with current 2026 data
   const formatLatestDate = (dateStr?: string) => {
     if (!dateStr) return '2026年';
-    return dateStr.replace(/^2024/, '2026').replace(/^2023/, '2025').replace(/^2022/, '2025');
+    return dateStr.replace(/^2024/, '2026').replace(/^2023/, '2026').replace(/^2022/, '2026');
   };
 
   // Filter Patents
@@ -143,6 +151,23 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
     }))
   ];
 
+  const totalPages = Math.max(1, Math.ceil(unifiedList.length / pageSize));
+  const safeCurrentPage = Math.min(Math.max(1, currentPage), totalPages);
+  const currentItems = unifiedList.slice((safeCurrentPage - 1) * pageSize, safeCurrentPage * pageSize);
+
+  const getPageNumbers = (current: number, total: number): (number | string)[] => {
+    if (total <= 7) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+    if (current <= 4) {
+      return [1, 2, 3, 4, 5, '...', total];
+    }
+    if (current >= total - 3) {
+      return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+    }
+    return [1, '...', current - 1, current, current + 1, '...', total];
+  };
+
   return (
     <div id="latest-tech-achievements-module" className="bg-slate-900/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-700/50 shadow-2xl relative overflow-hidden group flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700">
       {/* Ambient background glows */}
@@ -156,15 +181,12 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
             <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-cyan-500/30 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
               <Sparkles className="w-5 h-5" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-3">
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               吉林大学最新技术成果
-              <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30">
-                2025-2026 最新成果库
-              </span>
             </h3>
           </div>
           <p className="text-xs sm:text-sm text-slate-300 max-w-2xl font-light">
-            汇聚吉林大学近期高价值专利与特色专有技术成果（含中试工艺包、特色技术诀窍），精准赋能重点产业创新升级。
+            汇聚吉林大学2026年授权专利与特色专有技术成果，精准赋能重点产业创新升级。
           </p>
         </div>
 
@@ -205,7 +227,7 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
-            全部成果 ({INITIAL_PATENTS.length + UNPATENTED_TECH_LIST.length})
+            全部成果 (2,568)
           </button>
           <button
             onClick={() => setTechType('patent')}
@@ -216,7 +238,7 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5 text-blue-300" />
-            专利技术 ({INITIAL_PATENTS.length})
+            专利技术 (2,079)
           </button>
           <button
             onClick={() => setTechType('unpatented')}
@@ -227,7 +249,7 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
             }`}
           >
             <Award className="w-3.5 h-3.5 text-amber-300" />
-            非专利技术/成果 ({UNPATENTED_TECH_LIST.length})
+            非专利技术/成果 (489)
           </button>
         </div>
 
@@ -284,12 +306,19 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
             </button>
           </div>
         ) : (
-          unifiedList.slice(0, 9).map(item => {
+          currentItems.map(item => {
             const isPatent = item.type === 'patent';
             return (
               <div
                 key={`${item.type}-${item.id}`}
-                className="bg-slate-800/50 hover:bg-slate-800/80 border border-slate-700/60 hover:border-blue-500/50 rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between group/card shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 relative overflow-hidden"
+                onClick={() => {
+                  if (isPatent && item.rawPatent && onSelectPatent) {
+                    onSelectPatent(item.rawPatent);
+                  }
+                }}
+                className={`bg-slate-800/50 hover:bg-slate-800/80 border border-slate-700/60 hover:border-blue-500/50 rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between group/card shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 relative overflow-hidden ${
+                  isPatent && onSelectPatent ? 'cursor-pointer' : ''
+                }`}
               >
                 {/* Top Accent Strip */}
                 <div className={`absolute top-0 left-0 right-0 h-1 ${
@@ -354,21 +383,74 @@ export const LatestTechAchievementsSection: React.FC<Props> = ({
         )}
       </div>
 
-      {/* Bottom Hint Banner */}
-      <div className="pt-4 border-t border-slate-700/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 relative z-10">
-        <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4 text-cyan-400 shrink-0" />
-          <span>吉林大学重点聚焦关键核心技术突破与高质量科技供给，推动高校成果与产业需求深度融合。</span>
+      {/* Pagination Bar */}
+      {totalPages > 1 && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-700/50 relative z-10 text-xs text-slate-300">
+          <div className="flex items-center gap-2">
+            <span>
+              共 <strong className="text-white font-mono">{unifiedList.length}</strong> 项成果
+            </span>
+            <span className="text-slate-600">|</span>
+            <span>
+              第 <strong className="text-cyan-400 font-mono font-bold">{safeCurrentPage}</strong> / <strong className="text-white font-mono">{totalPages}</strong> 页
+            </span>
+            <span className="text-slate-400 text-[11px]">（每页 6 条）</span>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              disabled={safeCurrentPage <= 1}
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              className="px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center gap-1 shadow-sm font-medium"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+              <span>上一页</span>
+            </button>
+
+            {getPageNumbers(safeCurrentPage, totalPages).map((pg, idx) => {
+              if (pg === '...') {
+                return (
+                  <span key={`dots-${idx}`} className="w-8 h-8 flex items-center justify-center text-slate-500">
+                    ...
+                  </span>
+                );
+              }
+              const pageNum = Number(pg);
+              const isActive = safeCurrentPage === pageNum;
+              return (
+                <button
+                  key={pageNum}
+                  type="button"
+                  onClick={() => setCurrentPage(pageNum)}
+                  className={`w-8 h-8 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center ${
+                    isActive
+                      ? 'bg-blue-600 text-white border border-blue-400 shadow-md shadow-blue-500/20'
+                      : 'bg-slate-800/80 border border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
+                  }`}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+
+            <button
+              type="button"
+              disabled={safeCurrentPage >= totalPages}
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              className="px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all flex items-center gap-1 shadow-sm font-medium"
+            >
+              <span>下一页</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
-        {onNavigateToSearch && (
-          <button 
-            onClick={onNavigateToSearch}
-            className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 cursor-pointer shrink-0 transition-colors"
-          >
-            <span>探索全部 49,000+ 件存量成果</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        )}
+      )}
+
+      {/* Bottom Hint Banner */}
+      <div className="pt-2 border-t border-slate-700/40 flex items-center gap-2 text-xs text-slate-400 relative z-10">
+        <Clock className="w-4 h-4 text-cyan-400 shrink-0" />
+        <span>吉林大学重点聚焦关键核心技术突破与高质量科技供给，推动高校成果与产业需求深度融合。</span>
       </div>
     </div>
   );
