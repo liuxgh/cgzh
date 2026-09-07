@@ -448,89 +448,168 @@ export const EnterpriseProfilePage: React.FC<EnterpriseProfilePageProps> = ({ en
           <h2 className="text-lg font-black text-slate-900 ml-1">知识产权全景</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
-          {/* Card 1: 当前有效专利 (中国) */}
-          <div className="p-6 relative overflow-hidden bg-white">
-            <div className="absolute right-4 top-4 text-[#F0F4FA] pointer-events-none">
-              <svg width="110" height="110" viewBox="0 0 100 100" fill="currentColor">
-                <path fillRule="evenodd" clipRule="evenodd" d="M46 16 C68 16 84 32 84 52 C84 72 68 86 46 86 L38 86 L38 16 H46 Z M45 30 H42 V72 H45 C59 72 70 63 70 52 C70 40 59 30 45 30 Z" opacity="0.9" />
-                <rect x="33" y="14" width="3" height="74" rx="1.5" />
-                <path d="M23 26 L24.5 21 L26 26 L31 27.5 L26 29 L24.5 34 L23 29 L18 27.5 Z" />
-                <path d="M14 42 L15.5 37 L17 42 L22 43.5 L17 45 L15.5 50 L14 45 L9 43.5 Z" />
-                <path d="M19 59 L20.5 54 L22 59 L27 60.5 L22 62 L20.5 67 L19 62 L14 60.5 Z" />
-                <path d="M28 73 L29.2 69 L30.4 73 L34.4 74.2 L30.4 75.4 L29.2 79.4 L28 75.4 L24 74.2 Z" />
-              </svg>
-            </div>
-            
-            <div className="relative z-10">
-              <h3 className="text-[15px] font-normal text-slate-700 mb-2">当前有效专利 ( 中国 )</h3>
-              <div className="flex items-baseline gap-2 mb-6">
-                <span className="text-5xl font-black text-[#0052D9] tracking-tight font-sans">14895</span>
-                <span className="text-base font-normal text-slate-700">件</span>
+        <div className="p-6 bg-slate-50/60 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Card 1: 全部专利 / 当前有效 / 已失效 */}
+          <div className="bg-white rounded-xl border border-slate-200/90 p-6 shadow-xs flex flex-col justify-between">
+            <div>
+              {/* Top 3 stats */}
+              <div className="grid grid-cols-3 gap-4 pb-6 border-b border-slate-100">
+                <div>
+                  <div className="text-[14px] text-slate-700 mb-2 font-normal">全部专利</div>
+                  <div className="flex items-baseline">
+                    <span className="text-4xl sm:text-5xl font-black text-[#0052D9] font-sans tracking-tight">237</span>
+                    <span className="text-sm font-normal text-slate-700 ml-2">件</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[14px] text-slate-700 mb-2 font-normal">当前有效</div>
+                  <div className="flex items-baseline">
+                    <span className="text-4xl sm:text-5xl font-black text-[#00A870] font-sans tracking-tight">152</span>
+                    <span className="text-sm font-normal text-slate-700 ml-2">件</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[14px] text-slate-700 mb-2 font-normal">已失效</div>
+                  <div className="flex items-baseline">
+                    <span className="text-4xl sm:text-5xl font-black text-[#E34D59] font-sans tracking-tight">75</span>
+                    <span className="text-sm font-normal text-slate-700 ml-2">件</span>
+                  </div>
+                </div>
               </div>
-              
-              <div className="grid grid-cols-3 gap-6 pt-5 border-t border-slate-200">
-                <div className="border-l-4 border-[#0052D9] pl-3">
-                  <div className="text-[14px] text-slate-600 mb-1">发明</div>
-                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
-                    12239 <span className="text-sm font-normal text-slate-600">件</span>
+
+              {/* Middle row: 发明总计 / 新型总计 / 外观总计 */}
+              <div className="grid grid-cols-3 gap-4 pt-5 pb-5">
+                <div className="border-l-4 border-[#0052D9] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1">发明总计/当前有效</div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">69</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1 mr-1">件 /</span>
+                    <span className="text-lg sm:text-xl font-bold">34</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
                   </div>
                 </div>
-                <div className="border-l-4 border-[#00B4B4] pl-3">
-                  <div className="text-[14px] text-slate-600 mb-1">实用新型</div>
-                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
-                    2566 <span className="text-sm font-normal text-slate-600">件</span>
+                <div className="border-l-4 border-[#00B4B4] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1">新型总计/当前有效</div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">128</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1 mr-1">件 /</span>
+                    <span className="text-lg sm:text-xl font-bold">93</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
                   </div>
                 </div>
-                <div className="border-l-4 border-[#00A870] pl-3">
-                  <div className="text-[14px] text-slate-600 mb-1">外观设计</div>
-                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
-                    90 <span className="text-sm font-normal text-slate-600">件</span>
+                <div className="border-l-4 border-[#00A870] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1">外观总计/当前有效</div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">40</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1 mr-1">件 /</span>
+                    <span className="text-lg sm:text-xl font-bold">25</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
                   </div>
                 </div>
+              </div>
+
+              {/* Bottom row: 自主研发专利 / 引进技术专利 */}
+              <div className="grid grid-cols-3 gap-4 pt-2">
+                <div className="border-l-4 border-[#E34D59] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1 flex items-center gap-1">
+                    <span>自主研发专利</span>
+                    <HelpCircle className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                  </div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">124</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
+                  </div>
+                </div>
+                <div className="border-l-4 border-[#8C57FF] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1 flex items-center gap-1">
+                    <span>引进技术专利</span>
+                    <HelpCircle className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                  </div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">28</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
+                  </div>
+                </div>
+                <div></div>
               </div>
             </div>
           </div>
 
-          {/* Card 2: 2026年度新增授权专利 (中国) */}
-          <div className="p-6 relative overflow-hidden bg-white">
-            <div className="absolute right-4 top-4 text-[#F0F4FA] pointer-events-none">
-              <svg width="110" height="110" viewBox="0 0 100 100" fill="currentColor">
-                <path fillRule="evenodd" clipRule="evenodd" d="M46 16 C68 16 84 32 84 52 C84 72 68 86 46 86 L38 86 L38 16 H46 Z M45 30 H42 V72 H45 C59 72 70 63 70 52 C70 40 59 30 45 30 Z" opacity="0.9" />
-                <rect x="33" y="14" width="3" height="74" rx="1.5" />
-                <path d="M23 26 L24.5 21 L26 26 L31 27.5 L26 29 L24.5 34 L23 29 L18 27.5 Z" />
-                <path d="M14 42 L15.5 37 L17 42 L22 43.5 L17 45 L15.5 50 L14 45 L9 43.5 Z" />
-                <path d="M19 59 L20.5 54 L22 59 L27 60.5 L22 62 L20.5 67 L19 62 L14 60.5 Z" />
-                <path d="M28 73 L29.2 69 L30.4 73 L34.4 74.2 L30.4 75.4 L29.2 79.4 L28 75.4 L24 74.2 Z" />
-              </svg>
-            </div>
-            
-            <div className="relative z-10">
-              <h3 className="text-[15px] font-normal text-slate-700 mb-2">2026年度新增授权专利 ( 中国 )</h3>
-              <div className="flex items-baseline gap-2 mb-6">
-                <span className="text-5xl font-black text-[#0052D9] tracking-tight font-sans">2079</span>
-                <span className="text-base font-normal text-slate-700">件</span>
+          {/* Card 2: 2026年度新专利申请 / 2026年度专利授权 */}
+          <div className="bg-white rounded-xl border border-slate-200/90 p-6 shadow-xs flex flex-col justify-between">
+            <div>
+              {/* Top 2 stats */}
+              <div className="grid grid-cols-2 gap-4 pb-6 border-b border-slate-100">
+                <div>
+                  <div className="text-[14px] text-slate-700 mb-2 font-normal">2026年度新专利申请</div>
+                  <div className="flex items-baseline">
+                    <span className="text-4xl sm:text-5xl font-black text-[#0052D9] font-sans tracking-tight">2</span>
+                    <span className="text-sm font-normal text-slate-700 ml-2">件</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[14px] text-slate-700 mb-2 font-normal">2026年度专利授权</div>
+                  <div className="flex items-baseline">
+                    <span className="text-4xl sm:text-5xl font-black text-[#0052D9] font-sans tracking-tight">12</span>
+                    <span className="text-sm font-normal text-slate-700 ml-2">件</span>
+                  </div>
+                </div>
               </div>
-              
-              <div className="grid grid-cols-3 gap-6 pt-5 border-t border-slate-200">
-                <div className="border-l-4 border-[#0052D9] pl-3">
-                  <div className="text-[14px] text-slate-600 mb-1">发明</div>
-                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
-                    1902 <span className="text-sm font-normal text-slate-600">件</span>
+
+              {/* Middle row: 发明申请/授权 / 实用新型申请/授权 / 外观设计申请/授权 */}
+              <div className="grid grid-cols-3 gap-4 pt-5 pb-5">
+                <div className="border-l-4 border-[#0052D9] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1">发明申请/授权</div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">1</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1 mr-1">件 /</span>
+                    <span className="text-lg sm:text-xl font-bold">0</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
                   </div>
                 </div>
-                <div className="border-l-4 border-[#00B4B4] pl-3">
-                  <div className="text-[14px] text-slate-600 mb-1">实用新型</div>
-                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
-                    150 <span className="text-sm font-normal text-slate-600">件</span>
+                <div className="border-l-4 border-[#00B4B4] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1">实用新型申请/授权</div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">1</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1 mr-1">件 /</span>
+                    <span className="text-lg sm:text-xl font-bold">2</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
                   </div>
                 </div>
-                <div className="border-l-4 border-[#00A870] pl-3">
-                  <div className="text-[14px] text-slate-600 mb-1">外观设计</div>
-                  <div className="font-bold text-slate-900 text-2xl font-sans tracking-tight">
-                    27 <span className="text-sm font-normal text-slate-600">件</span>
+                <div className="border-l-4 border-[#00A870] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1">外观设计申请/授权</div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">0</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1 mr-1">件 /</span>
+                    <span className="text-lg sm:text-xl font-bold">10</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
                   </div>
                 </div>
+              </div>
+
+              {/* Bottom row: 自主研发专利 / 引进技术专利 */}
+              <div className="grid grid-cols-3 gap-4 pt-2">
+                <div className="border-l-4 border-[#E34D59] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1 flex items-center gap-1">
+                    <span>自主研发专利</span>
+                    <HelpCircle className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                  </div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">12</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
+                  </div>
+                </div>
+                <div className="border-l-4 border-[#8C57FF] pl-2.5">
+                  <div className="text-[13px] text-slate-600 mb-1 flex items-center gap-1">
+                    <span>引进技术专利</span>
+                    <HelpCircle className="w-3.5 h-3.5 text-slate-400 cursor-help" />
+                  </div>
+                  <div className="flex items-baseline text-slate-900 font-sans">
+                    <span className="text-lg sm:text-xl font-bold">0</span>
+                    <span className="text-xs text-slate-500 font-normal ml-1">件</span>
+                  </div>
+                </div>
+                <div></div>
               </div>
             </div>
           </div>

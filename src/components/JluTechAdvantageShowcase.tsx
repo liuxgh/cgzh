@@ -66,10 +66,16 @@ const getDomainStyles = (domain: string) => {
 };
 
 const topDomains = [
-  { id: 'G01N', count: 4894, name: '测试或分析材料', desc: '利用光学、化学等手段检测物质成分及物化性质，服务于材料科学与医学诊断。' },
-  { id: 'G06F', count: 3267, name: '电数字数据处理', desc: '涉及计算机体系结构、信息检索及AI算法，赋能智能制造与大数据分析。' },
-  { id: 'A61B', count: 2894, name: '诊断外科与鉴定', desc: '涵盖医疗器械及智能诊断设备研发，体现吉大在医工交叉领域的深厚积累。' },
-  { id: 'A61M', count: 1542, name: '介质输入输到体内', desc: '新型给药系统及介入治疗装置，聚焦高附加值医疗器械创新。' }
+  { id: 'G01N', count: 4894, name: '测试或分析材料', desc: '理化性质与成分精密检测，服务于新能源、新材料与现代生物医药。' },
+  { id: 'G06F', count: 3267, name: '电数字数据处理', desc: '计算机架构、智能算法与大数据分析，赋能智能制造与工业软件。' },
+  { id: 'A61B', count: 2894, name: '诊断外科与鉴定', desc: '高端诊疗装备与智能医疗器械研发，医工交叉创新前沿阵地。' },
+  { id: 'A61M', count: 1542, name: '介质输入输到体内', desc: '新型精密给药系统与微创介入器械，突破多项临床关键医用技术。' },
+  { id: 'A61G', count: 1325, name: '残疾人的运输床椅', desc: '智能康复辅助设备与转运助残系统，实现人机工程学与协同控制。' },
+  { id: 'A61K', count: 1041, name: '医用牙科配制品', desc: '创新药物靶向递送与新型牙科生物材料，提供高价值临床转化方案。' },
+  { id: 'G01V', count: 899, name: '地球物理重力测量', desc: '重磁电震高端物探仪器与探测方法，支撑深地深海资源勘探安全。' },
+  { id: 'A61F', count: 884, name: '假体及血管内滤器', desc: '医工结合植介入假体与组织工程支架，突破生物相容性与结构力学。' },
+  { id: 'B60W', count: 685, name: '车辆控制系统', desc: '智能网联汽车线控底盘与动力学协同控制，巩固汽车工程核心高地。' },
+  { id: 'G01M', count: 782, name: '部件静或动平衡', desc: '大型高端机械装备减振降噪、转子动平衡校准与结构损伤健康监测。' }
 ];
 
 export const JluTechAdvantageShowcase: React.FC<Props> = ({ onNavigateToFullMap }) => {
@@ -173,23 +179,43 @@ export const JluTechAdvantageShowcase: React.FC<Props> = ({ onNavigateToFullMap 
       </div>
 
 
-      {/* 2. 核心技术领域 */}
+      {/* 2. 技术领域（IPC Top10） */}
       <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-        <h3 className="text-xl font-black text-slate-900 flex items-center gap-2 mb-6">
+        <h3 className="text-xl font-black text-slate-900 flex items-center gap-2 mb-5">
           <Compass className="w-5 h-5 text-indigo-600" />
-          核心技术领域 (Top IPC)
+          技术领域（IPC Top10）
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {topDomains.map(domain => (
-            <div key={domain.id} className="p-4 rounded-xl border border-slate-100 bg-slate-50 hover:border-indigo-200 transition-colors">
-              <div className="flex justify-between items-start mb-2">
-                <span className="text-sm font-black text-slate-800">{domain.id}</span>
-                <span className="text-xs font-mono font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">{domain.count}件</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5">
+          {topDomains.map(domain => {
+            const styles = getDomainStyles(domain.id);
+            return (
+              <div 
+                key={domain.id} 
+                className="p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 hover:bg-white hover:border-indigo-200 hover:shadow-xs transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex justify-between items-center mb-1.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: styles.border }}></span>
+                      <span className="text-xs sm:text-sm font-black text-slate-800 font-mono">{domain.id}</span>
+                    </div>
+                    <span 
+                      className="text-[11px] font-mono font-bold px-1.5 py-0.5 rounded"
+                      style={{ backgroundColor: styles.bg, color: styles.text }}
+                    >
+                      {domain.count}件
+                    </span>
+                  </div>
+                  <h4 className="font-bold text-slate-800 text-xs sm:text-sm truncate" title={domain.name}>
+                    {domain.name}
+                  </h4>
+                  <p className="text-[11px] text-slate-500 leading-relaxed mt-1 line-clamp-2" title={domain.desc}>
+                    {domain.desc}
+                  </p>
+                </div>
               </div>
-              <h4 className="font-bold text-slate-700 text-sm mb-1">{domain.name}</h4>
-              <p className="text-xs text-slate-500 leading-relaxed">{domain.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

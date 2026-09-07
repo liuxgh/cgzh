@@ -618,23 +618,11 @@ export const PatentProductSearchHub: React.FC<PatentProductSearchHubProps> = ({
                       </div>
 
                       {/* Product Description */}
-                      <div className="text-xs text-slate-600 leading-relaxed line-clamp-2 text-justify bg-white p-2.5 rounded-lg border border-slate-200/70">
-                        <span className="font-bold text-slate-700 mr-1">【产品简介】</span>
+                      <div className="text-xs text-slate-600 leading-relaxed text-justify bg-slate-50/70 p-3 rounded-xl border border-slate-200/80 min-h-[68px]">
+                        <span className="font-bold text-slate-800 mr-1.5 inline-block">【产品简介】</span>
                         {prod.productDescription}
                       </div>
                     </div>
-
-                    {/* 吉大对口技术协同转化点 */}
-                    {prod.techSynergyDetail && (
-                      <div className="pt-2 border-t border-slate-100 flex items-start gap-2 text-xs">
-                        <span className="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 rounded font-bold shrink-0">
-                          吉大对口协同
-                        </span>
-                        <span className="text-slate-600 line-clamp-1 leading-snug">
-                          {prod.techSynergyDetail}
-                        </span>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>

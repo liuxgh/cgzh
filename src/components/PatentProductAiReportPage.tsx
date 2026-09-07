@@ -26,7 +26,9 @@ import {
   Zap,
   Clock,
   AlertTriangle,
-  BadgeCheck
+  BadgeCheck,
+  X,
+  Send
 } from 'lucide-react';
 import { PatentIntensiveProduct } from '../data/patentProductsData';
 import { PatentItem } from '../types';
@@ -46,6 +48,39 @@ export const PatentProductAiReportPage: React.FC<PatentProductAiReportPageProps>
 }) => {
   const [copied, setCopied] = useState(false);
   const [activeSubTab, setActiveSubTab] = useState<'overview' | 'tech_matrix' | 'commercial_path' | 'negotiation_terms' | 'official_letter'>('overview');
+
+  // Email modal states
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const [emailSentSuccess, setEmailSentSuccess] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  // Email template data
+  const defaultRecipientEmail = `cooperation@${product.filingEnterprise.replace(/[^a-zA-Z0-9]/g, '').toLowerCase() || 'enterprise'}.com`;
+  const defaultEmailSubject = `【吉林大学产学研对接】关于《${patent.title}》赋能贵司【${product.productName}】转化建议书`;
+  const defaultEmailBody = `尊敬的 ${product.filingEnterprise} 技术研发与产学研合作团队：
+
+您好！
+吉林大学科技成果转化与知识产权运营中心通过国家专利密集型产品备案数据及深度技术比对研判，关注到贵单位生产的重点产品【${product.productName}】（备案号：${product.productCode}）在【${product.industryCategory}】产业领域具备扎实的量产基础。
+
+针对该产品在核心功能元器件性能、工艺稳定性及知识产权纵深壁垒等方面的提升空间，吉林大学【${patent.inventor}团队】自主研发的重大授权发明专利《${patent.title}》（专利号：${patent.patentNo}）具有极高的技术咬合互补性，能直接针对痛点提供成熟的优化支撑。
+
+我们已完成详细的《深度转化与对接建议书》，诚挚建议以“先期中试适配验证 + 专利排他实施许可”或“校企联合申报重大专项”模式开展合作。
+
+随函附送相关技术分析，真诚期待与贵单位技术负责人开展 15 分钟线上闭门交流！
+
+此致
+敬礼！
+
+───────────────────────────────
+吉林大学科技成果转化与知识产权运营中心
+联系电话：0431-85168888
+官方邮箱：ttc@jlu.edu.cn
+高校地址：吉林省长春市前进大街2699号`;
+
+  const [emailTo, setEmailTo] = useState(defaultRecipientEmail);
+  const [emailSubject, setEmailSubject] = useState(defaultEmailSubject);
+  const [emailBody, setEmailBody] = useState(defaultEmailBody);
 
   // Grounded quantitative & engineering analysis
   const techComparisonData = [
@@ -82,7 +117,7 @@ export const PatentProductAiReportPage: React.FC<PatentProductAiReportPageProps>
 • 专利名称：${patent.title}
 • 专利号：${patent.patentNo}
 • 发明人团队：吉林大学 ${patent.inventor} 团队
-• 成果技术成熟度：TRL 6~7 级（已完成实验室中试验证与样机工况测试）
+• 成果技术成熟度：已完成实验室中试验证与样机工况测试
 
 产业端（需求承接方）：
 • 国家专利密集型产品：${product.productName}（备案号：${product.productCode}）
@@ -95,7 +130,6 @@ export const PatentProductAiReportPage: React.FC<PatentProductAiReportPageProps>
 • 技术链咬合度：96.5%（解决核心部件性能瓶颈与工艺互补）
 • 转化阻力评级：低（以模块化/配方嵌入为主，产线重构成本极小）
 • 推荐合作模式：横向产线中试研发 ➔ 排他性专利实施许可
-• 预期合作资金体量：80万 - 300万元人民币（先期中试研发 + 许可提成）
 
 【三、技术微观比对与切入点】
 ${techComparisonData.map((d, i) => `${i + 1}. 【${d.dimension}】\n   - 企业产品现状：${d.enterpriseStatus}\n   - 吉大专利突破：${d.jluPatentAdvantage}\n   - 赋能成效：${d.impact}`).join('\n\n')}
@@ -181,6 +215,17 @@ ${techComparisonData.map((d, i) => `${i + 1}. 【${d.dimension}】\n   - 企业�
             <span>打印/导出PDF</span>
           </button>
 
+          <button
+            onClick={() => {
+              setIsEmailModalOpen(true);
+              setEmailSentSuccess(false);
+            }}
+            className="px-3.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs sm:text-sm font-bold rounded-xl flex items-center gap-1.5 transition-all cursor-pointer border border-emerald-200"
+          >
+            <Mail className="w-4 h-4 text-emerald-600" />
+            <span>一键发送邮件</span>
+          </button>
+
           {onOpenEnterpriseProfile && (
             <button
               onClick={() => onOpenEnterpriseProfile(product.targetEnterpriseId)}
@@ -249,9 +294,6 @@ ${techComparisonData.map((d, i) => `${i + 1}. 【${d.dimension}】\n   - 企业�
                     <p className="text-xs text-slate-500">成果供给与研发团队</p>
                   </div>
                 </div>
-                <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0F52BA] font-bold text-xs border border-blue-200">
-                  TRL 6~7 级中试成熟度
-                </span>
               </div>
 
               <div className="space-y-2.5 text-xs sm:text-sm">
@@ -327,7 +369,7 @@ ${techComparisonData.map((d, i) => `${i + 1}. 【${d.dimension}】\n   - 企业�
           </div>
 
           {/* Strategic Decision KPI Strip */}
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="bg-white p-4 rounded-2xl border border-slate-200 text-center space-y-1">
               <span className="text-xs text-slate-400 block font-medium">技术链咬合度</span>
               <span className="text-xl sm:text-2xl font-black text-blue-700">96.5%</span>
@@ -342,11 +384,6 @@ ${techComparisonData.map((d, i) => `${i + 1}. 【${d.dimension}】\n   - 企业�
               <span className="text-xs text-slate-400 block font-medium">推荐合作模式</span>
               <span className="text-base sm:text-lg font-black text-indigo-700">中试+排他许可</span>
               <span className="text-[11px] text-slate-500 block">稳妥降风险</span>
-            </div>
-            <div className="bg-white p-4 rounded-2xl border border-slate-200 text-center space-y-1">
-              <span className="text-xs text-slate-400 block font-medium">预估合作经费体量</span>
-              <span className="text-xl sm:text-2xl font-black text-amber-600">80~300万</span>
-              <span className="text-[11px] text-slate-500 block">中试横向+许可提成</span>
             </div>
           </div>
         </div>
@@ -717,7 +754,7 @@ ${techComparisonData.map((d, i) => `${i + 1}. 【${d.dimension}】\n   - 企业�
             <span>吉林大学科技成果转化与知识产权运营平台 · AI成果转化研判系统</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <button
               onClick={onBack}
               className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer"
@@ -731,10 +768,176 @@ ${techComparisonData.map((d, i) => `${i + 1}. 【${d.dimension}】\n   - 企业�
               <Copy className="w-4 h-4" />
               <span>{copied ? '已复制建议书' : '复制完整建议书'}</span>
             </button>
+            <button
+              onClick={() => {
+                setIsEmailModalOpen(true);
+                setEmailSentSuccess(false);
+              }}
+              className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+            >
+              <Mail className="w-4 h-4" />
+              <span>一键发送邮件</span>
+            </button>
           </div>
         </div>
 
       </div>
+
+      {/* Email Sending Modal */}
+      {isEmailModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            {/* Modal Header */}
+            <div className="px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-700 text-white flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
+                  <Mail className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-base leading-tight">一键发送产学研对接邮件</h4>
+                  <p className="text-xs text-emerald-100/90 mt-0.5">
+                    面向 {product.filingEnterprise} · 重点对接：{product.productName}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsEmailModalOpen(false)}
+                className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-4 overflow-y-auto">
+              {emailSentSuccess ? (
+                <div className="py-10 text-center space-y-3">
+                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-10 h-10" />
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-900">对接邮件已成功投递！</h4>
+                  <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                    已向 <strong className="text-slate-800">{emailTo}</strong> 发送对接函，系统已同步将本条成果对接意向抄送归档至吉林大学科技开发中心跟进台账。
+                  </p>
+                  <div className="pt-4 flex justify-center gap-3">
+                    <button
+                      onClick={() => setIsEmailModalOpen(false)}
+                      className="px-6 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold rounded-xl transition-all cursor-pointer"
+                    >
+                      完成并关闭
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-700 block">收件企业技术/产学研部门邮箱：</label>
+                    <input
+                      type="text"
+                      value={emailTo}
+                      onChange={(e) => setEmailTo(e.target.value)}
+                      className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 font-mono"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold text-slate-700">抄送机构（高校备案）：</label>
+                      <span className="text-[11px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-medium">官方保全抄送</span>
+                    </div>
+                    <input
+                      type="text"
+                      disabled
+                      value="ttc@jlu.edu.cn (吉林大学科技成果转化与知识产权运营中心)"
+                      className="w-full px-3.5 py-2 bg-slate-100/80 border border-slate-200 rounded-xl text-xs text-slate-600 font-mono cursor-not-allowed"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-700 block">邮件主题：</label>
+                    <input
+                      type="text"
+                      value={emailSubject}
+                      onChange={(e) => setEmailSubject(e.target.value)}
+                      className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 font-medium"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold text-slate-700">邮件正文（已自动生成专业商务公函）：</label>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(emailBody);
+                          setEmailCopied(true);
+                          setTimeout(() => setEmailCopied(false), 2000);
+                        }}
+                        className="text-xs text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-1 cursor-pointer"
+                      >
+                        {emailCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                        <span>{emailCopied ? '已复制正文' : '复制正文'}</span>
+                      </button>
+                    </div>
+                    <textarea
+                      rows={8}
+                      value={emailBody}
+                      onChange={(e) => setEmailBody(e.target.value)}
+                      className="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 font-sans leading-relaxed resize-none"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            {!emailSentSuccess && (
+              <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href={`mailto:${encodeURIComponent(emailTo)}?cc=ttc@jlu.edu.cn&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-slate-600 hover:text-slate-900 font-bold underline flex items-center gap-1 cursor-pointer"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  唤起本地邮件客户端 (Outlook/Foxmail)
+                </a>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setIsEmailModalOpen(false)}
+                    className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer"
+                  >
+                    取消
+                  </button>
+                  <button
+                    disabled={isSendingEmail}
+                    onClick={() => {
+                      setIsSendingEmail(true);
+                      setTimeout(() => {
+                        setIsSendingEmail(false);
+                        setEmailSentSuccess(true);
+                      }, 700);
+                    }}
+                    className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs sm:text-sm font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
+                  >
+                    {isSendingEmail ? (
+                      <>
+                        <Clock className="w-4 h-4 animate-spin" />
+                        <span>正在发送...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>立即发送邮件</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

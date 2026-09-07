@@ -151,7 +151,7 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
             </span>
           </div>
           <h3 className="text-base sm:text-xl font-black text-white flex items-center gap-2">
-            {activeTab === 'panoramic' ? '战略产业链匹配图' : '重点企业供应链匹配'}
+            {activeTab === 'panoramic' ? '产业链匹配图' : '重点企业供应链匹配'}
           </h3>
         </div>
 
@@ -188,7 +188,7 @@ export const IndustryChainPanoramaView: React.FC<IndustryChainPanoramaViewProps>
         <div className="relative rounded-2xl overflow-hidden border border-blue-900/60 bg-[#030919] shadow-2xl w-full flex items-center justify-center p-1">
           <img 
             src={currentSrc}
-            alt={activeTab === 'panoramic' ? '战略产业链匹配图' : '重点企业供应链匹配'}
+            alt={activeTab === 'panoramic' ? '产业链匹配图' : '重点企业供应链匹配'}
             referrerPolicy="no-referrer"
             onError={(e) => {
               const target = e.target as HTMLImageElement;

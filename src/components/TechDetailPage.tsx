@@ -102,7 +102,7 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
   universityScope,
   onSelectUniversity
 }) => {
-  const [activeTab, setActiveTab] = useState<'decision_brief' | 'technical_specs' | 'transfer_policy'>('decision_brief');
+  const [activeTab, setActiveTab] = useState<'technical_specs' | 'decision_brief' | 'transfer_policy'>('technical_specs');
   const [copyToast, setCopyToast] = useState<string | null>(null);
   
   // Quick enterprise fit calculator state
@@ -164,14 +164,6 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
             >
               <Download className="w-3.5 h-3.5 text-slate-500" /> 导出交底简报
             </button>
-            
-            <button
-              id="btn-top-open-booking"
-              onClick={() => onOpenBooking(tech)}
-              className="px-4 py-1.5 bg-[#0F52BA] hover:bg-[#082C6C] text-white font-bold rounded-xl text-xs shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <Handshake className="w-3.5 h-3.5" /> 预约闭门对接
-            </button>
           </div>
         </div>
       </div>
@@ -216,10 +208,6 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                   <span className="text-slate-400">IPC领域：</span>
                   <span className="font-mono font-semibold text-slate-700">{tech.ipc || 'G06N 3/04'}</span>
                 </div>
-                <div>
-                  <span className="text-slate-400">参考转化估值：</span>
-                  <strong className="text-blue-700 font-bold">{tech.valuationRange || '260万 - 580万元'}</strong>
-                </div>
               </div>
             </div>
 
@@ -238,19 +226,6 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
         {/* HIGH-VALUE SEGMENT TABS */}
         <div className="flex items-center gap-2 mb-5 border-b border-slate-200 pb-2 overflow-x-auto">
           <button
-            id="tab-decision-brief"
-            onClick={() => setActiveTab('decision_brief')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
-              activeTab === 'decision_brief'
-                ? 'bg-[#0F52BA] text-white shadow-xs'
-                : 'text-slate-600 hover:bg-white bg-slate-100'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>企业采纳决策要点（技术、指标、痛点、导入条件）</span>
-          </button>
-          
-          <button
             id="tab-technical-specs"
             onClick={() => setActiveTab('technical_specs')}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
@@ -259,8 +234,21 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                 : 'text-slate-600 hover:bg-white bg-slate-100'
             }`}
           >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>AI专利解读</span>
+          </button>
+
+          <button
+            id="tab-decision-brief"
+            onClick={() => setActiveTab('decision_brief')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+              activeTab === 'decision_brief'
+                ? 'bg-[#0F52BA] text-white shadow-xs'
+                : 'text-slate-600 hover:bg-white bg-slate-100'
+            }`}
+          >
             <FileText className="w-3.5 h-3.5" />
-            <span>权利要求与完整交底详情</span>
+            <span>企业采纳决策要点（技术、指标、痛点、导入条件）</span>
           </button>
 
           <button
@@ -273,7 +261,7 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
             }`}
           >
             <Building2 className="w-3.5 h-3.5" />
-            <span>官方转化机构直联与先用后转政策</span>
+            <span>转移中心联系方式</span>
           </button>
         </div>
 
@@ -283,7 +271,79 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
           {/* LEFT 8 COLS: CORE CONTENT */}
           <div className="lg:col-span-8 space-y-5">
             
-            {/* TAB 1: EXECUTIVE DECISION BRIEF */}
+            {/* TAB 1: AI PATENT INTERPRETATION (TECHNICAL SPECS & CLAIMS) */}
+            {activeTab === 'technical_specs' && (
+              <motion.div 
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-5"
+              >
+                {/* Abstract */}
+                <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
+                  <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-blue-600" />
+                    {tech.type === 'patent' ? '专利公开技术说明与保护范围' : '成果技术说明与研发参数'}
+                  </h3>
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
+                    {tech.abstract}
+                  </div>
+                </div>
+
+                {/* Patent Drawings (说明书附图) */}
+                <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-blue-600" />
+                      说明书附图
+                    </h3>
+                    <span className="text-[11px] text-slate-500 font-mono">共 4 幅公开图纸</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {[
+                      { url: 'https://img.baiten.cn/img/80cf1c09b08cbe1163a6718e894efe0b/196/0', title: '图 1 系统总成结构拓扑' },
+                      { url: 'https://img.baiten.cn/img/90bc077708a45df95599f087955931b9/196/0', title: '图 2 核心控制算法框图' },
+                      { url: 'https://img.baiten.cn/img/917492d999de3001a829443916c67a58/196/0', title: '图 3 实车动态响应曲线' },
+                      { url: 'https://img.baiten.cn/img/a61abd83c0a5351d6ddd490dd0f180d4/196/0', title: '图 4 电磁阻尼阀构型图' }
+                    ].map((fig, idx) => (
+                      <div key={idx} className="group relative bg-slate-50 rounded-xl border border-slate-200 p-2 overflow-hidden hover:border-blue-400 hover:shadow-xs transition-all flex flex-col items-center">
+                        <div className="w-full h-28 flex items-center justify-center bg-white rounded-lg p-1 border border-slate-100 overflow-hidden">
+                          <img 
+                            src={fig.url} 
+                            alt={fig.title} 
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="mt-2 text-[11px] font-bold text-slate-700 text-center truncate w-full">
+                          {fig.title}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Claims */}
+                {tech.claimsSummary && tech.claimsSummary.length > 0 && (
+                  <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
+                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                      <FileCheck2 className="w-4 h-4 text-indigo-600" />
+                      核心权利要求保护范围提炼
+                    </h3>
+                    <div className="space-y-2">
+                      {tech.claimsSummary.map((claim, idx) => (
+                        <div key={idx} className="text-xs text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200 leading-relaxed">
+                          <strong className="text-blue-800">【权利要求 {idx + 1}】</strong> {claim}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )}
+
+            {/* TAB 2: EXECUTIVE DECISION BRIEF */}
             {activeTab === 'decision_brief' && (
               <motion.div 
                 initial={{ opacity: 0, y: 6 }}
@@ -297,9 +357,6 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                       <Cpu className="w-4 h-4 text-[#0F52BA]" />
                       一、核心发明突破与关键技术指标
                     </h3>
-                    <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
-                      实测数据说话 • 拒绝虚夸
-                    </span>
                   </div>
 
                   {/* 3 Core Innovations */}
@@ -451,92 +508,7 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                       </div>
                     ))}
                   </div>
-
-                  {/* FTO & Risk Shield Summary */}
-                  <div className="bg-amber-50/60 p-3 rounded-xl border border-amber-200 text-xs flex items-start gap-2 text-amber-900">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="font-bold">知识产权尽调结论：</strong>
-                      <span>
-                        {tech.type === 'patent'
-                          ? '已完成PCT检索与自由实施(FTO)排查，专利权属清晰，不含开源传染组件，支持独占实施与商务转让。'
-                          : '已完成专有技术秘密确权与查重尽调，成果权属清晰，不含侵权风险，支持技术转让、许可与深度合作开发。'}
-                      </span>
-                    </div>
-                  </div>
                 </div>
-              </motion.div>
-            )}
-
-            {/* TAB 2: TECHNICAL SPECS & CLAIMS */}
-            {activeTab === 'technical_specs' && (
-              <motion.div 
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-5"
-              >
-                {/* Abstract */}
-                <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
-                  <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-blue-600" />
-                    {tech.type === 'patent' ? '专利公开技术说明与保护范围' : '成果技术说明与研发参数'}
-                  </h3>
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
-                    {tech.abstract}
-                  </div>
-                </div>
-
-                {/* Patent Drawings (说明书附图) */}
-                <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-blue-600" />
-                      {tech.type === 'patent' ? '官方专利说明书附图与结构拓扑' : '成果设计原理图解与结构拓扑'}
-                    </h3>
-                    <span className="text-[11px] text-slate-500 font-mono">共 4 幅公开图纸</span>
-                  </div>
-
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {[
-                      { url: 'https://img.baiten.cn/img/80cf1c09b08cbe1163a6718e894efe0b/196/0', title: '图 1 系统总成结构拓扑' },
-                      { url: 'https://img.baiten.cn/img/90bc077708a45df95599f087955931b9/196/0', title: '图 2 核心控制算法框图' },
-                      { url: 'https://img.baiten.cn/img/917492d999de3001a829443916c67a58/196/0', title: '图 3 实车动态响应曲线' },
-                      { url: 'https://img.baiten.cn/img/a61abd83c0a5351d6ddd490dd0f180d4/196/0', title: '图 4 电磁阻尼阀构型图' }
-                    ].map((fig, idx) => (
-                      <div key={idx} className="group relative bg-slate-50 rounded-xl border border-slate-200 p-2 overflow-hidden hover:border-blue-400 hover:shadow-xs transition-all flex flex-col items-center">
-                        <div className="w-full h-28 flex items-center justify-center bg-white rounded-lg p-1 border border-slate-100 overflow-hidden">
-                          <img 
-                            src={fig.url} 
-                            alt={fig.title} 
-                            referrerPolicy="no-referrer"
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="mt-2 text-[11px] font-bold text-slate-700 text-center truncate w-full">
-                          {fig.title}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Claims */}
-                {tech.claimsSummary && tech.claimsSummary.length > 0 && (
-                  <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
-                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                      <FileCheck2 className="w-4 h-4 text-indigo-600" />
-                      核心权利要求保护范围提炼
-                    </h3>
-                    <div className="space-y-2">
-                      {tech.claimsSummary.map((claim, idx) => (
-                        <div key={idx} className="text-xs text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200 leading-relaxed">
-                          <strong className="text-blue-800">【权利要求 {idx + 1}】</strong> {claim}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </motion.div>
             )}
 
@@ -551,11 +523,8 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
                   <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                     <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                       <Building2 className="w-4 h-4 text-blue-600" />
-                      官方科技成果转化直通服务专班
+                      转移中心联系方式
                     </h3>
-                    <span className="text-xs bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded border border-emerald-200">
-                      直属办理通道
-                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -621,34 +590,6 @@ export const TechDetailPage: React.FC<TechDetailPageProps> = ({
           {/* RIGHT 4 COLS: ACTION & DECISION ASSISTANT SIDEBAR */}
           <div className="lg:col-span-4 space-y-4">
             
-            {/* Primary Booking Card */}
-            <div className="bg-linear-to-br from-slate-900 via-[#082C6C] to-slate-900 text-white rounded-2xl p-5 shadow-xl relative overflow-hidden">
-              <div className="flex items-center gap-1.5 text-blue-300 text-xs font-bold uppercase tracking-wider mb-2">
-                <Handshake className="w-3.5 h-3.5 text-blue-400" /> 闭门对接直通车
-              </div>
-              <h3 className="text-base font-bold text-white mb-1">
-                预约发明人闭门技术研讨
-              </h3>
-              <p className="text-xs text-blue-100/80 leading-relaxed mb-4">
-                高校技术转移专员将协同技术发明人团队安排对接，支持线上保密视频会或实地技术考察。
-              </p>
-
-              <button
-                id="btn-sidebar-book-docking"
-                onClick={() => onOpenBooking(tech)}
-                className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer mb-2.5"
-              >
-                <Handshake className="w-4 h-4" /> 立即发起预约
-              </button>
-
-              <button
-                onClick={() => handleCopy(tech.transferContact?.phone || '0431-85167421', '转化电话')}
-                className="w-full py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-              >
-                <Phone className="w-3.5 h-3.5 text-blue-300" /> 拨打官方转化专线
-              </button>
-            </div>
-
             {/* Quick Enterprise Fit Calculator */}
             <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs space-y-3 text-xs">
               <div className="flex items-center justify-between pb-2 border-b border-slate-100">
