@@ -3,6 +3,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { TargetEnterprise, PatentItem } from '../types';
 import { RegionFilter } from './RegionFilter';
 import { PatentNationalDistributionCard } from './PatentNationalDistributionCard';
+import { IndustryChainPanoramaView } from './IndustryChainPanoramaView';
 import { INDUSTRY_CHAINS_57_DATA, INDUSTRY_CATEGORIES, IndustryChain57Item } from '../data/industryChains57Data';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { INITIAL_PATENTS } from '../data/mockData';
@@ -24,7 +25,8 @@ import {
   FileText,
   Workflow,
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  ArrowDown
 } from 'lucide-react';
 
 interface IndustryChain57HubProps {
@@ -263,6 +265,7 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   const [enterpriseSearchKeyword, setEnterpriseSearchKeyword] = useState<string>('');
   const [regionFilter, setRegionFilter] = useState<{p: string, c: string, d: string}>({p: 'all', c: 'all', d: 'all'});
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isChainSelectorOpen, setIsChainSelectorOpen] = useState<boolean>(false);
   const itemsPerPage = 6;
 
   // Auto-switch chain and node recommendation when patent changes
@@ -342,128 +345,137 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
   }, [regionFilter.p, regionFilter.c, regionFilter.d, selectedNode, selectedChainId, enterpriseSearchKeyword]);
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-300">
+    <div className="space-y-3.5 animate-in fade-in duration-300">
       
-      {/* Module Header */}
-      <div className="bg-linear-to-r from-[#17133C] via-[#2A246B] to-[#161238] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-indigo-400/30">
-        <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="px-3 py-1 rounded-full bg-white/15 text-indigo-100 text-sm font-bold border border-white/20 flex items-center gap-1.5 backdrop-blur-xs">
-            <Layers className="w-4 h-4 text-indigo-300" />
-            <span>核心寻客路径二：细分战略产业链图谱</span>
+      {/* Module Header - Compact Command Bar */}
+      <div className="bg-gradient-to-r from-[#06122d] via-[#091b40] to-[#040d21] text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl shadow-xl border border-blue-500/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5">
+        <div className="flex items-center gap-2.5 flex-wrap">
+          <span className="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-cyan-300 text-xs font-bold border border-cyan-400/30 flex items-center gap-1 shadow-xs">
+            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <span>核心寻客路径二</span>
+          </span>
+          <h2 className="text-sm sm:text-base font-black tracking-tight text-white flex items-center gap-1.5">
+            <span>通过吉大专利</span>
+            <span className="text-cyan-400 font-mono text-xs">➔</span>
+            <span>细分战略产业链图谱穿透找企业</span>
+          </h2>
+          <span className="hidden xl:inline-block text-[11px] text-slate-400">
+            （全链覆盖 57 条战略产业链、上中下游核心节点与靶向企业）
           </span>
         </div>
 
-        <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-          通过吉大专利 ➔ 产业链全链条图谱找企业
-        </h2>
-        <p className="text-sm sm:text-base text-indigo-100/90 mt-2 max-w-3xl leading-relaxed">
-          先检索并选择待转化的吉林大学专利成果，系统将自动穿透关联 57 条战略产业链图谱，智能定位上游关键材料、中游精密制造与下游整机集成节点中的靶向企业。
-        </p>
+        <div className="flex items-center gap-2 self-end md:self-auto shrink-0">
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById('panorama-section');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+            className="px-3 py-1 rounded-xl bg-blue-600/80 hover:bg-blue-500 text-cyan-200 hover:text-white border border-cyan-400/40 text-xs font-bold flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer"
+          >
+            <span>直达全景图谱</span>
+            <ArrowDown className="w-3.5 h-3.5 animate-bounce text-cyan-300" />
+          </button>
+        </div>
       </div>
 
-      {/* Step 1: Search & Select JLU Patent */}
-      <div className="bg-white rounded-2xl p-4 sm:p-5 border border-[#D8E2F0] shadow-xs space-y-4">
-        <div className="w-full space-y-1.5 relative" ref={dropdownRef}>
-          <label className="text-sm font-bold text-slate-700 flex items-center justify-between gap-1.5">
-            <span className="flex items-center gap-1.5">
-              <FileText className="w-4 h-4 text-[#0F52BA]" />
-              <span>第一步：检索并选择待转化的吉林大学专利：</span>
-            </span>
-            <span className="text-xs text-slate-500 font-normal">
-              已选专利将自动穿透关联 57 条战略产业链图谱
-            </span>
-          </label>
+      {/* Step 1 & Step 2: High Efficiency 2-Column Responsive Selector Hub */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        
+        {/* Step 1: Select JLU Patent */}
+        <div className="bg-[#061026]/90 rounded-2xl p-3.5 border border-blue-900/50 shadow-xl space-y-2 flex flex-col justify-between">
+          <div className="space-y-1.5 relative" ref={dropdownRef}>
+            <label className="text-xs sm:text-sm font-bold text-slate-200 flex items-center justify-between gap-1.5">
+              <span className="flex items-center gap-1.5">
+                <FileText className="w-3.5 h-3.5 text-cyan-400" />
+                <span>第一步：选择待转化的吉大专利</span>
+              </span>
+              <span className="text-[11px] text-slate-400 font-normal">
+                已收录 {patents.length} 项成果
+              </span>
+            </label>
 
-          <div 
-            className="w-full bg-[#F8FAFC] border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 font-medium focus-within:ring-2 focus-within:ring-blue-500 focus-within:bg-white transition-all cursor-pointer flex items-center justify-between gap-2"
-            onClick={() => setIsDropdownOpen(true)}
-          >
-            <div className="truncate flex-1">
-              {activePatent ? (
-                <span className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
-                  <span className="font-mono text-[#0F52BA] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60 text-xs font-bold shrink-0">
-                    {activePatent.patentNo}
+            <div 
+              className="w-full bg-[#0a1838] border border-blue-800/60 rounded-xl px-3 py-2 text-xs sm:text-sm text-white font-medium focus-within:ring-2 focus-within:ring-cyan-400 focus-within:bg-[#0c224e] transition-all cursor-pointer flex items-center justify-between gap-2 hover:border-cyan-400/60"
+              onClick={() => setIsDropdownOpen(true)}
+            >
+              <div className="truncate flex-1">
+                {activePatent ? (
+                  <span className="flex items-center gap-1.5 truncate">
+                    <span className="font-mono text-cyan-300 bg-blue-950/80 px-1.5 py-0.5 rounded border border-blue-700/60 text-[11px] font-bold shrink-0">
+                      {activePatent.patentNo}
+                    </span>
+                    <span className="font-bold text-white truncate text-xs sm:text-sm">{activePatent.title}</span>
+                    <span className="text-[11px] text-slate-400 shrink-0">({activePatent.inventor})</span>
                   </span>
-                  <span className="font-bold text-slate-800 truncate">{activePatent.title}</span>
-                  <span className="text-xs text-slate-500 shrink-0">({activePatent.inventor})</span>
-                </span>
-              ) : (
-                '请选择或搜索专利...'
-              )}
-            </div>
-            <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-          </div>
-
-          {isDropdownOpen && (
-            <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col max-h-[350px]">
-              <div className="p-2 border-b border-slate-100 bg-slate-50 sticky top-0 z-10">
-                 <div className="relative">
-                   <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
-                   <input 
-                     type="text"
-                     autoFocus
-                     placeholder="输入专利名称、专利号或发明人进行模糊检索..."
-                     value={patentSearchQuery}
-                     onChange={e => setPatentSearchQuery(e.target.value)}
-                     className="w-full bg-white border border-slate-200 rounded-lg py-2 pl-9 pr-3 text-sm focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                   />
-                 </div>
-              </div>
-              <div className="overflow-y-auto p-1.5">
-                {filteredPatents.length > 0 ? (
-                  filteredPatents.map(p => (
-                    <div 
-                      key={p.id}
-                      onClick={() => {
-                        handlePatentChange(p.id);
-                        setIsDropdownOpen(false);
-                        setPatentSearchQuery('');
-                      }}
-                      className={`p-3 rounded-lg cursor-pointer transition-colors ${currentPatentId === p.id ? 'bg-blue-50 border border-blue-100' : 'hover:bg-slate-50 border border-transparent'}`}
-                    >
-                      <div className="font-bold text-slate-900 text-sm line-clamp-1">{p.title}</div>
-                      <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs text-slate-500">
-                         <span className="font-mono text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">{p.patentNo}</span>
-                         <span>•</span>
-                         <span className="font-medium text-slate-700">{p.inventor}</span>
-                         <span>•</span>
-                         <span className="text-slate-500">{p.fieldName || '战略科技成果'}</span>
-                      </div>
-                    </div>
-                  ))
                 ) : (
-                  <div className="p-8 text-center text-sm text-slate-500">
-                    没有找到匹配的吉大专利记录
-                  </div>
+                  '请选择或搜索专利...'
                 )}
               </div>
+              <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
             </div>
-          )}
-        </div>
 
-        {/* AI Intelligent Chain Synergy Banner */}
-        {recommendedMapping && (
-          <div className="bg-linear-to-r from-blue-50/80 via-indigo-50/50 to-slate-50 p-4 rounded-xl border border-blue-200/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="space-y-1.5 flex-1">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="px-2.5 py-0.5 rounded-md bg-blue-600 text-white font-black text-xs flex items-center gap-1 shadow-xs">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  AI 产业链智能穿透定位
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 right-0 mt-1.5 bg-[#071536] border border-blue-700/80 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[320px]">
+                <div className="p-2 border-b border-blue-800/60 bg-[#05102a] sticky top-0 z-10">
+                   <div className="relative">
+                     <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
+                     <input 
+                       type="text"
+                       autoFocus
+                       placeholder="输入专利名称、专利号或发明人进行模糊检索..."
+                       value={patentSearchQuery}
+                       onChange={e => setPatentSearchQuery(e.target.value)}
+                       className="w-full bg-[#0c224e] border border-blue-600/50 rounded-lg py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-400 focus:outline-hidden focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+                     />
+                   </div>
+                </div>
+                <div className="overflow-y-auto p-1.5">
+                  {filteredPatents.length > 0 ? (
+                    filteredPatents.map(p => (
+                      <div 
+                        key={p.id}
+                        onClick={() => {
+                          handlePatentChange(p.id);
+                          setIsDropdownOpen(false);
+                          setPatentSearchQuery('');
+                        }}
+                        className={`p-2.5 rounded-lg cursor-pointer transition-colors ${currentPatentId === p.id ? 'bg-blue-900/80 border border-cyan-400/60' : 'hover:bg-blue-900/40 border border-transparent'}`}
+                      >
+                        <div className="font-bold text-white text-xs sm:text-sm line-clamp-1">{p.title}</div>
+                        <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[11px] text-slate-400">
+                           <span className="font-mono text-cyan-300 bg-blue-950 px-1.5 py-0.5 rounded border border-blue-800/60">{p.patentNo}</span>
+                           <span>•</span>
+                           <span className="font-medium text-slate-300">{p.inventor}</span>
+                           <span>•</span>
+                           <span className="text-slate-400">{p.fieldName || '战略科技成果'}</span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-6 text-center text-xs text-slate-400">
+                      没有找到匹配的吉大专利记录
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* AI Recommended Chain Strip */}
+          {recommendedMapping && (
+            <div className="bg-gradient-to-r from-blue-950/80 via-indigo-950/60 to-[#071536] px-2.5 py-1.5 rounded-xl border border-cyan-500/30 flex items-center justify-between gap-2 shadow-sm text-xs">
+              <div className="flex items-center gap-1.5 truncate">
+                <span className="px-1.5 py-0.5 rounded bg-blue-600 text-white font-black text-[10px] shrink-0 flex items-center gap-0.5">
+                  <Sparkles className="w-2.5 h-2.5 text-cyan-200" />
+                  AI穿透
                 </span>
-                <span className="text-xs font-bold text-slate-700">
-                  已匹配对口链条：<strong className="text-blue-700">{recommendedMapping.chainName}</strong>
-                </span>
-                <span className="text-xs text-slate-400">|</span>
-                <span className="text-xs font-bold text-slate-700">
-                  推荐定位环节：<strong className="text-indigo-700">{recommendedMapping.nodeTitle.split('(')[0]}</strong>
+                <span className="text-slate-300 truncate text-[11px] sm:text-xs">
+                  推荐链条：<strong className="text-cyan-300">{recommendedMapping.chainName}</strong> ➔ <span className="text-indigo-300">{recommendedMapping.nodeTitle.split('(')[0]}</span>
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                {recommendedMapping.nodeReason}
-              </p>
-            </div>
-
-            <div className="shrink-0 flex items-center gap-2">
               <button
                 onClick={() => {
                   setSelectedChainId(recommendedMapping.chainId);
@@ -472,390 +484,127 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
                   }
                   setSelectedNode(recommendedMapping.recommendedNode);
                 }}
-                className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+                className="px-2 py-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-lg text-[11px] font-bold transition-all shadow-xs shrink-0 cursor-pointer border border-blue-400/40 active:scale-95"
               >
-                <Workflow className="w-3.5 h-3.5" />
-                <span>聚焦推荐链条与节点</span>
+                聚焦推荐
               </button>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      {/* Step 2: Category Filter Chips & 57 Chains Grid Selector */}
-      <div className="bg-white rounded-2xl p-5 border border-[#D8E2F0] shadow-xs space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-              <Filter className="w-4 h-4 text-[#0F52BA]" />
-              <span>第二步：选择细分战略产业链 ({filteredChains.length} 条)：</span>
+        {/* Step 2: Select Strategic Industry Chain */}
+        <div className="bg-[#061026]/90 rounded-2xl p-3.5 border border-blue-900/50 shadow-xl space-y-2 flex flex-col justify-between">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-xs sm:text-sm font-bold text-slate-200 flex items-center gap-1.5">
+              <Filter className="w-3.5 h-3.5 text-cyan-400" />
+              <span>第二步：当前战略产业链</span>
             </span>
+            <button
+              onClick={() => setIsChainSelectorOpen(!isChainSelectorOpen)}
+              className="text-xs font-bold text-cyan-300 hover:text-white px-2.5 py-1 rounded-lg bg-blue-950/80 hover:bg-blue-900 border border-blue-700/60 transition-all flex items-center gap-1 cursor-pointer"
+            >
+              <span>{isChainSelectorOpen ? '收起 57 条产业链' : '切换细分产业链 (57条)'}</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isChainSelectorOpen ? 'rotate-180' : ''}`} />
+            </button>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            {INDUSTRY_CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  selectedCategory === cat
-                    ? 'bg-[#0F52BA] text-white shadow-xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Active Chain Preview Card */}
+          <div 
+            onClick={() => setIsChainSelectorOpen(!isChainSelectorOpen)}
+            className="w-full bg-[#0a1838] border border-blue-800/60 hover:border-cyan-400/60 rounded-xl px-3 py-2 text-xs sm:text-sm transition-all cursor-pointer flex items-center justify-between gap-2"
+          >
+            <div className="flex items-center gap-2 truncate">
+              <span className="font-mono text-cyan-300 bg-blue-950/80 px-1.5 py-0.5 rounded border border-blue-700/60 text-[11px] font-bold shrink-0">
+                {activeChain?.code || 'NEV01'}
+              </span>
+              <span className="font-bold text-white truncate text-xs sm:text-sm">
+                {activeChain?.name || '新能源汽车'}
+              </span>
+              <span className="text-[11px] text-slate-400 hidden sm:inline truncate">
+                ({activeChain?.category})
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-[11px] shrink-0">
+              <span className="text-cyan-400 font-semibold">{activeChain?.totalEnterprises || 428}家企业</span>
+              <span className="text-slate-400">|</span>
+              <span className="text-slate-300">吉大专利: <strong className="text-white font-mono">{activeChain?.jluPatentsCount || 24}项</strong></span>
+            </div>
           </div>
         </div>
 
-        {/* 57 Chains Grid Selector */}
-        <div className="pt-2 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-h-56 overflow-y-auto pr-1">
-          {filteredChains.map((chain) => {
-            const isSelected = selectedChainId === chain.id;
-            const isRecommended = recommendedMapping?.chainId === chain.id;
-            return (
-              <button
-                key={chain.id}
-                onClick={() => setSelectedChainId(chain.id)}
-                className={`p-3 rounded-xl border text-left transition-all flex flex-col justify-between space-y-2 cursor-pointer relative ${
-                  isSelected
-                    ? 'bg-blue-50/80 border-[#0F52BA] shadow-xs ring-2 ring-[#0F52BA]/20'
-                    : 'bg-white border-[#D8E2F0] hover:border-[#0F52BA]/60 hover:bg-slate-50/60'
-                }`}
-              >
-                {isRecommended && (
-                  <span className="absolute -top-2 right-2 px-1.5 py-0.2 rounded bg-amber-500 text-white text-[10px] font-black shadow-xs flex items-center gap-0.5">
-                    <Sparkles className="w-2.5 h-2.5" /> 专利对口
-                  </span>
-                )}
-                <div>
-                  <div className="flex items-center justify-between text-[11px] mb-1">
-                    <span className="font-mono font-bold text-[#0F52BA]">{chain.code}</span>
-                    <span className="text-slate-400">{chain.category.split('与')[0]}</span>
-                  </div>
-                  <h5 className={`text-sm font-bold line-clamp-1 ${isSelected ? 'text-[#082C6C] font-black' : 'text-slate-800'}`}>
-                    {chain.name}
-                  </h5>
-                </div>
-                <div className="flex items-center justify-between text-[10px] text-slate-500 pt-1 border-t border-slate-100">
-                  <span>匹配吉大专利: <strong className="text-slate-800 font-mono">{chain.jluPatentsCount}项</strong></span>
-                  <span className="text-[#0F52BA] font-semibold">{chain.totalEnterprises}家企业</span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
       </div>
 
-      {/* Selected Chain Detailed Visual Decomposition Map */}
-      {activeChain && (
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6">
-          
-          {/* Chain Top Info */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200">
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800 text-sm font-black font-mono">
-                  {activeChain.code}
-                </span>
-                <span className="text-sm text-slate-500 font-medium">
-                  {activeChain.category}
-                </span>
-                {recommendedMapping?.chainId === activeChain.id && (
-                  <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> 当前吉大专利直接赋能链条
-                  </span>
-                )}
-              </div>
-              <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-                {activeChain.name}
-              </h3>
-              <p className="text-sm text-slate-600 max-w-3xl leading-relaxed">
-                {activeChain.summary}
-              </p>
+      {/* Expandable 57 Chains Grid Modal / Panel when isChainSelectorOpen */}
+      {isChainSelectorOpen && (
+        <div className="bg-[#061026] rounded-2xl p-4 border border-cyan-500/40 shadow-2xl space-y-3 animate-in fade-in duration-200">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-blue-900/50">
+            <div className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5 text-cyan-400" />
+              <span>选择战略产业链分类筛选：</span>
             </div>
-          </div>
-
-          {/* Upstream / Midstream / Downstream Node Interactive Tabs */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h4 className="text-base font-black text-slate-900 flex items-center gap-2">
-                <span>产业链上中下游关键技术节点图谱分解</span>
-                <span className="text-sm font-normal text-slate-500">（点击节点可快速筛选该环节靶向企业）</span>
-              </h4>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              
-              {/* Upstream Node */}
-              <div 
-                onClick={() => setSelectedNode(selectedNode === 'upstream' ? 'all' : 'upstream')}
-                className={`p-5 rounded-2xl border-2 transition-all cursor-pointer space-y-3 relative ${
-                  selectedNode === 'upstream'
-                    ? 'border-blue-600 bg-blue-50/70 shadow-md ring-2 ring-blue-400/20'
-                    : 'border-slate-200 bg-white hover:border-blue-300'
-                }`}
-              >
-                {recommendedMapping?.chainId === activeChain.id && recommendedMapping.recommendedNode === 'upstream' && (
-                  <div className="absolute -top-2.5 right-3 bg-blue-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                    <Sparkles className="w-2.5 h-2.5" /> 吉大专利突破节点
-                  </div>
-                )}
-                <div className="flex items-center justify-between">
-                  <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-bold text-[11px]">
-                    上游 • 核心材料与元器件
-                  </span>
-                  <span className="text-sm font-mono font-bold text-blue-600">
-                    {nodeCounts.upstream} 家企业
-                  </span>
-                </div>
-                <h5 className="text-base font-bold text-slate-900">{activeChain.upstreamNode.name}</h5>
-                <div className="space-y-1 text-sm text-slate-600">
-                  <span className="text-[11px] font-semibold text-slate-500 block">关键攻关技术特征：</span>
-                  {activeChain.upstreamNode.keyTechs.map((t, idx) => (
-                    <div key={idx} className="flex items-center gap-1 text-[11px]">
-                      <CheckCircle2 className="w-3 h-3 text-blue-500 shrink-0" />
-                      <span>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Midstream Node */}
-              <div 
-                onClick={() => setSelectedNode(selectedNode === 'midstream' ? 'all' : 'midstream')}
-                className={`p-5 rounded-2xl border-2 transition-all cursor-pointer space-y-3 relative ${
-                  selectedNode === 'midstream'
-                    ? 'border-indigo-600 bg-indigo-50/70 shadow-md ring-2 ring-indigo-400/20'
-                    : 'border-slate-200 bg-white hover:border-indigo-300'
-                }`}
-              >
-                {recommendedMapping?.chainId === activeChain.id && recommendedMapping.recommendedNode === 'midstream' && (
-                  <div className="absolute -top-2.5 right-3 bg-indigo-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                    <Sparkles className="w-2.5 h-2.5" /> 吉大专利突破节点
-                  </div>
-                )}
-                <div className="flex items-center justify-between">
-                  <span className="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold text-[11px]">
-                    中游 • 精密制造与模块总成
-                  </span>
-                  <span className="text-sm font-mono font-bold text-indigo-600">
-                    {nodeCounts.midstream} 家企业
-                  </span>
-                </div>
-                <h5 className="text-base font-bold text-slate-900">{activeChain.midstreamNode.name}</h5>
-                <div className="space-y-1 text-sm text-slate-600">
-                  <span className="text-[11px] font-semibold text-slate-500 block">关键攻关技术特征：</span>
-                  {activeChain.midstreamNode.keyTechs.map((t, idx) => (
-                    <div key={idx} className="flex items-center gap-1 text-[11px]">
-                      <CheckCircle2 className="w-3 h-3 text-indigo-500 shrink-0" />
-                      <span>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Downstream Node */}
-              <div 
-                onClick={() => setSelectedNode(selectedNode === 'downstream' ? 'all' : 'downstream')}
-                className={`p-5 rounded-2xl border-2 transition-all cursor-pointer space-y-3 relative ${
-                  selectedNode === 'downstream'
-                    ? 'border-purple-600 bg-purple-50/70 shadow-md ring-2 ring-purple-400/20'
-                    : 'border-slate-200 bg-white hover:border-purple-300'
-                }`}
-              >
-                {recommendedMapping?.chainId === activeChain.id && recommendedMapping.recommendedNode === 'downstream' && (
-                  <div className="absolute -top-2.5 right-3 bg-purple-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-xs flex items-center gap-1">
-                    <Sparkles className="w-2.5 h-2.5" /> 吉大专利突破节点
-                  </div>
-                )}
-                <div className="flex items-center justify-between">
-                  <span className="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold text-[11px]">
-                    下游 • 整机终端与系统集成
-                  </span>
-                  <span className="text-sm font-mono font-bold text-purple-600">
-                    {nodeCounts.downstream} 家企业
-                  </span>
-                </div>
-                <h5 className="text-base font-bold text-slate-900">{activeChain.downstreamNode.name}</h5>
-                <div className="space-y-1 text-sm text-slate-600">
-                  <span className="text-[11px] font-semibold text-slate-500 block">关键攻关技术特征：</span>
-                  {activeChain.downstreamNode.keyTechs.map((t, idx) => (
-                    <div key={idx} className="flex items-center gap-1 text-[11px]">
-                      <CheckCircle2 className="w-3 h-3 text-purple-500 shrink-0" />
-                      <span>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Target Enterprises within this Chain */}
-          <div className="pt-6 border-t border-slate-200 space-y-5">
-            
-            {/* National Geographic Map & Province Distribution for this Industry Chain */}
-            <PatentNationalDistributionCard
-              activePatent={activePatent}
-              chainInfo={{
-                name: activeChain.name,
-                category: activeChain.category,
-                nodeName: selectedNode === 'all' 
-                  ? '全链条节点' 
-                  : selectedNode === 'upstream' 
-                    ? `上游：${activeChain.upstreamNode.name}` 
-                    : selectedNode === 'midstream' 
-                      ? `中游：${activeChain.midstreamNode.name}` 
-                      : `下游：${activeChain.downstreamNode.name}`
-              }}
-              title="当前产业链重点靶向企业全国地理与省市分布"
-              enterprises={nodeMatchedEnterprises}
-              selectedProvince={regionFilter.p}
-              onSelectProvince={(prov) => {
-                setRegionFilter({ p: prov, c: 'all', d: 'all' });
-              }}
-              filteredCount={chainEnterprises.length}
-              defaultCollapsed={true}
-            />
-
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-              <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-indigo-600" />
-                <span>该产业链重点靶向企业 ({chainEnterprises.length}家)</span>
-                {selectedNode !== 'all' && (
-                  <span className="text-sm font-normal text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">
-                    已筛选：{selectedNode === 'upstream' ? '上游节点' : selectedNode === 'midstream' ? '中游节点' : '下游节点'}
-                  </span>
-                )}
-              </h4>
-              <div className="flex flex-wrap items-center gap-2 shrink-0">
-                <div className="relative w-48 sm:w-64">
-                  <input
-                    type="text"
-                    value={enterpriseSearchKeyword}
-                    onChange={(e) => setEnterpriseSearchKeyword(e.target.value)}
-                    placeholder="搜索企业名称..."
-                    className="w-full bg-white border border-slate-200 rounded-xl px-3 py-1.5 pl-8 text-sm text-slate-900 focus:outline-none focus:border-indigo-500 shadow-sm"
-                  />
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
-                </div>
-                <div className="w-px h-6 bg-slate-200 mx-2 hidden sm:block"></div>
-                <span className="text-sm font-bold text-slate-500">过滤:</span>
-                <RegionFilter 
-                  value={regionFilter} 
-                  onFilterChange={(p, c, d) => setRegionFilter({p, c, d})} 
-                />
-                <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm ml-2">
-                  <Download className="w-4 h-4" /> 导出
-                </button>
-              </div>
-            </div>
-
-            {chainEnterprises.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-16 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-300">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-4">
-                    <Inbox className="w-8 h-8 text-slate-300" />
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-800 mb-2">未找到符合条件的企业</h3>
-                  <p className="text-sm text-slate-500 max-w-md">当前过滤条件下没有匹配的靶向企业，请尝试放宽筛选条件，或重置区域限制。</p>
-                  <button onClick={() => {
-                    setRegionFilter({p: 'all', c: 'all', d: 'all'});
-                    setSelectedNode('all');
-                  }} className="mt-6 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-blue-600 hover:bg-blue-50 transition-colors shadow-sm">
-                    重置筛选条件
-                  </button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {currentEnterprises.map((ent) => (
-                <div
-                  key={ent.id}
-                  onClick={() => onSelectEnterprise(ent)}
-                  className="bg-white rounded-2xl p-5 border border-[#D8E2F0] shadow-xs hover:shadow-lg hover:border-[#0F52BA] transition-all cursor-pointer flex flex-col justify-between space-y-4"
+            <div className="flex flex-wrap gap-1.5">
+              {INDUSTRY_CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer border ${
+                    selectedCategory === cat
+                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-cyan-400 shadow-sm'
+                      : 'bg-[#091838] text-slate-300 hover:bg-blue-900/50 hover:text-white border-blue-900/40'
+                  }`}
                 >
-                  <div>
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="px-2 py-0.5 bg-indigo-100 text-indigo-800 text-[11px] font-bold rounded shadow-sm">
-                            {ent.chainPosition?.nodeName.split('：')[0]}
-                          </span>
-                        </div>
-                        <h4 className="text-lg font-bold text-slate-900 group-hover:text-[#0F52BA]">
-                          <CopyableText text={ent.name}>{ent.name}</CopyableText>
-                        </h4>
-                      </div>
-                    </div>
-                    <div className="mt-3 bg-[#F8FAFC] p-3 rounded-xl border border-slate-100 text-[12px] text-slate-600 flex flex-col gap-2">
-                      <div className="grid grid-cols-2 gap-y-2 gap-x-4">
-                        <div>
-                          成立日期：<span className="font-semibold text-slate-800">{ent.establishedDate || '2011-05-18'}</span>
-                        </div>
-                        <div>
-                          注册资本：<span className="font-semibold text-slate-800">{ent.registeredCapital || '-'}</span>
-                        </div>
-                        <div className="truncate" title={ent.email || '暂无'}>
-                          公司邮箱：<span className="font-semibold text-slate-800">{ent.email || 'contact@' + (ent.creditCode?.substring(0,6) || 'qiye') + '.com'}</span>
-                        </div>
-                        <div>
-                          公司电话：<span className="font-semibold text-slate-800">{ent.phone || '暂无'}</span>
-                        </div>
-                      </div>
-                      <div className="pt-2 border-t border-slate-200 mt-1 truncate" title={(ent.location || '') + (ent.address || '')}>
-                        企业地址：<span className="font-semibold text-slate-800">{ent.location || '-'}{ent.address ? ' ' + ent.address : ''}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-sm">
-                    <span className="text-[#0F52BA] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                      <span>查看企业画像</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </span>
-                    {onOpenAiActionPlan && (
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onOpenAiActionPlan(ent);
-                        }}
-                        className="text-white bg-[#0F52BA] px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 shadow-sm hover:bg-[#082C6C] hover:shadow-md transition-all text-xs"
-                      >
-                        AI撰写对接方案
-                      </button>
-                    )}
-                  </div>
-                </div>
+                  {cat}
+                </button>
               ))}
             </div>
-            )}
-            
-            {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 pt-6">
-                <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <div className="text-sm font-medium text-slate-600">
-                  第 <span className="text-slate-900 font-bold">{currentPage}</span> 页，共 {totalPages} 页
-                </div>
-                <button
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                  disabled={currentPage === totalPages}
-                  className="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-50 disabled:hover:bg-transparent transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
-
           </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 max-h-56 overflow-y-auto pr-1">
+            {filteredChains.map((chain) => {
+              const isSelected = selectedChainId === chain.id;
+              const isRecommended = recommendedMapping?.chainId === chain.id;
+              return (
+                <button
+                  key={chain.id}
+                  onClick={() => {
+                    setSelectedChainId(chain.id);
+                    setIsChainSelectorOpen(false);
+                  }}
+                  className={`p-2.5 rounded-xl border text-left transition-all flex flex-col justify-between space-y-1.5 cursor-pointer relative ${
+                    isSelected
+                      ? 'bg-gradient-to-br from-blue-950 to-indigo-950 border-cyan-400 shadow-md ring-1 ring-cyan-500/40 text-white'
+                      : 'bg-[#08183a]/80 border-blue-900/50 hover:border-cyan-400/60 hover:bg-[#0c2352] text-slate-300'
+                  }`}
+                >
+                  {isRecommended && (
+                    <span className="absolute -top-2 right-2 px-1.5 py-0.2 rounded bg-amber-500 text-white text-[9px] font-black shadow-xs flex items-center gap-0.5">
+                      <Sparkles className="w-2.5 h-2.5" /> 专利对口
+                    </span>
+                  )}
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] mb-0.5">
+                      <span className="font-mono font-bold text-cyan-400">{chain.code}</span>
+                      <span className="text-slate-400">{chain.category.split('与')[0]}</span>
+                    </div>
+                    <h5 className={`text-xs font-bold line-clamp-1 ${isSelected ? 'text-cyan-200 font-black' : 'text-slate-200'}`}>
+                      {chain.name}
+                    </h5>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1 border-t border-blue-900/40">
+                    <span>专利: <strong className="text-slate-200 font-mono">{chain.jluPatentsCount}项</strong></span>
+                    <span className="text-cyan-400 font-semibold">{chain.totalEnterprises}家企业</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       )}
+
+      {/* 步骤三：产业链全景图与供应链匹配（选项卡切换） */}
+      <div id="panorama-section" className="scroll-mt-4">
+        <IndustryChainPanoramaView chainName={activeChain?.name || '新能源汽车'} />
+      </div>
 
     </div>
   );

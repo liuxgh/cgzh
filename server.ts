@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import { createServer as createViteServer } from 'vite';
@@ -9,7 +10,8 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Lazy initialize Gemini client
 function getGeminiClient(): GoogleGenAI | null {
@@ -30,6 +32,32 @@ function getGeminiClient(): GoogleGenAI | null {
 // API Health Check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString(), platform: 'JLU Tech Transfer & Baiteng IP Engine' });
+});
+
+// Panoramic / Matching Image Upload Endpoint
+app.post('/api/upload-panoramic-image', (req, res) => {
+  try {
+    const { imageBase64, type } = req.body;
+    if (!imageBase64) {
+      return res.status(400).json({ success: false, error: '未提供图片数据' });
+    }
+    const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(base64Data, 'base64');
+    const filename = type === 'matching' ? 'supply-chain-matching.png' : 'industry-chain-panoramic.png';
+    const publicPath = path.join(process.cwd(), 'public', filename);
+    fs.writeFileSync(publicPath, buffer);
+
+    const distDir = path.join(process.cwd(), 'dist');
+    if (fs.existsSync(distDir)) {
+      fs.writeFileSync(path.join(distDir, filename), buffer);
+    }
+
+    console.log(`Successfully saved uploaded ${filename} (${buffer.length} bytes)`);
+    res.json({ success: true, filename, url: `/${filename}?t=${Date.now()}` });
+  } catch (err: any) {
+    console.error('Failed to save panoramic image:', err);
+    res.status(500).json({ success: false, error: err.message || '上传处理失败' });
+  }
 });
 
 // AI Intelligent Match Analysis Endpoint

@@ -72,8 +72,14 @@ export const Header: React.FC<HeaderProps> = ({
     }
   };
 
+  const isDarkHeader = activeTab === 'industry-chain' || activeTab === 'tech-map';
+
   return (
-    <header className="sticky top-0 z-40 text-slate-800 bg-white shadow-xs border-b border-slate-200">
+    <header className={`sticky top-0 z-40 transition-colors duration-300 ${
+      isDarkHeader 
+        ? 'bg-[#030919] text-slate-100 border-b border-blue-950/80 shadow-xl' 
+        : 'text-slate-800 bg-white shadow-xs border-b border-slate-200'
+    }`}>
       {/* 1. 主品牌栏与统一检索 (Main Header Bar) */}
       <div className="px-4 sm:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors">
         {/* Brand & Title */}
@@ -90,30 +96,33 @@ export const Header: React.FC<HeaderProps> = ({
                  <Globe className="w-6 h-6 sm:w-7 sm:h-7" />
                </div>
                <div className="flex flex-col justify-center">
-                 <span className="text-[18px] sm:text-[22px] font-black text-slate-900 tracking-tight leading-none mb-1">
+                 <span className={`text-[18px] sm:text-[22px] font-black tracking-tight leading-none mb-1 ${isDarkHeader ? 'text-white' : 'text-slate-900'}`}>
                    全国高校科技成果转化平台
                  </span>
-                 <span className="text-[10px] sm:text-[11px] font-bold text-blue-600 tracking-widest leading-none">
+                 <span className="text-[10px] sm:text-[11px] font-bold text-cyan-400 tracking-widest leading-none">
                    ENTERPRISE INNOVATION HUB
                  </span>
                </div>
              </div>
           ) : (
              <>
-                <div className="h-11 sm:h-14 shrink-0 flex items-center overflow-hidden mix-blend-multiply relative">
-                  <div className="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors z-10" />
+                <div className={`h-11 sm:h-14 shrink-0 flex items-center overflow-hidden relative ${isDarkHeader ? 'bg-white/95 rounded-xl p-1 shadow-md' : 'mix-blend-multiply'}`}>
                   <img src="https://www.jlu.edu.cn/__local/0/5B/64/8C8DCC05EE61C79B65D1DFE86D2_14822F50_437B9.jpg" alt="Jilin University Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500 ease-out" />
                 </div>
-                <div className="flex flex-col justify-center border-l-2 border-slate-200/80 pl-3.5 sm:pl-4 py-0.5 ml-0.5">
+                <div className={`flex flex-col justify-center border-l-2 pl-3.5 sm:pl-4 py-0.5 ml-0.5 ${isDarkHeader ? 'border-blue-900/60' : 'border-slate-200/80'}`}>
                   <div className="flex items-end gap-2.5 mb-2">
-                    <span className="text-[22px] sm:text-[26px] font-black text-slate-900 tracking-tight leading-none" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                    <span className={`text-[22px] sm:text-[26px] font-black tracking-tight leading-none ${isDarkHeader ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                       吉林大学
                     </span>
-                    <span className="hidden sm:inline-flex items-center px-2 py-[3px] rounded-md bg-linear-to-br from-blue-50 to-indigo-50/50 border border-blue-100/80 text-blue-700 text-[10px] font-bold tracking-widest leading-none shadow-[0_1px_2px_rgba(0,0,0,0.02)] translate-y-[-2px]">
+                    <span className={`hidden sm:inline-flex items-center px-2 py-[3px] rounded-md border text-[10px] font-bold tracking-widest leading-none translate-y-[-2px] ${
+                      isDarkHeader 
+                        ? 'bg-blue-950/80 border-blue-700/80 text-cyan-300' 
+                        : 'bg-linear-to-br from-blue-50 to-indigo-50/50 border-blue-100/80 text-blue-700 shadow-[0_1px_2px_rgba(0,0,0,0.02)]'
+                    }`}>
                       佰腾大数据驱动
                     </span>
                   </div>
-                  <span className="text-[12px] sm:text-[13px] font-semibold text-slate-500 tracking-[0.25em] leading-none pl-0.5">
+                  <span className={`text-[12px] sm:text-[13px] font-semibold tracking-[0.25em] leading-none pl-0.5 ${isDarkHeader ? 'text-slate-400' : 'text-slate-500'}`}>
                     科技成果转化专区
                   </span>
                 </div>
@@ -124,16 +133,24 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Global Fast Search matching Baiten.cn search format */}
         <div className="flex items-center gap-6">
           {/* Role Switcher */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200/60 shadow-inner">
+          <div className={`flex items-center p-1 rounded-lg border shadow-inner ${isDarkHeader ? 'bg-[#081738] border-blue-900/60' : 'bg-slate-100 border-slate-200/60'}`}>
             <button
               onClick={() => onRoleChange('university')}
-              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${userRole === 'university' ? 'bg-white text-[#0F52BA] shadow-xs ring-1 ring-slate-200/50' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
+                userRole === 'university' 
+                  ? (isDarkHeader ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-[#0F52BA] shadow-xs ring-1 ring-slate-200/50') 
+                  : (isDarkHeader ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-700')
+              }`}
             >
               🎓 高校端
             </button>
             <button
               onClick={() => onRoleChange('enterprise')}
-              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${userRole === 'enterprise' ? 'bg-[#0F52BA] text-white shadow-xs' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
+                userRole === 'enterprise' 
+                  ? 'bg-blue-600 text-white shadow-xs' 
+                  : (isDarkHeader ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-700')
+              }`}
             >
               🏢 企业端
             </button>
@@ -145,14 +162,18 @@ export const Header: React.FC<HeaderProps> = ({
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder={userRole === 'enterprise' ? '输入技术需求、痛点、关键词...' : '输入吉大专利号、技术词、靶向企业...'}
-                className="w-full bg-slate-100/50 border border-slate-200 border-r-0 rounded-l-xl px-4 py-2 pl-10 text-sm text-slate-800 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-400/10 transition-all"
+                placeholder={userRole === 'enterprise' ? '输入技术关键词、成果名称或专利号...' : '输入吉大专利号、技术词、靶向企业...'}
+                className={`w-full border border-r-0 rounded-l-xl px-4 py-2 pl-10 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-400/30 transition-all ${
+                  isDarkHeader
+                    ? 'bg-[#081738] border-blue-900/80 text-white placeholder-slate-400 focus:bg-[#0c224e] focus:border-cyan-400'
+                    : 'bg-slate-100/50 border-slate-200 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-blue-400'
+                }`}
               />
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5 group-focus-within:text-blue-500 transition-colors" />
+              <Search className={`w-4 h-4 absolute left-3.5 top-2.5 transition-colors ${isDarkHeader ? 'text-slate-400 group-focus-within:text-cyan-400' : 'text-slate-400 group-focus-within:text-blue-500'}`} />
             </div>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 font-bold rounded-r-xl text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-600 shadow-xs"
+              className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 font-bold rounded-r-xl text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-500 shadow-md"
             >
               <span>{userRole === 'enterprise' ? '技术匹配' : '精准寻客'}</span>
             </button>
@@ -161,7 +182,9 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* 3. 佰腾网功能导航标签栏 (Primary Navigation Tabs) */}
-      <nav className="px-4 sm:px-8 border-t border-slate-200 bg-white flex overflow-x-auto no-scrollbar transition-colors">
+      <nav className={`px-4 sm:px-8 border-t flex overflow-x-auto no-scrollbar transition-colors ${
+        isDarkHeader ? 'bg-[#030919] border-blue-950/80' : 'bg-white border-slate-200'
+      }`}>
         <div className="flex space-x-2 py-0">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -172,13 +195,19 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => setActiveTab(item.key as TabType)}
                 className={`relative px-4 py-3.5 text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer border-b-2 ${
                   isActive
-                    ? 'border-blue-600 text-blue-700 font-bold'
+                    ? (isDarkHeader ? 'border-cyan-400 text-cyan-300 font-bold bg-blue-950/40' : 'border-blue-600 text-blue-700 font-bold')
                     : item.highlight
-                    ? 'border-transparent text-blue-700 hover:text-blue-800 hover:border-blue-300'
-                    : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
+                    ? (isDarkHeader ? 'border-transparent text-cyan-400 hover:text-cyan-300' : 'border-transparent text-blue-700 hover:text-blue-800 hover:border-blue-300')
+                    : (isDarkHeader ? 'border-transparent text-slate-400 hover:text-slate-100 hover:border-blue-800' : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300')
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : item.highlight ? 'text-blue-600' : 'text-slate-400'}`} />
+                <Icon className={`w-3.5 h-3.5 ${
+                  isActive 
+                    ? (isDarkHeader ? 'text-cyan-400' : 'text-blue-600') 
+                    : item.highlight 
+                    ? (isDarkHeader ? 'text-cyan-400' : 'text-blue-600') 
+                    : (isDarkHeader ? 'text-slate-500' : 'text-slate-400')
+                }`} />
                 <span>{item.label}</span>
               </button>
             );

@@ -107,8 +107,10 @@ function AppContent() {
     setTimeout(() => setGlobalToastMessage(null), 4000);
   };
 
+  const isDarkPage = activeTab === 'tech-map' || activeTab === 'industry-chain';
+
   return (
-    <div className={`min-h-screen ${activeTab === 'tech-map' ? 'bg-[#050A15]' : themeConfig.colors.pageBg} ${activeTab === 'tech-map' ? 'text-slate-300' : 'text-slate-900'} flex flex-col font-sans antialiased transition-colors`}>
+    <div className={`min-h-screen ${isDarkPage ? 'bg-[#030919]' : themeConfig.colors.pageBg} ${isDarkPage ? 'text-slate-100' : 'text-slate-900'} flex flex-col font-sans antialiased transition-colors`}>
       
       {/* Global SaaS Header */}
       <Header
@@ -130,7 +132,13 @@ function AppContent() {
       />
 
       {/* Main SaaS Workspace Container */}
-      <main className={`flex-1 w-full ${activeTab === 'tech-map' ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6'}`}>
+      <main className={`flex-1 w-full ${
+        activeTab === 'tech-map'
+          ? ''
+          : activeTab === 'industry-chain'
+          ? 'w-full max-w-[99vw] 2xl:max-w-[1920px] mx-auto px-2 sm:px-4 lg:px-6 py-2.5 space-y-3'
+          : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6'
+      }`}>
         {selectedProductForAiReport ? (
           <PatentProductAiReportPage
             product={selectedProductForAiReport.product}
