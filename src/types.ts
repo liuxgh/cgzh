@@ -8,9 +8,86 @@ export type TabType = 'enterprise-profile' | 'overview'
   | 'enterprise-dashboard'
   | 'tech-search'
   | 'enterprise-landing'
-  | 'enterprise-demands';
+  | 'enterprise-demands'
+  | 'enterprise-demand-publish'
+  | 'university-demand-inbox';
 
 export type UserRole = 'university' | 'enterprise';
+
+export interface AlumniInfo {
+  isAlumniEnterprise: boolean;
+  alumniName?: string;
+  alumniPosition?: string;
+  graduatedCollege?: string;
+  graduationYear?: string;
+  alumniAssociation?: string;
+  studentIdOrDegree?: string;
+  verified?: boolean;
+}
+
+export interface UniversityFeedback {
+  id: string;
+  feedbackTime: string;
+  officerName: string;
+  assignedCollege: string;
+  assignedLab?: string;
+  matchedExperts: {
+    name: string;
+    title: string;
+    field: string;
+    college: string;
+  }[];
+  feasibilityAssessment: string;
+  proposedSolution: string;
+  estimatedTimeline: string;
+  recommendedPatents?: {
+    patentNo: string;
+    title: string;
+  }[];
+  nextStepAction: string;
+  contactOfficer: {
+    name: string;
+    phone: string;
+    email: string;
+    office: string;
+  };
+}
+
+export interface ConfidentialEnterpriseDemand {
+  id: string;
+  companyName: string;
+  creditCode?: string;
+  industry: string;
+  region: string;
+  enterpriseScale: string;
+  isAlumniEnterprise: boolean;
+  alumniInfo?: AlumniInfo;
+  confidentialLevel: 'top_secret' | 'expert_only';
+  demandCategory: 'bottleneck_tech' | 'new_product_rd' | 'process_upgrade' | 'material_substitution' | 'patent_licensing' | 'joint_lab';
+  demandTitle: string;
+  currentBottleneck: string;
+  targetSpecs: string;
+  budget: string;
+  expectedTimeline: string;
+  cooperationMode: 'tech_transfer' | 'patent_license' | 'joint_development' | 'joint_lab' | 'equity_investment';
+  ndaAgreed: boolean;
+  contactName: string;
+  contactPhone: string;
+  contactEmail: string;
+  createdAt: string;
+  status: 'pending_review' | 'assigned_expert' | 'feedback_provided' | 'in_dialogue' | 'project_signed';
+  priority: 'lightning_alumni' | 'standard';
+  responseDeadlineHours: number;
+  aiTags?: string[];
+  aiSummary?: {
+    coreChallenge: string;
+    targetMetric: string;
+    recommendedField: string;
+    commercialValue: string;
+  };
+  aiMatchedPatents?: PatentItem[];
+  universityFeedback?: UniversityFeedback;
+}
 
 export interface PatentItem {
   id: string;

@@ -22,7 +22,10 @@ import {
   Globe,
   Award,
   Target,
-  Bell
+  Bell,
+  Lock,
+  Send,
+  GraduationCap
 } from 'lucide-react';
 import { useAppTheme } from '../context/ThemeContext';
 
@@ -55,14 +58,17 @@ export const Header: React.FC<HeaderProps> = ({
     { key: 'industry-chain', label: '产业链找企业', icon: Layers },
     { key: 'patent-product', label: '专利产品找企业', icon: Package },
     { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit },
-    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award },
+    { key: 'university-demand-inbox', label: '企业保密需求清单', icon: Send }
   ] : (selectedUniversity ? [
     { key: 'tech-map', label: '成果技术图谱', icon: Compass, highlight: true },
     { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
+    { key: 'enterprise-demand-publish', label: '免费发布技术需求 (保密直达)', icon: Lock, highlight: true },
     { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
   ] : [
     { key: 'enterprise-landing', label: '首页', icon: Building2, highlight: true },
-    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search }
+    { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
+    { key: 'enterprise-demand-publish', label: '免费发布技术需求 (保密直达)', icon: Lock, highlight: true }
   ]);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -209,6 +215,15 @@ export const Header: React.FC<HeaderProps> = ({
                     : (isDarkHeader ? 'text-slate-500' : 'text-slate-400')
                 }`} />
                 <span>{item.label}</span>
+                {('badge' in item && Boolean((item as any).badge)) && (
+                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md leading-none ${
+                    isActive
+                      ? 'bg-amber-500 text-white shadow-2xs'
+                      : 'bg-amber-100 text-amber-800 border border-amber-300/80'
+                  }`}>
+                    {(item as any).badge}
+                  </span>
+                )}
               </button>
             );
           })}

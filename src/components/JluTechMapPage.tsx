@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { UserRole, PatentItem } from '../types';
-import { Beaker, Car, Microchip, Leaf, Stethoscope, Cpu, CheckCircle2, Search, ArrowRight, Activity, Network, LineChart as LineChartIcon, BarChart3, Star, ShieldCheck, PieChart, Layers, Handshake, X, Building2, CheckCircle, Loader2, Check, Sparkles } from 'lucide-react';
+import { Beaker, Car, Microchip, Leaf, Stethoscope, Cpu, CheckCircle2, Search, ArrowRight, Activity, Network, LineChart as LineChartIcon, BarChart3, Star, ShieldCheck, PieChart, Layers, Handshake, X, Building2, CheckCircle, Loader2, Check, Sparkles, GraduationCap, Users } from 'lucide-react';
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { motion, AnimatePresence } from 'motion/react';
 import { LatestTechAchievementsSection } from './LatestTechAchievementsSection';
 import { TechDetailPage, TechDetailData } from './TechDetailPage';
 import { mapPatentToTechDetail } from '../utils/techDetailMapper';
+import { AlumniEnterpriseRecord, INITIAL_ALUMNI_ENTERPRISES } from '../data/alumniEnterprisesData';
+import { AlumniSelfRegisterModal } from './AlumniSelfRegisterModal';
 
 const techDomains = [
   {
@@ -197,16 +199,33 @@ interface Props {
   onNavigateToSearch?: () => void; 
   onSelectPatent?: (patent: PatentItem) => void; 
   onNavigateToUnpatented?: () => void;
+  onNavigateToDemandPublish?: () => void;
+  alumniList?: AlumniEnterpriseRecord[];
+  onAddAlumniRecord?: (record: AlumniEnterpriseRecord) => void;
 }
 
 export const JluTechMapPage: React.FC<Props> = ({ 
   userRole = 'university', 
   onNavigateToSearch, 
   onSelectPatent,
-  onNavigateToUnpatented
+  onNavigateToUnpatented,
+  onNavigateToDemandPublish,
+  alumniList = INITIAL_ALUMNI_ENTERPRISES,
+  onAddAlumniRecord
 }) => {
   const [activeDomain, setActiveDomain] = useState(techDomains[0]);
   const [selectedTechForDetail, setSelectedTechForDetail] = useState<TechDetailData | null>(null);
+
+  // Alumni Self-Reporting Modal State
+  const [showAlumniModal, setShowAlumniModal] = useState(false);
+  const [localAlumniList, setLocalAlumniList] = useState<AlumniEnterpriseRecord[]>(alumniList);
+
+  const handleAddAlumni = (record: AlumniEnterpriseRecord) => {
+    setLocalAlumniList([record, ...localAlumniList]);
+    if (onAddAlumniRecord) {
+      onAddAlumniRecord(record);
+    }
+  };
 
   // Booking Modal State
   const [showBookingModal, setShowBookingModal] = useState(false);
@@ -441,20 +460,33 @@ export const JluTechMapPage: React.FC<Props> = ({
           </p>
           {userRole !== 'university' && (
           <div className="pt-2 pb-4 flex flex-wrap justify-center items-center gap-4">
-            <button className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(79,70,229,0.5)] active:scale-95 border border-white/10">
+            <button className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(79,70,229,0.5)] active:scale-95 border border-white/10 cursor-pointer">
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
               <span className="relative z-10 flex items-center gap-2 drop-shadow-md">
                 <Handshake className="w-6 h-6" />
                 发起合作意向
               </span>
             </button>
+
             <button 
               onClick={onNavigateToSearch}
-              className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-slate-800 text-white font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] active:scale-95 border border-slate-600 hover:border-slate-400"
+              className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-slate-800 text-white font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] active:scale-95 border border-slate-600 hover:border-slate-400 cursor-pointer"
             >
               <span className="relative z-10 flex items-center gap-2 drop-shadow-md">
                 <Search className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
                 匹配技术
+              </span>
+            </button>
+
+            {/* 校友企业自主标注入口 */}
+            <button 
+              onClick={() => setShowAlumniModal(true)}
+              className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold text-base rounded-full overflow-hidden transition-all duration-300 hover:scale-105 border border-amber-500/40 hover:border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.15)] cursor-pointer"
+            >
+              <GraduationCap className="w-5 h-5 text-amber-400" />
+              <span>校友身份自主标注 / 校友企业库</span>
+              <span className="px-2 py-0.5 bg-amber-400/20 text-amber-200 text-xs rounded-full border border-amber-400/30">
+                {localAlumniList.length}
               </span>
             </button>
           </div>
@@ -764,6 +796,15 @@ export const JluTechMapPage: React.FC<Props> = ({
           </div>
         </div>
       </div>
+
+      {/* Alumni Self Register Modal */}
+      <AlumniSelfRegisterModal
+        isOpen={showAlumniModal}
+        onClose={() => setShowAlumniModal(false)}
+        alumniList={localAlumniList}
+        onAddAlumniRecord={handleAddAlumni}
+        onNavigateToDemandPublish={onNavigateToDemandPublish}
+      />
     </div>
   );
 };

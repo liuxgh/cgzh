@@ -18,6 +18,8 @@ import { UnpatentedTechHub } from './components/UnpatentedTechHub';
 import { EnterpriseLandingPage } from './components/EnterpriseLandingPage';
 import { TechSearchHub } from './components/TechSearchHub';
 import { JluTechMapPage } from './components/JluTechMapPage';
+import { ConfidentialDemandPublishPage } from './components/ConfidentialDemandPublishPage';
+import { UniversityDemandInboxPage } from './components/UniversityDemandInboxPage';
 import { PatentDetailModal } from './components/PatentDetailModal';
 import { NewPatentModal } from './components/NewPatentModal';
 import { ThemeProvider, useAppTheme } from './context/ThemeContext';
@@ -25,7 +27,9 @@ import { ThemeProvider, useAppTheme } from './context/ThemeContext';
 import { INITIAL_PATENTS } from './data/mockData';
 import { TARGET_ENTERPRISES_DATA } from './data/targetEnterprisesData';
 import { PatentIntensiveProduct } from './data/patentProductsData';
-import { TabType, UserRole, PatentItem, TargetEnterprise } from './types';
+import { INITIAL_CONFIDENTIAL_DEMANDS } from './data/confidentialDemandsData';
+import { AlumniEnterpriseRecord, INITIAL_ALUMNI_ENTERPRISES } from './data/alumniEnterprisesData';
+import { TabType, UserRole, PatentItem, TargetEnterprise, ConfidentialEnterpriseDemand } from './types';
 import { CheckCircle2, Palette } from 'lucide-react';
 
 function AppContent() {
@@ -33,6 +37,14 @@ function AppContent() {
   const [userRole, setUserRole] = useState<UserRole>('university');
   const [enterpriseSearchQuery, setEnterpriseSearchQuery] = useState('');
   const [selectedUniversity, setSelectedUniversity] = useState<string | null>('jlu');
+
+  const [alumniList, setAlumniList] = useState<AlumniEnterpriseRecord[]>(INITIAL_ALUMNI_ENTERPRISES);
+
+  const handleAddAlumniRecord = (record: AlumniEnterpriseRecord) => {
+    setAlumniList([record, ...alumniList]);
+    setGlobalToastMessage(`🎓 已成功将「${record.companyName}」自主标注录入吉大校友企业库！`);
+    setTimeout(() => setGlobalToastMessage(null), 4500);
+  };
 
   const handleRoleChange = (role: UserRole) => {
     setUserRole(role);
@@ -51,6 +63,25 @@ function AppContent() {
   const { themeConfig } = useAppTheme();
 
   const [patents, setPatents] = useState<PatentItem[]>(INITIAL_PATENTS);
+  const [confidentialDemands, setConfidentialDemands] = useState<ConfidentialEnterpriseDemand[]>(INITIAL_CONFIDENTIAL_DEMANDS);
+
+  // Handlers for Confidential Demands
+  const handleAddConfidentialDemand = (newDemand: ConfidentialEnterpriseDemand) => {
+    setConfidentialDemands([newDemand, ...confidentialDemands]);
+    const isAlumni = newDemand.isAlumniEnterprise;
+    setGlobalToastMessage(
+      isAlumni
+        ? `🎓 校友企业技术需求《${newDemand.demandTitle.slice(0, 14)}...》已保密投递至母校吉林大学！`
+        : `🔒 保密技术需求《${newDemand.demandTitle.slice(0, 14)}...》已点对点加密投递至吉林大学！`
+    );
+    setTimeout(() => setGlobalToastMessage(null), 4500);
+  };
+
+  const handleUpdateConfidentialDemand = (updatedDemand: ConfidentialEnterpriseDemand) => {
+    setConfidentialDemands(prev => prev.map(d => d.id === updatedDemand.id ? updatedDemand : d));
+    setGlobalToastMessage(`高校专家反馈方案已出具，并实时同步至《${updatedDemand.companyName}》！`);
+    setTimeout(() => setGlobalToastMessage(null), 4500);
+  };
 
   // Selected entities for modals and detailed views
   const [selectedPatent, setSelectedPatent] = useState<PatentItem | null>(INITIAL_PATENTS[0]);
@@ -244,6 +275,9 @@ function AppContent() {
                 onNavigateToSearch={() => { setEnterpriseSearchQuery(''); setActiveTab('tech-search'); }} 
                 onSelectPatent={(p) => setSelectedPatentForDetailModal(p)} 
                 onNavigateToUnpatented={() => setActiveTab('unpatented-tech')}
+                onNavigateToDemandPublish={() => setActiveTab('enterprise-demand-publish')}
+                alumniList={alumniList}
+                onAddAlumniRecord={handleAddAlumniRecord}
               />
             )}
             
@@ -262,6 +296,23 @@ function AppContent() {
               }} />
             )}
             
+            {/* ENTERPRISE TAB: CONFIDENTIAL DEMAND PUBLISH */}
+            {activeTab === 'enterprise-demand-publish' && (
+              <ConfidentialDemandPublishPage
+                demands={confidentialDemands}
+                onAddDemand={handleAddConfidentialDemand}
+                onNavigateToPatent={(p) => setSelectedPatentForDetailModal(p)}
+              />
+            )}
+
+            {/* UNIVERSITY TAB: CONFIDENTIAL DEMAND INBOX & FEEDBACK */}
+            {activeTab === 'university-demand-inbox' && (
+              <UniversityDemandInboxPage
+                demands={confidentialDemands}
+                onUpdateDemand={handleUpdateConfidentialDemand}
+              />
+            )}
+
             {/* ENTERPRISE TAB: SEARCH RESULTS */}
             {activeTab === 'tech-search' && (
               <TechSearchHub 
