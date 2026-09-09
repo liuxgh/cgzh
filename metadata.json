@@ -1,6 +1,6 @@
 {
   "name": "Remix 吉林大学-科技成果转化应用",
-  "description": "吉林大学-科技成果转化应用平台（依托佰腾全球专利大数据与国家专利密集型产品库），提供三大靶向企业寻客路径（相似专利找企业、57条产业链找企业、专利密集型产品找企业）与AI靶向寻客智能体。",
+  "description": "吉林大学-科技成果转化应用平台（依托佰腾全球专利大数据与国家专利密集型产品库），提供高校端全景驾驶舱、企业端保密技术需求直达发布、以及佰腾网端专利检索直连成果对接的全链路生态闭环。",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

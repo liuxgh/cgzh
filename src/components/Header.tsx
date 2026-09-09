@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className={`flex items-center p-1 rounded-lg border shadow-inner ${isDarkHeader ? 'bg-[#081738] border-blue-900/60' : 'bg-slate-100 border-slate-200/60'}`}>
             <button
               onClick={() => onRoleChange('university')}
-              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 sm:px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
                 userRole === 'university' 
                   ? (isDarkHeader ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-[#0F52BA] shadow-xs ring-1 ring-slate-200/50') 
                   : (isDarkHeader ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-700')
@@ -152,7 +152,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
             <button
               onClick={() => onRoleChange('enterprise')}
-              className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 sm:px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
                 userRole === 'enterprise' 
                   ? 'bg-blue-600 text-white shadow-xs' 
                   : (isDarkHeader ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-700')
@@ -160,75 +160,89 @@ export const Header: React.FC<HeaderProps> = ({
             >
               🏢 企业端
             </button>
+            <button
+              onClick={() => onRoleChange('baiten')}
+              className={`px-3 sm:px-4 py-1.5 text-xs font-bold rounded-md transition-all flex items-center gap-1.5 cursor-pointer ${
+                userRole === 'baiten' 
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xs' 
+                  : (isDarkHeader ? 'text-slate-400 hover:text-slate-200' : 'text-slate-500 hover:text-slate-700')
+              }`}
+            >
+              🌐 佰腾网端
+            </button>
           </div>
 
-          <form onSubmit={handleSearch} className={`relative w-full md:w-80 lg:w-[350px] flex shadow-xs group ${userRole === 'enterprise' ? 'hidden sm:flex' : 'flex'}`}>
-            <div className="relative flex-1">
-              <input
-                type="text"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                placeholder={userRole === 'enterprise' ? '输入技术关键词、成果名称或专利号...' : '输入吉大专利号、技术词、靶向企业...'}
-                className={`w-full border border-r-0 rounded-l-xl px-4 py-2 pl-10 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-400/30 transition-all ${
-                  isDarkHeader
-                    ? 'bg-[#081738] border-blue-900/80 text-white placeholder-slate-400 focus:bg-[#0c224e] focus:border-cyan-400'
-                    : 'bg-slate-100/50 border-slate-200 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-blue-400'
-                }`}
-              />
-              <Search className={`w-4 h-4 absolute left-3.5 top-2.5 transition-colors ${isDarkHeader ? 'text-slate-400 group-focus-within:text-cyan-400' : 'text-slate-400 group-focus-within:text-blue-500'}`} />
-            </div>
-            <button
-              type="submit"
-              className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 font-bold rounded-r-xl text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-500 shadow-md"
-            >
-              <span>{userRole === 'enterprise' ? '技术匹配' : '精准寻客'}</span>
-            </button>
-          </form>
+          {userRole !== 'baiten' && (
+            <form onSubmit={handleSearch} className={`relative w-full md:w-80 lg:w-[350px] flex shadow-xs group ${userRole === 'enterprise' ? 'hidden sm:flex' : 'flex'}`}>
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  placeholder={userRole === 'enterprise' ? '输入技术关键词、成果名称或专利号...' : '输入吉大专利号、技术词、靶向企业...'}
+                  className={`w-full border border-r-0 rounded-l-xl px-4 py-2 pl-10 text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-400/30 transition-all ${
+                    isDarkHeader
+                      ? 'bg-[#081738] border-blue-900/80 text-white placeholder-slate-400 focus:bg-[#0c224e] focus:border-cyan-400'
+                      : 'bg-slate-100/50 border-slate-200 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-blue-400'
+                  }`}
+                />
+                <Search className={`w-4 h-4 absolute left-3.5 top-2.5 transition-colors ${isDarkHeader ? 'text-slate-400 group-focus-within:text-cyan-400' : 'text-slate-400 group-focus-within:text-blue-500'}`} />
+              </div>
+              <button
+                type="submit"
+                className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 font-bold rounded-r-xl text-sm transition-all shrink-0 flex items-center cursor-pointer border border-blue-500 shadow-md"
+              >
+                <span>{userRole === 'enterprise' ? '技术匹配' : '精准寻客'}</span>
+              </button>
+            </form>
+          )}
         </div>
       </div>
 
-      {/* 3. 佰腾网功能导航标签栏 (Primary Navigation Tabs) */}
-      <nav className={`px-4 sm:px-8 border-t flex overflow-x-auto no-scrollbar transition-colors ${
-        isDarkHeader ? 'bg-[#030919] border-blue-950/80' : 'bg-white border-slate-200'
-      }`}>
-        <div className="flex space-x-2 py-0">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.key;
-            return (
-              <button
-                key={item.key}
-                onClick={() => setActiveTab(item.key as TabType)}
-                className={`relative px-4 py-3.5 text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer border-b-2 ${
-                  isActive
-                    ? (isDarkHeader ? 'border-cyan-400 text-cyan-300 font-bold bg-blue-950/40' : 'border-blue-600 text-blue-700 font-bold')
-                    : item.highlight
-                    ? (isDarkHeader ? 'border-transparent text-cyan-400 hover:text-cyan-300' : 'border-transparent text-blue-700 hover:text-blue-800 hover:border-blue-300')
-                    : (isDarkHeader ? 'border-transparent text-slate-400 hover:text-slate-100 hover:border-blue-800' : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300')
-                }`}
-              >
-                <Icon className={`w-3.5 h-3.5 ${
-                  isActive 
-                    ? (isDarkHeader ? 'text-cyan-400' : 'text-blue-600') 
-                    : item.highlight 
-                    ? (isDarkHeader ? 'text-cyan-400' : 'text-blue-600') 
-                    : (isDarkHeader ? 'text-slate-500' : 'text-slate-400')
-                }`} />
-                <span>{item.label}</span>
-                {('badge' in item && Boolean((item as any).badge)) && (
-                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md leading-none ${
+      {/* 3. 佰腾网功能导航标签栏 (Primary Navigation Tabs) - 佰腾网端下不展示导航栏，直接呈现纯净专利列表页 */}
+      {userRole !== 'baiten' && (
+        <nav className={`px-4 sm:px-8 border-t flex overflow-x-auto no-scrollbar transition-colors ${
+          isDarkHeader ? 'bg-[#030919] border-blue-950/80' : 'bg-white border-slate-200'
+        }`}>
+          <div className="flex space-x-2 py-0">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.key;
+              return (
+                <button
+                  key={item.key}
+                  onClick={() => setActiveTab(item.key as TabType)}
+                  className={`relative px-4 py-3.5 text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer border-b-2 ${
                     isActive
-                      ? 'bg-amber-500 text-white shadow-2xs'
-                      : 'bg-amber-100 text-amber-800 border border-amber-300/80'
-                  }`}>
-                    {(item as any).badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </nav>
+                      ? (isDarkHeader ? 'border-cyan-400 text-cyan-300 font-bold bg-blue-950/40' : 'border-blue-600 text-blue-700 font-bold')
+                      : item.highlight
+                      ? (isDarkHeader ? 'border-transparent text-cyan-400 hover:text-cyan-300' : 'border-transparent text-blue-700 hover:text-blue-800 hover:border-blue-300')
+                      : (isDarkHeader ? 'border-transparent text-slate-400 hover:text-slate-100 hover:border-blue-800' : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300')
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${
+                    isActive 
+                      ? (isDarkHeader ? 'text-cyan-400' : 'text-blue-600') 
+                      : item.highlight 
+                      ? (isDarkHeader ? 'text-cyan-400' : 'text-blue-600') 
+                      : (isDarkHeader ? 'text-slate-500' : 'text-slate-400')
+                  }`} />
+                  <span>{item.label}</span>
+                  {('badge' in item && Boolean((item as any).badge)) && (
+                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-md leading-none ${
+                      isActive
+                        ? 'bg-amber-500 text-white shadow-2xs'
+                        : 'bg-amber-100 text-amber-800 border border-amber-300/80'
+                    }`}>
+                      {(item as any).badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </nav>
+      )}
     </header>
   );
 };

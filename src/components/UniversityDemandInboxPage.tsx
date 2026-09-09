@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Building2, 
   Lock, 
@@ -23,6 +23,8 @@ import {
   Calendar,
   DollarSign,
   Cpu,
+  ChevronLeft,
+  ChevronRight,
   ChevronDown,
   Phone,
   User,
@@ -256,6 +258,21 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
     return true;
   });
 
+  // Pagination state for demands list
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(5);
+
+  // Reset to page 1 when filters or search term changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filterType, selectedTag, selectedIndustry, searchQuery]);
+
+  const totalPages = Math.ceil(filteredDemands.length / pageSize) || 1;
+  const paginatedDemands = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return filteredDemands.slice(start, start + pageSize);
+  }, [filteredDemands, currentPage, pageSize]);
+
   const alumniCount = demands.filter(d => d.isAlumniEnterprise).length;
   const pendingCount = demands.filter(d => d.status === 'pending_review' || d.status === 'assigned_expert').length;
   const feedbackCount = demands.filter(d => d.status === 'feedback_provided' || d.status === 'in_dialogue').length;
@@ -314,7 +331,7 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
             {activeDemand.isAlumniEnterprise && (
               <span className="px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-300 rounded-md font-bold text-xs flex items-center gap-1">
                 <GraduationCap className="w-3.5 h-3.5 text-amber-600" />
-                <span>吉大校友企业提报</span>
+                <span>吉大校友企业</span>
               </span>
             )}
             <span className="px-2.5 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-md font-bold text-xs flex items-center gap-1">
@@ -322,7 +339,7 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
               <span>点对点保密</span>
             </span>
             <span className="text-xs text-slate-400">单号: {activeDemand.id}</span>
-            <span className="text-xs text-slate-400">提报时间: {activeDemand.createdAt}</span>
+            <span className="text-xs text-slate-400">发布时间: {activeDemand.createdAt}</span>
           </div>
 
           <div>
@@ -985,7 +1002,7 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
               <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-600 font-bold">
                 <th className="py-3.5 px-4 w-12 text-center whitespace-nowrap">#</th>
                 <th className="py-3.5 px-4 min-w-[260px]">技术需求课题 / 痛点</th>
-                <th className="py-3.5 px-4 min-w-[160px]">提报企业</th>
+                <th className="py-3.5 px-4 min-w-[160px]">发布企业</th>
                 <th className="py-3.5 px-4 min-w-[200px] whitespace-nowrap">企业联系人 / 电话 (可复制)</th>
                 <th className="py-3.5 px-4 w-44 text-center whitespace-nowrap">AI 靶向适配成果</th>
                 <th className="py-3.5 px-4 w-32 whitespace-nowrap">状态</th>
@@ -1004,7 +1021,8 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
                   </td>
                 </tr>
               ) : (
-                filteredDemands.map((demand, index) => {
+                paginatedDemands.map((demand, index) => {
+                  const itemIndex = (currentPage - 1) * pageSize + index + 1;
                   const hasFeedback = !!demand.universityFeedback;
                   const isExpanded = expandedDemandPatents.has(demand.id);
                   const matchedPatents = demand.aiMatchedPatents && demand.aiMatchedPatents.length > 0
@@ -1021,7 +1039,7 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
                       >
                         {/* Index */}
                         <td className="py-4 px-4 text-center font-mono text-slate-400 text-[11px] whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
-                          {index + 1}
+                          {itemIndex}
                         </td>
 
                         {/* Demand Title & Summary */}
@@ -1216,6 +1234,92 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Bar */}
+        {filteredDemands.length > 0 && (
+          <div className="bg-slate-50/90 px-4 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+            <div className="flex items-center gap-2">
+              <span>
+                显示第 <strong className="text-slate-900 font-bold">{(currentPage - 1) * pageSize + 1}</strong> 至 <strong className="text-slate-900 font-bold">{Math.min(currentPage * pageSize, filteredDemands.length)}</strong> 条，共 <strong className="text-slate-900 font-bold">{filteredDemands.length}</strong> 条需求
+              </span>
+              <span className="text-slate-300">|</span>
+              <div className="flex items-center gap-1.5">
+                <span>每页</span>
+                <select
+                  value={pageSize}
+                  onChange={(e) => {
+                    setPageSize(Number(e.target.value));
+                    setCurrentPage(1);
+                  }}
+                  className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs font-bold text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer shadow-2xs"
+                >
+                  <option value={5}>5 条</option>
+                  <option value={10}>10 条</option>
+                  <option value={20}>20 条</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className={`px-2.5 py-1.5 rounded-lg border text-xs font-bold flex items-center gap-1 transition-colors ${
+                  currentPage === 1
+                    ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
+                    : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 cursor-pointer shadow-2xs'
+                }`}
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span>上一页</span>
+              </button>
+
+              <div className="flex items-center gap-1 px-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+                  if (
+                    totalPages > 7 &&
+                    pageNum !== 1 &&
+                    pageNum !== totalPages &&
+                    Math.abs(pageNum - currentPage) > 2
+                  ) {
+                    if (pageNum === 2 || pageNum === totalPages - 1) {
+                      return <span key={pageNum} className="px-1 text-slate-400">...</span>;
+                    }
+                    return null;
+                  }
+
+                  const isActive = pageNum === currentPage;
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => setCurrentPage(pageNum)}
+                      className={`w-7 h-7 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                        isActive
+                          ? 'bg-blue-600 text-white shadow-2xs'
+                          : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className={`px-2.5 py-1.5 rounded-lg border text-xs font-bold flex items-center gap-1 transition-colors ${
+                  currentPage === totalPages
+                    ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
+                    : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 cursor-pointer shadow-2xs'
+                }`}
+              >
+                <span>下一页</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
     </div>

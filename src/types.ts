@@ -10,9 +10,10 @@ export type TabType = 'enterprise-profile' | 'overview'
   | 'enterprise-landing'
   | 'enterprise-demands'
   | 'enterprise-demand-publish'
-  | 'university-demand-inbox';
+  | 'university-demand-inbox'
+  | 'baiten-search';
 
-export type UserRole = 'university' | 'enterprise';
+export type UserRole = 'university' | 'enterprise' | 'baiten';
 
 export interface AlumniInfo {
   isAlumniEnterprise: boolean;

@@ -20,6 +20,7 @@ import { TechSearchHub } from './components/TechSearchHub';
 import { JluTechMapPage } from './components/JluTechMapPage';
 import { ConfidentialDemandPublishPage } from './components/ConfidentialDemandPublishPage';
 import { UniversityDemandInboxPage } from './components/UniversityDemandInboxPage';
+import { BaitenPatentSearchPage } from './components/BaitenPatentSearchPage';
 import { PatentDetailModal } from './components/PatentDetailModal';
 import { NewPatentModal } from './components/NewPatentModal';
 import { ThemeProvider, useAppTheme } from './context/ThemeContext';
@@ -29,6 +30,7 @@ import { TARGET_ENTERPRISES_DATA } from './data/targetEnterprisesData';
 import { PatentIntensiveProduct } from './data/patentProductsData';
 import { INITIAL_CONFIDENTIAL_DEMANDS } from './data/confidentialDemandsData';
 import { AlumniEnterpriseRecord, INITIAL_ALUMNI_ENTERPRISES } from './data/alumniEnterprisesData';
+import { BaitenPatentItem } from './data/baitenPatentsData';
 import { TabType, UserRole, PatentItem, TargetEnterprise, ConfidentialEnterpriseDemand } from './types';
 import { CheckCircle2, Palette } from 'lucide-react';
 
@@ -54,10 +56,19 @@ function AppContent() {
     if (role === 'university') {
       setSelectedUniversity('jlu');
       setActiveTab('overview');
+    } else if (role === 'baiten') {
+      setSelectedUniversity('jlu');
+      setActiveTab('baiten-search');
     } else {
       setSelectedUniversity('jlu');
       setActiveTab('tech-map');
     }
+  };
+
+  const handleDockingFromBaiten = (baitenPatent: BaitenPatentItem) => {
+    setUserRole('enterprise');
+    setSelectedUniversity('jlu');
+    setActiveTab('enterprise-demand-publish');
   };
 
   const { themeConfig } = useAppTheme();
@@ -164,7 +175,7 @@ function AppContent() {
 
       {/* Main SaaS Workspace Container */}
       <main className={`flex-1 w-full ${
-        activeTab === 'tech-map'
+        activeTab === 'tech-map' || activeTab === 'baiten-search'
           ? ''
           : activeTab === 'industry-chain'
           ? 'w-full max-w-[99vw] 2xl:max-w-[1920px] mx-auto px-2 sm:px-4 lg:px-6 py-2.5 space-y-3'
@@ -323,6 +334,14 @@ function AppContent() {
                   setSelectedUniversity(uni);
                   setActiveTab('tech-map');
                 }}
+              />
+            )}
+
+            {/* BAITEN TAB: BAITEN PATENT SEARCH */}
+            {activeTab === 'baiten-search' && (
+              <BaitenPatentSearchPage
+                onDockingPatent={handleDockingFromBaiten}
+                onNavigateToRole={(role) => handleRoleChange(role)}
               />
             )}
           </>
