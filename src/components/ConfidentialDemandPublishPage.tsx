@@ -1287,7 +1287,7 @@ ${polished.trim()}
               <div className="p-3.5 bg-emerald-50/70 border border-emerald-200 rounded-2xl flex items-center gap-2.5 text-xs text-emerald-900">
                 <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                 <span>
-                  <strong>点对点绝密保障：</strong>需求内容仅供吉林大学科技开发中心与指定学科专家评审，绝不向第三方公开。提交后将第一时间推送到高校后台。
+                  <strong>点对点直达：</strong>需求内容仅供吉林大学科技开发中心与指定学科专家评审，绝不向第三方公开。提交后将第一时间推送到高校后台。
                 </span>
               </div>
 

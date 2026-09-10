@@ -63,8 +63,8 @@ export const Header: React.FC<HeaderProps> = ({
   ] : (selectedUniversity ? [
     { key: 'tech-map', label: '成果技术图谱', icon: Compass, highlight: true },
     { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },
-    { key: 'enterprise-demand-publish', label: '免费发布技术需求 (保密直达)', icon: Lock, highlight: true },
-    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award }
+    { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award },
+    { key: 'enterprise-demand-publish', label: '免费发布技术需求 (保密直达)', icon: Lock, highlight: true }
   ] : [
     { key: 'enterprise-landing', label: '首页', icon: Building2, highlight: true },
     { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },

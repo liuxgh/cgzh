@@ -477,18 +477,6 @@ export const JluTechMapPage: React.FC<Props> = ({
                 匹配技术
               </span>
             </button>
-
-            {/* 校友企业自主标注入口 */}
-            <button 
-              onClick={() => setShowAlumniModal(true)}
-              className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold text-base rounded-full overflow-hidden transition-all duration-300 hover:scale-105 border border-amber-500/40 hover:border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.15)] cursor-pointer"
-            >
-              <GraduationCap className="w-5 h-5 text-amber-400" />
-              <span>校友身份自主标注 / 校友企业库</span>
-              <span className="px-2 py-0.5 bg-amber-400/20 text-amber-200 text-xs rounded-full border border-amber-400/30">
-                {localAlumniList.length}
-              </span>
-            </button>
           </div>
 )}
         </div>
