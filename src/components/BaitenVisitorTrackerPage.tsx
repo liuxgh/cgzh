@@ -240,13 +240,8 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
       <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2.5 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span>佰腾检索动态企业洞察 · 高校端独享数据流</span>
-            </div>
-            
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex flex-wrap items-center gap-3">
-              <span>检索记录找企业</span>
+              <span>企业实时检索动态追踪</span>
               <span className="text-xs font-normal px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                 实时动态追踪
               </span>

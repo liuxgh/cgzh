@@ -852,7 +852,7 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
       <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-black text-slate-900 flex items-center gap-2">
-            企业保密需求清单
+            企业需求清单
             <span className="text-xs font-normal text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">
               共 {demands.length} 项有效需求
             </span>

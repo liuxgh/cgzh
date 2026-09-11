@@ -53,14 +53,14 @@ export const Header: React.FC<HeaderProps> = ({
   const { themeConfig } = useAppTheme();
 
   const navItems = userRole === 'university' ? [
-    { key: 'baiten-visitor-tracker', label: '检索记录找企业', icon: Target, highlight: true },
+    { key: 'baiten-visitor-tracker', label: '企业实时检索动态追踪', icon: Target, highlight: true },
     { key: 'overview', label: '全景驾驶舱', icon: TrendingUp },
     { key: 'patent-similar', label: '相似专利找企业', icon: ShieldCheck },
     { key: 'industry-chain', label: '产业链找企业', icon: Layers },
     { key: 'patent-product', label: '专利产品找企业', icon: Package },
     { key: 'ai-agent', label: 'AI 靶向寻客智能体', icon: BrainCircuit },
     { key: 'unpatented-tech', label: '非专利技术/成果', icon: Award },
-    { key: 'university-demand-inbox', label: '企业保密需求清单', icon: Send }
+    { key: 'university-demand-inbox', label: '企业需求清单', icon: Send }
   ] : (selectedUniversity ? [
     { key: 'tech-map', label: '成果技术图谱', icon: Compass, highlight: true },
     { key: 'tech-search', label: 'AI智能匹配技术', icon: Search },

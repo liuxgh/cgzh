@@ -97,7 +97,7 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
         </div>
 
         <div className="flex items-center gap-1.5 text-xs font-bold text-blue-700 shrink-0 group-hover:translate-x-1 transition-transform">
-          <span>进入「检索记录找企业」</span>
+          <span>进入「企业实时检索动态追踪」</span>
           <ArrowRight className="w-4 h-4" />
         </div>
       </div>
