@@ -53,6 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
   const { themeConfig } = useAppTheme();
 
   const navItems = userRole === 'university' ? [
+    { key: 'baiten-visitor-tracker', label: '检索记录找企业', icon: Target, highlight: true },
     { key: 'overview', label: '全景驾驶舱', icon: TrendingUp },
     { key: 'patent-similar', label: '相似专利找企业', icon: ShieldCheck },
     { key: 'industry-chain', label: '产业链找企业', icon: Layers },

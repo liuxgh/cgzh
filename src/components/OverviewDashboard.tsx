@@ -74,6 +74,34 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       
+      {/* 0. Top Notification Banner: Daily Lead Alert */}
+      <div 
+        onClick={() => setActiveTab('baiten-visitor-tracker')}
+        className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-blue-500/10 border border-amber-300/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all cursor-pointer group"
+      >
+        <div className="flex items-center gap-3">
+          <span className="p-2 bg-gradient-to-br from-amber-500 to-orange-500 text-white rounded-xl shadow-xs shrink-0 group-hover:scale-105 transition-transform">
+            <Sparkles className="w-5 h-5" />
+          </span>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-black text-slate-900 text-sm">佰腾检索记录企业追踪：</span>
+              <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold">
+                发现多家企业正在调研吉大专利
+              </span>
+            </div>
+            <p className="text-xs text-slate-600 mt-0.5">
+              长城汽车、维信诺、恒瑞医药、宁德时代等企业近期调阅了高镇海、马於光、李晶、杜菲等教授团队的发明专利
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 text-xs font-bold text-blue-700 shrink-0 group-hover:translate-x-1 transition-transform">
+          <span>进入「检索记录找企业」</span>
+          <ArrowRight className="w-4 h-4" />
+        </div>
+      </div>
+
       {/* 1. Hero Banner: Direct SaaS Value for JLU Faculty */}
       <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-[#082C6C] via-[#0F52BA] to-[#0A3D8F] text-white p-6 sm:p-8 shadow-xl border border-blue-400/30">
         <div className="absolute -right-12 -bottom-12 w-96 h-96 bg-[#1677FF]/20 rounded-full blur-3xl pointer-events-none"></div>

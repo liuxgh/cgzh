@@ -21,6 +21,7 @@ import { JluTechMapPage } from './components/JluTechMapPage';
 import { ConfidentialDemandPublishPage } from './components/ConfidentialDemandPublishPage';
 import { UniversityDemandInboxPage } from './components/UniversityDemandInboxPage';
 import { BaitenPatentSearchPage } from './components/BaitenPatentSearchPage';
+import { BaitenVisitorTrackerPage } from './components/BaitenVisitorTrackerPage';
 import { PatentDetailModal } from './components/PatentDetailModal';
 import { NewPatentModal } from './components/NewPatentModal';
 import { ThemeProvider, useAppTheme } from './context/ThemeContext';
@@ -35,7 +36,7 @@ import { TabType, UserRole, PatentItem, TargetEnterprise, ConfidentialEnterprise
 import { CheckCircle2, Palette } from 'lucide-react';
 
 function AppContent() {
-  const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [activeTab, setActiveTab] = useState<TabType>('baiten-visitor-tracker');
   const [userRole, setUserRole] = useState<UserRole>('university');
   const [enterpriseSearchQuery, setEnterpriseSearchQuery] = useState('');
   const [selectedUniversity, setSelectedUniversity] = useState<string | null>('jlu');
@@ -49,13 +50,13 @@ function AppContent() {
   };
 
   const handleRoleChange = (role: UserRole) => {
-    setUserRole(role);
     setSelectedEnterpriseForDetailModal(null);
     setSelectedEnterpriseForActionPlan(null);
     setSelectedProductForAiReport(null);
+    setUserRole(role);
     if (role === 'university') {
       setSelectedUniversity('jlu');
-      setActiveTab('overview');
+      setActiveTab('baiten-visitor-tracker');
     } else if (role === 'baiten') {
       setSelectedUniversity('jlu');
       setActiveTab('baiten-search');
@@ -208,6 +209,26 @@ function AppContent() {
           />
         ) : (
           <>
+            {/* TAB 0: BAITEN VISITOR DAILY TRACKER (谁在关注吉大专利) */}
+            {activeTab === 'baiten-visitor-tracker' && (
+              <BaitenVisitorTrackerPage
+                patents={patents}
+                setActiveTab={(tab) => {
+                  setActiveTab(tab);
+                  setSelectedEnterpriseForDetailModal(null);
+                  setSelectedEnterpriseForActionPlan(null);
+                  setSelectedProductForAiReport(null);
+                }}
+                onSelectEnterprise={(ent) => setSelectedEnterpriseForDetailModal(ent)}
+                onOpenAiActionPlan={handleOpenAiActionPlan}
+                onSelectPatent={(p) => {
+                  setSelectedPatent(p);
+                  setSelectedPatentForDetailModal(p);
+                }}
+                onLaunchAiAgentWithQuery={handleLaunchAiAgentWithQuery}
+              />
+            )}
+
             {/* TAB 1: OVERVIEW DASHBOARD */}
             {activeTab === 'overview' && (
               <OverviewDashboard

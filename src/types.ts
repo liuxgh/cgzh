@@ -1,4 +1,5 @@
 export type TabType = 'enterprise-profile' | 'overview' 
+  | 'baiten-visitor-tracker'
   | 'patent-similar'
   | 'industry-chain'
   | 'patent-product'
