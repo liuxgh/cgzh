@@ -29,7 +29,8 @@ import {
   BookOpen,
   ChevronLeft,
   Phone,
-  ShieldCheck
+  ShieldCheck,
+  Download
 } from 'lucide-react';
 import { 
   ResponsiveContainer, 
@@ -135,6 +136,69 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
   const totalLeads = filteredLeads.length;
   const directKeywordCount = filteredLeads.filter(l => l.searchType === 'direct_keyword').length;
   const techSearchCount = filteredLeads.filter(l => l.searchType === 'tech_search_jlu_view').length;
+
+  // 导出检索记录企业明细列表为 CSV 表格
+  const handleExportLeads = () => {
+    if (filteredLeads.length === 0) return;
+
+    const headers = [
+      '序号',
+      '企业名称',
+      '省份',
+      '城市',
+      '所属行业',
+      '检索行为路径',
+      '检索频次(次)',
+      '涉及检索词',
+      '累计查阅吉大专利数',
+      '查阅吉大专利清单(专利号及名称)',
+      '累计停留时长(秒)',
+      '最近检索时间',
+      '企业联系人',
+      '联系电话',
+      '邮箱',
+      '意向对接建议'
+    ];
+
+    const rows = filteredLeads.map((lead, index) => {
+      const sessions = lead.searchSessions && lead.searchSessions.length > 0
+        ? lead.searchSessions
+        : [{ searchKeyword: lead.searchKeyword }];
+      const searchKeywordsText = Array.from(new Set(sessions.map(s => s.searchKeyword))).join('、');
+      const patentsText = lead.viewedPatents.map(p => `[${p.patentNo}] ${p.title} (${p.inventor} / ${p.college})`).join('; ');
+      const searchPathText = lead.searchType === 'direct_keyword' ? '直接检索吉大' : '技术词命中并调阅';
+
+      return [
+        index + 1,
+        `"${(lead.companyName || '').replace(/"/g, '""')}"`,
+        `"${(lead.province || '').replace(/"/g, '""')}"`,
+        `"${(lead.city || '').replace(/"/g, '""')}"`,
+        `"${(lead.industry || '').replace(/"/g, '""')}"`,
+        `"${searchPathText}"`,
+        sessions.length,
+        `"${searchKeywordsText.replace(/"/g, '""')}"`,
+        lead.viewedPatents.length,
+        `"${patentsText.replace(/"/g, '""')}"`,
+        lead.viewDurationSeconds || 0,
+        `"${lead.searchDate} ${lead.searchTime}"`,
+        `"${(lead.contactName || '').replace(/"/g, '""')}"`,
+        `"${(lead.phone || '').replace(/"/g, '""')}"`,
+        `"${(lead.email || '').replace(/"/g, '""')}"`,
+        `"${(lead.suggestedAction || '').replace(/"/g, '""')}"`
+      ].join(',');
+    });
+
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `企业实时检索动态明细_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   // 收集当前筛选条件下查阅的所有吉大专利总数（去重）
   const allFilteredViewedPatents = useMemo(() => {
@@ -600,8 +664,8 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
 
       {/* 4. 核心列表：检索记录企业明细列表 */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between px-1">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
             <h2 className="text-base font-bold text-slate-900">
               检索记录企业明细列表
@@ -611,8 +675,21 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
             </span>
           </div>
 
-          <div className="text-xs text-slate-400 hidden sm:block">
-            数据来源：佰腾网专利检索日志 • 已剔除网络爬虫并完成实体消歧
+          <div className="flex items-center gap-3">
+            <div className="text-xs text-slate-400 hidden md:block">
+              数据来源：佰腾网专利检索日志 • 已完成实体消歧
+            </div>
+            {filteredLeads.length > 0 && (
+              <button
+                type="button"
+                onClick={handleExportLeads}
+                className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-300 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs whitespace-nowrap"
+                title="导出当前检索记录明细为 CSV 表格"
+              >
+                <Download className="w-3.5 h-3.5 text-blue-600" />
+                <span>导出明细 ({filteredLeads.length}家)</span>
+              </button>
+            )}
           </div>
         </div>
 

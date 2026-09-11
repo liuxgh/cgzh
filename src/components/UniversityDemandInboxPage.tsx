@@ -33,7 +33,8 @@ import {
   MapPin,
   Clock,
   ExternalLink,
-  ArrowUpRight
+  ArrowUpRight,
+  Download
 } from 'lucide-react';
 import { ConfidentialEnterpriseDemand, UniversityFeedback, PatentItem } from '../types';
 import { TechDetailPage, TechDetailData } from './TechDetailPage';
@@ -58,6 +59,9 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
 
   // Collapsible patents state in table view (default collapsed)
   const [expandedDemandPatents, setExpandedDemandPatents] = useState<Set<string>>(new Set());
+
+  // AI 自动标签折叠状态 (默认收起)
+  const [isAiTagsExpanded, setIsAiTagsExpanded] = useState<boolean>(false);
 
   const toggleExpandPatents = (demandId: string) => {
     setExpandedDemandPatents(prev => {
@@ -258,9 +262,66 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
     return true;
   });
 
-  // Pagination state for demands list
+  // Pagination state for demands list (默认每页显示 10 条)
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [pageSize, setPageSize] = useState<number>(10);
+
+  // 导出需求清单为 CSV 文件
+  const handleExportDemands = () => {
+    if (filteredDemands.length === 0) return;
+
+    const headers = [
+      '序号',
+      '需求课题/痛点',
+      '发布企业',
+      '所属行业',
+      '企业联系人',
+      '联系电话',
+      '校友企业',
+      '当前状态',
+      'AI核心挑战摘要',
+      'AI匹配吉大专利成果',
+      '承接学院',
+      '推荐专家',
+      '专家拟定解决方案'
+    ];
+
+    const rows = filteredDemands.map((d, index) => {
+      const matchedPatents = d.aiMatchedPatents && d.aiMatchedPatents.length > 0
+        ? d.aiMatchedPatents
+        : matchPatentsForDemandText(d.demandTitle, d.currentBottleneck, d.industry);
+      const patentsText = matchedPatents.map(p => `[${p.patentNo}] ${p.title} (${p.inventor} ${p.college})`).join('; ');
+      const statusText = d.universityFeedback ? '已出具方案' : (d.status === 'pending_review' || d.status === 'assigned_expert' ? '待专家承接' : d.status);
+      const expertsText = d.universityFeedback?.matchedExperts?.map(e => `${e.name} (${e.title})`).join('、') || '';
+
+      return [
+        index + 1,
+        `"${(d.demandTitle || '').replace(/"/g, '""')}"`,
+        `"${(d.companyName || '').replace(/"/g, '""')}"`,
+        `"${(d.industry || '').replace(/"/g, '""')}"`,
+        `"${(d.contactName || '').replace(/"/g, '""')}"`,
+        `"${(d.contactPhone || '').replace(/"/g, '""')}"`,
+        d.isAlumniEnterprise ? '是' : '否',
+        `"${statusText}"`,
+        `"${(d.aiSummary?.coreChallenge || d.currentBottleneck || '').replace(/"/g, '""')}"`,
+        `"${patentsText.replace(/"/g, '""')}"`,
+        `"${(d.universityFeedback?.assignedCollege || '').replace(/"/g, '""')}"`,
+        `"${expertsText.replace(/"/g, '""')}"`,
+        `"${(d.universityFeedback?.proposedSolution || '').replace(/"/g, '""')}"`
+      ].join(',');
+    });
+
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `企业需求清单_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   // Reset to page 1 when filters or search term changes
   useEffect(() => {
@@ -862,7 +923,7 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
           </p>
         </div>
 
-        {/* Quick Stats Pill Group */}
+        {/* Quick Stats Pill Group & Export */}
         <div className="flex items-center gap-2 flex-wrap">
           <div className="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs whitespace-nowrap">
             <span className="text-slate-500">待反馈: </span>
@@ -876,6 +937,17 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
             <span className="text-emerald-700">已出方案: </span>
             <span className="font-extrabold text-emerald-800">{feedbackCount}</span>
           </div>
+
+          {/* 导出需求清单按钮 */}
+          <button
+            type="button"
+            onClick={handleExportDemands}
+            className="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 hover:border-blue-300 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs whitespace-nowrap ml-1"
+            title="导出当前筛选的企业需求清单为 CSV 表格"
+          >
+            <Download className="w-3.5 h-3.5 text-blue-600" />
+            <span>导出清单 ({filteredDemands.length}项)</span>
+          </button>
         </div>
       </div>
 
@@ -944,52 +1016,94 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
           </div>
         </div>
 
-        {/* AI Auto-Generated Tags Filter Bar */}
-        <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs">
-          <span className="text-slate-500 font-bold flex items-center gap-1 shrink-0">
-            <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-            <span>AI 自动标签：</span>
-          </span>
+        {/* AI Auto-Generated Tags Filter Bar (默认收起，点击展开) */}
+        <div className="pt-2 border-t border-slate-100 space-y-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={() => setIsAiTagsExpanded(prev => !prev)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer border ${
+                  isAiTagsExpanded
+                    ? 'bg-purple-600 text-white border-purple-600 shadow-2xs'
+                    : 'bg-purple-50 hover:bg-purple-100 text-purple-700 border-purple-200'
+                }`}
+                title={isAiTagsExpanded ? '收起 AI 自动标签' : '展开 AI 自动标签筛选'}
+              >
+                <Sparkles className={`w-3.5 h-3.5 ${isAiTagsExpanded ? 'text-purple-200' : 'text-purple-600'}`} />
+                <span>AI 自动标签 ({allAiTags.length}个)</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAiTagsExpanded ? 'rotate-180' : ''}`} />
+              </button>
 
-          <button
-            onClick={() => setSelectedTag('all')}
-            className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
-              selectedTag === 'all'
-                ? 'bg-purple-100 text-purple-900 font-bold border border-purple-300'
-                : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
-            }`}
-          >
-            全部标签
-          </button>
+              {/* 折叠状态下若有选中标签，展示当前选中的标签高亮提示 */}
+              {!isAiTagsExpanded && selectedTag !== 'all' && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg bg-purple-100 text-purple-900 border border-purple-300 text-xs font-bold">
+                  <span>当前过滤：#{selectedTag}</span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTag('all')}
+                    className="hover:text-purple-600 font-bold ml-1 text-slate-400"
+                    title="清除标签过滤"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+            </div>
 
-          {allAiTags.map(tag => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(tag === selectedTag ? 'all' : tag)}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
-                selectedTag === tag
-                  ? 'bg-purple-600 text-white font-bold shadow-2xs'
-                  : 'bg-slate-50 text-slate-700 hover:bg-purple-50 hover:text-purple-700 border border-slate-200'
-              }`}
-            >
-              #{tag}
-            </button>
-          ))}
-
-          {/* Industry dropdown */}
-          <div className="ml-auto flex items-center gap-1 text-slate-500 text-xs">
-            <span>行业：</span>
-            <select
-              value={selectedIndustry}
-              onChange={(e) => setSelectedIndustry(e.target.value)}
-              className="bg-slate-50 border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 font-medium focus:outline-none"
-            >
-              <option value="all">全行业领域</option>
-              {allIndustries.map(ind => (
-                <option key={ind} value={ind}>{ind}</option>
-              ))}
-            </select>
+            {/* Industry dropdown */}
+            <div className="ml-auto flex items-center gap-1 text-slate-500 text-xs">
+              <span>行业：</span>
+              <select
+                value={selectedIndustry}
+                onChange={(e) => setSelectedIndustry(e.target.value)}
+                className="bg-slate-50 border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 font-medium focus:outline-none"
+              >
+                <option value="all">全行业领域</option>
+                {allIndustries.map(ind => (
+                  <option key={ind} value={ind}>{ind}</option>
+                ))}
+              </select>
+            </div>
           </div>
+
+          {/* 展开后的标签云筛选区 */}
+          {isAiTagsExpanded && (
+            <div className="p-3 bg-purple-50/40 border border-purple-100 rounded-xl flex flex-wrap items-center gap-1.5 animate-in fade-in duration-200">
+              <button
+                onClick={() => setSelectedTag('all')}
+                className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+                  selectedTag === 'all'
+                    ? 'bg-purple-600 text-white font-bold shadow-2xs'
+                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                }`}
+              >
+                全部标签 ({demands.length})
+              </button>
+
+              {allAiTags.map(tag => (
+                <button
+                  key={tag}
+                  onClick={() => setSelectedTag(tag === selectedTag ? 'all' : tag)}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+                    selectedTag === tag
+                      ? 'bg-purple-600 text-white font-bold shadow-2xs'
+                      : 'bg-white text-slate-700 hover:bg-purple-50 hover:text-purple-700 border border-slate-200'
+                  }`}
+                >
+                  #{tag}
+                </button>
+              ))}
+
+              <button
+                type="button"
+                onClick={() => setIsAiTagsExpanded(false)}
+                className="ml-auto text-xs text-slate-400 hover:text-slate-600 px-2 py-1 cursor-pointer"
+              >
+                收起标签
+              </button>
+            </div>
+          )}
         </div>
 
       </div>
@@ -1253,9 +1367,10 @@ export const UniversityDemandInboxPage: React.FC<UniversityDemandInboxPageProps>
                   }}
                   className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs font-bold text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer shadow-2xs"
                 >
-                  <option value={5}>5 条</option>
-                  <option value={10}>10 条</option>
+                  <option value={10}>10 条 (默认)</option>
                   <option value={20}>20 条</option>
+                  <option value={50}>50 条</option>
+                  <option value={100}>全部需求</option>
                 </select>
               </div>
             </div>
