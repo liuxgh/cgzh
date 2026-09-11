@@ -52,6 +52,8 @@ import {
   SearchSession,
   ViewedPatentItem 
 } from '../data/baitenVisitorTrackerData';
+import { EnterpriseActivityTimeline } from './EnterpriseActivityTimeline';
+import { BaitenWordCloudSection } from './BaitenWordCloudSection';
 
 interface BaitenVisitorTrackerPageProps {
   patents: PatentItem[];
@@ -78,7 +80,7 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
   
   // 分页状态
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(4);
+  const [pageSize, setPageSize] = useState(5);
 
   // 展开的企业ID
   const [expandedLeadId, setExpandedLeadId] = useState<string | null>(null);
@@ -293,9 +295,133 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
         </div>
       </div>
 
-      {/* 2. 可视化图表看板区 (直观宏观图表展示) */}
+      {/* 2. 检索路径与日期范围筛选工具栏 (放于词云与宏观看板上方，实时驱动下方图表与明细) */}
+      <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-4">
+        
+        {/* 顶部筛选行：行为路径 + 搜索框 */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-bold text-slate-500 mr-1 flex items-center gap-1">
+              <Filter className="w-3.5 h-3.5" /> 行为路径：
+            </span>
+            <button
+              onClick={() => setSelectedSearchType('all')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                selectedSearchType === 'all'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              全部动态 ({totalLeads})
+            </button>
+            <button
+              onClick={() => setSelectedSearchType('direct_keyword')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                selectedSearchType === 'direct_keyword'
+                  ? 'bg-amber-600 text-white shadow-sm ring-2 ring-amber-400/30'
+                  : 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5" />
+              <span>直接检索吉大 ({directKeywordCount})</span>
+            </button>
+            <button
+              onClick={() => setSelectedSearchType('tech_search_jlu_view')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                selectedSearchType === 'tech_search_jlu_view'
+                  ? 'bg-cyan-600 text-white shadow-sm ring-2 ring-cyan-400/30'
+                  : 'bg-cyan-50 text-cyan-800 hover:bg-cyan-100 border border-cyan-200'
+              }`}
+            >
+              <Search className="w-3.5 h-3.5" />
+              <span>技术词命中并调阅 ({techSearchCount})</span>
+            </button>
+          </div>
+
+          {/* 搜索框 */}
+          <div className="relative w-full lg:w-72">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+              placeholder="搜索企业、发明人、技术词..."
+              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white"
+            />
+          </div>
+        </div>
+
+        {/* 日期范围选择行 */}
+        <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-slate-600 font-bold flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-blue-600" />
+              检索日期范围：
+            </span>
+            {[
+              { id: 'today', label: '今日最新' },
+              { id: 'last3days', label: '近3天' },
+              { id: 'last7days', label: '近7天 (推荐)' },
+              { id: 'all', label: '近30天全部' },
+              { id: 'custom', label: '自定义区间' }
+            ].map(d => (
+              <button
+                key={d.id}
+                onClick={() => setDateRangePreset(d.id as any)}
+                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer font-medium ${
+                  dateRangePreset === d.id
+                    ? 'bg-blue-50 text-blue-700 font-bold border border-blue-300 shadow-xs'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
+              >
+                {d.label}
+              </button>
+            ))}
+
+            {/* 自定义日期选择器 */}
+            {dateRangePreset === 'custom' && (
+              <div className="flex items-center gap-1.5 pl-2 border-l border-slate-200">
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="px-2 py-1 border border-slate-200 rounded-md text-xs bg-slate-50 focus:bg-white focus:outline-none"
+                />
+                <span className="text-slate-400">至</span>
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className="px-2 py-1 border border-slate-200 rounded-md text-xs bg-slate-50 focus:bg-white focus:outline-none"
+                />
+              </div>
+            )}
+          </div>
+
+          <div className="text-slate-400 flex items-center gap-3">
+            <span>
+              匹配到 <strong className="text-slate-700">{filteredLeads.length}</strong> 条企业检索行为记录
+            </span>
+            <span className="hidden sm:inline text-slate-300">|</span>
+            <span className="hidden sm:inline">
+              💡 点击卡片右侧「查看专利与详情记录」可查看时间线图表与深度研判
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      {/* 3. 企业检索热度与专利技术关键词洞察及宏观态势看板区 (位于筛选模块下方) */}
       {showVisualCharts && (
-        <div className="space-y-4 animate-in fade-in duration-300">
+        <div className="space-y-5 animate-in fade-in duration-300">
+          
+          {/* 双维度检索洞察词云看板 */}
+          <BaitenWordCloudSection 
+            leads={filteredLeads}
+            onSelectKeyword={(kw) => setSearchFilter(kw)}
+            activeFilterKeyword={searchFilter}
+          />
+
           <div className="flex items-center justify-between px-1">
             <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
               <BarChart3 className="w-4 h-4 text-blue-600" />
@@ -477,122 +603,6 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
         </div>
       )}
 
-      {/* 3. 检索路径与日期范围筛选工具栏 (已移除学科领域筛选) */}
-      <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-4">
-        
-        {/* 顶部筛选行：行为路径 + 搜索框 */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-bold text-slate-500 mr-1 flex items-center gap-1">
-              <Filter className="w-3.5 h-3.5" /> 行为路径：
-            </span>
-            <button
-              onClick={() => setSelectedSearchType('all')}
-              className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                selectedSearchType === 'all'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              全部动态 ({totalLeads})
-            </button>
-            <button
-              onClick={() => setSelectedSearchType('direct_keyword')}
-              className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                selectedSearchType === 'direct_keyword'
-                  ? 'bg-amber-600 text-white shadow-sm ring-2 ring-amber-400/30'
-                  : 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200'
-              }`}
-            >
-              <Zap className="w-3.5 h-3.5" />
-              <span>路径①：直接检索吉大关键词 ({directKeywordCount})</span>
-            </button>
-            <button
-              onClick={() => setSelectedSearchType('tech_search_jlu_view')}
-              className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                selectedSearchType === 'tech_search_jlu_view'
-                  ? 'bg-cyan-600 text-white shadow-sm ring-2 ring-cyan-400/30'
-                  : 'bg-cyan-50 text-cyan-800 hover:bg-cyan-100 border border-cyan-200'
-              }`}
-            >
-              <Search className="w-3.5 h-3.5" />
-              <span>路径②：技术词检索命中吉大专利并调阅 ({techSearchCount})</span>
-            </button>
-          </div>
-
-          {/* 搜索框 */}
-          <div className="relative w-full lg:w-72">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchFilter}
-              onChange={(e) => setSearchFilter(e.target.value)}
-              placeholder="搜索企业、发明人、技术词..."
-              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white"
-            />
-          </div>
-        </div>
-
-        {/* 日期范围选择行 */}
-        <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-slate-600 font-bold flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-blue-600" />
-              检索日期范围：
-            </span>
-            {[
-              { id: 'today', label: '今日最新' },
-              { id: 'last3days', label: '近3天' },
-              { id: 'last7days', label: '近7天 (推荐)' },
-              { id: 'all', label: '近30天全部' },
-              { id: 'custom', label: '自定义区间' }
-            ].map(d => (
-              <button
-                key={d.id}
-                onClick={() => setDateRangePreset(d.id as any)}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer font-medium ${
-                  dateRangePreset === d.id
-                    ? 'bg-blue-50 text-blue-700 font-bold border border-blue-300 shadow-xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {d.label}
-              </button>
-            ))}
-
-            {/* 自定义日期选择器 */}
-            {dateRangePreset === 'custom' && (
-              <div className="flex items-center gap-1.5 pl-2 border-l border-slate-200">
-                <input
-                  type="date"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  className="px-2 py-1 border border-slate-200 rounded-md text-xs bg-slate-50 focus:bg-white focus:outline-none"
-                />
-                <span className="text-slate-400">至</span>
-                <input
-                  type="date"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  className="px-2 py-1 border border-slate-200 rounded-md text-xs bg-slate-50 focus:bg-white focus:outline-none"
-                />
-              </div>
-            )}
-          </div>
-
-          <div className="text-slate-400 flex items-center gap-3">
-            <span>
-              匹配到 <strong className="text-slate-700">{filteredLeads.length}</strong> 条企业检索行为记录
-            </span>
-            <span className="hidden sm:inline text-slate-300">|</span>
-            <span className="hidden sm:inline">
-              💡 点击卡片右侧「查看查阅专利与详情」可查看搜索词Tab与深度研判
-            </span>
-          </div>
-        </div>
-
-      </div>
-
       {/* 4. 核心列表：检索记录企业明细列表 */}
       <div className="space-y-4">
         <div className="flex items-center justify-between px-1">
@@ -660,93 +670,100 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
                 key={lead.id}
                 className="bg-white rounded-2xl border border-slate-200 transition-all duration-300 overflow-hidden shadow-2xs hover:shadow-md"
               >
-                {/* 卡片头部：已去除“所属领域”和“注册资本”，搜索词已移至详情中 */}
+                {/* 卡片头部：突出企业检索频次与调阅专利篇数，弱化路径标签 */}
                 <div className="p-5 sm:p-6 bg-gradient-to-r from-slate-50/70 via-white to-slate-50/30 border-b border-slate-100">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
                     
-                    {/* 左侧：企业名称与检索动态概要 */}
-                    <div className="space-y-2">
+                    {/* 左侧：企业名称与突出核心指标 */}
+                    <div className="space-y-3 flex-1 min-w-0">
+                      
+                      {/* 企业主标题 + 地域 + 行业 */}
                       <div className="flex flex-wrap items-center gap-2.5">
-                        {/* 检索路径标签 */}
-                        {isDirect ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-medium border border-amber-300/60">
-                            <Zap className="w-3 h-3 text-amber-600" />
-                            路径①：直接检索吉大关键词
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-100 text-cyan-800 text-xs font-medium border border-cyan-300/60">
-                            <Search className="w-3 h-3 text-cyan-600" />
-                            路径②：技术词命中吉大专利
-                          </span>
-                        )}
-
-                        <span className="text-xs text-slate-400 flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          最近检索: {lead.searchTime}
-                        </span>
-
-                        <span className="text-xs px-2 py-0.5 bg-blue-50 text-blue-700 rounded-md font-medium border border-blue-200/60">
-                          {sessions.length} 个搜索词行为记录
-                        </span>
-                      </div>
-
-                      {/* 企业主标题 (点击可直接展开/收起) */}
-                      <div className="flex flex-wrap items-baseline gap-3">
                         <h3 
                           onClick={() => setExpandedLeadId(isExpanded ? null : lead.id)}
-                          className="text-lg sm:text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors cursor-pointer"
+                          className="text-lg sm:text-xl font-black text-slate-900 hover:text-blue-600 transition-colors cursor-pointer tracking-tight"
                         >
                           {lead.companyName}
                         </h3>
-                        <span className="text-xs text-slate-500">
+
+                        <span className="text-xs px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md font-medium border border-slate-200">
+                          {lead.industry}
+                        </span>
+
+                        <span className="text-xs text-slate-400">
                           📍 {lead.province} · {lead.city}
+                        </span>
+
+                        {/* 弱化后的路径标签：低调轻量辅助展示 */}
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] bg-slate-100/80 text-slate-500 border border-slate-200/60 font-normal">
+                          <span className={`w-1.5 h-1.5 rounded-full ${isDirect ? 'bg-amber-500' : 'bg-cyan-500'}`}></span>
+                          {isDirect ? '直接搜吉大' : '技术词命中'}
                         </span>
                       </div>
 
-                      {/* 统计指标概要（企业搜索词移入详情中作为Tab页展示） */}
-                      <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-600">
-                        <span>
-                          主营行业：<strong className="text-slate-800">{lead.industry}</strong>
-                        </span>
-                        <span className="text-slate-300">•</span>
-                        <span>
-                          累计停留时长 <strong className="text-slate-900">{lead.viewDurationSeconds} 秒</strong>
-                        </span>
-                        <span className="text-slate-300">•</span>
-                        <span>
-                          调阅吉大专利 <strong className="text-blue-600">{totalCompanyPatentsCount} 篇</strong>
-                        </span>
+                      {/* 核心重点突出指标：检索次数 + 对应查看专利件数 + 停留时长 */}
+                      <div className="flex flex-wrap items-center gap-3">
+                        {/* 突出指标 1：检索频次 */}
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200/80 text-blue-900 shadow-2xs">
+                          <Search className="w-3.5 h-3.5 text-blue-600" />
+                          <span className="text-xs text-slate-600">检索频次：</span>
+                          <span className="text-sm font-black text-blue-700">{sessions.length}</span>
+                          <span className="text-xs text-blue-600/80">次 ({sessions.length} 组检索词)</span>
+                        </div>
+
+                        {/* 突出指标 2：对应查阅专利件数 */}
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 border border-indigo-200/80 text-indigo-900 shadow-2xs">
+                          <FileText className="w-3.5 h-3.5 text-indigo-600" />
+                          <span className="text-xs text-slate-600">对应查看专利：</span>
+                          <span className="text-sm font-black text-indigo-700">{totalCompanyPatentsCount}</span>
+                          <span className="text-xs text-indigo-600/80">件吉大成果</span>
+                        </div>
+
+                        {/* 辅助指标：停留时长 & 最近检索 */}
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200/70 text-slate-600 text-xs">
+                          <Clock className="w-3.5 h-3.5 text-slate-400" />
+                          <span>累计停留 <strong className="text-slate-800">{lead.viewDurationSeconds}秒</strong></span>
+                          <span className="text-slate-300">|</span>
+                          <span className="text-slate-400">最近: {lead.searchTime}</span>
+                        </div>
                       </div>
+
                     </div>
 
                     {/* 右侧操作按钮 */}
                     <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-2 shrink-0 pt-2 lg:pt-0">
                       <button
                         onClick={() => setExpandedLeadId(isExpanded ? null : lead.id)}
-                        className={`px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-1.5 transition-all cursor-pointer border ${
+                        className={`px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer border shadow-2xs ${
                           isExpanded 
-                            ? 'bg-blue-50 text-blue-700 border-blue-200'
-                            : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-200'
+                            ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                            : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-300'
                         }`}
                       >
-                        <FolderSearch className="w-4 h-4 text-blue-600" />
-                        <span>{isExpanded ? '收起详情' : '查看查阅专利与详情'}</span>
+                        <FolderSearch className={`w-4 h-4 ${isExpanded ? 'text-white' : 'text-blue-600'}`} />
+                        <span>{isExpanded ? '收起专利与详情记录' : '查看专利与详情记录'}</span>
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
                       </button>
 
                       <div className="text-[11px] text-slate-400">
-                        点击展开查看搜索词 Tab 与 AI 研判
+                        点击展开时间线与查阅专利
                       </div>
                     </div>
 
                   </div>
                 </div>
 
-                {/* 展开区域：搜索词 Tab 页 ➔ 该搜索词下查阅的吉大专利 ➔ 动因归因图表 ➔ AI 综合研判整合模块 */}
+                {/* 展开区域：企业检索时间线图表 ➔ 搜索词 Tab 页 ➔ 该搜索词下查阅的吉大专利 ➔ AI 综合研判整合模块 */}
                 {isExpanded && (
                   <div className="p-5 sm:p-6 space-y-6 bg-white animate-in fade-in duration-200">
                     
-                    {/* 1. 搜索词 Tab 页导航条 */}
+                    {/* 1. 【新增】企业检索与专利调阅时序走势图表 (某一天检索了多少次，又查看了多少件专利) */}
+                    <EnterpriseActivityTimeline 
+                      lead={lead} 
+                      onJumpToPatent={handleJumpToPatent} 
+                    />
+
+                    {/* 2. 搜索词 Tab 页导航条 */}
                     <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/90 space-y-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
@@ -815,7 +832,7 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
                       </div>
                     </div>
 
-                    {/* 2. 【位置调整】在该搜索词下查阅的吉大专利清单（放在 AI 研判上面） */}
+                    {/* 3. 在该搜索词下查阅的吉大专利清单 */}
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
@@ -870,7 +887,7 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
                       </div>
                     </div>
 
-                    {/* 3. 【整合模块】AI 智能综合研判与对接推进中枢 (聚合痛点、研发方向、推进建议与联系方式) */}
+                    {/* 4. 【整合模块】AI 智能综合研判与对接推进中枢 (聚合痛点、研发方向、推进建议与联系方式) */}
                     <div className="bg-gradient-to-br from-indigo-50/80 via-blue-50/50 to-slate-50 rounded-2xl p-5 border border-indigo-200/80 shadow-xs space-y-4">
                       
                       {/* 模块头部 */}
