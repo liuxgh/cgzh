@@ -5,7 +5,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-001',
     patentNo: 'CN116892341B',
     title: '一种面向智能新能源商用车的线控电液复合制动系统与能量回收控制方法',
-    college: '',
+    college: '汽车工程学院 / 汽车底盘集成与仿生全国重点实验室',
     inventor: '高镇海',
     team: '智能底盘与智能网联汽车协同创新团队',
     field: 'automotive',
@@ -35,6 +35,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['新能源重卡制造', '商用车线控底盘', '智能重卡自动驾驶系统集成商'],
     viewCount: 1420,
     matchCount: 18,
+    isMarketHot: true,
+    hotBadge: '🔥 重点关注 · 一汽已实车验证',
+    marketAttentionReason: '一汽解放、东风商用车等重点跟踪调研',
+    searchCompaniesCount: 18,
     documents: [
       { title: '专利授权说明书与权利要求书.pdf', size: '2.4 MB', type: 'PDF' },
       { title: '吉大汽车国重室第三方试验测试报告.pdf', size: '5.8 MB', type: 'PDF' },
@@ -45,7 +49,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-002',
     patentNo: 'CN116564319B',
     title: '高色纯度热激活延迟荧光(TADF)超分子蓝光发光材料及其OLED器件制备工艺',
-    college: '',
+    college: '化学学院 / 超分子结构与材料国家重点实验室',
     inventor: '马於光',
     team: '有机光电功能材料与器件研发团队',
     field: 'materials',
@@ -75,6 +79,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['OLED发光材料制造', '新型显示面板制造', 'VR/AR微显示芯片'],
     viewCount: 2310,
     matchCount: 29,
+    isMarketHot: true,
+    hotBadge: '🔥 市场热搜 · 开放许可在架',
+    marketAttentionReason: '奥来德、京东方等29家企业持续关注OLED发光材料',
+    searchCompaniesCount: 29,
     documents: [
       { title: '发明专利证书与检测报告.pdf', size: '3.1 MB', type: 'PDF' },
       { title: '吉林大学中试基地放大纯化技术规程.pdf', size: '4.5 MB', type: 'PDF' }
@@ -84,7 +92,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-003',
     patentNo: 'CN116239845B',
     title: '高精度皮秒激光超快加工微纳传感芯片与曲面微结构光栅系统',
-    college: '',
+    college: '电子科学与工程学院 / 集成光电子学国家重点实验室',
     inventor: '孙洪波',
     team: '超快激光微纳制造与光电芯片团队',
     field: 'optoelectronics',
@@ -114,6 +122,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['半导体精密封测', '航空航天光学元器件', '生物微流控芯片制造'],
     viewCount: 980,
     matchCount: 12,
+    isMarketHot: true,
+    hotBadge: '🔥 精密制造 · 长光所协同',
+    marketAttentionReason: '长光集团、中芯国际协同测试微纳加工工艺',
+    searchCompaniesCount: 12,
     documents: [
       { title: '超快激光加工技术参数白皮书.pdf', size: '6.2 MB', type: 'PDF' }
     ]
@@ -122,7 +134,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-004',
     patentNo: 'CN116129871B',
     title: '靶向抗肿瘤长白山人参稀有皂苷Rg3/Rh2高效酶促转化与纳米脂质体载药制剂',
-    college: '',
+    college: '白求恩第一临床医学院 / 药学院',
     inventor: '李研',
     team: '吉林道地药材与现代生物医药创新团队',
     field: 'biomedicine',
@@ -152,6 +164,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['中药现代化制药', '抗肿瘤创新药物研发', '大健康高端功能食品'],
     viewCount: 1670,
     matchCount: 22,
+    isMarketHot: true,
+    hotBadge: '🔥 医药热搜 · 吉林道地产业',
+    marketAttentionReason: '金赛药业、长春高新重点调研长白山人参皂苷提取',
+    searchCompaniesCount: 22,
     documents: [
       { title: '吉大药学院动物实验药理学报告.pdf', size: '8.1 MB', type: 'PDF' }
     ]
@@ -160,7 +176,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-005',
     patentNo: 'CN116456209B',
     title: '东北黑土地全秸秆覆盖免耕少耕播种机防堵与智能压实破土装置',
-    college: '',
+    college: '生物与农业工程学院 / 工程仿生教育部重点实验室',
     inventor: '杨印生',
     team: '黑土地保护与智能仿生农机工程团队',
     field: 'agriculture',
@@ -190,6 +206,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['高端农机装备制造', '农业机械化服务运营', '黑土地保护工程示范项目'],
     viewCount: 3120,
     matchCount: 35,
+    isMarketHot: true,
+    hotBadge: '🔥 黑土地国家战略 · 万亩应用',
+    marketAttentionReason: '中国一拖、吉峰农机等35家农机企业重点对接',
+    searchCompaniesCount: 35,
     documents: [
       { title: '农业农村部机具鉴定检测报告.pdf', size: '4.2 MB', type: 'PDF' }
     ]
@@ -198,7 +218,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-006',
     patentNo: 'CN116654120B',
     title: '复杂地层深部科学钻探智能化自适应钻进参数控制系统及井下感知装置',
-    college: '',
+    college: '建设工程学院 / 地壳一号国家重大科研基础设施',
     inventor: '孙友宏',
     team: '地学深部钻探装备与极地勘探团队',
     field: 'geology',
@@ -228,6 +248,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['油气与地热深井工程', '战略性矿产资源勘探', '深地深海特种装备制造'],
     viewCount: 1890,
     matchCount: 15,
+    isMarketHot: true,
+    hotBadge: '🔥 万米深钻验证 · 特种装备',
+    marketAttentionReason: '中石油、中石化等15家勘探工程企业技术调研',
+    searchCompaniesCount: 15,
     documents: [
       { title: '地壳一号深井实钻工程应用报告.pdf', size: '9.5 MB', type: 'PDF' }
     ]
@@ -236,7 +260,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-007',
     patentNo: 'CN116782390B',
     title: '高强塑韧耐热稀土镁合金车身大型一体化压铸成形工艺及熔炼保护技术',
-    college: '',
+    college: '材料科学与工程学院 / 汽车材料教育部重点实验室',
     inventor: '张志清',
     team: '轻合金精密铸造成形与新材料团队',
     field: 'materials',
@@ -266,6 +290,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['新能源汽车轻量化零部件', '航空航天结构件', '3C电子高散热中框'],
     viewCount: 1540,
     matchCount: 16,
+    isMarketHot: true,
+    hotBadge: '🔥 新能源轻量化 · 一体化压铸',
+    marketAttentionReason: '蔚来、吉利、华为鸿蒙智行等16家整车供应链关注',
+    searchCompaniesCount: 16,
     documents: [
       { title: '稀土镁合金力学性能测试报告.pdf', size: '3.8 MB', type: 'PDF' }
     ]
@@ -274,7 +302,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-008',
     patentNo: 'CN116490218B',
     title: '基于多模态大模型协同的小样本工业表面精密微瑕疵视觉智能检测系统',
-    college: '',
+    college: '计算机科学与技术学院 / 符号计算与知识工程教育部重点实验室',
     inventor: '杨博',
     team: '知识工程与工业智能计算团队',
     field: 'ai_computing',
@@ -304,6 +332,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['汽车零部件智能制造', '半导体晶圆与封装外观检测', '锂电与光伏产线质检'],
     viewCount: 2190,
     matchCount: 27,
+    isMarketHot: true,
+    hotBadge: '🔥 工业大模型 · 小样本质检',
+    marketAttentionReason: '比亚迪、宁德时代等27家质检产线部署调研',
+    searchCompaniesCount: 27,
     documents: [
       { title: '工业质检大模型算法白皮书.pdf', size: '4.6 MB', type: 'PDF' }
     ]
@@ -312,7 +344,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-009',
     patentNo: 'CN116884910B',
     title: '空地一体化高精度航空低温超导全张量磁力梯度仪与地下隐伏构造反演系统',
-    college: '',
+    college: '仪器科学与电气工程学院 / 国家地球物理探测仪器工程技术研究中心',
     inventor: '林君',
     team: '地球深部探测仪器与地球物理反演科研团队',
     field: 'geology',
@@ -342,6 +374,10 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['战略性矿产资源勘查', '地热与深层油气调查', '重大地质工程防灾减灾'],
     viewCount: 2850,
     matchCount: 19,
+    isMarketHot: true,
+    hotBadge: '🔥 航空超导勘探 · 填补国内空白',
+    marketAttentionReason: '自然资源部物探中心、中金集团重点跟进',
+    searchCompaniesCount: 19,
     documents: [
       { title: '航空物探试飞实测对比报告.pdf', size: '12.4 MB', type: 'PDF' }
     ]
@@ -350,7 +386,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-010',
     patentNo: 'CN116542389B',
     title: '六自由度脊柱与骨科微创手术辅助穿刺机器人末端柔顺力控装置与导航系统',
-    college: '',
+    college: '机械与航空航天工程学院 / 吉大一院骨科协同中心',
     inventor: '赵宏伟',
     team: '智能微纳传感与特种机器人工程团队',
     field: 'equipment',
@@ -380,15 +416,187 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['医疗机器人研发制造', '骨科及神经外科精准医疗器械', '高端手术导航系统'],
     viewCount: 1780,
     matchCount: 20,
+    isMarketHot: true,
+    hotBadge: '🔥 手术机器人 · 活体精度验证',
+    marketAttentionReason: '联影医疗、微创机器人等20家医疗器械企业调研',
+    searchCompaniesCount: 20,
     documents: [
       { title: '吉大一院骨科手术机器人试验记录.pdf', size: '6.4 MB', type: 'PDF' }
+    ]
+  },
+  {
+    id: 'pat-radar-01',
+    patentNo: 'CN201810407280.6',
+    title: '一种测温电缆及其在线状态监测与早期过热预警系统',
+    college: '通信工程学院 / 仪器科学与电气工程学院',
+    inventor: '张文峰, 李明远',
+    team: '特种传感光电与智能电网监测团队',
+    field: 'optoelectronics',
+    fieldName: '电子信息与智能仪器',
+    ipc: 'H01B 7/42, G01K 11/32',
+    applicationDate: '2023-05-10',
+    grantDate: '2024-03-12',
+    status: 'valid',
+    trlLevel: 8,
+    trlDescription: 'TRL 8级 - 已在国家电网多处变电站及地下管廊试运行',
+    baitengScore: {
+      overall: 95,
+      technical: 96,
+      legal: 94,
+      market: 97,
+      barrier: 94
+    },
+    valuationRange: '320万 - 450万元',
+    openLicensePrice: '45万元/年',
+    transferModes: ['transfer', 'exclusive_license', 'open_license'],
+    abstract: '本发明公开了一种集成光纤分布式测温与微机电传感的高压测温电缆，可实现0.1℃分辨率的连续全线测温与早期绝缘局部过热快速预警，解决特高压管廊热失控火灾隐患。',
+    innovations: [
+      '空间分辨率达0.5米的全线连续测温',
+      '抗强电磁干扰与耐受35kV高压绝缘设计',
+      '早期过热自适应AI识别算法'
+    ],
+    applicableIndustries: ['特高压电网工程', '城市综合管廊', '轨道交通供电系统'],
+    viewCount: 3890,
+    matchCount: 35,
+    isMarketHot: true,
+    hotBadge: '🔥 35家企业热搜中',
+    marketAttentionReason: '贵州遵赐、四川易宏炎等35家实体企业高频检索',
+    searchCompaniesCount: 35,
+    documents: [
+      { title: '国家电网型式试验报告.pdf', size: '4.8 MB', type: 'PDF' }
+    ]
+  },
+  {
+    id: 'pat-radar-02',
+    patentNo: 'CN201520264832.4',
+    title: '基于计算机视觉的车身焊接机器人路径校正装置与自适应熔深监控',
+    college: '机械与航空航天工程学院 / 智能制造研究院',
+    inventor: '刘亚东, 孙建民',
+    team: '智能机器人与高端激光制造装备团队',
+    field: 'equipment',
+    fieldName: '高端装备与智能制造',
+    ipc: 'B23K 9/127, B25J 9/16',
+    applicationDate: '2023-03-18',
+    grantDate: '2024-01-10',
+    status: 'valid',
+    trlLevel: 7,
+    trlDescription: 'TRL 7级 - 汽车白车身焊装线实测验证，焊缝对中精度达0.05mm',
+    baitengScore: {
+      overall: 93,
+      technical: 94,
+      legal: 91,
+      market: 95,
+      barrier: 92
+    },
+    valuationRange: '290万 - 410万元',
+    openLicensePrice: '40万元/年',
+    transferModes: ['transfer', 'exclusive_license', 'general_license'],
+    abstract: '针对车身薄板焊接热形变引起的焊偏与未熔透缺陷，发明了双目结构光与熔池红外同轴视觉传感系统，实时闭环调整焊枪姿态与送丝能量，大幅提升自动化产线焊接良率。',
+    innovations: [
+      '毫秒级激光结构光焊缝自主追踪',
+      '熔深自适应深度学习在线预测',
+      '兼容ABB、KUKA、发那科等主流工业机器人'
+    ],
+    applicableIndustries: ['汽车整车及零部件制造', '轨道交通车体制造', '重型工程机械焊装'],
+    viewCount: 2680,
+    matchCount: 28,
+    isMarketHot: true,
+    hotBadge: '🔥 11家企业热搜中',
+    marketAttentionReason: '南京中高、聚轩信息等11家智能装备企业正在检索',
+    searchCompaniesCount: 11,
+    documents: [
+      { title: '车身焊接机器人测试报告.pdf', size: '3.6 MB', type: 'PDF' }
+    ]
+  },
+  {
+    id: 'pat-radar-03',
+    patentNo: 'CN201510149461.X',
+    title: '双模复合功率分流式混联混合动力系统及湿式多片离合器控制',
+    college: '汽车工程学院 / 汽车底盘集成与仿生全国重点实验室',
+    inventor: '李骏, 高镇海',
+    team: '中国工程院院士李骏团队 / 混合动力驱动创新团队',
+    field: 'automotive',
+    fieldName: '汽车与智能网联',
+    ipc: 'B60K 6/365, F16D 48/02',
+    applicationDate: '2022-09-14',
+    grantDate: '2023-11-20',
+    status: 'valid',
+    trlLevel: 8,
+    trlDescription: 'TRL 8级 - 混动总成已完成万公里耐久台架试验及节油率实车评测',
+    baitengScore: {
+      overall: 96,
+      technical: 98,
+      legal: 95,
+      market: 97,
+      barrier: 96
+    },
+    valuationRange: '550万 - 780万元',
+    openLicensePrice: '80万元/年',
+    transferModes: ['exclusive_license', 'transfer', 'equity'],
+    abstract: '本发明针对混动汽车在高速巡航与低速爬坡兼顾难题，提出双行星排复合动力分流构型与湿式离合器平顺微滑磨切换控制，系统综合效率提升12%，节油率达36%以上。',
+    innovations: [
+      '双行星排无冲击平顺动力换挡控制',
+      '湿式多片离合器摩擦热负荷自适应保护算法',
+      '突破丰田THS与本田i-MMD专利壁垒的完全自主构型'
+    ],
+    applicableIndustries: ['乘用车与商用车混动总成', '混合动力变速箱制造', '新能源汽车动力总成集成'],
+    viewCount: 3100,
+    matchCount: 32,
+    isMarketHot: true,
+    hotBadge: '🔥 8家企业热搜 · 李骏院士团队',
+    marketAttentionReason: '厦门鑫诺机械等8家汽车传动企业高频检索',
+    searchCompaniesCount: 8,
+    documents: [
+      { title: '双模混动动力总成台架数据.pdf', size: '6.5 MB', type: 'PDF' }
+    ]
+  },
+  {
+    id: 'pat-radar-04',
+    patentNo: 'CN202310768876.X',
+    title: '一种仿生抗冲击轻量化新能源汽车电池包箱体结构与多胞吸能缓冲筋',
+    college: '汽车工程学院 / 工程仿生教育部重点实验室',
+    inventor: '高镇海, 曾繁林',
+    team: '汽车安全与仿生轻量化结构团队',
+    field: 'automotive',
+    fieldName: '汽车与智能网联',
+    ipc: 'H01M 10/61, B60K 1/04',
+    applicationDate: '2023-07-15',
+    grantDate: '2024-04-08',
+    status: 'valid',
+    trlLevel: 7,
+    trlDescription: 'TRL 7级 - 已完成汽车底部刮底与侧面碰撞挤压仿真及实物爆破测试',
+    baitengScore: {
+      overall: 94,
+      technical: 95,
+      legal: 93,
+      market: 96,
+      barrier: 93
+    },
+    valuationRange: '380万 - 520万元',
+    openLicensePrice: '55万元/年',
+    transferModes: ['transfer', 'exclusive_license', 'open_license'],
+    abstract: '本发明借鉴龟甲与柚子皮多胞缓冲抗冲击仿生构型，设计了多层递进吸能侧边梁与底护板结构，在发生高速侧碰或刮底时吸能效率提升42%，极大降低动力电池热失控风险。',
+    innovations: [
+      '仿生多胞吸能拓扑结构设计',
+      '箱体综合减重达24%',
+      '通过国标新规针刺、挤压及底部托底双重严苛安全认证'
+    ],
+    applicableIndustries: ['新能源汽车动力电池包制造', '汽车底盘轻量化零部件', '储能电柜安全防护'],
+    viewCount: 2950,
+    matchCount: 26,
+    isMarketHot: true,
+    hotBadge: '🔥 重点关注 · 全文下载',
+    marketAttentionReason: '东莞浩德防水分透气膜材料等企业持续调阅',
+    searchCompaniesCount: 24,
+    documents: [
+      { title: '电池包侧碰吸能测试报告.pdf', size: '5.2 MB', type: 'PDF' }
     ]
   },
   {
     id: 'pat-011',
     patentNo: 'CN116320489B',
     title: '基于重组人白蛋白与特异性多肽偶联的靶向纳米递送系统及制备方法',
-    college: '',
+    college: '生命科学学院 / 分子酶学工程教育部重点实验室',
     inventor: '滕乐生',
     team: '现代分子生物技术与生物制药团队',
     field: 'biomedicine',
@@ -426,7 +634,7 @@ export const INITIAL_PATENTS: PatentItem[] = [
     id: 'pat-012',
     patentNo: 'CN116459812B',
     title: '耐500℃高温超强韧聚芳醚酮(PEEK)热塑性复合材料预浸料及其连续拉挤成型技术',
-    college: '',
+    college: '材料科学与工程学院 / 特种工程塑料教育部重点实验室',
     inventor: '张海博',
     team: '特种工程塑料与高性能聚合物团队',
     field: 'materials',
@@ -456,8 +664,138 @@ export const INITIAL_PATENTS: PatentItem[] = [
     applicableIndustries: ['航空航天飞行器结构件', '深海油气开采特种装备', '轨道交通高端减重部件'],
     viewCount: 3410,
     matchCount: 38,
+    isMarketHot: true,
+    hotBadge: '🔥 耐500℃特种工程塑料 · 航空量产',
+    marketAttentionReason: '中国航发、中船重工等38家高端制造企业应用',
+    searchCompaniesCount: 38,
     documents: [
       { title: '吉大特种工程塑料中试试制报告.pdf', size: '7.8 MB', type: 'PDF' }
+    ]
+  },
+  {
+    id: 'pat-013',
+    patentNo: 'CN117109234B',
+    title: '高热导率4英寸光学级CVD金刚石单晶晶圆高效微波等离子体同质外延生长方法',
+    college: '物理学院 / 超硬材料国家重点实验室',
+    inventor: '邹广田, 朱品文',
+    team: '高压超硬材料与金刚石光电半导体创新团队',
+    field: 'materials',
+    fieldName: '物理与超硬半导体材料',
+    ipc: 'C30B 29/04, H01L 21/02',
+    applicationDate: '2023-08-11',
+    grantDate: '2024-04-16',
+    status: 'valid',
+    trlLevel: 7,
+    trlDescription: 'TRL 7级 - 晶圆热导率测试达2200 W/(m·K)，已在中电科55所完成射频功放散热封装',
+    baitengScore: {
+      overall: 98,
+      technical: 99,
+      legal: 96,
+      market: 98,
+      barrier: 99
+    },
+    valuationRange: '850万 - 1200万元',
+    openLicensePrice: '120万元/年',
+    transferModes: ['exclusive_license', 'transfer', 'equity'],
+    abstract: '本发明针对5G/6G大功率射频功放与高端算力GPU芯片超高热流密度散热瓶颈，发明了高功率微波等离子体化学气相沉积(MPCVD)变温变掺杂快速外延技术，实现4英寸单晶金刚石晶圆位错密度低于10^4 cm^-2，热导率达铜的5倍以上。',
+    innovations: [
+      '自主研制10kW级高均匀微波谐振腔等离子体发生系统',
+      '突破大尺寸单晶金刚石开裂与马赛克拼结边界应力消除世界难题',
+      '为第三代/第四代超宽禁带半导体功率器件提供终极散热衬底'
+    ],
+    applicableIndustries: ['大功率半导体芯片散热基板', '航空航天微波雷达TR组件', '高能激光光学窗口'],
+    viewCount: 4280,
+    matchCount: 41,
+    isMarketHot: true,
+    hotBadge: '🔥 金刚石晶圆 · 终极半导体散热',
+    marketAttentionReason: '华为海思、中芯国际、中国电科重点跟进',
+    searchCompaniesCount: 41,
+    documents: [
+      { title: '金刚石晶圆热导率国家第三方计量检测证书.pdf', size: '3.4 MB', type: 'PDF' }
+    ]
+  },
+  {
+    id: 'pat-014',
+    patentNo: 'CN116982109B',
+    title: '仿生穿山甲多级鳞片微纳织构低能耗深松减阻耐磨犁壁与土壤非开挖刀具',
+    college: '生物与农业工程学院 / 工程仿生教育部重点实验室',
+    inventor: '任露泉, 丛茜',
+    team: '中国科学院院士任露泉团队 / 仿生减阻耐磨与智能农机团队',
+    field: 'agriculture',
+    fieldName: '仿生工程与智能农机',
+    ipc: 'A01B 15/08, B82Y 30/00',
+    applicationDate: '2023-01-20',
+    grantDate: '2023-12-15',
+    status: 'valid',
+    trlLevel: 8,
+    trlDescription: 'TRL 8级 - 仿生耕作刀具已在黑龙江建三江农场完成万亩大田重粘土深松作业测试',
+    baitengScore: {
+      overall: 96,
+      technical: 97,
+      legal: 94,
+      market: 96,
+      barrier: 95
+    },
+    valuationRange: '360万 - 490万元',
+    openLicensePrice: '50万元/年',
+    transferModes: ['transfer', 'exclusive_license', 'general_license'],
+    abstract: '本发明提炼土壤穴居动物穿山甲鳞片非光滑凸丘形貌与润滑粘液腺体仿生特征，采用激光熔覆与纳米自润滑涂层制备仿生耐磨深松铲，在重粘土深耕作业中降低牵引阻力18.5%，犁具耐磨寿命提升3.2倍，显著降低大马力拖拉机作业油耗。',
+    innovations: [
+      '生物体表非光滑减阻与脱附防粘机理的工程尺度复现',
+      '超硬耐磨硬质合金微米激光选区熔覆工艺',
+      '黑土地保护性耕作国家重大工程重点推广配套农具'
+    ],
+    applicableIndustries: ['大型大马力农机具制造', '重型工程机械铲斗刀板', '盾构机耐磨滚刀刀盘'],
+    viewCount: 3150,
+    matchCount: 33,
+    isMarketHot: true,
+    hotBadge: '🔥 任露泉院士团队 · 农机减阻18%',
+    marketAttentionReason: '潍柴雷沃、一拖集团等33家农机主机厂正在调阅',
+    searchCompaniesCount: 33,
+    documents: [
+      { title: '黑土地大田实测牵引力传感器试验对比.pdf', size: '5.1 MB', type: 'PDF' }
+    ]
+  },
+  {
+    id: 'pat-015',
+    patentNo: 'CN117042890B',
+    title: '知识图谱与因果推理驱动的工业互联网关键控制系统APT攻击链全息溯源引擎',
+    college: '计算机科学与技术学院 / 符号计算与知识工程教育部重点实验室',
+    inventor: '车翔玖, 杨博',
+    team: '工业网络空间安全与网络威胁情报科研团队',
+    field: 'ai_computing',
+    fieldName: '计算机与工业网络安全',
+    ipc: 'H04L 9/40, G06N 5/04',
+    applicationDate: '2023-09-05',
+    grantDate: '2024-05-20',
+    status: 'valid',
+    trlLevel: 7,
+    trlDescription: 'TRL 7级 - 已部署于一汽红旗工业互联网平台与大型石化DCS网络进行旁路监测',
+    baitengScore: {
+      overall: 95,
+      technical: 96,
+      legal: 93,
+      market: 95,
+      barrier: 94
+    },
+    valuationRange: '450万 - 620万元',
+    openLicensePrice: '60万元/年',
+    transferModes: ['transfer', 'exclusive_license', 'general_license'],
+    abstract: '本发明针对智能工厂PLC、SCADA控制网络面临的隐蔽低频APT渗透攻击，构建了动态多维时空知识图谱，通过因果图注意力机制将微弱日志异常关联，攻击溯源准确率达99.4%，实现分钟级攻击路径全景还原与阻断策略自适应生成。',
+    innovations: [
+      '基于因果反事实推理的低漏报攻击告警降噪算法',
+      '支持Modbus、OPC-UA、Profinet等工业协议的无损深度解析',
+      '自主可控，满足国家关键信息基础设施安全防护等保2.0与关保要求'
+    ],
+    applicableIndustries: ['智能汽车与装备制造工控安全', '国家电网调度系统网络安全', '石油化工与流程工业安全'],
+    viewCount: 2980,
+    matchCount: 25,
+    isMarketHot: true,
+    hotBadge: '🔥 工控安全 · 攻击链分钟级溯源',
+    marketAttentionReason: '启明星辰、奇安信、绿盟科技等25家网络安全领军企业关注',
+    searchCompaniesCount: 25,
+    documents: [
+      { title: '国家网络安全测评中心性能检验报告.pdf', size: '4.9 MB', type: 'PDF' }
     ]
   }
 ];

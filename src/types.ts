@@ -122,6 +122,11 @@ export interface PatentItem {
   viewCount: number;
   matchCount: number;
   documents: { title: string; size: string; type: string }[];
+  // Market hotness & real attention tracking
+  isMarketHot?: boolean;
+  hotBadge?: string;
+  marketAttentionReason?: string;
+  searchCompaniesCount?: number;
   // Linked matched target enterprise counts
   matchedEnterprisesCount?: {
     bySimilarPatent: number;

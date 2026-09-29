@@ -4,6 +4,7 @@ import { TargetEnterprise, PatentItem } from '../types';
 import { RegionFilter } from './RegionFilter';
 import { PatentNationalDistributionCard } from './PatentNationalDistributionCard';
 import { IndustryChainPanoramaView } from './IndustryChainPanoramaView';
+import { EnhancedPatentSelector } from './EnhancedPatentSelector';
 import { INDUSTRY_CHAINS_57_DATA, INDUSTRY_CATEGORIES, IndustryChain57Item } from '../data/industryChains57Data';
 import { TARGET_ENTERPRISES_DATA } from '../data/targetEnterprisesData';
 import { INITIAL_PATENTS } from '../data/mockData';
@@ -385,199 +386,74 @@ export const IndustryChain57Hub: React.FC<IndustryChain57HubProps> = ({
         </div>
       </div>
 
+      {/* Enhanced Patent Selector */}
+      <EnhancedPatentSelector
+        patents={patents}
+        selectedPatentId={selectedPatentIds[0] || patents[0]?.id}
+        selectedPatentIds={selectedPatentIds}
+        onSelectPatent={(patent) => {
+          setSelectedPatentIds([patent.id]);
+          if (onSelectPatent) onSelectPatent(patent);
+        }}
+        onTogglePatentSelection={handleTogglePatent}
+        onConfirmSelection={(selectedItems) => {
+          setSelectedPatentIds(selectedItems.map(p => p.id));
+          if (selectedItems[0] && onSelectPatent) {
+            onSelectPatent(selectedItems[0]);
+          }
+        }}
+        onOpenPatentDetail={(patent) => {
+          if (onSelectPatent) onSelectPatent(patent);
+        }}
+        mode="multiple"
+        themeMode="dark"
+        stepTitle="第一步：检索并选择待转化的吉林大学专利成果（支持多成果协同）"
+        stepDescription="选定一项或多项吉大成果后，AI大模型将自动穿透关联57条细分战略产业链节点与上下游靶向龙头企业"
+      />
+
       {/* Step 1 & Step 2: High Efficiency 2-Column Responsive Selector Hub */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         
-        {/* Step 1: Select JLU Patent (Supports Multi-Select) */}
+        {/* Step 1: AI Chain Linkage & Multi-Select Status */}
         <div className="bg-[#061026]/90 rounded-2xl p-3.5 border border-blue-900/50 shadow-xl space-y-2 flex flex-col justify-between">
-          <div className="space-y-1.5 relative" ref={dropdownRef}>
-            <label className="text-xs sm:text-sm font-bold text-slate-200 flex items-center justify-between gap-1.5">
+          <div className="space-y-1.5">
+            <div className="text-xs sm:text-sm font-bold text-slate-200 flex items-center justify-between gap-1.5">
               <span className="flex items-center gap-1.5">
                 <FileText className="w-3.5 h-3.5 text-cyan-400" />
-                <span>第一步：选择待转化的吉大专利</span>
+                <span>已选成果与产业链穿透映射</span>
                 <span className="text-[10px] bg-cyan-950/90 text-cyan-300 px-1.5 py-0.2 rounded border border-cyan-700/60 font-semibold shadow-xs">
-                  支持多选
+                  {selectedPatents.length} 项成果
                 </span>
               </span>
               <span className="text-[11px] text-slate-400 font-normal">
-                已选 <strong className="text-cyan-300 font-mono font-bold">{selectedPatentIds.length}</strong> 项 / 共 {patents.length} 项
+                对口 <strong className="text-cyan-300 font-bold">{chainMatches.length}</strong> 条细分产业链
               </span>
-            </label>
-
-            {/* Custom Multi-select Trigger Box */}
-            <div 
-              className="w-full bg-[#0a1838] border border-blue-800/60 rounded-xl px-3 py-2 text-xs sm:text-sm text-white font-medium focus-within:ring-2 focus-within:ring-cyan-400 focus-within:bg-[#0c224e] transition-all cursor-pointer flex items-center justify-between gap-2 hover:border-cyan-400/60 min-h-[42px]"
-              onClick={() => setIsDropdownOpen(true)}
-            >
-              <div className="flex items-center gap-1.5 flex-1 min-w-0 flex-wrap py-0.5">
-                {selectedPatents.length === 0 ? (
-                  <span className="text-slate-400 text-xs">点击勾选一项或多项待转化的吉大专利...</span>
-                ) : selectedPatents.length === 1 ? (
-                  <div className="flex items-center gap-1.5 truncate max-w-full">
-                    <span className="font-mono text-cyan-300 bg-blue-950/80 px-1.5 py-0.5 rounded border border-blue-700/60 text-[11px] font-bold shrink-0">
-                      {selectedPatents[0].patentNo}
-                    </span>
-                    <span className="font-bold text-white truncate text-xs sm:text-sm">{selectedPatents[0].title}</span>
-                    <span className="text-[11px] text-slate-400 shrink-0 hidden sm:inline">({selectedPatents[0].inventor})</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1.5 flex-wrap max-w-full">
-                    <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-slate-950 font-black text-[11px] px-2 py-0.5 rounded-full shrink-0 shadow-xs">
-                      已组合选定 {selectedPatents.length} 项成果
-                    </span>
-                    {selectedPatents.slice(0, 2).map(p => (
-                      <span 
-                        key={p.id}
-                        className="inline-flex items-center gap-1 bg-blue-950/90 text-cyan-200 border border-blue-700/80 px-2 py-0.5 rounded-md text-[11px] font-medium max-w-[200px] truncate"
-                      >
-                        <span className="truncate">{p.title}</span>
-                        <button 
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleTogglePatent(p.id);
-                          }}
-                          className="hover:text-white hover:bg-blue-800 rounded p-0.5 ml-0.5 shrink-0 transition-colors"
-                          title="移除此项"
-                        >
-                          <X className="w-2.5 h-2.5" />
-                        </button>
-                      </span>
-                    ))}
-                    {selectedPatents.length > 2 && (
-                      <span className="text-[11px] text-cyan-300 font-bold bg-blue-900/60 px-1.5 py-0.5 rounded border border-blue-700/50">
-                        +{selectedPatents.length - 2} 项
-                      </span>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                {selectedPatents.length > 0 && (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleClearAllSelected();
-                    }}
-                    className="text-[11px] text-slate-400 hover:text-red-300 transition-colors px-1 py-0.5 hover:bg-red-950/40 rounded cursor-pointer"
-                    title="清空已选专利"
-                  >
-                    清空
-                  </button>
-                )}
-                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-              </div>
             </div>
 
-            {/* Dropdown Menu with Multi-selection Checkboxes */}
-            {isDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-1.5 bg-[#071536] border border-blue-700/80 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[380px]">
-                {/* Search & Batch Action Header */}
-                <div className="p-2 border-b border-blue-800/60 bg-[#05102a] sticky top-0 z-10 space-y-1.5">
-                  <div className="relative">
-                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
-                    <input 
-                      type="text"
-                      autoFocus
-                      placeholder="输入专利名称、专利号或发明人进行模糊检索..."
-                      value={patentSearchQuery}
-                      onChange={e => setPatentSearchQuery(e.target.value)}
-                      className="w-full bg-[#0c224e] border border-blue-600/50 rounded-lg py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-400 focus:outline-hidden focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between text-[11px] px-1 pt-0.5">
-                    <div className="flex items-center gap-2">
-                      <button
+            {/* Selected patents badge list */}
+            <div className="bg-[#0a1838] border border-blue-800/60 rounded-xl p-2.5 space-y-2">
+              <div className="flex flex-wrap items-center gap-1.5">
+                {selectedPatents.map(p => (
+                  <span 
+                    key={p.id}
+                    className="inline-flex items-center gap-1 bg-blue-950/90 text-cyan-200 border border-blue-700/80 px-2 py-0.5 rounded-md text-[11px] font-medium max-w-[240px] truncate"
+                  >
+                    <span className="font-mono text-[10px] text-cyan-400 font-bold">{p.patentNo}</span>
+                    <span className="truncate">{p.title}</span>
+                    {selectedPatents.length > 1 && (
+                      <button 
                         type="button"
-                        onClick={handleSelectAllFiltered}
-                        className="text-cyan-300 hover:text-white font-medium hover:underline flex items-center gap-1 cursor-pointer"
+                        onClick={() => handleTogglePatent(p.id)}
+                        className="hover:text-white hover:bg-blue-800 rounded p-0.5 ml-0.5 shrink-0 transition-colors cursor-pointer"
+                        title="移除此项"
                       >
-                        <CheckSquare className="w-3 h-3" />
-                        全选检索结果 ({filteredPatents.length})
+                        <X className="w-2.5 h-2.5" />
                       </button>
-                      <span className="text-slate-600">|</span>
-                      <button
-                        type="button"
-                        onClick={handleClearAllSelected}
-                        className="text-slate-400 hover:text-red-300 font-medium hover:underline cursor-pointer"
-                      >
-                        清空已选
-                      </button>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <span className="text-slate-300">
-                        已勾选 <strong className="text-cyan-300 font-bold">{selectedPatentIds.length}</strong> 项
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setIsDropdownOpen(false)}
-                        className="px-2.5 py-0.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-md shadow-xs cursor-pointer active:scale-95 transition-transform"
-                      >
-                        完成
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Patent list */}
-                <div className="overflow-y-auto p-1.5 space-y-1">
-                  {filteredPatents.length > 0 ? (
-                    filteredPatents.map(p => {
-                      const isChecked = selectedPatentIds.includes(p.id);
-                      return (
-                        <div 
-                          key={p.id}
-                          onClick={() => handleTogglePatent(p.id)}
-                          className={`p-2 rounded-lg cursor-pointer transition-colors flex items-start gap-2.5 ${
-                            isChecked 
-                              ? 'bg-blue-900/80 border border-cyan-400/60 shadow-xs' 
-                              : 'hover:bg-blue-900/40 border border-transparent'
-                          }`}
-                        >
-                          <div className="mt-0.5 shrink-0">
-                            {isChecked ? (
-                              <div className="w-4 h-4 rounded bg-cyan-400 border border-cyan-300 flex items-center justify-center text-slate-950 font-bold shadow-xs">
-                                <Check className="w-3 h-3 stroke-[3]" />
-                              </div>
-                            ) : (
-                              <div className="w-4 h-4 rounded border border-slate-600 bg-slate-800/80 hover:border-slate-400 transition-colors" />
-                            )}
-                          </div>
-
-                          <div className="flex-1 min-w-0">
-                            <div className="font-bold text-white text-xs sm:text-sm line-clamp-1 flex items-center gap-1.5">
-                              <span className="truncate">{p.title}</span>
-                              {isChecked && (
-                                <span className="px-1 py-0.2 rounded bg-cyan-950 text-cyan-300 border border-cyan-700/60 text-[10px] font-semibold shrink-0">
-                                  已勾选
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[11px] text-slate-400">
-                              <span className="font-mono text-cyan-300 bg-blue-950 px-1.5 py-0.5 rounded border border-blue-800/60">
-                                {p.patentNo}
-                              </span>
-                              <span>•</span>
-                              <span className="font-medium text-slate-300">{p.inventor}</span>
-                              <span>•</span>
-                              <span className="text-slate-400">{p.fieldName || '战略科技成果'}</span>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div className="p-6 text-center text-xs text-slate-400">
-                      没有找到匹配的吉大专利记录
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </span>
+                ))}
               </div>
-            )}
+            </div>
           </div>
 
           {/* AI Recommended Chain Strip */}
