@@ -59,7 +59,7 @@ export interface TechDemandMatchItem {
 export interface TargetEnterpriseLeadTag {
   id: string;
   name: string;
-  evidenceType: 'double' | 'extreme_search' | 'viewed' | 'agency'; // 双重 | 极搜 | 看过 | 代
+  evidenceType: 'double' | 'extreme_search' | 'viewed' | 'agency'; // 双重 | 搜过 | 看过 | 代
   coverageCount: number;
   maxScore: number;
   searchedKeywordsSummary: string;
@@ -748,7 +748,7 @@ export const TAB1_VISITOR_CARDS_DATA: Tab1VisitorCardItem[] = [
     companyName: '上海震业环境科技有限公司',
     isInvoiceClient: true,
     entityType: '企业',
-    badgeType: '代理疑虑',
+    badgeType: '代理渠道',
     badgeStyle: 'purple',
     relationText: '与我的关系：未知',
     summary: '上海震业环境科技有限公司 的主体是「企业」，但浏览行为很像代理/服务机构 —— 它在 1,203 家公司的专利下都出现过、成批扫、不挑领域。企业这样画像更像在批量收集情报，建议结合业务判断。',

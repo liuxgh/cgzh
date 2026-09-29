@@ -151,7 +151,7 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
       if (selectedEntityType === 'enterprise_only' && lead.entityType !== '企业') return false;
       if (onlyFulltextDownloaded && (typeof lead.metrics.downloadFulltext === 'number' ? lead.metrics.downloadFulltext <= 0 : false)) return false;
       if (onlyInvoiceClients && !lead.isInvoiceClient) return false;
-      if (selectedRiskFilter === 'high' && lead.badgeType !== '代理疑虑') return false;
+      if (selectedRiskFilter === 'high' && lead.badgeType !== '代理渠道') return false;
 
       if (tab1SearchText.trim()) {
         const q = tab1SearchText.toLowerCase();
@@ -317,7 +317,7 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
       case 'double':
         return <span className="px-1.5 py-0.5 rounded text-[11px] font-black bg-purple-600 text-white shadow-2xs">双重</span>;
       case 'extreme_search':
-        return <span className="px-1.5 py-0.5 rounded text-[11px] font-black bg-blue-600 text-white shadow-2xs">极搜</span>;
+        return <span className="px-1.5 py-0.5 rounded text-[11px] font-black bg-blue-600 text-white shadow-2xs">搜过</span>;
       case 'viewed':
         return <span className="px-1.5 py-0.5 rounded text-[11px] font-black bg-emerald-600 text-white shadow-2xs">看过</span>;
       case 'agency':
@@ -1238,7 +1238,7 @@ export const BaitenVisitorTrackerPage: React.FC<BaitenVisitorTrackerPageProps> =
 
                     <div className="bg-blue-50 p-2.5 rounded-xl border border-blue-200 space-y-1">
                       <div className="flex items-center gap-1">
-                        <span className="px-1.5 py-0.2 rounded font-black bg-blue-600 text-white text-[10px]">极搜</span>
+                        <span className="px-1.5 py-0.2 rounded font-black bg-blue-600 text-white text-[10px]">搜过</span>
                         <span className="font-bold text-blue-950">强证据</span>
                       </div>
                       <p className="text-blue-900">企业在佰腾搜索过与这件成果极相同/相近的具体技术词。可主动联系。</p>
